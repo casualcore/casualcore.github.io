@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>configuration gateway &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="configuration domain (general)" href="domain.general.operation.html" />
+    <link rel="prev" title="environment variables that affect operations" href="../../administration/documentation/environment.operation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation/operation.html">operation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/cli/overview.html">command line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/environment.operation.html">environment variables that affect operations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">configuration gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.general.operation.html">configuration domain (general)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.queue.operation.html">configuration queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.transaction.operation.html">configuration transaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.operation.html">configuration system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/field.operation.html">field operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/log.operation.html">log operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../http/documentation/outbound/configuration.operation.html">http outbound configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../queue/documentation/queue.operation.html">casual-queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../queue/documentation/upgrade.operation.html">queue upgrade</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../documentation/operation.html">operation</a></li>
+      <li class="breadcrumb-item active">configuration gateway</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/configuration/documentation/domain.gateway.operation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration-gateway">
+<h1>configuration gateway<a class="headerlink" href="#configuration-gateway" title="Permalink to this heading">¶</a></h1>
+<p>This is the runtime configuration for a casual domain.</p>
+<p>The sections can be splitted in arbitrary ways, and aggregated to one configuration model <code class="docutils literal notranslate"><span class="pre">casual</span></code> uses.
+Same sections can be defined in different files, hence, give more or less unlimited configuration setup.</p>
+<p>Most of the <em>sections</em> has a property <code class="docutils literal notranslate"><span class="pre">note</span></code> for the user to provide descriptions of the documentation.
+The examples further down uses this to make it easier to understand the examples by them self. But can of
+course be used as a mean to help document actual production configuration.</p>
+<section id="domain-gateway">
+<h2>domain.gateway<a class="headerlink" href="#domain-gateway" title="Permalink to this heading">¶</a></h2>
+<p>Defines configuration for communication with other <code class="docutils literal notranslate"><span class="pre">casual</span></code> domains.</p>
+<section id="domain-gateway-inbound">
+<h3>domain.gateway.inbound<a class="headerlink" href="#domain-gateway-inbound" title="Permalink to this heading">¶</a></h3>
+<p>Defines all inbound related configuration (from remote domains -&gt; local domain)</p>
+<section id="domain-gateway-inbound-default">
+<h4>domain.gateway.inbound.default<a class="headerlink" href="#domain-gateway-inbound-default" title="Permalink to this heading">¶</a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>limit.size</p></td>
+<td><p>default value for limit size</p></td>
+</tr>
+<tr class="row-odd"><td><p>limit.messages</p></td>
+<td><p>default value for maximum number of messages</p></td>
+</tr>
+<tr class="row-even"><td><p>connection.discovery.forward</p></td>
+<td><p>default value if connections should forward discovery or not</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="domain-gateway-inbound-groups">
+<h4>domain.gateway.inbound.groups<a class="headerlink" href="#domain-gateway-inbound-groups" title="Permalink to this heading">¶</a></h4>
+<p>Defines a list of all inbound groups</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>alias</p></td>
+<td><p>an <em>identity</em> for this group instance (if not set, casual generates one)</p></td>
+</tr>
+<tr class="row-odd"><td><p>limit.size</p></td>
+<td><p>the maximum allowed size of all inflight messages. If reached, <em>inbound-group</em> will stop taking more request until below the limit</p></td>
+</tr>
+<tr class="row-even"><td><p>limit.messages</p></td>
+<td><p>the maximum allowed number of inflight messages. If reached, <em>inbound-group</em> will stop taking more request until below the limit</p></td>
+</tr>
+<tr class="row-odd"><td><p>connections</p></td>
+<td><p>all the connections for this group</p></td>
+</tr>
+</tbody>
+</table>
+<section id="domain-gateway-inbound-groups-connection">
+<h5>domain.gateway.inbound.groups.connection<a class="headerlink" href="#domain-gateway-inbound-groups-connection" title="Permalink to this heading">¶</a></h5>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>address</p></td>
+<td><p>the address to listen on, <code class="docutils literal notranslate"><span class="pre">host:port</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>discovery.forward</p></td>
+<td><p>boolean if the connetion should forward discovery request to ‘discoverables’</p></td>
+</tr>
+<tr class="row-even"><td><p>exclude.services</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[0..*]</span></code> regex patterns. During a discovery, all services that match any pattern are discarded.</p></td>
+</tr>
+<tr class="row-odd"><td><p>exclude.queues</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[0..*]</span></code> regex patterns. During a discovery, all queues that match any pattern are discarded.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="domain-gateway-outbound">
+<h3>domain.gateway.outbound<a class="headerlink" href="#domain-gateway-outbound" title="Permalink to this heading">¶</a></h3>
+<p>Defines all outbound related configuration (from local domain -&gt; remote domains)</p>
+<section id="domain-gateway-outbound-groups">
+<h4>domain.gateway.outbound.groups<a class="headerlink" href="#domain-gateway-outbound-groups" title="Permalink to this heading">¶</a></h4>
+<p>Defines a list of all outbound groups.</p>
+<p>Each group gets an <em>order</em> in the order they are defined. Groups defined lower down will only be used if the higher
+ups does not provide the wanted <em>service</em> or <em>queue</em>. Hence, the lower downs can be used as <em>fallback</em>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>alias</p></td>
+<td><p>an <em>identity</em> for this group instance (if not set, casual generates one)</p></td>
+</tr>
+<tr class="row-odd"><td><p>connections</p></td>
+<td><p>all the connections for this group</p></td>
+</tr>
+</tbody>
+</table>
+<section id="domain-gateway-outbound-groups-connection">
+<h5>domain.gateway.outbound.groups.connection<a class="headerlink" href="#domain-gateway-outbound-groups-connection" title="Permalink to this heading">¶</a></h5>
+<p>Defines all connections that this <em>outbound group</em> should try to connect to.</p>
+<p>All connections within a group ar treated equal, and service calls will be load balanced with <em>round robin</em>. Allthough,
+<code class="docutils literal notranslate"><span class="pre">casual</span></code> will try to <em>route</em> the same transaction to the previous <em>associated</em> connectino with the specific transaction.
+This is only done to minimize the amount of <em>resources</em> involved within the prepare and commit/rollback stage.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>address</p></td>
+<td><p>the address to connect to, <code class="docutils literal notranslate"><span class="pre">host:port</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>services</p></td>
+<td><p>services we’re expecting to find on the other side</p></td>
+</tr>
+<tr class="row-even"><td><p>queues</p></td>
+<td><p>queues we’re expecting to find on the other side</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">services</span></code> and <code class="docutils literal notranslate"><span class="pre">queues</span></code> is used as an <em>optimization</em> to do a <em>build</em> discovery during startup. <code class="docutils literal notranslate"><span class="pre">casual</span></code>
+will find these services later lazily otherwise. It can also be used to do some rudimentary load balancing
+to make sure lower prioritized connections are used for <code class="docutils literal notranslate"><span class="pre">services</span></code> and <code class="docutils literal notranslate"><span class="pre">queues</span></code> that could be discovered in
+higher prioritized connections.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="examples">
+<h2>examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<p>Below follows examples in human readable formats that <code class="docutils literal notranslate"><span class="pre">casual</span></code> can handle</p>
+<section id="yaml">
+<h3>yaml<a class="headerlink" href="#yaml" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inbound</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;discovery</span><span class="nv"> </span><span class="s">forward</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">disabled</span><span class="nv"> </span><span class="s">default.&quot;</span>
+<span class="w">        </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">discovery</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">forward</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;unique-inbound-alias&quot;</span>
+<span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;if</span><span class="nv"> </span><span class="s">threshold</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">2MB</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">total</span><span class="nv"> </span><span class="s">payload</span><span class="nv"> </span><span class="s">&#39;in</span><span class="nv"> </span><span class="s">flight&#39;</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">reach</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">stop</span><span class="nv"> </span><span class="s">consume</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">socket</span><span class="nv"> </span><span class="s">until</span><span class="nv"> </span><span class="s">we&#39;re</span><span class="nv"> </span><span class="s">below&quot;</span>
+<span class="w">          </span><span class="nt">limit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2097152</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost:7778&quot;</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">several</span><span class="nv"> </span><span class="s">listening</span><span class="nv"> </span><span class="s">host:port</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">instance&quot;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;some.host.org:7779&quot;</span>
+<span class="w">              </span><span class="nt">discovery</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">forward</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;discovery</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">forward</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">&#39;all&#39;</span><span class="nv"> </span><span class="s">outbounds&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;(generated</span><span class="nv"> </span><span class="s">alias)</span><span class="nv"> </span><span class="s">listeners</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">threshold</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">either</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">messages</span><span class="nv"> </span><span class="s">OR</span><span class="nv"> </span><span class="s">10MB</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">first</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">reach,</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">stop</span><span class="nv"> </span><span class="s">consume&quot;</span>
+<span class="w">          </span><span class="nt">limit</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span>
+<span class="w">            </span><span class="nt">messages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;some.host.org:7780&quot;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;some.host.org:4242&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;(generated</span><span class="nv"> </span><span class="s">alias)</span><span class="nv"> </span><span class="s">listeners</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">limits&quot;</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;some.host.org:4242&quot;</span>
+<span class="w">    </span><span class="nt">outbound</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;primary&quot;</span>
+<span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;casual</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">&#39;round-robin&#39;</span><span class="nv"> </span><span class="s">between</span><span class="nv"> </span><span class="s">connections</span><span class="nv"> </span><span class="s">within</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">group</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">service/queue&quot;</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;a45.domain.host.org:7779&quot;</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;connection</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">&#39;a45&#39;</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">we</span><span class="nv"> </span><span class="s">expect</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">find</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">&#39;s1&#39;</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">&#39;s2&#39;</span><span class="nv"> </span><span class="s">there.&quot;</span>
+<span class="w">              </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;s1&quot;</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;s2&quot;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;a46.domain.host.org:7779&quot;</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;we</span><span class="nv"> </span><span class="s">expect</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">find</span><span class="nv"> </span><span class="s">queues</span><span class="nv"> </span><span class="s">&#39;q1&#39;</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">&#39;q2&#39;</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">&#39;s1&#39;&quot;</span>
+<span class="w">              </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;s1&quot;</span>
+<span class="w">              </span><span class="nt">queues</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;q1&quot;</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;q2&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fallback&quot;</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;a99.domain.host.org:7780&quot;</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">chosen</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">_resources_</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">found</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">connections</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">&#39;primary&#39;</span><span class="nv"> </span><span class="s">outbound&quot;</span>
+<span class="w">    </span><span class="nt">reverse</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">inbound</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;unique-alias-name&quot;</span>
+<span class="w">            </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;connect</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">reverse</span><span class="nv"> </span><span class="s">outbound</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">listening</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">port</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">then</span><span class="nv"> </span><span class="s">treat</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">regular</span><span class="nv"> </span><span class="s">inbound&quot;</span>
+<span class="w">            </span><span class="nt">limit</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">messages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">            </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost:7780&quot;</span>
+<span class="w">                </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">addresses</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">connect</span><span class="nv"> </span><span class="s">to&quot;</span>
+<span class="w">      </span><span class="nt">outbound</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;primary&quot;</span>
+<span class="w">            </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;listen</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">connection</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">reverse</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">then</span><span class="nv"> </span><span class="s">treat</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">regular</span><span class="nv"> </span><span class="s">outbound&quot;</span>
+<span class="w">            </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost:7780&quot;</span>
+<span class="w">                </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">listining</span><span class="nv"> </span><span class="s">addresses.&quot;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;secondary&quot;</span>
+<span class="w">            </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;onther</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(proces)</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">handles</span><span class="nv"> </span><span class="s">(multiplexed)</span><span class="nv"> </span><span class="s">traffic</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">it&#39;s</span><span class="nv"> </span><span class="s">own&quot;</span>
+<span class="w">            </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost:7781&quot;</span>
+<span class="w">                </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">listining</span><span class="nv"> </span><span class="s">addresses.&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+</section>
+<section id="json">
+<h3>json<a class="headerlink" href="#json" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;inbound&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;discovery forward is disabled default.&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;connection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;discovery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;forward&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unique-inbound-alias&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;if threshold of 2MB of total payload &#39;in flight&#39; is reach inbound will stop consume from socket until we&#39;re below&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2097152</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                        </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:7778&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;can be several listening host:port per inbound instance&quot;</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some.host.org:7779&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;discovery&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                    </span><span class="nt">&quot;forward&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">                                </span><span class="p">},</span>
+<span class="w">                                </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;discovery will be forward to &#39;all&#39; outbounds&quot;</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(generated alias) listeners - threshold of either 10 messages OR 10MB - the first that is reach, inbound will stop consume&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10485760</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                        </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some.host.org:7780&quot;</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some.host.org:4242&quot;</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(generated alias) listeners - no limits&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;some.host.org:4242&quot;</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;outbound&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;primary&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual will &#39;round-robin&#39; between connections within a group for the same service/queue&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a45.domain.host.org:7779&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;connection to domain &#39;a45&#39; - we expect to find service &#39;s1&#39; and &#39;s2&#39; there.&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;services&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                                    </span><span class="s2">&quot;s1&quot;</span><span class="p">,</span>
+<span class="w">                                    </span><span class="s2">&quot;s2&quot;</span>
+<span class="w">                                </span><span class="p">]</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a46.domain.host.org:7779&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;we expect to find queues &#39;q1&#39; and &#39;q2&#39; and service &#39;s1&#39;&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;services&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                                    </span><span class="s2">&quot;s1&quot;</span>
+<span class="w">                                </span><span class="p">],</span>
+<span class="w">                                </span><span class="nt">&quot;queues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                                    </span><span class="s2">&quot;q1&quot;</span><span class="p">,</span>
+<span class="w">                                    </span><span class="s2">&quot;q2&quot;</span>
+<span class="w">                                </span><span class="p">]</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fallback&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a99.domain.host.org:7780&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;will be chosen if _resources_ are not found at connections in the &#39;primary&#39; outbound&quot;</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;reverse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;inbound&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unique-alias-name&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;connect to other reverse outbound that is listening on this port - then treat it as a regular inbound&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                            </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                                </span><span class="p">{</span>
+<span class="w">                                    </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:7780&quot;</span><span class="p">,</span>
+<span class="w">                                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one of possible many addresses to connect to&quot;</span>
+<span class="w">                                </span><span class="p">}</span>
+<span class="w">                            </span><span class="p">]</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">]</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;outbound&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;primary&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;listen for connection from reverse inbound - then treat it as a regular outbound&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                                </span><span class="p">{</span>
+<span class="w">                                    </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:7780&quot;</span><span class="p">,</span>
+<span class="w">                                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one of possible many listining addresses.&quot;</span>
+<span class="w">                                </span><span class="p">}</span>
+<span class="w">                            </span><span class="p">]</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;secondary&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onther instance (proces) that handles (multiplexed) traffic on it&#39;s own&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                                </span><span class="p">{</span>
+<span class="w">                                    </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:7781&quot;</span><span class="p">,</span>
+<span class="w">                                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one of possible many listining addresses.&quot;</span>
+<span class="w">                                </span><span class="p">}</span>
+<span class="w">                            </span><span class="p">]</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">]</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ini">
+<h3>ini<a class="headerlink" href="#ini" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[domain]</span>
+
+<span class="k">[domain.gateway]</span>
+
+<span class="k">[domain.gateway.inbound]</span>
+
+<span class="k">[domain.gateway.inbound.default]</span>
+<span class="na">note</span><span class="o">=</span><span class="s">discovery forward is disabled default.</span>
+
+<span class="k">[domain.gateway.inbound.default.connection]</span>
+
+<span class="k">[domain.gateway.inbound.default.connection.discovery]</span>
+<span class="na">forward</span><span class="o">=</span><span class="s">false</span>
+
+<span class="k">[domain.gateway.inbound.groups]</span>
+<span class="na">alias</span><span class="o">=</span><span class="s">unique-inbound-alias</span>
+<span class="na">note</span><span class="o">=</span><span class="s">if threshold of 2MB of total payload &#39;in flight&#39; is reach inbound will stop consume from socket until we&#39;re below</span>
+
+<span class="k">[domain.gateway.inbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">localhost:7778</span>
+<span class="na">note</span><span class="o">=</span><span class="s">can be several listening host:port per inbound instance</span>
+
+<span class="k">[domain.gateway.inbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">some.host.org:7779</span>
+<span class="na">note</span><span class="o">=</span><span class="s">discovery will be forward to &#39;all&#39; outbounds</span>
+
+<span class="k">[domain.gateway.inbound.groups.connections.discovery]</span>
+<span class="na">forward</span><span class="o">=</span><span class="s">true</span>
+
+<span class="k">[domain.gateway.inbound.groups.limit]</span>
+<span class="na">size</span><span class="o">=</span><span class="s">2097152</span>
+
+<span class="k">[domain.gateway.inbound.groups]</span>
+<span class="na">note</span><span class="o">=</span><span class="s">(generated alias) listeners - threshold of either 10 messages OR 10MB - the first that is reach, inbound will stop consume</span>
+
+<span class="k">[domain.gateway.inbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">some.host.org:7780</span>
+
+<span class="k">[domain.gateway.inbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">some.host.org:4242</span>
+
+<span class="k">[domain.gateway.inbound.groups.limit]</span>
+<span class="na">messages</span><span class="o">=</span><span class="s">10</span>
+<span class="na">size</span><span class="o">=</span><span class="s">10485760</span>
+
+<span class="k">[domain.gateway.inbound.groups]</span>
+<span class="na">note</span><span class="o">=</span><span class="s">(generated alias) listeners - no limits</span>
+
+<span class="k">[domain.gateway.inbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">some.host.org:4242</span>
+
+<span class="k">[domain.gateway.outbound]</span>
+
+<span class="k">[domain.gateway.outbound.groups]</span>
+<span class="na">alias</span><span class="o">=</span><span class="s">primary</span>
+<span class="na">note</span><span class="o">=</span><span class="s">casual will &#39;round-robin&#39; between connections within a group for the same service/queue</span>
+
+<span class="k">[domain.gateway.outbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">a45.domain.host.org:7779</span>
+<span class="na">note</span><span class="o">=</span><span class="s">connection to domain &#39;a45&#39; - we expect to find service &#39;s1&#39; and &#39;s2&#39; there.</span>
+<span class="na">services</span><span class="o">=</span><span class="s">s1</span>
+<span class="na">services</span><span class="o">=</span><span class="s">s2</span>
+
+<span class="k">[domain.gateway.outbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">a46.domain.host.org:7779</span>
+<span class="na">note</span><span class="o">=</span><span class="s">we expect to find queues &#39;q1&#39; and &#39;q2&#39; and service &#39;s1&#39;</span>
+<span class="na">queues</span><span class="o">=</span><span class="s">q1</span>
+<span class="na">queues</span><span class="o">=</span><span class="s">q2</span>
+<span class="na">services</span><span class="o">=</span><span class="s">s1</span>
+
+<span class="k">[domain.gateway.outbound.groups]</span>
+<span class="na">alias</span><span class="o">=</span><span class="s">fallback</span>
+
+<span class="k">[domain.gateway.outbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">a99.domain.host.org:7780</span>
+<span class="na">note</span><span class="o">=</span><span class="s">will be chosen if _resources_ are not found at connections in the &#39;primary&#39; outbound</span>
+
+<span class="k">[domain.gateway.reverse]</span>
+
+<span class="k">[domain.gateway.reverse.inbound]</span>
+
+<span class="k">[domain.gateway.reverse.inbound.groups]</span>
+<span class="na">alias</span><span class="o">=</span><span class="s">unique-alias-name</span>
+<span class="na">note</span><span class="o">=</span><span class="s">connect to other reverse outbound that is listening on this port - then treat it as a regular inbound</span>
+
+<span class="k">[domain.gateway.reverse.inbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">localhost:7780</span>
+<span class="na">note</span><span class="o">=</span><span class="s">one of possible many addresses to connect to</span>
+
+<span class="k">[domain.gateway.reverse.inbound.groups.limit]</span>
+<span class="na">messages</span><span class="o">=</span><span class="s">42</span>
+
+<span class="k">[domain.gateway.reverse.outbound]</span>
+
+<span class="k">[domain.gateway.reverse.outbound.groups]</span>
+<span class="na">alias</span><span class="o">=</span><span class="s">primary</span>
+<span class="na">note</span><span class="o">=</span><span class="s">listen for connection from reverse inbound - then treat it as a regular outbound</span>
+
+<span class="k">[domain.gateway.reverse.outbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">localhost:7780</span>
+<span class="na">note</span><span class="o">=</span><span class="s">one of possible many listining addresses.</span>
+
+<span class="k">[domain.gateway.reverse.outbound.groups]</span>
+<span class="na">alias</span><span class="o">=</span><span class="s">secondary</span>
+<span class="na">note</span><span class="o">=</span><span class="s">onther instance (proces) that handles (multiplexed) traffic on it&#39;s own</span>
+
+<span class="k">[domain.gateway.reverse.outbound.groups.connections]</span>
+<span class="na">address</span><span class="o">=</span><span class="s">localhost:7781</span>
+<span class="na">note</span><span class="o">=</span><span class="s">one of possible many listining addresses.</span>
+</pre></div>
+</div>
+</section>
+<section id="xml">
+<h3>xml<a class="headerlink" href="#xml" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;domain&gt;</span>
+<span class="w"> </span><span class="nt">&lt;gateway&gt;</span>
+<span class="w">  </span><span class="nt">&lt;inbound&gt;</span>
+<span class="w">   </span><span class="nt">&lt;default&gt;</span>
+<span class="w">    </span><span class="nt">&lt;note&gt;</span>discovery<span class="w"> </span>forward<span class="w"> </span>is<span class="w"> </span>disabled<span class="w"> </span>default.<span class="nt">&lt;/note&gt;</span>
+<span class="w">    </span><span class="nt">&lt;connection&gt;</span>
+<span class="w">     </span><span class="nt">&lt;discovery&gt;</span>
+<span class="w">      </span><span class="nt">&lt;forward&gt;</span>false<span class="nt">&lt;/forward&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/discovery&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/connection&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/default&gt;</span>
+<span class="w">   </span><span class="nt">&lt;groups&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;alias&gt;</span>unique-inbound-alias<span class="nt">&lt;/alias&gt;</span>
+<span class="w">     </span><span class="nt">&lt;note&gt;</span>if<span class="w"> </span>threshold<span class="w"> </span>of<span class="w"> </span>2MB<span class="w"> </span>of<span class="w"> </span>total<span class="w"> </span>payload<span class="w"> </span>&#39;in<span class="w"> </span>flight&#39;<span class="w"> </span>is<span class="w"> </span>reach<span class="w"> </span>inbound<span class="w"> </span>will<span class="w"> </span>stop<span class="w"> </span>consume<span class="w"> </span>from<span class="w"> </span>socket<span class="w"> </span>until<span class="w"> </span>we&#39;re<span class="w"> </span>below<span class="nt">&lt;/note&gt;</span>
+<span class="w">     </span><span class="nt">&lt;limit&gt;</span>
+<span class="w">      </span><span class="nt">&lt;size&gt;</span>2097152<span class="nt">&lt;/size&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/limit&gt;</span>
+<span class="w">     </span><span class="nt">&lt;connections&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;address&gt;</span>localhost:7778<span class="nt">&lt;/address&gt;</span>
+<span class="w">       </span><span class="nt">&lt;note&gt;</span>can<span class="w"> </span>be<span class="w"> </span>several<span class="w"> </span>listening<span class="w"> </span>host:port<span class="w"> </span>per<span class="w"> </span>inbound<span class="w"> </span>instance<span class="nt">&lt;/note&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;address&gt;</span>some.host.org:7779<span class="nt">&lt;/address&gt;</span>
+<span class="w">       </span><span class="nt">&lt;discovery&gt;</span>
+<span class="w">        </span><span class="nt">&lt;forward&gt;</span>true<span class="nt">&lt;/forward&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/discovery&gt;</span>
+<span class="w">       </span><span class="nt">&lt;note&gt;</span>discovery<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>forward<span class="w"> </span>to<span class="w"> </span>&#39;all&#39;<span class="w"> </span>outbounds<span class="nt">&lt;/note&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/connections&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;note&gt;</span>(generated<span class="w"> </span>alias)<span class="w"> </span>listeners<span class="w"> </span>-<span class="w"> </span>threshold<span class="w"> </span>of<span class="w"> </span>either<span class="w"> </span>10<span class="w"> </span>messages<span class="w"> </span>OR<span class="w"> </span>10MB<span class="w"> </span>-<span class="w"> </span>the<span class="w"> </span>first<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>reach,<span class="w"> </span>inbound<span class="w"> </span>will<span class="w"> </span>stop<span class="w"> </span>consume<span class="nt">&lt;/note&gt;</span>
+<span class="w">     </span><span class="nt">&lt;limit&gt;</span>
+<span class="w">      </span><span class="nt">&lt;size&gt;</span>10485760<span class="nt">&lt;/size&gt;</span>
+<span class="w">      </span><span class="nt">&lt;messages&gt;</span>10<span class="nt">&lt;/messages&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/limit&gt;</span>
+<span class="w">     </span><span class="nt">&lt;connections&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;address&gt;</span>some.host.org:7780<span class="nt">&lt;/address&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;address&gt;</span>some.host.org:4242<span class="nt">&lt;/address&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/connections&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;note&gt;</span>(generated<span class="w"> </span>alias)<span class="w"> </span>listeners<span class="w"> </span>-<span class="w"> </span>no<span class="w"> </span>limits<span class="nt">&lt;/note&gt;</span>
+<span class="w">     </span><span class="nt">&lt;connections&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;address&gt;</span>some.host.org:4242<span class="nt">&lt;/address&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/connections&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/groups&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/inbound&gt;</span>
+<span class="w">  </span><span class="nt">&lt;outbound&gt;</span>
+<span class="w">   </span><span class="nt">&lt;groups&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;alias&gt;</span>primary<span class="nt">&lt;/alias&gt;</span>
+<span class="w">     </span><span class="nt">&lt;note&gt;</span>casual<span class="w"> </span>will<span class="w"> </span>&#39;round-robin&#39;<span class="w"> </span>between<span class="w"> </span>connections<span class="w"> </span>within<span class="w"> </span>a<span class="w"> </span>group<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>service/queue<span class="nt">&lt;/note&gt;</span>
+<span class="w">     </span><span class="nt">&lt;connections&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;address&gt;</span>a45.domain.host.org:7779<span class="nt">&lt;/address&gt;</span>
+<span class="w">       </span><span class="nt">&lt;note&gt;</span>connection<span class="w"> </span>to<span class="w"> </span>domain<span class="w"> </span>&#39;a45&#39;<span class="w"> </span>-<span class="w"> </span>we<span class="w"> </span>expect<span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>service<span class="w"> </span>&#39;s1&#39;<span class="w"> </span>and<span class="w"> </span>&#39;s2&#39;<span class="w"> </span>there.<span class="nt">&lt;/note&gt;</span>
+<span class="w">       </span><span class="nt">&lt;services&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element&gt;</span>s1<span class="nt">&lt;/element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element&gt;</span>s2<span class="nt">&lt;/element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/services&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;address&gt;</span>a46.domain.host.org:7779<span class="nt">&lt;/address&gt;</span>
+<span class="w">       </span><span class="nt">&lt;note&gt;</span>we<span class="w"> </span>expect<span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>queues<span class="w"> </span>&#39;q1&#39;<span class="w"> </span>and<span class="w"> </span>&#39;q2&#39;<span class="w"> </span>and<span class="w"> </span>service<span class="w"> </span>&#39;s1&#39;<span class="nt">&lt;/note&gt;</span>
+<span class="w">       </span><span class="nt">&lt;services&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element&gt;</span>s1<span class="nt">&lt;/element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/services&gt;</span>
+<span class="w">       </span><span class="nt">&lt;queues&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element&gt;</span>q1<span class="nt">&lt;/element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;element&gt;</span>q2<span class="nt">&lt;/element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/queues&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/connections&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;alias&gt;</span>fallback<span class="nt">&lt;/alias&gt;</span>
+<span class="w">     </span><span class="nt">&lt;connections&gt;</span>
+<span class="w">      </span><span class="nt">&lt;element&gt;</span>
+<span class="w">       </span><span class="nt">&lt;address&gt;</span>a99.domain.host.org:7780<span class="nt">&lt;/address&gt;</span>
+<span class="w">       </span><span class="nt">&lt;note&gt;</span>will<span class="w"> </span>be<span class="w"> </span>chosen<span class="w"> </span>if<span class="w"> </span>_resources_<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>found<span class="w"> </span>at<span class="w"> </span>connections<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>&#39;primary&#39;<span class="w"> </span>outbound<span class="nt">&lt;/note&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/connections&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/groups&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/outbound&gt;</span>
+<span class="w">  </span><span class="nt">&lt;reverse&gt;</span>
+<span class="w">   </span><span class="nt">&lt;inbound&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groups&gt;</span>
+<span class="w">     </span><span class="nt">&lt;element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;alias&gt;</span>unique-alias-name<span class="nt">&lt;/alias&gt;</span>
+<span class="w">      </span><span class="nt">&lt;note&gt;</span>connect<span class="w"> </span>to<span class="w"> </span>other<span class="w"> </span>reverse<span class="w"> </span>outbound<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span>this<span class="w"> </span>port<span class="w"> </span>-<span class="w"> </span>then<span class="w"> </span>treat<span class="w"> </span>it<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>regular<span class="w"> </span>inbound<span class="nt">&lt;/note&gt;</span>
+<span class="w">      </span><span class="nt">&lt;limit&gt;</span>
+<span class="w">       </span><span class="nt">&lt;messages&gt;</span>42<span class="nt">&lt;/messages&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/limit&gt;</span>
+<span class="w">      </span><span class="nt">&lt;connections&gt;</span>
+<span class="w">       </span><span class="nt">&lt;element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;address&gt;</span>localhost:7780<span class="nt">&lt;/address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;note&gt;</span>one<span class="w"> </span>of<span class="w"> </span>possible<span class="w"> </span>many<span class="w"> </span>addresses<span class="w"> </span>to<span class="w"> </span>connect<span class="w"> </span>to<span class="nt">&lt;/note&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/connections&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/groups&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/inbound&gt;</span>
+<span class="w">   </span><span class="nt">&lt;outbound&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groups&gt;</span>
+<span class="w">     </span><span class="nt">&lt;element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;alias&gt;</span>primary<span class="nt">&lt;/alias&gt;</span>
+<span class="w">      </span><span class="nt">&lt;note&gt;</span>listen<span class="w"> </span>for<span class="w"> </span>connection<span class="w"> </span>from<span class="w"> </span>reverse<span class="w"> </span>inbound<span class="w"> </span>-<span class="w"> </span>then<span class="w"> </span>treat<span class="w"> </span>it<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>regular<span class="w"> </span>outbound<span class="nt">&lt;/note&gt;</span>
+<span class="w">      </span><span class="nt">&lt;connections&gt;</span>
+<span class="w">       </span><span class="nt">&lt;element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;address&gt;</span>localhost:7780<span class="nt">&lt;/address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;note&gt;</span>one<span class="w"> </span>of<span class="w"> </span>possible<span class="w"> </span>many<span class="w"> </span>listining<span class="w"> </span>addresses.<span class="nt">&lt;/note&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/connections&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">     </span><span class="nt">&lt;element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;alias&gt;</span>secondary<span class="nt">&lt;/alias&gt;</span>
+<span class="w">      </span><span class="nt">&lt;note&gt;</span>onther<span class="w"> </span>instance<span class="w"> </span>(proces)<span class="w"> </span>that<span class="w"> </span>handles<span class="w"> </span>(multiplexed)<span class="w"> </span>traffic<span class="w"> </span>on<span class="w"> </span>it&#39;s<span class="w"> </span>own<span class="nt">&lt;/note&gt;</span>
+<span class="w">      </span><span class="nt">&lt;connections&gt;</span>
+<span class="w">       </span><span class="nt">&lt;element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;address&gt;</span>localhost:7781<span class="nt">&lt;/address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;note&gt;</span>one<span class="w"> </span>of<span class="w"> </span>possible<span class="w"> </span>many<span class="w"> </span>listining<span class="w"> </span>addresses.<span class="nt">&lt;/note&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/connections&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/groups&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/outbound&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/reverse&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/gateway&gt;</span>
+<span class="nt">&lt;/domain&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../administration/documentation/environment.operation.html" class="btn btn-neutral float-left" title="environment variables that affect operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="domain.general.operation.html" class="btn btn-neutral float-right" title="configuration domain (general)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: patch/1.6/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../../feature/1.7/main/middleware/configuration/documentation/domain.gateway.operation.html">feature/1.7/main</a></dd>
+      <dd><a href="domain.gateway.operation.html">patch/1.6/main</a></dd>
+      <dd><a href="../../../../../../release/1.6/middleware/configuration/documentation/domain.gateway.operation.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

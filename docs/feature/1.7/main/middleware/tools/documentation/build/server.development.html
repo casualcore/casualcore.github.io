@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual-build-server &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="environment" href="../../../domain/documentation/environment.development.html" />
+    <link rel="prev" title="casual-build-executable" href="executable.development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../documentation/development.html">development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/field.development.html">field development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/octet.development.html">octet development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/order.development.html">order development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/serialization/field/string.development.html">field string serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/string.development.html">string development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../common/documentation/arguments.development.html">arguments development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../common/documentation/log.development.html">log development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/build/executable.development.html">configuration build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/build/server.development.html">configuration build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="executable.development.html">casual-build-executable</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">casual-build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../domain/documentation/environment.development.html">environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../administration/documentation/api.development.html">API definitions of all the administration services casual has</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../domain/documentation/api.development.html">casual-domain-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../service/documentation/api.development.html">casual-service-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transaction/documentation/api.development.html">casual-transaction-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gateway/documentation/api.development.html">casual-gateway-manager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../documentation/development.html">development</a></li>
+      <li class="breadcrumb-item active">casual-build-server</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/middleware/tools/documentation/build/server.development.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-build-server">
+<h1>casual-build-server<a class="headerlink" href="#casual-build-server" title="Permalink to this heading">¶</a></h1>
+<p>Builds a <code class="docutils literal notranslate"><span class="pre">causal-server</span></code>. That is, an executable that exposes <code class="docutils literal notranslate"><span class="pre">XATMI</span></code> services in a possible transactional context,
+with possible <code class="docutils literal notranslate"><span class="pre">XA-resources</span></code> linked in that will be initialized on boot.</p>
+<section id="prerequisites">
+<h2>prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">casual</span></code> is installed and <code class="docutils literal notranslate"><span class="pre">CASUAL_HOME</span></code> is set to the install path.</p>
+</section>
+<section id="example">
+<h2>example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>In both examples we use a simple echo server defined in <code class="docutils literal notranslate"><span class="pre">echo.cpp</span></code>, which has one <em>service</em> named <code class="docutils literal notranslate"><span class="pre">echo</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xatmi.h&quot;</span>
+
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="kt">void</span><span class="w"> </span><span class="nf">echo</span><span class="p">(</span><span class="w"> </span><span class="n">TPSVCINFO</span><span class="o">*</span><span class="w"> </span><span class="n">info</span><span class="p">)</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">      </span><span class="n">tpreturn</span><span class="p">(</span><span class="w"> </span><span class="n">TPSUCCESS</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="simple">
+<h3>simple<a class="headerlink" href="#simple" title="Permalink to this heading">¶</a></h3>
+<p>We want the server to be named <code class="docutils literal notranslate"><span class="pre">simple-server</span></code> that has one service <code class="docutils literal notranslate"><span class="pre">echo</span></code>. We pass the source
+file <em>echo.cpp</em> to <code class="docutils literal notranslate"><span class="pre">casual-build-server</span></code> to be compiled at the same time as <em>building</em> the server.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">echo</span></code> service will have <code class="docutils literal notranslate"><span class="pre">auto</span></code> transaction semantics, see below.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-build-server<span class="w"> </span>--output<span class="w"> </span>simple-server<span class="w"> </span>--service<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>--link-directives<span class="w"> </span>echo.cpp
+</pre></div>
+</div>
+</section>
+<section id="advanced">
+<h3>advanced<a class="headerlink" href="#advanced" title="Permalink to this heading">¶</a></h3>
+<p>We use a <em>server-definition-file</em> to define the server in it’s services. We name this <code class="docutils literal notranslate"><span class="pre">example.server.yaml</span></code>,</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">server</span><span class="p">:</span>
+
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># key of the resource (defined in resource-properties)</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rm-mockup</span>
+<span class="w">      </span><span class="c1"># a logical name that this server will use to get the proper runtime configuration.</span>
+<span class="w">      </span><span class="c1"># it&#39;s probably a good idea to have names like &lt;resource-type&gt;/&lt;application&gt;, ex: db/my-application</span>
+<span class="w">      </span><span class="c1"># to make it easier to configure correctly. Can be any name though.</span>
+<span class="w">      </span><span class="c1"># If the domain does not have resource-configuration for the defined name, the server will not boot.</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resource-1</span>
+<span class="w">      </span>
+<span class="w">  </span><span class="nt">services</span><span class="p">:</span>
+
+<span class="w">      </span><span class="c1"># name of the service, note that we use a different name from the function name</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example/echo</span>
+<span class="w">      </span><span class="c1"># name of the function the service should bind to</span>
+<span class="w">      </span><span class="nt">function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo</span>
+
+<span class="w">      </span><span class="c1"># transaction characteristics</span>
+<span class="w">      </span><span class="c1"># Can be one of the following</span>
+<span class="w">      </span><span class="c1"># - auto : if a transaction is present join it, else start a new one (default)</span>
+<span class="w">      </span><span class="c1"># - join : if a transaction is present join it,</span>
+<span class="w">      </span><span class="c1"># - none : don&#39;t join any transaction</span>
+<span class="w">      </span><span class="c1"># - atomic : start a new transaction regardless.</span>
+<span class="w">      </span><span class="c1"># - branch : do not use unless you know what you&#39;re doing...</span>
+<span class="w">      </span><span class="nt">transaction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">join</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>We want the server to be named <code class="docutils literal notranslate"><span class="pre">advanced-server</span></code></p></li>
+<li><p>Use the <em>definition-file</em> to define the server (which adds a dependency to a resource with the name <code class="docutils literal notranslate"><span class="pre">resource-1</span></code> and the key <code class="docutils literal notranslate"><span class="pre">rm-mockup</span></code> )</p></li>
+<li><p>Pass the source file <code class="docutils literal notranslate"><span class="pre">echo.cpp</span></code> to <code class="docutils literal notranslate"><span class="pre">casual-build-server</span></code> to be compiled at the same time as <em>building</em> the server.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-build-server<span class="w"> </span>--output<span class="w"> </span>advanced-server<span class="w"> </span>--definition<span class="w"> </span>example.server.yaml<span class="w"> </span>--build-directives<span class="w"> </span>echo.cpp<span class="w"> </span>
+</pre></div>
+</div>
+<p>We can see that <code class="docutils literal notranslate"><span class="pre">advanced-server</span></code> has a dependency to the <code class="docutils literal notranslate"><span class="pre">XA-structure</span></code> for <code class="docutils literal notranslate"><span class="pre">rm-mockup</span></code>: _<em>casual_mockup_xa_switch_static</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nm<span class="w"> </span>advanced-server<span class="w"> </span>
+<span class="w">                 </span>U<span class="w"> </span>_casual_mockup_xa_switch_static
+<span class="w">                 </span>U<span class="w"> </span>_casual_start_server
+0000000100000f30<span class="w"> </span>T<span class="w"> </span>_echo
+0000000100000e70<span class="w"> </span>T<span class="w"> </span>_main
+<span class="w">                 </span>U<span class="w"> </span>_tpreturn
+<span class="w">                 </span>U<span class="w"> </span>_tpsvrdone
+<span class="w">                 </span>U<span class="w"> </span>_tpsvrinit
+<span class="w">                 </span>U<span class="w"> </span>dyld_stub_binder
+</pre></div>
+</div>
+</section>
+<section id="custom">
+<h3>custom<a class="headerlink" href="#custom" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">casual-build-server</span></code> assumes <em>gcc/g++</em> option compatibility for defaults. If you use another compiler you can
+opt to <strong>not</strong> use the default include/library-paths and so on.</p>
+<p><strong>Note:</strong> you need to provide all paths, libraries etc.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-build-server<span class="w"> </span>--no-defaults<span class="w"> </span>--output<span class="w"> </span>advanced-server<span class="w"> </span>--definition<span class="w"> </span>example.server.yaml<span class="w"> </span>--build-directives<span class="w"> </span>echo.cpp<span class="w"> </span>&lt;all<span class="w"> </span>other<span class="w"> </span>stuff<span class="w"> </span>your<span class="w"> </span>compiler<span class="w"> </span>needs&gt;
+</pre></div>
+</div>
+</section>
+<section id="casual-build-server-generate">
+<h3>casual-build-server-generate<a class="headerlink" href="#casual-build-server-generate" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">casual-build-server-generate</span></code> only generate the <em>intermediate main file</em>, that has the ‘magic’ to bootstrap a <code class="docutils literal notranslate"><span class="pre">casual</span></code> server.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-build-server-generate<span class="w"> </span>--output<span class="w"> </span>your-name-on-the-source-file.cpp<span class="w"> </span>--definition<span class="w"> </span>example.server.yaml
+</pre></div>
+</div>
+<p>This might be easier to use, depending och your build system.</p>
+</section>
+</section>
+<section id="options">
+<h2>options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-build-server<span class="w"> </span>--help
+NAME
+<span class="w">   </span>casual-build-server
+
+DESCRIPTION
+<span class="w">  </span>builds<span class="w"> </span>a<span class="w"> </span>casual<span class="w"> </span>xatmi<span class="w"> </span>server
+
+OPTIONS<span class="w">                                    </span>c<span class="w">  </span>value<span class="w">    </span>vc<span class="w">  </span>description
+-----------------------------------------<span class="w">  </span>-<span class="w">  </span>-------<span class="w">  </span>--<span class="w">  </span>-----------------------------------------------
+-o,<span class="w"> </span>--output<span class="w">                               </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>name<span class="w"> </span>of<span class="w"> </span>server<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>built
+-s,<span class="w"> </span>--service<span class="w">                              </span>*<span class="w">  </span>&lt;value&gt;<span class="w">   </span>+<span class="w">  </span>service<span class="w"> </span>names
+-d,<span class="w"> </span>--server-definition<span class="w">                    </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>path<span class="w"> </span>to<span class="w"> </span>server<span class="w"> </span>definition<span class="w"> </span>file
+-r,<span class="w"> </span>--resource-keys<span class="w">                        </span>*<span class="w">  </span>&lt;value&gt;<span class="w">   </span>+<span class="w">  </span>key<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>resource
+-c,<span class="w"> </span>--compiler<span class="w">                             </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>compiler<span class="w"> </span>to<span class="w"> </span>use
+-f,<span class="w"> </span>--build-directives,<span class="w"> </span>--link-directives<span class="w">  </span>*<span class="w">  </span>&lt;value&gt;<span class="w">   </span>+<span class="w">  </span>additional<span class="w"> </span>compile<span class="w"> </span>and<span class="w"> </span>link<span class="w"> </span>directives
+-p,<span class="w"> </span>--properties-file<span class="w">                      </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>path<span class="w"> </span>to<span class="w"> </span>resource<span class="w"> </span>properties<span class="w"> </span>file
+--no-defaults<span class="w">                              </span>?<span class="w">               </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>add<span class="w"> </span>any<span class="w"> </span>default<span class="w"> </span>compiler/link<span class="w"> </span>directives
+--source-file<span class="w">                              </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>intermediate<span class="w"> </span><span class="nb">source</span><span class="w"> </span>file
+-k,<span class="w"> </span>--keep<span class="w">                                 </span>?<span class="w">               </span>keep<span class="w"> </span>the<span class="w"> </span>intermediate<span class="w"> </span><span class="nb">source</span><span class="w"> </span>file
+-v,<span class="w"> </span>--verbose<span class="w">                              </span>?<span class="w">               </span>verbose<span class="w"> </span>output
+--help<span class="w">                                     </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span>*<span class="w">  </span>use<span class="w"> </span>--help<span class="w"> </span>&lt;option&gt;<span class="w"> </span>to<span class="w"> </span>see<span class="w"> </span>further<span class="w"> </span>details
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="executable.development.html" class="btn btn-neutral float-left" title="casual-build-executable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../domain/documentation/environment.development.html" class="btn btn-neutral float-right" title="environment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/1.7/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="server.development.html">feature/1.7/main</a></dd>
+      <dd><a href="../../../../../../../patch/1.6/main/middleware/tools/documentation/build/server.development.html">patch/1.6/main</a></dd>
+      <dd><a href="../../../../../../../release/1.6/middleware/tools/documentation/build/server.development.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

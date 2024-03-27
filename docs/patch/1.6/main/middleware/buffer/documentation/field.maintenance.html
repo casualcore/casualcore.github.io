@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>field maintenance &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">field maintenance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/buffer/documentation/field.maintenance.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="field-maintenance">
+<h1>field maintenance<a class="headerlink" href="#field-maintenance" title="Permalink to this heading">¶</a></h1>
+<section id="implementation">
+<h2>implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">¶</a></h2>
+<p>The main idea is to keep the buffer “ready to go” without the need for extra marshalling when transported so the data is stored in network byteorder etc from start</p>
+<p>The values layout is [ id ] [ size ] [ data… ]</p>
+<p>The id host-type is long</p>
+<p>The size host-type is implicitly long</p>
+<p>Some things that might be explained that are perhaps not so obvious considering FML32 where the type (FLD_SHORT CASUAL_FIELD_SHORT etc) can be deduced from the id, i.e. every id for <code class="docutils literal notranslate"><span class="pre">short</span></code> must be between 0x0 and 0x1FFFFFF and every id for ‘long’ must be between 0x2000000 and 0x3FFFFFF etc. In this implementation no validation of whether the id exists in the repository-table occurs but just from the type and where, for simplicity, CASUAL_FIELD_SHORT has base 0x2000000 and for now there’s no proper error-handling while handling the table-
+repository and that has to be improved and many other things can be improved as well … Sean Parent would’ve cry if he saw this</p>
+<p>The repository-implementation is a bit “comme ci comme ca” and to provide something like ‘mkfldhdr32’ the functionality has to be accessible from there (or vice versa)</p>
+</section>
+<section id="todo-s">
+<h2>todo:s<a class="headerlink" href="#todo-s" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>casual_field_match (and such) need to be better</p></li>
+<li><p>Maybe not use an internal index</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: patch/1.6/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../../feature/1.7/main/middleware/buffer/documentation/field.maintenance.html">feature/1.7/main</a></dd>
+      <dd><a href="field.maintenance.html">patch/1.6/main</a></dd>
+      <dd><a href="../../../../../../release/1.6/middleware/buffer/documentation/field.maintenance.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

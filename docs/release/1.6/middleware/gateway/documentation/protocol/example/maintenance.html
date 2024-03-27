@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gateway interdomain protocol &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">gateway interdomain protocol</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/middleware/gateway/documentation/protocol/example/maintenance.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gateway-interdomain-protocol">
+<h1>gateway interdomain protocol<a class="headerlink" href="#gateway-interdomain-protocol" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="../protocol.maintenance.html"><span class="std std-doc">definition</span></a></p></li>
+</ul>
+<p>It is possible to produce the markdown on the fly via <code class="docutils literal notranslate"><span class="pre">casual-gateway-markdown-protocol</span></code></p>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nv">$CASUAL_HOME</span>/example/bin/casual-gateway-markdown-protocol<span class="w"> </span>&gt;<span class="w"> </span>protocol.md
+</pre></div>
+</div>
+<section id="binary-examples">
+<h2>binary examples<a class="headerlink" href="#binary-examples" title="Permalink to this heading">¶</a></h2>
+<p>Use the binary dump example generator.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>example/bin/casual-gateway-binary-protocol<span class="w"> </span>--help
+NAME
+<span class="w">   </span>casual-gateway-binary-protocol
+
+DESCRIPTION
+<span class="w">  </span>binary<span class="w"> </span>dump<span class="w"> </span>examples<span class="w"> </span><span class="k">for</span><span class="w"> </span>interdomain<span class="w"> </span>protocol
+
+OPTIONS<span class="w">     </span>c<span class="w">  </span>value<span class="w">                                  </span>vc<span class="w">  </span>description<span class="w">                                             </span>
+----------<span class="w">  </span>-<span class="w">  </span>-------------------------------------<span class="w">  </span>--<span class="w">  </span>--------------------------------------------------------
+-b,<span class="w"> </span>--base<span class="w">  </span>?<span class="w">                                          </span><span class="m">1</span><span class="w">  </span>base<span class="w"> </span>path<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>generated<span class="w"> </span>files<span class="w">                       </span>
+--format<span class="w">    </span>?<span class="w">  </span><span class="o">[</span>ini,<span class="w"> </span>jsn,<span class="w"> </span>json,<span class="w"> </span>log,<span class="w"> </span>xml,<span class="w"> </span>yaml,<span class="w"> </span>yml<span class="o">]</span><span class="w">   </span><span class="m">1</span><span class="w">  </span>format<span class="w"> </span><span class="k">for</span><span class="w"> </span>optional<span class="w"> </span>descriptive<span class="w"> </span>generated<span class="w"> </span>representation
+--help<span class="w">      </span>?<span class="w">                                          </span>*<span class="w">  </span>use<span class="w"> </span>--help<span class="w"> </span>&lt;option&gt;<span class="w"> </span>to<span class="w"> </span>see<span class="w"> </span>further<span class="w"> </span>details<span class="w">     </span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nv">$CASUAL_HOME</span>/example/bin/casual-gateway-binary-protocol<span class="w"> </span>--base<span class="w"> </span><span class="s1">&#39;path/to/destination&#39;</span><span class="w"> </span>--format<span class="w"> </span>json
+</pre></div>
+</div>
+<section id="naming-convention">
+<h3>naming convention<a class="headerlink" href="#naming-convention" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;message-name&gt;.&lt;protocol-version&gt;.&lt;message-type&gt;.bin</span></code></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.6
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../../../feature/1.7/main/middleware/gateway/documentation/protocol/example/maintenance.html">feature/1.7/main</a></dd>
+      <dd><a href="../../../../../../../patch/1.6/main/middleware/gateway/documentation/protocol/example/maintenance.html">patch/1.6/main</a></dd>
+      <dd><a href="maintenance.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

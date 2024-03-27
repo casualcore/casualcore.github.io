@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>single domain example &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">single domain example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/documentation/example/domain/single/readme.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="single-domain-example">
+<h1>single domain example<a class="headerlink" href="#single-domain-example" title="Permalink to this heading">¶</a></h1>
+<section id="prerequisites">
+<h2>prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>See <a class="reference internal" href="../example.html"><span class="std std-doc">domain example</span></a></p>
+</section>
+<section id="create-domain">
+<h2>create domain<a class="headerlink" href="#create-domain" title="Permalink to this heading">¶</a></h2>
+<p>Create a directory where you want your domain to “live”.</p>
+<p><strong>In production you probably want to have a dedicated user for a domain and just use the “domain-user” home directory as the domain root</strong></p>
+<p>Copy the domain setup from the example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>&lt;your<span class="w"> </span>domain<span class="w"> </span>directory&gt;
+$<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$CASAUL_HOME</span>/documentation/example/domain/single/*<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">domain.env</span></code> so it corresponds to your setup.</p>
+<p>Source the env file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>domain.env<span class="w"> </span>
+</pre></div>
+</div>
+</section>
+<section id="start-domain">
+<h2>start domain<a class="headerlink" href="#start-domain" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--boot<span class="w"> </span>configuration/domain.yaml
+</pre></div>
+</div>
+</section>
+<section id="inspect-the-domain">
+<h2>inspect the domain<a class="headerlink" href="#inspect-the-domain" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --list-queues 
+name      group  rc  rd        count  size  avg  EQ  DQ  UC  last
+--------  -----  --  --------  -----  ----  ---  --  --  --  ----
+a1        A       0  0.000000      0     0    0   0   0   0  -   
+a2        A       0  0.000000      0     0    0   0   0   0  -   
+a3        A       0  0.000000      0     0    0   0   0   0  -   
+b1        B       0  0.000000      0     0    0   0   0   0  -   
+b2        B       0  0.000000      0     0    0   0   0   0  -   
+b3        B       0  0.000000      0     0    0   0   0   0  -   
+a1.error  A       0  0.000000      0     0    0   0   0   0  -   
+a2.error  A       0  0.000000      0     0    0   0   0   0  -   
+a3.error  A       0  0.000000      0     0    0   0   0   0  -   
+b1.error  B       0  0.000000      0     0    0   0   0   0  -   
+b2.error  B       0  0.000000      0     0    0   0   0   0  -   
+b3.error  B       0  0.000000      0     0    0   0   0   0  -   
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual service --list-services 
+name                 category  mode  timeout   contract  I  C  AT        min       max       P  PAT       RI  RC  last
+-------------------  --------  ----  --------  --------  -  -  --------  --------  --------  -  --------  --  --  ----
+casual/example/echo  example   join  0.000000    linger  2  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+</pre></div>
+</div>
+</section>
+<section id="try-out-some-of-the-cli">
+<h2>try out some of the CLI<a class="headerlink" href="#try-out-some-of-the-cli" title="Permalink to this heading">¶</a></h2>
+<section id="call-echo-and-enqueue-the-reply-to-a1">
+<h3>call echo and enqueue the reply to a1<a class="headerlink" href="#call-echo-and-enqueue-the-reply-to-a1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;casual&quot; | casual buffer --compose | casual call --service casual/example/echo | casual queue --enqueue a1 
+43b76f1d6bfc4167aa5a52ad3bd9fb13
+</pre></div>
+</div>
+<p>Check the state:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual service --list-services 
+name                 category  mode  timeout   contract  I  C  AT        min       max       P  PAT       RI  RC  last                            
+-------------------  --------  ----  --------  --------  -  -  --------  --------  --------  -  --------  --  --  --------------------------------
+casual/example/echo  example   join  0.000000    linger  2  1  0.000066  0.000066  0.000066  0  0.000000   0   0  2021-10-24T18:03:33.902228+02:00
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --list-queues 
+name      group  rc  rd        count  size  avg  EQ  DQ  UC  last                            
+--------  -----  --  --------  -----  ----  ---  --  --  --  --------------------------------
+a1        A       0  0.000000      1     7    7   1   0   0  2021-10-24T18:03:33.902595+02:00
+...
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --list-messages a1
+id                                S  size  trid  rd  type      reply  available  timestamp                       
+--------------------------------  -  ----  ----  --  --------  -----  ---------  --------------------------------
+43b76f1d6bfc4167aa5a52ad3bd9fb13  C     7         0  X_OCTET/                 -  2021-10-24T18:18:32.184452+02:00
+</pre></div>
+</div>
+<p>Peek and inspect the message</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --peek a1 43b76f1d6bfc4167aa5a52ad3bd9fb13 | casual buffer --extract 
+casual
+</pre></div>
+</div>
+</section>
+<section id="dequeue-from-a1-call-echo-enqueue-b1">
+<h3>dequeue from a1 -&gt; call echo -&gt; enqueue b1<a class="headerlink" href="#dequeue-from-a1-call-echo-enqueue-b1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --dequeue a1 | casual call --service casual/example/echo | casual queue --enqueue b1
+f7209b4a11dc4643a8614b74ea5e0508
+</pre></div>
+</div>
+<p>Check the state</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ $ casual queue --list-queues 
+name      group  rc  rd        count  size  avg  EQ  DQ  UC  last                            
+--------  -----  --  --------  -----  ----  ---  --  --  --  --------------------------------
+a1        A       0  0.000000      0     0    0   1   1   0  2021-10-24T18:03:33.902595+02:00
+a2        A       0  0.000000      0     0    0   0   0   0  -                               
+a3        A       0  0.000000      0     0    0   0   0   0  -                               
+b1        B       0  0.000000      1     7    7   1   0   0  2021-10-24T18:11:02.967124+02:00
+b2        B       0  0.000000      0     0    0   0   0   0  -                               
+b3        B       0  0.000000      0     0    0   0   0   0  -                               
+a1.error  A       0  0.000000      0     0    0   0   0   0  -                               
+a2.error  A       0  0.000000      0     0    0   0   0   0  -                               
+a3.error  A       0  0.000000      0     0    0   0   0   0  -                               
+b1.error  B       0  0.000000      0     0    0   0   0   0  -                               
+b2.error  B       0  0.000000      0     0    0   0   0   0  -                               
+b3.error  B       0  0.000000      0     0    0   0   0   0  -    
+</pre></div>
+</div>
+</section>
+<section id="dequeue-from-b1-and-extract-the-payload-from-the-buffer">
+<h3>dequeue from b1 and extract the payload from the buffer<a class="headerlink" href="#dequeue-from-b1-and-extract-the-payload-from-the-buffer" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --dequeue b1 | casual buffer --extract 
+casual
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/1.7/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="readme.html">feature/1.7/main</a></dd>
+      <dd><a href="../../../../../../../patch/1.6/main/documentation/example/domain/single/readme.html">patch/1.6/main</a></dd>
+      <dd><a href="../../../../../../../release/1.6/documentation/example/domain/single/readme.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

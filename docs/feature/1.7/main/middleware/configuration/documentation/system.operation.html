@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>configuration system &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="field operation" href="../../buffer/documentation/field.operation.html" />
+    <link rel="prev" title="configuration transaction" href="domain.transaction.operation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation/operation.html">operation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/cli/overview.html">command line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/environment.operation.html">environment variables that affect operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.gateway.operation.html">configuration gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.general.operation.html">configuration domain (general)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.queue.operation.html">configuration queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.transaction.operation.html">configuration transaction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">configuration system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/field.operation.html">field operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/log.operation.html">log operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../http/documentation/outbound/configuration.operation.html">http outbound configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../queue/documentation/queue.operation.html">casual-queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../queue/documentation/upgrade.operation.html">queue upgrade</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../documentation/operation.html">operation</a></li>
+      <li class="breadcrumb-item active">configuration system</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/configuration/documentation/system.operation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration-system">
+<h1>configuration system<a class="headerlink" href="#configuration-system" title="Permalink to this heading">¶</a></h1>
+<p>System wide configuration, that is not bound to a particualary domain. Contains configuration that is used when
+building servers, executable, transaction resource proxis.</p>
+<section id="system-resources">
+<h2>system.resources<a class="headerlink" href="#system-resources" title="Permalink to this heading">¶</a></h2>
+<p>Defines which <code class="docutils literal notranslate"><span class="pre">xa</span></code> resources that are to be used when building servers, executable, resource-proxies. This is
+also used runtime by the transaction-manager</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>key</p></td>
+<td><p>user supplied <em>key</em> of the resource, used to correlate the resources in other configurations</p></td>
+</tr>
+<tr class="row-odd"><td><p>xa_struct_name</p></td>
+<td><p>the name of the <code class="docutils literal notranslate"><span class="pre">xa</span></code> struct for the particular resource implementation</p></td>
+</tr>
+<tr class="row-even"><td><p>server</p></td>
+<td><p>name of the <em>resource proxy server</em> that <code class="docutils literal notranslate"><span class="pre">transaction</span> <span class="pre">manager</span></code> delegates <em>prepare, commit, rollback</em> to.</p></td>
+</tr>
+<tr class="row-odd"><td><p>libraries</p></td>
+<td><p>libraries that is used link with the resource <em>build time</em></p></td>
+</tr>
+<tr class="row-even"><td><p>paths</p></td>
+<td><p>include and library paths, during <em>build time</em></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples">
+<h2>examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<p>Below follows examples in human readable formats that <code class="docutils literal notranslate"><span class="pre">casual</span></code> can handle</p>
+<section id="yaml">
+<h3>yaml<a class="headerlink" href="#yaml" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;db2&quot;</span>
+<span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;rm-proxy-db2-static&quot;</span>
+<span class="w">      </span><span class="nt">xa_struct_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;db2xa_switch_static_std&quot;</span>
+<span class="w">      </span><span class="nt">libraries</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;db2&quot;</span>
+<span class="w">      </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">library</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;${DB2DIR}/lib64&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;rm-mockup&quot;</span>
+<span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;rm-proxy-casual-mockup&quot;</span>
+<span class="w">      </span><span class="nt">xa_struct_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;casual_mockup_xa_switch_static&quot;</span>
+<span class="w">      </span><span class="nt">libraries</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;casual-mockup-rm&quot;</span>
+<span class="w">      </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">library</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;${CASUAL_HOME}/lib&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+</section>
+<section id="json">
+<h3>json<a class="headerlink" href="#json" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;db2&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rm-proxy-db2-static&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;xa_struct_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;db2xa_switch_static_std&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;libraries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;db2&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;paths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;library&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="s2">&quot;${DB2DIR}/lib64&quot;</span>
+<span class="w">                    </span><span class="p">]</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rm-mockup&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rm-proxy-casual-mockup&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;xa_struct_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual_mockup_xa_switch_static&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;libraries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;casual-mockup-rm&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;paths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;library&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="s2">&quot;${CASUAL_HOME}/lib&quot;</span>
+<span class="w">                    </span><span class="p">]</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ini">
+<h3>ini<a class="headerlink" href="#ini" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[system]</span>
+
+<span class="k">[system.resources]</span>
+<span class="na">key</span><span class="o">=</span><span class="s">db2</span>
+<span class="na">libraries</span><span class="o">=</span><span class="s">db2</span>
+<span class="na">server</span><span class="o">=</span><span class="s">rm-proxy-db2-static</span>
+<span class="na">xa_struct_name</span><span class="o">=</span><span class="s">db2xa_switch_static_std</span>
+
+<span class="k">[system.resources.paths]</span>
+<span class="na">library</span><span class="o">=</span><span class="s">${DB2DIR}/lib64</span>
+
+<span class="k">[system.resources]</span>
+<span class="na">key</span><span class="o">=</span><span class="s">rm-mockup</span>
+<span class="na">libraries</span><span class="o">=</span><span class="s">casual-mockup-rm</span>
+<span class="na">server</span><span class="o">=</span><span class="s">rm-proxy-casual-mockup</span>
+<span class="na">xa_struct_name</span><span class="o">=</span><span class="s">casual_mockup_xa_switch_static</span>
+
+<span class="k">[system.resources.paths]</span>
+<span class="na">library</span><span class="o">=</span><span class="s">${CASUAL_HOME}/lib</span>
+</pre></div>
+</div>
+</section>
+<section id="xml">
+<h3>xml<a class="headerlink" href="#xml" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;system&gt;</span>
+<span class="w"> </span><span class="nt">&lt;resources&gt;</span>
+<span class="w">  </span><span class="nt">&lt;element&gt;</span>
+<span class="w">   </span><span class="nt">&lt;key&gt;</span>db2<span class="nt">&lt;/key&gt;</span>
+<span class="w">   </span><span class="nt">&lt;server&gt;</span>rm-proxy-db2-static<span class="nt">&lt;/server&gt;</span>
+<span class="w">   </span><span class="nt">&lt;xa_struct_name&gt;</span>db2xa_switch_static_std<span class="nt">&lt;/xa_struct_name&gt;</span>
+<span class="w">   </span><span class="nt">&lt;libraries&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element&gt;</span>db2<span class="nt">&lt;/element&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/libraries&gt;</span>
+<span class="w">   </span><span class="nt">&lt;paths&gt;</span>
+<span class="w">    </span><span class="nt">&lt;library&gt;</span>
+<span class="w">     </span><span class="nt">&lt;element&gt;</span>${DB2DIR}/lib64<span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/library&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/paths&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
+<span class="w">  </span><span class="nt">&lt;element&gt;</span>
+<span class="w">   </span><span class="nt">&lt;key&gt;</span>rm-mockup<span class="nt">&lt;/key&gt;</span>
+<span class="w">   </span><span class="nt">&lt;server&gt;</span>rm-proxy-casual-mockup<span class="nt">&lt;/server&gt;</span>
+<span class="w">   </span><span class="nt">&lt;xa_struct_name&gt;</span>casual_mockup_xa_switch_static<span class="nt">&lt;/xa_struct_name&gt;</span>
+<span class="w">   </span><span class="nt">&lt;libraries&gt;</span>
+<span class="w">    </span><span class="nt">&lt;element&gt;</span>casual-mockup-rm<span class="nt">&lt;/element&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/libraries&gt;</span>
+<span class="w">   </span><span class="nt">&lt;paths&gt;</span>
+<span class="w">    </span><span class="nt">&lt;library&gt;</span>
+<span class="w">     </span><span class="nt">&lt;element&gt;</span>${CASUAL_HOME}/lib<span class="nt">&lt;/element&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/library&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/paths&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/resources&gt;</span>
+<span class="nt">&lt;/system&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="domain.transaction.operation.html" class="btn btn-neutral float-left" title="configuration transaction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../buffer/documentation/field.operation.html" class="btn btn-neutral float-right" title="field operation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/1.7/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="system.operation.html">feature/1.7/main</a></dd>
+      <dd><a href="../../../../../../patch/1.6/main/middleware/configuration/documentation/system.operation.html">patch/1.6/main</a></dd>
+      <dd><a href="../../../../../../release/1.6/middleware/configuration/documentation/system.operation.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

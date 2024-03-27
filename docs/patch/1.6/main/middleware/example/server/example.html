@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual-example-server &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="casual domain examples" href="../../../documentation/example/domain/example.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation/examples.html">examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/example/domain/example.html">casual domain examples</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">casual-example-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#services">services</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../documentation/examples.html">examples</a></li>
+      <li class="breadcrumb-item active">casual-example-server</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/example/server/example.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-example-server">
+<h1>casual-example-server<a class="headerlink" href="#casual-example-server" title="Permalink to this heading">¶</a></h1>
+<p>An <code class="docutils literal notranslate"><span class="pre">XATMI</span></code> example server that provides a few general services that serves
+as an example of how to produce a server and services.</p>
+<p>These services can also be used in test/exploration scenarios.</p>
+</section>
+<section id="services">
+<h1>services<a class="headerlink" href="#services" title="Permalink to this heading">¶</a></h1>
+<section id="casual-example-echo">
+<h2>casual/example/echo<a class="headerlink" href="#casual-example-echo" title="Permalink to this heading">¶</a></h2>
+<p>Returns the provided buffer</p>
+</section>
+<section id="casual-example-sink">
+<h2>casual/example/sink<a class="headerlink" href="#casual-example-sink" title="Permalink to this heading">¶</a></h2>
+<p>Discard the provided buffer and returns a <em>null buffer</em></p>
+</section>
+<section id="casual-example-rollback">
+<h2>casual/example/rollback<a class="headerlink" href="#casual-example-rollback" title="Permalink to this heading">¶</a></h2>
+<p>Returns the provided buffer with <code class="docutils literal notranslate"><span class="pre">TPFAIL</span></code></p>
+</section>
+<section id="casual-example-conversation">
+<h2>casual/example/conversation<a class="headerlink" href="#casual-example-conversation" title="Permalink to this heading">¶</a></h2>
+<p><em>same as <code class="docutils literal notranslate"><span class="pre">echo</span></code> for now</em></p>
+</section>
+<section id="casual-example-uppercase">
+<h2>casual/example/uppercase<a class="headerlink" href="#casual-example-uppercase" title="Permalink to this heading">¶</a></h2>
+<p>Applies <code class="docutils literal notranslate"><span class="pre">::toupper</span></code> to every byte in the buffer and returns it.</p>
+<p>Hence, it will only make sense to provide a buffer with <code class="docutils literal notranslate"><span class="pre">X_OCTET</span></code> with string data,
+or something similar</p>
+</section>
+<section id="casual-example-lowercase">
+<h2>casual/example/lowercase<a class="headerlink" href="#casual-example-lowercase" title="Permalink to this heading">¶</a></h2>
+<p>Applies <code class="docutils literal notranslate"><span class="pre">::tolower</span></code> to every byte in the buffer and returns it.</p>
+<p>Hence, it will only make sense to provide a buffer with <code class="docutils literal notranslate"><span class="pre">X_OCTET</span></code> with string data,
+or something similar</p>
+</section>
+<section id="casual-example-sleep">
+<h2>casual/example/sleep<a class="headerlink" href="#casual-example-sleep" title="Permalink to this heading">¶</a></h2>
+<p>The service <code class="docutils literal notranslate"><span class="pre">sleeps</span></code> for a fixed amount of time.</p>
+<p>The <em>sleep amount</em> is provided via server argument <code class="docutils literal notranslate"><span class="pre">--sleep</span></code> and the unit
+default is <code class="docutils literal notranslate"><span class="pre">seconds</span></code>, but can be provided.</p>
+<p>Exeample:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">--</span><span class="n">sleep</span> <span class="mi">4</span>
+  <span class="o">--</span><span class="n">sleep</span> <span class="mi">4</span><span class="n">s</span>
+  <span class="o">--</span><span class="n">sleep</span> <span class="mi">1</span><span class="n">h</span>
+  <span class="o">--</span><span class="n">sleep</span> <span class="mi">34</span><span class="n">us</span>
+  <span class="o">--</span><span class="n">sleep</span> <span class="mi">13</span><span class="nb">min</span> 
+</pre></div>
+</div>
+</section>
+<section id="casual-example-work">
+<h2>casual/example/work<a class="headerlink" href="#casual-example-work" title="Permalink to this heading">¶</a></h2>
+<p>The service <code class="docutils literal notranslate"><span class="pre">works</span></code> for a fixed amount of time.</p>
+<p>The work consist of trying to utilize one core of the cpu as much as possible for
+the duration of the <code class="docutils literal notranslate"><span class="pre">work</span></code></p>
+<p>The <em>work amount</em> is provided via server argument <code class="docutils literal notranslate"><span class="pre">--work</span></code> and the unit
+default is <code class="docutils literal notranslate"><span class="pre">seconds</span></code>, but can be provided.</p>
+<p>Exeample:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">--</span><span class="n">work</span> <span class="mi">4</span>
+  <span class="o">--</span><span class="n">work</span> <span class="mi">4</span><span class="n">s</span>
+  <span class="o">--</span><span class="n">work</span> <span class="mi">1</span><span class="n">h</span>
+  <span class="o">--</span><span class="n">work</span> <span class="mi">34</span><span class="n">us</span>
+  <span class="o">--</span><span class="n">work</span> <span class="mi">13</span><span class="nb">min</span> 
+</pre></div>
+</div>
+</section>
+<section id="casual-example-terminate">
+<h2>casual/example/terminate<a class="headerlink" href="#casual-example-terminate" title="Permalink to this heading">¶</a></h2>
+<p>The service just calls <code class="docutils literal notranslate"><span class="pre">std::terminate</span></code>, and the server, well, <em>terminates</em></p>
+<p>Useful in test-/explore-cases to see what happens when a server <em>crashes</em>, what
+happens with possible transactions and so on.</p>
+</section>
+<section id="casual-example-conversation-recv-send">
+<h2>casual/example/conversation_recv_send<a class="headerlink" href="#casual-example-conversation-recv-send" title="Permalink to this heading">¶</a></h2>
+<p>Conversational service that takes data in connect
+and any it gets via tprecv, concatenates them and send
+with tpsend. Then does a tpreply with a
+string representing the flags (in hex) present on service entry.
+End of data from connector is indicated by the transfer of control
+of the conversation to the service.
+Useful to check flags passed to service and experiment with a simple
+conversational service implementing an “echo style” service.</p>
+</section>
+<section id="casual-example-conversation-recv-send-auto">
+<h2>casual/example/conversation_recv_send_auto<a class="headerlink" href="#casual-example-conversation-recv-send-auto" title="Permalink to this heading">¶</a></h2>
+<p>Same code as casual/example/conversation2 but defined with
+“transaction: auto” instead of “transaction: join”.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../documentation/example/domain/example.html" class="btn btn-neutral float-left" title="casual domain examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: patch/1.6/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../../feature/1.7/main/middleware/example/server/example.html">feature/1.7/main</a></dd>
+      <dd><a href="example.html">patch/1.6/main</a></dd>
+      <dd><a href="../../../../../../release/1.6/middleware/example/server/example.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

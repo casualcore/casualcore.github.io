@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual-event-service-log &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">casual-event-service-log</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/event/documentation/service.log.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-event-service-log">
+<h1>casual-event-service-log<a class="headerlink" href="#casual-event-service-log" title="Permalink to this heading">¶</a></h1>
+<p>Provides metrics for all service calls that har invoked within a domain</p>
+<section id="configuration">
+<h2>configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DESCRIPTION
+  log service call metrics
+
+OPTIONS             c  value     vc  description                                                
+------------------  -  --------  --  -----------------------------------------------------------
+-f, --file          ?  &lt;path&gt;     1  where to log (default: &quot;statistics.log&quot;)                   
+-d, --delimiter     ?  &lt;string&gt;   1  delimiter between columns (default: &#39;|&#39;)                   
+--filter-inclusive  ?  &lt;regex&gt;    1  only services that matches the expression are logged       
+--filter-exclusive  ?  &lt;regex&gt;    1  only services that does NOT match the expression are logged
+--help              ?  &lt;value&gt;    *  use --help &lt;option&gt; to see further details 
+</pre></div>
+</div>
+<section id="example">
+<h3>example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">executables</span><span class="p">:</span><span class="w"> </span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CASUAL_HOME}/bin/casual-event-service-log</span>
+<span class="w">      </span><span class="nt">arguments</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">--file</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">logs/service.log</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="log-format">
+<h2>log format<a class="headerlink" href="#log-format" title="Permalink to this heading">¶</a></h2>
+<p>Columns are separated by the provided <code class="docutils literal notranslate"><span class="pre">delimiter</span></code> option (default <code class="docutils literal notranslate"><span class="pre">|</span></code>)</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>column</p></th>
+<th class="head"><p>format</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>service</p></td>
+<td><p>string</p></td>
+<td><p>name of the invoked service</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent</p></td>
+<td><p>string</p></td>
+<td><p>name of the parent service, if any.</p></td>
+</tr>
+<tr class="row-even"><td><p>pid</p></td>
+<td><p>integer</p></td>
+<td><p>process id of the invoked instance</p></td>
+</tr>
+<tr class="row-odd"><td><p>execution</p></td>
+<td><p>uuid</p></td>
+<td><p>unique <em>execution id</em>, like <em>breadcrumbs</em></p></td>
+</tr>
+<tr class="row-even"><td><p>trid</p></td>
+<td><p>xid</p></td>
+<td><p>transaction id</p></td>
+</tr>
+<tr class="row-odd"><td><p>start</p></td>
+<td><p>integer</p></td>
+<td><p>when the service was invoked, <code class="docutils literal notranslate"><span class="pre">us</span></code> since epoch.</p></td>
+</tr>
+<tr class="row-even"><td><p>end</p></td>
+<td><p>integer</p></td>
+<td><p>when the service was done, <code class="docutils literal notranslate"><span class="pre">us</span></code> since epoch</p></td>
+</tr>
+<tr class="row-odd"><td><p>pending</p></td>
+<td><p>integer</p></td>
+<td><p>how long caller had to wait for a non busy server, in <code class="docutils literal notranslate"><span class="pre">us</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>code</p></td>
+<td><p>string</p></td>
+<td><p>outcome of the service call. <code class="docutils literal notranslate"><span class="pre">OK</span></code> if ok, otherwise the reported error from the service</p></td>
+</tr>
+<tr class="row-odd"><td><p>order</p></td>
+<td><p>character</p></td>
+<td><p>“order” of the service - sequential or concurrent, denoted by <code class="docutils literal notranslate"><span class="pre">S</span></code> or <code class="docutils literal notranslate"><span class="pre">C</span></code>. <code class="docutils literal notranslate"><span class="pre">S</span></code> reserves a process, <code class="docutils literal notranslate"><span class="pre">C</span></code> does not.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id1">
+<h3>example<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">some</span><span class="o">/</span><span class="n">service</span><span class="o">|</span><span class="n">some</span><span class="o">/</span><span class="n">parent</span><span class="o">/</span><span class="n">service</span><span class="o">|</span><span class="mi">9585</span><span class="o">|</span><span class="n">ff75bcc6ef1b4d1c8ae8d58ee0918f81</span><span class="o">|</span><span class="mi">3</span><span class="n">d7519f801e4f65a127d9ac09fa159d</span><span class="p">:</span><span class="n">b81a4d8715ad44e8afccb796a02fd77f</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">123</span><span class="o">|</span><span class="mi">1670372749162496</span><span class="o">|</span><span class="mi">1670372749162723</span><span class="o">|</span><span class="mi">0</span><span class="o">|</span><span class="n">OK</span><span class="o">|</span><span class="n">S</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: patch/1.6/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../../feature/1.7/main/middleware/event/documentation/service.log.html">feature/1.7/main</a></dd>
+      <dd><a href="service.log.html">patch/1.6/main</a></dd>
+      <dd><a href="../../../../../../release/1.6/middleware/event/documentation/service.log.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

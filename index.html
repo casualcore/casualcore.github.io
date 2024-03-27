@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        p,h1,a {
+        margin-right: 150px;
+        margin-left: 80px;
+        }       
+    </style>
+    <head><title>Casual</title></head>
+    <body style="background-color:rgb(207, 233, 242);"></body>
+        <H1>What is casual?</H1>
+        <p>
+In general terms casual is a distributed application server. A platform to build applications on top of, that can interact with each other in a distributed manner, with or without transactional context. 
+
+Users build logical applications that consist of one or more servers that advertise arbitrary named services. Servers are deployed in a domain. Domains can be connected with each other, on different machines, in any topology.
+
+A server is just an executable with an entry point for each advertised service. A server is scaled by spawning processes of the executable. Hence, servers can be dynamically scaled to meet load requirements. Resources such as databases can also be associated with a server.
+        </p>
+        <p>
+A service can call other services, and casual will find where these services reside in the topology. 
+
+casual provides a queue implementation together with queue-to-service and queue-to-queue forward functionality. 
+        </p>
+<h1> Why use casual? </h1>
+<p>
+casual’s semantics are simple and easy to reason about. 
+
+casual applications can be scaled to fit any need. Asynchronous service calls provide massive concurrency without the hassle of threads.
+</p>
+<p>
+With the casual building blocks: services, queues, queue-to-service and queue-to-queue, relevant communication patterns can be constructed.
+
+casual can be managed in a UNIX-friendly way that enables interoperability with familiar tools.
+</p>
+
+    <h1>Documentation</h1>
+    <a href="docs/release/1.6/index.html">User Manual</a>
+
+    <h1>MIT-License</h1>
+    <p>
+        Copyright (c) 2015 The casual team
+    </p>
+    <p>
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+    </p>
+    <p>
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    </p>
+    <p>    
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    </p>
+
+    </body>
+</html>

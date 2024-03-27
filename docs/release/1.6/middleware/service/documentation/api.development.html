@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual-service-manager &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="casual-transaction-manager" href="../../transaction/documentation/api.development.html" />
+    <link rel="prev" title="casual-domain-manager" href="../../domain/documentation/api.development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation/development.html">development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/field.development.html">field development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/octet.development.html">octet development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/order.development.html">order development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/serialization/field/string.development.html">field string serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/string.development.html">string development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/arguments.development.html">arguments development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/log.development.html">log development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/build/executable.development.html">configuration build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/build/server.development.html">configuration build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/documentation/build/executable.development.html">casual-build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/documentation/build/server.development.html">casual-build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../domain/documentation/environment.development.html">environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/api.development.html">API definitions of all the administration services casual has</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../domain/documentation/api.development.html">casual-domain-manager</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">casual-service-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../transaction/documentation/api.development.html">casual-transaction-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gateway/documentation/api.development.html">casual-gateway-manager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../documentation/development.html">development</a></li>
+      <li class="breadcrumb-item active">casual-service-manager</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/service/documentation/api.development.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-service-manager">
+<h1>casual-service-manager<a class="headerlink" href="#casual-service-manager" title="Permalink to this heading">¶</a></h1>
+<section id="casual-service-state">
+<h2>.casual/service/state<a class="headerlink" href="#casual-service-state" title="Permalink to this heading">¶</a></h2>
+<p>Gets the current state of the broker for a given domain</p>
+<section id="definition">
+<h3>definition<a class="headerlink" href="#definition" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>service:<span class="w"> </span>.casual/service/state
+input
+output
+<span class="w">  </span>composite<span class="w"> </span>result
+<span class="w">    </span>composite<span class="w"> </span>instances
+<span class="w">      </span>container<span class="w"> </span><span class="nb">local</span>
+<span class="w">        </span>composite<span class="w"> </span>
+<span class="w">          </span>composite<span class="w"> </span>process
+<span class="w">            </span>integer<span class="w"> </span>pid
+<span class="w">            </span>integer<span class="w"> </span>queue
+<span class="w">          </span>character<span class="w"> </span>state
+<span class="w">      </span>container<span class="w"> </span>remote
+<span class="w">        </span>composite<span class="w"> </span>
+<span class="w">          </span>composite<span class="w"> </span>process
+<span class="w">            </span>integer<span class="w"> </span>pid
+<span class="w">            </span>integer<span class="w"> </span>queue
+<span class="w">    </span>container<span class="w"> </span>services
+<span class="w">      </span>composite<span class="w"> </span>
+<span class="w">        </span>string<span class="w"> </span>name
+<span class="w">        </span>integer<span class="w"> </span>timeout
+<span class="w">        </span>string<span class="w"> </span>category
+<span class="w">        </span>integer<span class="w"> </span>transaction
+<span class="w">        </span>composite<span class="w"> </span>metrics
+<span class="w">          </span>integer<span class="w"> </span>count
+<span class="w">          </span>integer<span class="w"> </span>total
+<span class="w">        </span>composite<span class="w"> </span>pending
+<span class="w">          </span>integer<span class="w"> </span>count
+<span class="w">          </span>integer<span class="w"> </span>total
+<span class="w">        </span>integer<span class="w"> </span>remote_invocations
+<span class="w">        </span>integer<span class="w"> </span>last
+<span class="w">        </span>composite<span class="w"> </span>instances
+<span class="w">          </span>container<span class="w"> </span><span class="nb">local</span>
+<span class="w">            </span>composite<span class="w"> </span>
+<span class="w">              </span>integer<span class="w"> </span>pid
+<span class="w">          </span>container<span class="w"> </span>remote
+<span class="w">            </span>composite<span class="w"> </span>
+<span class="w">              </span>integer<span class="w"> </span>pid
+<span class="w">              </span>integer<span class="w"> </span>hops
+<span class="w">    </span>container<span class="w"> </span>pending
+<span class="w">      </span>composite<span class="w"> </span>
+<span class="w">        </span>string<span class="w"> </span>requested
+<span class="w">        </span>composite<span class="w"> </span>process
+<span class="w">          </span>integer<span class="w"> </span>pid
+<span class="w">          </span>integer<span class="w"> </span>queue
+</pre></div>
+</div>
+</section>
+</section>
+<section id="casual-service-metric-reset">
+<h2>.casual/service/metric/reset<a class="headerlink" href="#casual-service-metric-reset" title="Permalink to this heading">¶</a></h2>
+<p>Resets the metric for provided services.</p>
+<p>Resets all services if none are provided.</p>
+<section id="id1">
+<h3>definition<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>service:<span class="w"> </span>.casual/service/metric/reset
+input
+<span class="w">  </span>container<span class="w"> </span>services
+<span class="w">    </span>string<span class="w"> </span>
+output
+<span class="w">  </span>container<span class="w"> </span>result
+<span class="w">    </span>string<span class="w"> </span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../domain/documentation/api.development.html" class="btn btn-neutral float-left" title="casual-domain-manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../transaction/documentation/api.development.html" class="btn btn-neutral float-right" title="casual-transaction-manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.6
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../feature/1.7/main/middleware/service/documentation/api.development.html">feature/1.7/main</a></dd>
+      <dd><a href="../../../../../patch/1.6/main/middleware/service/documentation/api.development.html">patch/1.6/main</a></dd>
+      <dd><a href="api.development.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

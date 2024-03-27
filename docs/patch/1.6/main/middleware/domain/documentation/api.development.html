@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual-domain-manager &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="casual-service-manager" href="../../service/documentation/api.development.html" />
+    <link rel="prev" title="API definitions of all the administration services casual has" href="../../administration/documentation/api.development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation/development.html">development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/field.development.html">field development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/octet.development.html">octet development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/order.development.html">order development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/serialization/field/string.development.html">field string serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/string.development.html">string development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/arguments.development.html">arguments development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/log.development.html">log development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/build/executable.development.html">configuration build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/build/server.development.html">configuration build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/documentation/build/executable.development.html">casual-build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/documentation/build/server.development.html">casual-build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment.development.html">environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/api.development.html">API definitions of all the administration services casual has</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">casual-domain-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../service/documentation/api.development.html">casual-service-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../transaction/documentation/api.development.html">casual-transaction-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gateway/documentation/api.development.html">casual-gateway-manager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../documentation/development.html">development</a></li>
+      <li class="breadcrumb-item active">casual-domain-manager</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/domain/documentation/api.development.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-domain-manager">
+<h1>casual-domain-manager<a class="headerlink" href="#casual-domain-manager" title="Permalink to this heading">¶</a></h1>
+<section id="casual-domain-state">
+<h2>.casual.domain.state<a class="headerlink" href="#casual-domain-state" title="Permalink to this heading">¶</a></h2>
+<section id="definition">
+<h3>definition<a class="headerlink" href="#definition" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>service:<span class="w"> </span>.casual.domain.state
+input
+output
+<span class="w">  </span>composite<span class="w"> </span>serviceReturn
+<span class="w">    </span>container<span class="w"> </span>groups
+<span class="w">      </span>composite
+<span class="w">        </span>integer<span class="w"> </span>id
+<span class="w">        </span>string<span class="w"> </span>name
+<span class="w">        </span>string<span class="w"> </span>note
+<span class="w">        </span>container<span class="w"> </span>resources
+<span class="w">          </span>composite
+<span class="w">            </span>integer<span class="w"> </span>instances
+<span class="w">            </span>string<span class="w"> </span>key
+<span class="w">            </span>string<span class="w"> </span>openinfo
+<span class="w">            </span>string<span class="w"> </span>closeinfo
+<span class="w">        </span>container<span class="w"> </span>dependencies
+<span class="w">          </span>integer
+<span class="w">    </span>container<span class="w"> </span>executables
+<span class="w">      </span>composite
+<span class="w">        </span>integer<span class="w"> </span>id
+<span class="w">        </span>string<span class="w"> </span><span class="nb">alias</span>
+<span class="w">        </span>string<span class="w"> </span>path
+<span class="w">        </span>container<span class="w"> </span>arguments
+<span class="w">          </span>string
+<span class="w">        </span>string<span class="w"> </span>note
+<span class="w">        </span>container<span class="w"> </span>instances
+<span class="w">          </span>integer
+<span class="w">        </span>container<span class="w"> </span>memberships
+<span class="w">          </span>integer
+<span class="w">        </span>composite<span class="w"> </span>environment
+<span class="w">          </span>container<span class="w"> </span>variables
+<span class="w">            </span>string
+<span class="w">        </span>integer<span class="w"> </span>configured_instances
+<span class="w">        </span>boolean<span class="w"> </span>restart
+<span class="w">        </span>integer<span class="w"> </span>restarts
+<span class="w">    </span>composite<span class="w"> </span>termination
+<span class="w">      </span>container<span class="w"> </span>listeners
+<span class="w">        </span>composite
+<span class="w">          </span>integer<span class="w"> </span>pid
+<span class="w">          </span>integer<span class="w"> </span>queue
+</pre></div>
+</div>
+</section>
+<section id="example">
+<h3>example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;serviceReturn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">380</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">562</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;openinfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;closeinfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual&quot;</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">&quot;dependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="mi">771</span>
+<span class="w">                    </span><span class="p">]</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;executables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">623</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="s2">&quot;casual&quot;</span>
+<span class="w">                    </span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="mi">287</span>
+<span class="w">                    </span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">&quot;memberships&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="mi">632</span>
+<span class="w">                    </span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;variables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="s2">&quot;casual&quot;</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="nt">&quot;configured_instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;restart&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;restarts&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">884</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;termination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;listeners&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;pid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">503</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;queue&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="casual-domain-scale-instances">
+<h2>.casual.domain.scale.instances<a class="headerlink" href="#casual-domain-scale-instances" title="Permalink to this heading">¶</a></h2>
+<section id="id1">
+<h3>definition<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>service:<span class="w"> </span>.casual.domain.scale.instances
+input
+<span class="w">  </span>container<span class="w"> </span>instances
+<span class="w">    </span>composite
+<span class="w">      </span>string<span class="w"> </span><span class="nb">alias</span>
+<span class="w">      </span>integer<span class="w"> </span>instances
+output
+<span class="w">  </span>container<span class="w"> </span>serviceReturn
+<span class="w">    </span>composite
+<span class="w">      </span>string<span class="w"> </span><span class="nb">alias</span>
+<span class="w">      </span>integer<span class="w"> </span>instances
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>example<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+    &quot;input&quot;: {
+        &quot;instances&quot;: [
+            {
+                &quot;alias&quot;: &quot;casual&quot;,
+                &quot;instances&quot;: 256
+            }
+        ]
+    },
+    &quot;output&quot;: {
+        &quot;serviceReturn&quot;: [
+            {
+                &quot;alias&quot;: &quot;casual&quot;,
+                &quot;instances&quot;: 838
+            }
+        ]
+    }
+}
+``
+
+## .casual.domain.shutdown
+
+### definition
+
+```bash
+service: .casual.domain.shutdown
+input
+output
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>example<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+    &quot;input&quot;: {},
+    &quot;output&quot;: {}
+}
+``
+
+
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../administration/documentation/api.development.html" class="btn btn-neutral float-left" title="API definitions of all the administration services casual has" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../service/documentation/api.development.html" class="btn btn-neutral float-right" title="casual-service-manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: patch/1.6/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../../feature/1.7/main/middleware/domain/documentation/api.development.html">feature/1.7/main</a></dd>
+      <dd><a href="api.development.html">patch/1.6/main</a></dd>
+      <dd><a href="../../../../../../release/1.6/middleware/domain/documentation/api.development.html">release/1.6</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
