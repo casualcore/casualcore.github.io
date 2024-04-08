@@ -7,6 +7,7 @@
   <title>configuration domain (general) &mdash; casual  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/casual-32x32.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -105,10 +106,74 @@ course be used as a mean to help document actual production configuration.</p>
 <section id="structures">
 <h2>structures<a class="headerlink" href="#structures" title="Permalink to this heading">¶</a></h2>
 <p>General “structures” that other parts of the configuration refers to.</p>
-<section id="domain-environment">
-<h3>domain::Environment<a class="headerlink" href="#domain-environment" title="Permalink to this heading">¶</a></h3>
-<section id="variable">
-<h4>Variable<a class="headerlink" href="#variable" title="Permalink to this heading">¶</a></h4>
+<section id="duration-string">
+<h3>Duration : <code class="docutils literal notranslate"><span class="pre">string</span></code><a class="headerlink" href="#duration-string" title="Permalink to this heading">¶</a></h3>
+<p>A string representation of a <em>duration</em>. SI units can be used. Example: <code class="docutils literal notranslate"><span class="pre">30ms</span></code>, <code class="docutils literal notranslate"><span class="pre">1h</span></code>, <code class="docutils literal notranslate"><span class="pre">3min</span></code>, <code class="docutils literal notranslate"><span class="pre">40s</span></code>. if no SI unit <code class="docutils literal notranslate"><span class="pre">s</span></code> is used</p>
+</section>
+<section id="domain-service-visibility-string">
+<h3>domain::service::Visibility : <code class="docutils literal notranslate"><span class="pre">string</span></code><a class="headerlink" href="#domain-service-visibility-string" title="Permalink to this heading">¶</a></h3>
+<p>A string representation that defines the visibility of a service</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>value</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>discoverable</p></td>
+<td><p>service is discoverable from other domains</p></td>
+</tr>
+<tr class="row-odd"><td><p>undiscoverable</p></td>
+<td><p>service is <strong>not</strong> discoverable from other domains</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="domain-service-timeout-contract-string">
+<h3>domain::service::timeout::Contract : <code class="docutils literal notranslate"><span class="pre">string</span></code><a class="headerlink" href="#domain-service-timeout-contract-string" title="Permalink to this heading">¶</a></h3>
+<p>A string representation that defines the timeout contract. Can be one of the following:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>value</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>linger</p></td>
+<td><p>no action, let the server be</p></td>
+</tr>
+<tr class="row-odd"><td><p>kill</p></td>
+<td><p>send <code class="docutils literal notranslate"><span class="pre">kill</span></code> signal</p></td>
+</tr>
+<tr class="row-even"><td><p>terminate</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;deprecated</span></code> send terminate signal</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="domain-service-timeout-structure">
+<h3>domain::service::Timeout <em>(structure)</em><a class="headerlink" href="#domain-service-timeout-structure" title="Permalink to this heading">¶</a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[duration : <code class="docutils literal notranslate"><span class="pre">Duration</span></code>]</p></td>
+<td><p>timeout duration for a service.</p></td>
+<td><p><em>no duration</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>[contract : <code class="docutils literal notranslate"><span class="pre">Contract</span></code>]</p></td>
+<td><p>action to take if timeout is passed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">linger</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="domain-environment-variable-structure">
+<h3>domain::environment::Variable <em>(structure)</em><a class="headerlink" href="#domain-environment-variable-structure" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
@@ -116,14 +181,17 @@ course be used as a mean to help document actual production configuration.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>key</p></td>
+<tr class="row-even"><td><p>key : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
 <td><p>environment variable name</p></td>
 </tr>
-<tr class="row-odd"><td><p>value</p></td>
+<tr class="row-odd"><td><p>value : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
 <td><p>the value to associate with the environment variable</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="domain-environment-structure">
+<h3>domain::Environment <em>(structure)</em><a class="headerlink" href="#domain-environment-structure" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
@@ -131,30 +199,24 @@ course be used as a mean to help document actual production configuration.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>variables</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0..*</span></code> <code class="docutils literal notranslate"><span class="pre">domain::environment::Variable</span></code>, described above.</p></td>
+<tr class="row-even"><td><p>[variables : <code class="docutils literal notranslate"><span class="pre">[Variable]</span></code>]</p></td>
+<td><p>environment variables</p></td>
+</tr>
+<tr class="row-odd"><td><p>[files : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>paths to files that contains <code class="docutils literal notranslate"><span class="pre">Environment</span></code></p></td>
 </tr>
 </tbody>
 </table>
-</section>
-</section>
-<section id="service-execution-timeout">
-<h3>service::execution::Timeout<a class="headerlink" href="#service-execution-timeout" title="Permalink to this heading">¶</a></h3>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>property</p></th>
-<th class="head"><p>description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>duration</p></td>
-<td><p>timeout of service, from the <em>caller</em> perspective (example: <code class="docutils literal notranslate"><span class="pre">30ms</span></code>, <code class="docutils literal notranslate"><span class="pre">1h</span></code>, <code class="docutils literal notranslate"><span class="pre">3min</span></code>, <code class="docutils literal notranslate"><span class="pre">40s</span></code>. if no SI unit <code class="docutils literal notranslate"><span class="pre">s</span></code> is used)</p></td>
-</tr>
-<tr class="row-odd"><td><p>contract</p></td>
-<td><p>defines action to take if timeout is passed (linger = just wait, kill = send kill signal, terminate = send terminate signal)</p></td>
-</tr>
-</tbody>
-</table>
+<p>Note: a file referred from <code class="docutils literal notranslate"><span class="pre">files</span></code> must contain the structure.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">variables</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SOME_VARIABLE&quot;</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo&quot;</span>
+<span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;another-file.json&quot;</span>
+</pre></div>
+</div>
+<p>And has corresponding extension as the format <em>(my-environment.json, env.yaml and so on)</em>.</p>
 </section>
 </section>
 <section id="domain-global">
@@ -170,8 +232,8 @@ course be used as a mean to help document actual production configuration.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>execution</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">service::execution::Timeout</span></code>, described above.</p></td>
+<tr class="row-even"><td><p>[execution.timeout : <code class="docutils literal notranslate"><span class="pre">Timeout</span></code>]</p></td>
+<td><p>global default timeout</p></td>
 </tr>
 </tbody>
 </table>
@@ -187,20 +249,25 @@ Only used to help user minimize common configuration.</p>
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
 <th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>instances</p></td>
-<td><p>number of instances to start of the server.</p></td>
+<tr class="row-even"><td><p>[instances : <code class="docutils literal notranslate"><span class="pre">integer</span></code>]</p></td>
+<td><p>default number of instances.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>memberships</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0..*</span></code> default group memberships.</p></td>
+<tr class="row-odd"><td><p>[memberships : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>default group memberships.</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p>environment</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">domain::Environment</span></code> described above.</p></td>
+<tr class="row-even"><td><p>[environment : <code class="docutils literal notranslate"><span class="pre">Environment</span></code>]</p></td>
+<td><p>default server environment</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>restart</p></td>
-<td><p>if the server should be restarted, if exit.</p></td>
+<tr class="row-odd"><td><p>[restart : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>]</p></td>
+<td><p>default restart directive</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -211,20 +278,25 @@ Only used to help user minimize common configuration.</p>
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
 <th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>instances</p></td>
-<td><p>number of instances to start of the server.</p></td>
+<tr class="row-even"><td><p>[instances : <code class="docutils literal notranslate"><span class="pre">integer</span></code>]</p></td>
+<td><p>default number of instances.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>memberships</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">0..*</span></code> default group memberships.</p></td>
+<tr class="row-odd"><td><p>[memberships : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>default group memberships.</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p>environment</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">domain::Environment</span></code> described above.</p></td>
+<tr class="row-even"><td><p>[environment : <code class="docutils literal notranslate"><span class="pre">Environment</span></code>]</p></td>
+<td><p>default server environment</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>restart</p></td>
-<td><p>if the executable should be restarted, if exit.</p></td>
+<tr class="row-odd"><td><p>[restart : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>]</p></td>
+<td><p>default restart directive</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -235,23 +307,27 @@ Only used to help user minimize common configuration.</p>
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
 <th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>execution</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">service::execution::Timeout</span></code>, described above.</p></td>
+<tr class="row-even"><td><p>[execution.timeout : <code class="docutils literal notranslate"><span class="pre">Timeout</span></code>]</p></td>
+<td><p>default service timeout</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.global.service.execution.timeout</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>visibility</p></td>
-<td><p>visibility (from other domains). Possible values: [ ‘discoverable’, ‘undiscoverable’]</p></td>
+<tr class="row-odd"><td><p>[visibility : Visibility]</p></td>
+<td><p>visibility from other domains</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">discoverable</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </section>
 </section>
-<section id="domain-groups">
-<h2>domain.groups<a class="headerlink" href="#domain-groups" title="Permalink to this heading">¶</a></h2>
-<p>Defines the groups in the configuration. Groups are used to associate <code class="docutils literal notranslate"><span class="pre">resources</span></code> to servers/executables
-and to define the dependency order.</p>
+<section id="domain-groups-list">
+<h2>domain.groups <em>(list)</em><a class="headerlink" href="#domain-groups-list" title="Permalink to this heading">¶</a></h2>
+<p>Defines the groups in the configuration. Groups are used define dependency order, which is
+used during boot and shutdown.
+Groups can be used to associate <code class="docutils literal notranslate"><span class="pre">resources</span></code> to servers/executables.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
@@ -259,115 +335,145 @@ and to define the dependency order.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>name</p></td>
+<tr class="row-even"><td><p>name : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
 <td><p>the name (unique key) of the group.</p></td>
 </tr>
-<tr class="row-odd"><td><p>dependencies</p></td>
-<td><p>defines which other groups this group has dependency to.</p></td>
+<tr class="row-odd"><td><p>[dependencies : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>name of groups this group has dependency to.</p></td>
 </tr>
-<tr class="row-even"><td><p>resources</p></td>
-<td><p>defines which resources (name) this group associate with (transient to the members of the group)</p></td>
+<tr class="row-even"><td><p>[resources : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>names of resources this group is associated with (transient to the members of the group)</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="domain-servers">
-<h2>domain.servers<a class="headerlink" href="#domain-servers" title="Permalink to this heading">¶</a></h2>
+<section id="domain-servers-list">
+<h2>domain.servers <em>(list)</em><a class="headerlink" href="#domain-servers-list" title="Permalink to this heading">¶</a></h2>
 <p>Defines all servers of the configuration (and domain)</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
 <th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>path</p></td>
-<td><p>the path to the binary, can be relative to <code class="docutils literal notranslate"><span class="pre">CASUAL_DOMAIN_HOME</span></code>, or implicit via <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p></td>
+<tr class="row-even"><td><p>path : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>the path to the binary (if not absolute, <code class="docutils literal notranslate"><span class="pre">PATH</span></code> is used)</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>alias</p></td>
-<td><p>the logical (unique) name of the server. If not provided basename of <code class="docutils literal notranslate"><span class="pre">path</span></code> will be used</p></td>
+<tr class="row-odd"><td><p>[alias : <code class="docutils literal notranslate"><span class="pre">string</span></code>]</p></td>
+<td><p>the logical (unique) name of the server.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">basename(</span> <span class="pre">path)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>arguments</p></td>
+<tr class="row-even"><td><p>[arguments : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
 <td><p>arguments to <code class="docutils literal notranslate"><span class="pre">tpsvrinit</span></code> during startup.</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>instances</p></td>
+<tr class="row-odd"><td><p>[instances : <code class="docutils literal notranslate"><span class="pre">integer</span></code>]</p></td>
 <td><p>number of instances to start of the server.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.server.instances</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>memberships</p></td>
-<td><p>which groups are the server member of (dictates order, and possible resource association)</p></td>
+<tr class="row-even"><td><p>[memberships : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>groups that the server is member of</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.server.memberships</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>restrictions</p></td>
-<td><p>regex pattern, if provided only the services that matches at least one of the patterns are actually advertised.</p></td>
+<tr class="row-odd"><td><p>[environment : <code class="docutils literal notranslate"><span class="pre">Environment</span></code>]</p></td>
+<td><p>explicit environments for instances of this server</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.server.environment</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>resources</p></td>
-<td><p>explicit resource associations (transaction.resources.name)</p></td>
+<tr class="row-even"><td><p>[restrictions : <code class="docutils literal notranslate"><span class="pre">[regex]</span></code>]</p></td>
+<td><p>regex patterns, only services that matches are advertised.</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>restart</p></td>
+<tr class="row-odd"><td><p>[resources : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>explicit resource associations (resource names)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>[restart : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>]</p></td>
 <td><p>if the server should be restarted, if exit.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.server.restart</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="domain-executables">
-<h2>domain.executables<a class="headerlink" href="#domain-executables" title="Permalink to this heading">¶</a></h2>
+<section id="domain-executables-list">
+<h2>domain.executables <em>(list)</em><a class="headerlink" href="#domain-executables-list" title="Permalink to this heading">¶</a></h2>
 <p>Defines all <em>ordinary</em> executables of the configuration. Could be any executable with a <code class="docutils literal notranslate"><span class="pre">main</span></code> function</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
 <th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>path</p></td>
-<td><p>the path to the binary, can be relative to <code class="docutils literal notranslate"><span class="pre">CASUAL_DOMAIN_HOME</span></code>, or implicit via <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p></td>
+<tr class="row-even"><td><p>path : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>the path to the binary (if not absolute, <code class="docutils literal notranslate"><span class="pre">PATH</span></code> is used)</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>alias</p></td>
-<td><p>the logical (unique) name of the executable. If not provided basename of <code class="docutils literal notranslate"><span class="pre">path</span></code> will be used</p></td>
+<tr class="row-odd"><td><p>[alias : <code class="docutils literal notranslate"><span class="pre">string</span></code>]</p></td>
+<td><p>the logical (unique) name of the executable.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">basename(</span> <span class="pre">path)</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>arguments</p></td>
-<td><p>arguments to <code class="docutils literal notranslate"><span class="pre">main</span></code> during startup.</p></td>
+<tr class="row-even"><td><p>[arguments : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>arguments to main during startup.</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>instances</p></td>
+<tr class="row-odd"><td><p>[instances : <code class="docutils literal notranslate"><span class="pre">integer</span></code>]</p></td>
 <td><p>number of instances to start of the server.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.executable.instances</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>memberships</p></td>
-<td><p>which groups are the server member of (dictates order)</p></td>
+<tr class="row-even"><td><p>[memberships : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>groups that the executable is member of</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.executable.memberships</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>restart</p></td>
+<tr class="row-odd"><td><p>[environment : <code class="docutils literal notranslate"><span class="pre">Environment</span></code>]</p></td>
+<td><p>explicit environments for instances of this executable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.executable.environment</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>[restart : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>]</p></td>
 <td><p>if the executable should be restarted, if exit.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.executable.restart</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="domain-services">
-<h2>domain.services<a class="headerlink" href="#domain-services" title="Permalink to this heading">¶</a></h2>
+<section id="domain-services-list">
+<h2>domain.services <em>(list)</em><a class="headerlink" href="#domain-services-list" title="Permalink to this heading">¶</a></h2>
 <p>Defines service related configuration.</p>
-<p>Note that this configuration is tied to the service, regardless who has advertised the service.</p>
+<p>Note: This configuration is tied to the service, regardless who has advertised the service.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
 <th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>name</p></td>
+<tr class="row-even"><td><p>name : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
 <td><p>name of the service</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>routes</p></td>
-<td><p>defines what logical names are actually exposed. For <em>aliases</em>, it’s important to include the original name.</p></td>
+<tr class="row-odd"><td><p>[routes : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>names to use instead of <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p>execution</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">service::execution::Timeout</span></code>, described above.</p></td>
+<tr class="row-even"><td><p>[execution.timeout : <code class="docutils literal notranslate"><span class="pre">Timeout</span></code>]</p></td>
+<td><p>timeout of the service</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.service.execution.timeout</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>visibility</p></td>
-<td><p>visibility (from other domains). Possible values: [ ‘discoverable’, ‘undiscoverable’]</p></td>
+<tr class="row-odd"><td><p>[visibility : <code class="docutils literal notranslate"><span class="pre">Visibility</span></code>]</p></td>
+<td><p>visibility from other domains</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.default.service.visibility</span></code></p></td>
 </tr>
 </tbody>
 </table>
+<p>Note: For <em>service aliases</em>, it’s important to include the original name in <code class="docutils literal notranslate"><span class="pre">routes</span></code></p>
 </section>
 <section id="examples">
 <h2>examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<p>Below follows examples in human readable formats that <code class="docutils literal notranslate"><span class="pre">casual</span></code> can handle</p>
+<p>Below follows examples in <code class="docutils literal notranslate"><span class="pre">yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">json</span></code> <em>(casual can also handle <code class="docutils literal notranslate"><span class="pre">ini</span></code> and <code class="docutils literal notranslate"><span class="pre">xml</span></code>)</em></p>
 <section id="yaml">
 <h3>yaml<a class="headerlink" href="#yaml" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
@@ -644,302 +750,6 @@ and to define the dependency order.</p>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="ini">
-<h3>ini<a class="headerlink" href="#ini" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[domain]</span>
-<span class="na">name</span><span class="o">=</span><span class="s">domain-name</span>
-
-<span class="k">[domain.default]</span>
-<span class="na">note</span><span class="o">=</span><span class="s">&#39;default&#39;, fallback, configuration. Will only affect &#39;local&#39; configuration and will not aggregate &#39;between&#39; configurations</span>
-
-<span class="k">[domain.default.executable]</span>
-<span class="na">instances</span><span class="o">=</span><span class="s">1</span>
-<span class="na">restart</span><span class="o">=</span><span class="s">false</span>
-
-<span class="k">[domain.default.server]</span>
-<span class="na">instances</span><span class="o">=</span><span class="s">1</span>
-<span class="na">memberships</span><span class="o">=</span><span class="s">customer-group</span>
-<span class="na">restart</span><span class="o">=</span><span class="s">true</span>
-
-<span class="k">[domain.default.server.environment]</span>
-
-<span class="k">[domain.default.server.environment.variables]</span>
-<span class="na">key</span><span class="o">=</span><span class="s">SOME_VARIABLE</span>
-<span class="na">value</span><span class="o">=</span><span class="s">foo</span>
-
-<span class="k">[domain.default.service]</span>
-<span class="na">visibility</span><span class="o">=</span><span class="s">discoverable</span>
-
-<span class="k">[domain.default.service.execution]</span>
-
-<span class="k">[domain.default.service.execution.timeout]</span>
-<span class="na">duration</span><span class="o">=</span><span class="s">20s</span>
-
-<span class="k">[domain.environment]</span>
-
-<span class="k">[domain.environment.variables]</span>
-<span class="na">key</span><span class="o">=</span><span class="s">SOME_VARIABLE</span>
-<span class="na">value</span><span class="o">=</span><span class="s">42</span>
-
-<span class="k">[domain.environment.variables]</span>
-<span class="na">key</span><span class="o">=</span><span class="s">SOME_OTHER_VARIABLE</span>
-<span class="na">value</span><span class="o">=</span><span class="s">some value</span>
-
-<span class="k">[domain.executables]</span>
-<span class="na">arguments</span><span class="o">=</span><span class="s">--configuration</span>
-<span class="na">arguments</span><span class="o">=</span><span class="s">/path/to/configuration</span>
-<span class="na">memberships</span><span class="o">=</span><span class="s">common-group</span>
-<span class="na">path</span><span class="o">=</span><span class="s">/some/path/mq-server</span>
-
-<span class="k">[domain.global]</span>
-<span class="na">note</span><span class="o">=</span><span class="s">&#39;domain global&#39; config. Aggregates right to left</span>
-
-<span class="k">[domain.global.service]</span>
-<span class="na">note</span><span class="o">=</span><span class="s">Will be used for services that are not explicitly configured.</span>
-
-<span class="k">[domain.global.service.execution]</span>
-
-<span class="k">[domain.global.service.execution.timeout]</span>
-<span class="na">contract</span><span class="o">=</span><span class="s">linger</span>
-<span class="na">duration</span><span class="o">=</span><span class="s">2h</span>
-
-<span class="k">[domain.groups]</span>
-<span class="na">name</span><span class="o">=</span><span class="s">common-group</span>
-<span class="na">note</span><span class="o">=</span><span class="s">group that logically groups &#39;common&#39; stuff</span>
-
-<span class="k">[domain.groups]</span>
-<span class="na">dependencies</span><span class="o">=</span><span class="s">common-group</span>
-<span class="na">name</span><span class="o">=</span><span class="s">customer-group</span>
-<span class="na">note</span><span class="o">=</span><span class="s">group that logically groups &#39;customer&#39; stuff</span>
-<span class="na">resources</span><span class="o">=</span><span class="s">customer-db</span>
-
-<span class="k">[domain.groups]</span>
-<span class="na">dependencies</span><span class="o">=</span><span class="s">customer-group</span>
-<span class="na">name</span><span class="o">=</span><span class="s">sales-group</span>
-<span class="na">note</span><span class="o">=</span><span class="s">group that logically groups &#39;customer&#39; stuff</span>
-<span class="na">resources</span><span class="o">=</span><span class="s">sales-db</span>
-<span class="na">resources</span><span class="o">=</span><span class="s">event-queue</span>
-
-<span class="k">[domain.servers]</span>
-<span class="na">memberships</span><span class="o">=</span><span class="s">customer-group</span>
-<span class="na">path</span><span class="o">=</span><span class="s">/some/path/customer-server-1</span>
-
-<span class="k">[domain.servers]</span>
-<span class="na">memberships</span><span class="o">=</span><span class="s">customer-group</span>
-<span class="na">path</span><span class="o">=</span><span class="s">/some/path/customer-server-2</span>
-
-<span class="k">[domain.servers]</span>
-<span class="na">alias</span><span class="o">=</span><span class="s">sales-pre</span>
-<span class="na">instances</span><span class="o">=</span><span class="s">10</span>
-<span class="na">memberships</span><span class="o">=</span><span class="s">sales-group</span>
-<span class="na">note</span><span class="o">=</span><span class="s">the only services that will be advertised are the ones who matches regex &quot;preSales.*&quot;</span>
-<span class="na">path</span><span class="o">=</span><span class="s">/some/path/sales-server</span>
-<span class="na">restrictions</span><span class="o">=</span><span class="s">preSales.*</span>
-
-<span class="k">[domain.servers]</span>
-<span class="na">alias</span><span class="o">=</span><span class="s">sales-post</span>
-<span class="na">memberships</span><span class="o">=</span><span class="s">sales-group</span>
-<span class="na">note</span><span class="o">=</span><span class="s">he only services that will be advertised are the ones who matches regex &quot;postSales.*&quot;</span>
-<span class="na">path</span><span class="o">=</span><span class="s">/some/path/sales-server</span>
-<span class="na">restrictions</span><span class="o">=</span><span class="s">postSales.*</span>
-
-<span class="k">[domain.servers]</span>
-<span class="na">memberships</span><span class="o">=</span><span class="s">sales-group</span>
-<span class="na">path</span><span class="o">=</span><span class="s">/some/path/sales-broker</span>
-<span class="na">resources</span><span class="o">=</span><span class="s">event-queue</span>
-
-<span class="k">[domain.servers.environment]</span>
-
-<span class="k">[domain.servers.environment.variables]</span>
-<span class="na">key</span><span class="o">=</span><span class="s">SALES_BROKER_VARIABLE</span>
-<span class="na">value</span><span class="o">=</span><span class="s">556</span>
-
-<span class="k">[domain.services]</span>
-<span class="na">name</span><span class="o">=</span><span class="s">a</span>
-<span class="na">routes</span><span class="o">=</span><span class="s">b</span>
-<span class="na">routes</span><span class="o">=</span><span class="s">c</span>
-<span class="na">visibility</span><span class="o">=</span><span class="s">undiscoverable</span>
-
-<span class="k">[domain.services.execution]</span>
-
-<span class="k">[domain.services.execution.timeout]</span>
-<span class="na">contract</span><span class="o">=</span><span class="s">terminate</span>
-<span class="na">duration</span><span class="o">=</span><span class="s">64ms</span>
-</pre></div>
-</div>
-</section>
-<section id="xml">
-<h3>xml<a class="headerlink" href="#xml" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="nt">&lt;domain&gt;</span>
-<span class="w"> </span><span class="nt">&lt;name&gt;</span>domain-name<span class="nt">&lt;/name&gt;</span>
-<span class="w"> </span><span class="nt">&lt;global&gt;</span>
-<span class="w">  </span><span class="nt">&lt;note&gt;</span>&#39;domain<span class="w"> </span>global&#39;<span class="w"> </span>config.<span class="w"> </span>Aggregates<span class="w"> </span>right<span class="w"> </span>to<span class="w"> </span>left<span class="nt">&lt;/note&gt;</span>
-<span class="w">  </span><span class="nt">&lt;service&gt;</span>
-<span class="w">   </span><span class="nt">&lt;note&gt;</span>Will<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span>for<span class="w"> </span>services<span class="w"> </span>that<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>explicitly<span class="w"> </span>configured.<span class="nt">&lt;/note&gt;</span>
-<span class="w">   </span><span class="nt">&lt;execution&gt;</span>
-<span class="w">    </span><span class="nt">&lt;timeout&gt;</span>
-<span class="w">     </span><span class="nt">&lt;duration&gt;</span>2h<span class="nt">&lt;/duration&gt;</span>
-<span class="w">     </span><span class="nt">&lt;contract&gt;</span>linger<span class="nt">&lt;/contract&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/timeout&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/execution&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/service&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/global&gt;</span>
-<span class="w"> </span><span class="nt">&lt;default&gt;</span>
-<span class="w">  </span><span class="nt">&lt;note&gt;</span>&#39;default&#39;,<span class="w"> </span>fallback,<span class="w"> </span>configuration.<span class="w"> </span>Will<span class="w"> </span>only<span class="w"> </span>affect<span class="w"> </span>&#39;local&#39;<span class="w"> </span>configuration<span class="w"> </span>and<span class="w"> </span>will<span class="w"> </span>not<span class="w"> </span>aggregate<span class="w"> </span>&#39;between&#39;<span class="w"> </span>configurations<span class="nt">&lt;/note&gt;</span>
-<span class="w">  </span><span class="nt">&lt;server&gt;</span>
-<span class="w">   </span><span class="nt">&lt;instances&gt;</span>1<span class="nt">&lt;/instances&gt;</span>
-<span class="w">   </span><span class="nt">&lt;restart&gt;</span>true<span class="nt">&lt;/restart&gt;</span>
-<span class="w">   </span><span class="nt">&lt;memberships&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>customer-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/memberships&gt;</span>
-<span class="w">   </span><span class="nt">&lt;environment&gt;</span>
-<span class="w">    </span><span class="nt">&lt;variables&gt;</span>
-<span class="w">     </span><span class="nt">&lt;element&gt;</span>
-<span class="w">      </span><span class="nt">&lt;key&gt;</span>SOME_VARIABLE<span class="nt">&lt;/key&gt;</span>
-<span class="w">      </span><span class="nt">&lt;value&gt;</span>foo<span class="nt">&lt;/value&gt;</span>
-<span class="w">     </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/variables&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/environment&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/server&gt;</span>
-<span class="w">  </span><span class="nt">&lt;executable&gt;</span>
-<span class="w">   </span><span class="nt">&lt;instances&gt;</span>1<span class="nt">&lt;/instances&gt;</span>
-<span class="w">   </span><span class="nt">&lt;restart&gt;</span>false<span class="nt">&lt;/restart&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/executable&gt;</span>
-<span class="w">  </span><span class="nt">&lt;service&gt;</span>
-<span class="w">   </span><span class="nt">&lt;execution&gt;</span>
-<span class="w">    </span><span class="nt">&lt;timeout&gt;</span>
-<span class="w">     </span><span class="nt">&lt;duration&gt;</span>20s<span class="nt">&lt;/duration&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/timeout&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/execution&gt;</span>
-<span class="w">   </span><span class="nt">&lt;visibility&gt;</span>discoverable<span class="nt">&lt;/visibility&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/service&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/default&gt;</span>
-<span class="w"> </span><span class="nt">&lt;environment&gt;</span>
-<span class="w">  </span><span class="nt">&lt;variables&gt;</span>
-<span class="w">   </span><span class="nt">&lt;element&gt;</span>
-<span class="w">    </span><span class="nt">&lt;key&gt;</span>SOME_VARIABLE<span class="nt">&lt;/key&gt;</span>
-<span class="w">    </span><span class="nt">&lt;value&gt;</span>42<span class="nt">&lt;/value&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;element&gt;</span>
-<span class="w">    </span><span class="nt">&lt;key&gt;</span>SOME_OTHER_VARIABLE<span class="nt">&lt;/key&gt;</span>
-<span class="w">    </span><span class="nt">&lt;value&gt;</span>some<span class="w"> </span>value<span class="nt">&lt;/value&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/variables&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/environment&gt;</span>
-<span class="w"> </span><span class="nt">&lt;groups&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>common-group<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;note&gt;</span>group<span class="w"> </span>that<span class="w"> </span>logically<span class="w"> </span>groups<span class="w"> </span>&#39;common&#39;<span class="w"> </span>stuff<span class="nt">&lt;/note&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>customer-group<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;note&gt;</span>group<span class="w"> </span>that<span class="w"> </span>logically<span class="w"> </span>groups<span class="w"> </span>&#39;customer&#39;<span class="w"> </span>stuff<span class="nt">&lt;/note&gt;</span>
-<span class="w">   </span><span class="nt">&lt;resources&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>customer-db<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/resources&gt;</span>
-<span class="w">   </span><span class="nt">&lt;dependencies&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>common-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/dependencies&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>sales-group<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;note&gt;</span>group<span class="w"> </span>that<span class="w"> </span>logically<span class="w"> </span>groups<span class="w"> </span>&#39;customer&#39;<span class="w"> </span>stuff<span class="nt">&lt;/note&gt;</span>
-<span class="w">   </span><span class="nt">&lt;resources&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>sales-db<span class="nt">&lt;/element&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>event-queue<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/resources&gt;</span>
-<span class="w">   </span><span class="nt">&lt;dependencies&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>customer-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/dependencies&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/groups&gt;</span>
-<span class="w"> </span><span class="nt">&lt;servers&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;path&gt;</span>/some/path/customer-server-1<span class="nt">&lt;/path&gt;</span>
-<span class="w">   </span><span class="nt">&lt;memberships&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>customer-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/memberships&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;path&gt;</span>/some/path/customer-server-2<span class="nt">&lt;/path&gt;</span>
-<span class="w">   </span><span class="nt">&lt;memberships&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>customer-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/memberships&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;path&gt;</span>/some/path/sales-server<span class="nt">&lt;/path&gt;</span>
-<span class="w">   </span><span class="nt">&lt;alias&gt;</span>sales-pre<span class="nt">&lt;/alias&gt;</span>
-<span class="w">   </span><span class="nt">&lt;note&gt;</span>the<span class="w"> </span>only<span class="w"> </span>services<span class="w"> </span>that<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>advertised<span class="w"> </span>are<span class="w"> </span>the<span class="w"> </span>ones<span class="w"> </span>who<span class="w"> </span>matches<span class="w"> </span>regex<span class="w"> </span>&quot;preSales.*&quot;<span class="nt">&lt;/note&gt;</span>
-<span class="w">   </span><span class="nt">&lt;instances&gt;</span>10<span class="nt">&lt;/instances&gt;</span>
-<span class="w">   </span><span class="nt">&lt;memberships&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>sales-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/memberships&gt;</span>
-<span class="w">   </span><span class="nt">&lt;restrictions&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>preSales.*<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/restrictions&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;path&gt;</span>/some/path/sales-server<span class="nt">&lt;/path&gt;</span>
-<span class="w">   </span><span class="nt">&lt;alias&gt;</span>sales-post<span class="nt">&lt;/alias&gt;</span>
-<span class="w">   </span><span class="nt">&lt;note&gt;</span>he<span class="w"> </span>only<span class="w"> </span>services<span class="w"> </span>that<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>advertised<span class="w"> </span>are<span class="w"> </span>the<span class="w"> </span>ones<span class="w"> </span>who<span class="w"> </span>matches<span class="w"> </span>regex<span class="w"> </span>&quot;postSales.*&quot;<span class="nt">&lt;/note&gt;</span>
-<span class="w">   </span><span class="nt">&lt;memberships&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>sales-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/memberships&gt;</span>
-<span class="w">   </span><span class="nt">&lt;restrictions&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>postSales.*<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/restrictions&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;path&gt;</span>/some/path/sales-broker<span class="nt">&lt;/path&gt;</span>
-<span class="w">   </span><span class="nt">&lt;memberships&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>sales-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/memberships&gt;</span>
-<span class="w">   </span><span class="nt">&lt;environment&gt;</span>
-<span class="w">    </span><span class="nt">&lt;variables&gt;</span>
-<span class="w">     </span><span class="nt">&lt;element&gt;</span>
-<span class="w">      </span><span class="nt">&lt;key&gt;</span>SALES_BROKER_VARIABLE<span class="nt">&lt;/key&gt;</span>
-<span class="w">      </span><span class="nt">&lt;value&gt;</span>556<span class="nt">&lt;/value&gt;</span>
-<span class="w">     </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/variables&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/environment&gt;</span>
-<span class="w">   </span><span class="nt">&lt;resources&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>event-queue<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/resources&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/servers&gt;</span>
-<span class="w"> </span><span class="nt">&lt;executables&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;path&gt;</span>/some/path/mq-server<span class="nt">&lt;/path&gt;</span>
-<span class="w">   </span><span class="nt">&lt;arguments&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>--configuration<span class="nt">&lt;/element&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>/path/to/configuration<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/arguments&gt;</span>
-<span class="w">   </span><span class="nt">&lt;memberships&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>common-group<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/memberships&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/executables&gt;</span>
-<span class="w"> </span><span class="nt">&lt;services&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>a<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;execution&gt;</span>
-<span class="w">    </span><span class="nt">&lt;timeout&gt;</span>
-<span class="w">     </span><span class="nt">&lt;duration&gt;</span>64ms<span class="nt">&lt;/duration&gt;</span>
-<span class="w">     </span><span class="nt">&lt;contract&gt;</span>terminate<span class="nt">&lt;/contract&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/timeout&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/execution&gt;</span>
-<span class="w">   </span><span class="nt">&lt;routes&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>b<span class="nt">&lt;/element&gt;</span>
-<span class="w">    </span><span class="nt">&lt;element&gt;</span>c<span class="nt">&lt;/element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;/routes&gt;</span>
-<span class="w">   </span><span class="nt">&lt;visibility&gt;</span>undiscoverable<span class="nt">&lt;/visibility&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/services&gt;</span>
-<span class="nt">&lt;/domain&gt;</span>
 </pre></div>
 </div>
 </section>

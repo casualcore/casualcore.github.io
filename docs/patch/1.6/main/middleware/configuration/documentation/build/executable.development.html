@@ -7,6 +7,7 @@
   <title>configuration build-executable &mdash; casual  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/casual-32x32.png"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -118,7 +119,7 @@ the <code class="docutils literal notranslate"><span class="pre">entrypoint</spa
 </section>
 <section id="examples">
 <h2>examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<p>Below follows examples in human readable formats that <code class="docutils literal notranslate"><span class="pre">casual</span></code> can handle</p>
+<p>Below follows examples in <code class="docutils literal notranslate"><span class="pre">yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">json</span></code> <em>(casual can also handle <code class="docutils literal notranslate"><span class="pre">ini</span></code> and <code class="docutils literal notranslate"><span class="pre">xml</span></code>)</em></p>
 <section id="yaml">
 <h3>yaml<a class="headerlink" href="#yaml" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
@@ -146,34 +147,6 @@ the <code class="docutils literal notranslate"><span class="pre">entrypoint</spa
 <span class="w">        </span><span class="nt">&quot;entrypoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;start&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="ini">
-<h3>ini<a class="headerlink" href="#ini" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[executable]</span>
-<span class="na">entrypoint</span><span class="o">=</span><span class="s">start</span>
-
-<span class="k">[executable.resources]</span>
-<span class="na">key</span><span class="o">=</span><span class="s">rm-mockup</span>
-<span class="na">name</span><span class="o">=</span><span class="s">resource-1</span>
-<span class="na">note</span><span class="o">=</span><span class="s">the runtime configuration for this resource is correlated with the name &#39;resource-1&#39; - no group is needed for resource configuration</span>
-</pre></div>
-</div>
-</section>
-<section id="xml">
-<h3>xml<a class="headerlink" href="#xml" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="nt">&lt;executable&gt;</span>
-<span class="w"> </span><span class="nt">&lt;resources&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;key&gt;</span>rm-mockup<span class="nt">&lt;/key&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>resource-1<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;note&gt;</span>the<span class="w"> </span>runtime<span class="w"> </span>configuration<span class="w"> </span>for<span class="w"> </span>this<span class="w"> </span>resource<span class="w"> </span>is<span class="w"> </span>correlated<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>name<span class="w"> </span>&#39;resource-1&#39;<span class="w"> </span>-<span class="w"> </span>no<span class="w"> </span>group<span class="w"> </span>is<span class="w"> </span>needed<span class="w"> </span>for<span class="w"> </span>resource<span class="w"> </span>configuration<span class="nt">&lt;/note&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/resources&gt;</span>
-<span class="w"> </span><span class="nt">&lt;entrypoint&gt;</span>start<span class="nt">&lt;/entrypoint&gt;</span>
-<span class="nt">&lt;/executable&gt;</span>
 </pre></div>
 </div>
 </section>
