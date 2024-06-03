@@ -125,47 +125,47 @@ care needs to be taken regarding uniqueness of paths.</p>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_HOME</span></code></p></td>
 <td><p><strong>has to be set</strong></p></td>
-<td><p>N</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 <td><p>where <code class="docutils literal notranslate"><span class="pre">casual</span></code> is installed</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_DOMAIN_HOME</span></code></p></td>
 <td><p><strong>has to be set</strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
 <td><p>points to <em>home</em> of current <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_LOG_PATH</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_DOMAIN_HOME}/casual.log</span></code></p></td>
-<td><p>N</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 <td><p>where to write logs</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TRANSIENT_DIRECTORY</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&lt;temp-dir&gt;/.casual</span></code></p></td>
-<td><p>N</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 <td><p>where transient files are stored</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_PERSISTENT_DIRECTORY</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_DOMAIN_HOME}/.casual</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
 <td><p>where persistent files are stored</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_IPC_DIRECTORY</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_TRANSIENT_DIRECTORY}/ipc</span></code></p></td>
-<td><p>N</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 <td><p>where ipc <em>files</em> are stored</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TRANSACTION_DIRECTORY</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_PERSISTENT_DIRECTORY}/transaction</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
 <td><p>where transaction ‘database’ file is stored (if not stated in configuration).</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_QUEUE_DIRECTORY</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_PERSISTENT_DIRECTORY}/queue</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
 <td><p>where queue ‘database’ files are stored (if not stated in configuration).</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_SYSTEM_CONFIGURATION_GLOB</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_HOME}/configuration/resources.yaml</span></code></p></td>
-<td><p>N</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
 <td><p>glob pattern for system configuration (including resource)</p></td>
 </tr>
 <tr class="row-odd"><td><p><em><code class="docutils literal notranslate"><span class="pre">CASUAL_RESOURCE_CONFIGURATION_FILE</span></code></em></p></td>

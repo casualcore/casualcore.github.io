@@ -115,7 +115,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">casual</span></code> middleware has one entry point for all it’s administration, in a command named <code class="docutils literal notranslate"><span class="pre">casual</span></code></p>
 <section id="semantics">
 <h2>semantics<a class="headerlink" href="#semantics" title="Permalink to this heading">¶</a></h2>
-<p>In general the semantics of the <code class="docutils literal notranslate"><span class="pre">casual</span></code> <code class="docutils literal notranslate"><span class="pre">CLI</span></code> is:</p>
+<p>In general the semantics of the <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">CLI</span></code> is:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>&lt;category<span class="w"> </span>group&gt;<span class="w"> </span>&lt;group<span class="w"> </span>specific<span class="w"> </span>options&gt;...
 </pre></div>
 </div>
@@ -140,7 +140,7 @@
 </div>
 <section id="help-output">
 <h3>help output<a class="headerlink" href="#help-output" title="Permalink to this heading">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">cli</span></code> shows the cardinality for the <em>option</em> it self and if the <em>option</em> takes values the
+<p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">CLI</span></code> shows the cardinality for the <em>option</em> it self and if the <em>option</em> takes values the
 cardinality of the values.</p>
 <ul class="simple">
 <li><p>The cardinality of the <em>option</em> dictates the possible number of usages of that particular
@@ -190,7 +190,7 @@ cardinality of the values.</p>
 <h2>bash completion<a class="headerlink" href="#bash-completion" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">casual</span></code> provides <em>bash-auto-completion</em> on the command <code class="docutils literal notranslate"><span class="pre">casual</span></code>. Hence, it should help
 users to <em>tab</em> for guidance to appropriate options for their intention. Reducing the amount
-of options you needs to memorize.</p>
+of options one needs to memorize.</p>
 </section>
 <section id="unix-friendly">
 <h2>unix friendly<a class="headerlink" href="#unix-friendly" title="Permalink to this heading">¶</a></h2>
@@ -199,21 +199,28 @@ of options you needs to memorize.</p>
 <ul class="simple">
 <li><p>Every human readable output to stdout should be parsable line by line, hence no composite information</p></li>
 <li><p>Users should be able to combine other <em>unix</em> tools to achieve their goals (<em>grep, sort, cut, |, etc…</em>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">casual</span></code> cli commands should be as composable as possible</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">CLI</span></code> commands should be as composable as possible</p></li>
 </ul>
 <section id="example">
 <h3>example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">service</span> <span class="pre">--list-services</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">foo</span> <span class="pre">|</span> <span class="pre">less</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">service</span> <span class="pre">--color</span> <span class="pre">false</span> <span class="pre">--header</span> <span class="pre">false</span> <span class="pre">--list-services</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">-k6,7</span> <span class="pre">|</span> <span class="pre">less</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">service</span> <span class="pre">--list-services</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">-k6,7</span> <span class="pre">|</span> <span class="pre">less</span></code></p></li>
 </ul>
-<p><em>sort doesn’t like terminal color (pre|suf)fixes…</em></p>
+</section>
+<section id="colors">
+<h3>colors<a class="headerlink" href="#colors" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">CLI</span></code> uses colors in output default (can be altered with <code class="docutils literal notranslate"><span class="pre">--color</span> <span class="pre">true/false</span></code>).
+If <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">CLI</span></code> detects that <em>stdout</em> is not bound to a TTY (terminal), no colors will be
+produced. This to make it easier to combine <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">CLI</span></code> with other unix tools.</p>
 </section>
 <section id="casual-pipe">
 <h3>casual-pipe<a class="headerlink" href="#casual-pipe" title="Permalink to this heading">¶</a></h3>
-<p>To enable true transaction support in a cli context <code class="docutils literal notranslate"><span class="pre">casual</span></code> has its own ‘internal’ <em>pipeline-protocol</em>.</p>
-<p>This only applies for cli commands that consumes/invokes buffer/queues/services - hence, business execution.
-These cli commands are annotated with ‘casual-pipe’ in the help.</p>
+<p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">CLI</span></code> has a few <em>business related</em> commands, such as <code class="docutils literal notranslate"><span class="pre">queue</span> <span class="pre">--enqueue/--dequeue</span></code>, <code class="docutils literal notranslate"><span class="pre">call</span> <span class="pre">--service</span></code>,
+<code class="docutils literal notranslate"><span class="pre">transaction</span> <span class="pre">--begin/--commit</span></code>, that could be used to solve real business problems.</p>
+<p>These cli commands are annotated with ‘casual-pipe’ in the help.</p>
+<p>These <em>business related</em> commands communicate with a non human readable ‘internal’ <em>pipeline-protocol</em> (binary)
+via <em>stdout -&gt; stdin</em>, hence it’s possible to compose them.</p>
 <p>The ‘causal-pipe’ has to be <em>terminated</em> to be able to consume <code class="docutils literal notranslate"><span class="pre">stdout</span></code> with cli commands that are not part
 of ‘casual-pipe’.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">casual</span></code> detects that <code class="docutils literal notranslate"><span class="pre">stdout</span></code> is tied to a <em>terminal</em> <code class="docutils literal notranslate"><span class="pre">casual</span></code> will try to make it <em>human readable</em></p>
@@ -223,60 +230,28 @@ of ‘casual-pipe’.</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Creates an <code class="docutils literal notranslate"><span class="pre">X_OCTET/</span></code>  buffer with the payload ‘some payload’ and send it downstream</p></li>
-<li><p>Duplicates this buffer twice and send it downstream</p></li>
-<li><p>Extracts the payload of the buffer and sends it downstream, which is the terminal in this case.</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">buffer</span> <span class="pre">--compose</span> <span class="pre">&quot;X_OCTET/&quot;</span></code> creates an <code class="docutils literal notranslate"><span class="pre">X_OCTET/</span></code> buffer with the payload ‘some payload’ and send it downstream</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">buffer</span> <span class="pre">--duplicate</span> <span class="pre">2</span></code> duplicates the buffer twice and send it downstream</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">buffer</span> <span class="pre">--extract</span></code> extracts the payload of the buffer and sends it downstream, which is the terminal in this case.</p>
 <ul>
-<li><p>In ths case the payload is human readable.</p></li>
+<li><p>If the payload is human readable, the output will be human readable.</p></li>
 </ul>
 </li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>host#<span class="w"> </span>casual<span class="w"> </span>transaction<span class="w"> </span>--compound<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--consume<span class="w"> </span>b2<span class="w"> </span><span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>host#<span class="w"> </span>casual<span class="w"> </span>transaction<span class="w"> </span>--begin<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--dequeue<span class="w"> </span>b2<span class="w"> </span><span class="se">\</span>
 <span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>call<span class="w"> </span>--service<span class="w"> </span>casual/example/echo<span class="w"> </span><span class="se">\</span>
 <span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--enqueue<span class="w"> </span>a2<span class="w"> </span><span class="se">\</span>
 <span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>transaction<span class="w"> </span>--commit
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Starts a <em>transaction directive</em> that will associate all actions with a new transaction, and sends this downstream</p>
-<ul>
-<li><p>Starts waiting on transactions to commit/rollback from downstream</p></li>
-</ul>
-</li>
-<li><p>Consumes all messages on queue <code class="docutils literal notranslate"><span class="pre">b2</span></code>, each <em>dequeue</em> in a separate transaction according to the <em>directive</em></p>
-<ul>
-<li><p>Each message (payload) will be associated with its transaction and sent downstream</p></li>
-</ul>
-</li>
-<li><p>Calls the service <code class="docutils literal notranslate"><span class="pre">casual/example/echo</span></code> with each payload and associated transaction</p>
-<ul>
-<li><p>The reply (payload) will have the original transaction associated with it, and sent downstream</p></li>
-<li><p>If the service fails (rollback) the individual transaction will be set to <em>abort only</em></p></li>
-</ul>
-</li>
-<li><p>Enqueue’s each payload with associated transaction (which might be in <em>abort only</em>)</p>
-<ul>
-<li><p>The message id with associated transaction is sent downstream</p></li>
-</ul>
-</li>
-<li><p>Commits all <em>commitable</em> transactions (and rollback the <em>uncomittable</em>)</p>
-<ul>
-<li><p>Sends notification for each transaction to the owner of the transaction (in this case <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">transaction</span> <span class="pre">--compound</span></code>)</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">transaction</span> <span class="pre">--compound</span></code> is the cli command that actually commits or rollback each transaction (in this example)</p></li>
-</ul>
-</li>
-<li><p>Terminates the transaction-directive by sending a <em>cli-transaction-termination-message</em> to <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">transaction</span> <span class="pre">--compound</span></code></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">transaction</span> <span class="pre">--compound</span></code> knows that it’s work is done, and can exit.</p></li>
-</ul>
-</li>
-<li><p>The above is done with internal <em>ipc communication</em></p></li>
-<li><p>Sends message id’s downstream, without the associated transaction (since it has been completed)</p></li>
-<li><p>In this case, <code class="docutils literal notranslate"><span class="pre">casual</span></code> detects that <code class="docutils literal notranslate"><span class="pre">stdout</span></code> is tied to a terminal and ‘transform’ the id’s to be human readable</p></li>
-</ul>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">transaction</span> <span class="pre">--begin</span></code> starts a <em>transaction</em> that will associate all actions with the <em>transaction</em> downstream</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">queue</span> <span class="pre">--dequeue</span> <span class="pre">b2</span></code> dequeues a message from <code class="docutils literal notranslate"><span class="pre">b2</span></code> in <em>transaction</em> and send it downstream</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">call</span> <span class="pre">--service</span> <span class="pre">casual/example/echo</span></code> calls service with payload from <code class="docutils literal notranslate"><span class="pre">dequeue</span></code> in <em>transaction</em>, the service
+reply is sent downstream.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">queue</span> <span class="pre">--enqueue</span> <span class="pre">a2</span></code> enqueues the service reply to <code class="docutils literal notranslate"><span class="pre">a2</span></code> in <em>transaction</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">transaction</span> <span class="pre">--commit</span></code> commits the <code class="docutils literal notranslate"><span class="pre">transaction</span></code></p></li>
 </ul>
 <section id="attention">
 <h5>attention<a class="headerlink" href="#attention" title="Permalink to this heading">¶</a></h5>

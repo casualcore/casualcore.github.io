@@ -65,11 +65,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../tools/documentation/build/executable.development.html">casual-build-executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tools/documentation/build/server.development.html">casual-build-server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../domain/documentation/environment.development.html">environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../administration/documentation/api.development.html">API definitions of all the administration services casual has</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../domain/documentation/api.development.html">casual-domain-manager</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../service/documentation/api.development.html">casual-service-manager</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../transaction/documentation/api.development.html">casual-transaction-manager</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../gateway/documentation/api.development.html">casual-gateway-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../administration/documentation/api.development.html">API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/examples.html">examples</a></li>
@@ -138,7 +134,7 @@ given name. This is the preferred way, since it is a lot more explicit.</p>
 </section>
 <section id="examples">
 <h2>examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<p>Below follows examples in human readable formats that <code class="docutils literal notranslate"><span class="pre">casual</span></code> can handle</p>
+<p>Below follows examples in <code class="docutils literal notranslate"><span class="pre">yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">json</span></code> <em>(casual can also handle <code class="docutils literal notranslate"><span class="pre">ini</span></code> and <code class="docutils literal notranslate"><span class="pre">xml</span></code>)</em></p>
 <section id="yaml">
 <h3>yaml<a class="headerlink" href="#yaml" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
@@ -203,80 +199,6 @@ given name. This is the preferred way, since it is a lot more explicit.</p>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="ini">
-<h3>ini<a class="headerlink" href="#ini" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[server]</span>
-
-<span class="k">[server.default]</span>
-
-<span class="k">[server.default.service]</span>
-<span class="na">category</span><span class="o">=</span><span class="s">some.category</span>
-<span class="na">transaction</span><span class="o">=</span><span class="s">join</span>
-
-<span class="k">[server.resources]</span>
-<span class="na">key</span><span class="o">=</span><span class="s">rm-mockup</span>
-<span class="na">name</span><span class="o">=</span><span class="s">resource-1</span>
-<span class="na">note</span><span class="o">=</span><span class="s">the runtime configuration for this resource is correlated with the name &#39;resource-1&#39; - no group is needed for resource configuration</span>
-
-<span class="k">[server.services]</span>
-<span class="na">name</span><span class="o">=</span><span class="s">s1</span>
-
-<span class="k">[server.services]</span>
-<span class="na">name</span><span class="o">=</span><span class="s">s2</span>
-<span class="na">transaction</span><span class="o">=</span><span class="s">auto</span>
-
-<span class="k">[server.services]</span>
-<span class="na">function</span><span class="o">=</span><span class="s">f3</span>
-<span class="na">name</span><span class="o">=</span><span class="s">s3</span>
-<span class="na">visibility</span><span class="o">=</span><span class="s">undiscoverable</span>
-
-<span class="k">[server.services]</span>
-<span class="na">category</span><span class="o">=</span><span class="s">some.other.category</span>
-<span class="na">function</span><span class="o">=</span><span class="s">f4</span>
-<span class="na">name</span><span class="o">=</span><span class="s">s4</span>
-</pre></div>
-</div>
-</section>
-<section id="xml">
-<h3>xml<a class="headerlink" href="#xml" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="nt">&lt;server&gt;</span>
-<span class="w"> </span><span class="nt">&lt;default&gt;</span>
-<span class="w">  </span><span class="nt">&lt;service&gt;</span>
-<span class="w">   </span><span class="nt">&lt;transaction&gt;</span>join<span class="nt">&lt;/transaction&gt;</span>
-<span class="w">   </span><span class="nt">&lt;category&gt;</span>some.category<span class="nt">&lt;/category&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/service&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/default&gt;</span>
-<span class="w"> </span><span class="nt">&lt;resources&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;key&gt;</span>rm-mockup<span class="nt">&lt;/key&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>resource-1<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;note&gt;</span>the<span class="w"> </span>runtime<span class="w"> </span>configuration<span class="w"> </span>for<span class="w"> </span>this<span class="w"> </span>resource<span class="w"> </span>is<span class="w"> </span>correlated<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>name<span class="w"> </span>&#39;resource-1&#39;<span class="w"> </span>-<span class="w"> </span>no<span class="w"> </span>group<span class="w"> </span>is<span class="w"> </span>needed<span class="w"> </span>for<span class="w"> </span>resource<span class="w"> </span>configuration<span class="nt">&lt;/note&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/resources&gt;</span>
-<span class="w"> </span><span class="nt">&lt;services&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>s1<span class="nt">&lt;/name&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>s2<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;transaction&gt;</span>auto<span class="nt">&lt;/transaction&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>s3<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;function&gt;</span>f3<span class="nt">&lt;/function&gt;</span>
-<span class="w">   </span><span class="nt">&lt;visibility&gt;</span>undiscoverable<span class="nt">&lt;/visibility&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w">  </span><span class="nt">&lt;element&gt;</span>
-<span class="w">   </span><span class="nt">&lt;name&gt;</span>s4<span class="nt">&lt;/name&gt;</span>
-<span class="w">   </span><span class="nt">&lt;function&gt;</span>f4<span class="nt">&lt;/function&gt;</span>
-<span class="w">   </span><span class="nt">&lt;category&gt;</span>some.other.category<span class="nt">&lt;/category&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/element&gt;</span>
-<span class="w"> </span><span class="nt">&lt;/services&gt;</span>
-<span class="nt">&lt;/server&gt;</span>
 </pre></div>
 </div>
 </section>
