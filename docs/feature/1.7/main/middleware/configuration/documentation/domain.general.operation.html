@@ -68,6 +68,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/tutorials/operations/README.html">tutorials</a></li>
 </ul>
 
         </div>
@@ -135,18 +136,26 @@ course be used as a mean to help document actual production configuration.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>value</p></th>
+<th class="head"><p>severity</p></th>
 <th class="head"><p>description</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>linger</p></td>
+<td><p>non-lethal</p></td>
 <td><p>no action, let the server be</p></td>
 </tr>
-<tr class="row-odd"><td><p>kill</p></td>
+<tr class="row-odd"><td><p>interrupt</p></td>
+<td><p>non-lethal</p></td>
+<td><p>send <code class="docutils literal notranslate"><span class="pre">interrupt</span></code> signal as a tap on the shoulder</p></td>
+</tr>
+<tr class="row-even"><td><p>kill</p></td>
+<td><p>lethal</p></td>
 <td><p>send <code class="docutils literal notranslate"><span class="pre">kill</span></code> signal</p></td>
 </tr>
-<tr class="row-even"><td><p>terminate</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">&#64;deprecated</span></code> send terminate signal</p></td>
+<tr class="row-odd"><td><p>abort</p></td>
+<td><p>lethal</p></td>
+<td><p>send ‘abort’ signal</p></td>
 </tr>
 </tbody>
 </table>
@@ -326,26 +335,46 @@ Only used to help user minimize common configuration.</p>
 <section id="domain-groups-list">
 <h2>domain.groups <em>(list)</em><a class="headerlink" href="#domain-groups-list" title="Permalink to this heading">¶</a></h2>
 <p>Defines the groups in the configuration. Groups are used define dependency order, which is
-used during boot and shutdown.
+used during boot and shutdown. Arbitrary number of groups and group hierarchies can be
+defined.
 Groups can be used to associate <code class="docutils literal notranslate"><span class="pre">resources</span></code> to servers/executables.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>property</p></th>
 <th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>name : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
 <td><p>the name (unique key) of the group.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p>[dependencies : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
 <td><p>name of groups this group has dependency to.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p>[resources : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
-<td><p>names of resources this group is associated with (transient to the members of the group)</p></td>
+<td><p>names of resources this group is associated with</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>[enabled : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>]</p></td>
+<td><p>if the group is enabled or not <em>see below</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
 </tr>
 </tbody>
 </table>
+<p><strong>[enabled : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>]</strong></p>
+<p>This property enables or disables the group. This could enable/disable <em>entities</em> that has
+membership to the group.</p>
+<p>For an entity to be <em>enabled</em>: ALL explicit and implicit membership groups has <code class="docutils literal notranslate"><span class="pre">enabled:</span> <span class="pre">true</span></code></p>
+<p>For an entity to be <em>disabled</em>: ANY explicit and implicit membership groups has <code class="docutils literal notranslate"><span class="pre">enabled:</span> <span class="pre">false</span></code></p>
+<p>Entities effected:</p>
+<ul class="simple">
+<li><p>domain.executables</p></li>
+<li><p>domain.servers</p></li>
+<li><p>queue.forward.groups</p></li>
+</ul>
 </section>
 <section id="domain-servers-list">
 <h2>domain.servers <em>(list)</em><a class="headerlink" href="#domain-servers-list" title="Permalink to this heading">¶</a></h2>
@@ -571,7 +600,7 @@ Groups can be used to associate <code class="docutils literal notranslate"><span
 <span class="w">      </span><span class="nt">execution</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">timeout</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;64ms&quot;</span>
-<span class="w">          </span><span class="nt">contract</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;terminate&quot;</span>
+<span class="w">          </span><span class="nt">contract</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;abort&quot;</span>
 <span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;b&quot;</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;c&quot;</span>
@@ -738,7 +767,7 @@ Groups can be used to associate <code class="docutils literal notranslate"><span
 <span class="w">                </span><span class="nt">&quot;execution&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                        </span><span class="nt">&quot;duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;64ms&quot;</span><span class="p">,</span>
-<span class="w">                        </span><span class="nt">&quot;contract&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;terminate&quot;</span>
+<span class="w">                        </span><span class="nt">&quot;contract&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abort&quot;</span>
 <span class="w">                    </span><span class="p">}</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;routes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>

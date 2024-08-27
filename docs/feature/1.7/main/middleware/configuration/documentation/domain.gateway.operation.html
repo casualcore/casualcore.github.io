@@ -68,6 +68,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/tutorials/operations/README.html">tutorials</a></li>
 </ul>
 
         </div>
@@ -243,15 +244,20 @@ ups does not provide the wanted <em>service</em> or <em>queue</em>. Hence, the l
 <td><p>an <em>identity</em> for this group instance</p></td>
 <td><p><em>generated unique name</em></p></td>
 </tr>
-<tr class="row-odd"><td><p>[connections : <code class="docutils literal notranslate"><span class="pre">[Connection]</span></code>]</p></td>
+<tr class="row-odd"><td><p>[order : <code class="docutils literal notranslate"><span class="pre">integer</span></code>]</p></td>
+<td><p>a number that is used for load-balancing</p></td>
+<td><p>the implied order in the configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>[connections : <code class="docutils literal notranslate"><span class="pre">[Connection]</span></code>]</p></td>
 <td><p>all the connections for this group</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<p>All connections within a group ar treated equal, and service calls will be load balanced with <em>round robin</em>. Although,
-<code class="docutils literal notranslate"><span class="pre">casual</span></code> will try to <em>route</em> the same transaction to the previous <em>associated</em> connection with the specific transaction.
-This is only done to minimize the amount of <em>resources</em> involved within the prepare and commit/rollback stage.</p>
+<p>All connections within a group, and all groups with the same <code class="docutils literal notranslate"><span class="pre">order</span></code> ar treated equal. Service calls will be
+load balanced with <em>randomization</em>. Although, <code class="docutils literal notranslate"><span class="pre">casual</span></code> will try to <em>route</em> the same transaction to the
+previous <em>associated</em> connection with the specific transaction. This is done to minimize the amount
+of <em>resources</em> involved within the prepare and commit/rollback stage.</p>
 </section>
 </section>
 <section id="domain-gateway-reverse">
@@ -287,7 +293,7 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">          </span><span class="nt">discovery</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">forward</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;unique-inbound-alias&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;in-A&quot;</span>
 <span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;if</span><span class="nv"> </span><span class="s">threshold</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">2MB</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">total</span><span class="nv"> </span><span class="s">payload</span><span class="nv"> </span><span class="s">&#39;in</span><span class="nv"> </span><span class="s">flight&#39;</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">reach</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">stop</span><span class="nv"> </span><span class="s">consume</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">socket</span><span class="nv"> </span><span class="s">until</span><span class="nv"> </span><span class="s">we&#39;re</span><span class="nv"> </span><span class="s">below&quot;</span>
 <span class="w">          </span><span class="nt">limit</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2097152</span>
@@ -298,7 +304,8 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">              </span><span class="nt">discovery</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">forward</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;discovery</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">forward</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">&#39;all&#39;</span><span class="nv"> </span><span class="s">outbounds&quot;</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;(generated</span><span class="nv"> </span><span class="s">alias)</span><span class="nv"> </span><span class="s">listeners</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">threshold</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">either</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">messages</span><span class="nv"> </span><span class="s">OR</span><span class="nv"> </span><span class="s">10MB</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">first</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">reach,</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">stop</span><span class="nv"> </span><span class="s">consume&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;in-B&quot;</span>
+<span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;threshold</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">either</span><span class="nv"> </span><span class="s">10</span><span class="nv"> </span><span class="s">messages</span><span class="nv"> </span><span class="s">OR</span><span class="nv"> </span><span class="s">10MB</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">first</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">reach,</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">stop</span><span class="nv"> </span><span class="s">consume&quot;</span>
 <span class="w">          </span><span class="nt">limit</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span>
 <span class="w">            </span><span class="nt">messages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
@@ -310,8 +317,9 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;some.host.org:4242&quot;</span>
 <span class="w">    </span><span class="nt">outbound</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;primary&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;out-A&quot;</span>
 <span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;casual</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">&#39;round-robin&#39;</span><span class="nv"> </span><span class="s">between</span><span class="nv"> </span><span class="s">connections</span><span class="nv"> </span><span class="s">within</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">group</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">service/queue&quot;</span>
+<span class="w">          </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
 <span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;a45.domain.host.org:7779&quot;</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;connection</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">&#39;a45&#39;</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">we</span><span class="nv"> </span><span class="s">expect</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">find</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">&#39;s1&#39;</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">&#39;s2&#39;</span><span class="nv"> </span><span class="s">there.&quot;</span>
@@ -325,14 +333,20 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">              </span><span class="nt">queues</span><span class="p">:</span>
 <span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;q1&quot;</span>
 <span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;q2&quot;</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;out-B&quot;</span>
+<span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;has</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">order</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">out-A</span><span class="nv"> </span><span class="s">group</span><span class="nv"> </span><span class="s">-&gt;</span><span class="nv"> </span><span class="s">services</span><span class="nv"> </span><span class="s">found</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">out-A</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">out-B</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">load</span><span class="nv"> </span><span class="s">balanced.&quot;</span>
+<span class="w">          </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;a47.domain.host.org:7779&quot;</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fallback&quot;</span>
+<span class="w">          </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
 <span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
 <span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;a99.domain.host.org:7780&quot;</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">chosen</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">_resources_</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">found</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">connections</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">&#39;primary&#39;</span><span class="nv"> </span><span class="s">outbound&quot;</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">chosen</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">_resources_</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">found</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">connections</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">out-A</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">out-B</span><span class="nv"> </span><span class="s">group&quot;</span>
 <span class="w">    </span><span class="nt">reverse</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">inbound</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">groups</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;unique-alias-name&quot;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;in-C&quot;</span>
 <span class="w">            </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;connect</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">reverse</span><span class="nv"> </span><span class="s">outbound</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">listening</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">port</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">then</span><span class="nv"> </span><span class="s">treat</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">regular</span><span class="nv"> </span><span class="s">inbound&quot;</span>
 <span class="w">            </span><span class="nt">limit</span><span class="p">:</span>
 <span class="w">              </span><span class="nt">messages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
@@ -341,16 +355,18 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">                </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">addresses</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">connect</span><span class="nv"> </span><span class="s">to&quot;</span>
 <span class="w">      </span><span class="nt">outbound</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">groups</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;primary&quot;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;out-C&quot;</span>
 <span class="w">            </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;listen</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">connection</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">reverse</span><span class="nv"> </span><span class="s">inbound</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">then</span><span class="nv"> </span><span class="s">treat</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">regular</span><span class="nv"> </span><span class="s">outbound&quot;</span>
+<span class="w">            </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">            </span><span class="nt">connections</span><span class="p">:</span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost:7780&quot;</span>
-<span class="w">                </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">listining</span><span class="nv"> </span><span class="s">addresses.&quot;</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;secondary&quot;</span>
-<span class="w">            </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;onther</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(proces)</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">handles</span><span class="nv"> </span><span class="s">(multiplexed)</span><span class="nv"> </span><span class="s">traffic</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">it&#39;s</span><span class="nv"> </span><span class="s">own&quot;</span>
+<span class="w">                </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">listening</span><span class="nv"> </span><span class="s">addresses.&quot;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;out-D&quot;</span>
+<span class="w">            </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;another</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(process)</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">handles</span><span class="nv"> </span><span class="s">(multiplexed)</span><span class="nv"> </span><span class="s">traffic</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">it&#39;s</span><span class="nv"> </span><span class="s">own&quot;</span>
+<span class="w">            </span><span class="nt">order</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
 <span class="w">            </span><span class="nt">connections</span><span class="p">:</span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost:7781&quot;</span>
-<span class="w">                </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">listining</span><span class="nv"> </span><span class="s">addresses.&quot;</span>
+<span class="w">                </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">many</span><span class="nv"> </span><span class="s">listening</span><span class="nv"> </span><span class="s">addresses.&quot;</span>
 <span class="nn">...</span>
 </pre></div>
 </div>
@@ -371,7 +387,7 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unique-inbound-alias&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;in-A&quot;</span><span class="p">,</span>
 <span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;if threshold of 2MB of total payload &#39;in flight&#39; is reach inbound will stop consume from socket until we&#39;re below&quot;</span><span class="p">,</span>
 <span class="w">                        </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                            </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2097152</span>
@@ -391,7 +407,8 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">                        </span><span class="p">]</span>
 <span class="w">                    </span><span class="p">},</span>
 <span class="w">                    </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;(generated alias) listeners - threshold of either 10 messages OR 10MB - the first that is reach, inbound will stop consume&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;in-B&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;threshold of either 10 messages OR 10MB - the first that is reach, inbound will stop consume&quot;</span><span class="p">,</span>
 <span class="w">                        </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                            </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10485760</span><span class="p">,</span>
 <span class="w">                            </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
@@ -418,8 +435,9 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">            </span><span class="nt">&quot;outbound&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;primary&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;out-A&quot;</span><span class="p">,</span>
 <span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;casual will &#39;round-robin&#39; between connections within a group for the same service/queue&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">                        </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                            </span><span class="p">{</span>
 <span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a45.domain.host.org:7779&quot;</span><span class="p">,</span>
@@ -443,11 +461,22 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">                        </span><span class="p">]</span>
 <span class="w">                    </span><span class="p">},</span>
 <span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;out-B&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;has the same order as out-A group -&gt; services found in out-A and out-B will be load balanced.&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                            </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a47.domain.host.org:7779&quot;</span>
+<span class="w">                            </span><span class="p">}</span>
+<span class="w">                        </span><span class="p">]</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
 <span class="w">                        </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fallback&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">                        </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                            </span><span class="p">{</span>
 <span class="w">                                </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a99.domain.host.org:7780&quot;</span><span class="p">,</span>
-<span class="w">                                </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;will be chosen if _resources_ are not found at connections in the &#39;primary&#39; outbound&quot;</span>
+<span class="w">                                </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;will be chosen if _resources_ are not found at connections in the out-A or out-B group&quot;</span>
 <span class="w">                            </span><span class="p">}</span>
 <span class="w">                        </span><span class="p">]</span>
 <span class="w">                    </span><span class="p">}</span>
@@ -457,7 +486,7 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">                </span><span class="nt">&quot;inbound&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                        </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unique-alias-name&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;in-C&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;connect to other reverse outbound that is listening on this port - then treat it as a regular inbound&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                                </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span>
@@ -474,22 +503,24 @@ This is only done to minimize the amount of <em>resources</em> involved within t
 <span class="w">                </span><span class="nt">&quot;outbound&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                        </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;primary&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;out-C&quot;</span><span class="p">,</span>
 <span class="w">                            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;listen for connection from reverse inbound - then treat it as a regular outbound&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">                            </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                                </span><span class="p">{</span>
 <span class="w">                                    </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:7780&quot;</span><span class="p">,</span>
-<span class="w">                                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one of possible many listining addresses.&quot;</span>
+<span class="w">                                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one of possible many listening addresses.&quot;</span>
 <span class="w">                                </span><span class="p">}</span>
 <span class="w">                            </span><span class="p">]</span>
 <span class="w">                        </span><span class="p">},</span>
 <span class="w">                        </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;secondary&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onther instance (proces) that handles (multiplexed) traffic on it&#39;s own&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;alias&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;out-D&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;another instance (process) that handles (multiplexed) traffic on it&#39;s own&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 <span class="w">                            </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                                </span><span class="p">{</span>
 <span class="w">                                    </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:7781&quot;</span><span class="p">,</span>
-<span class="w">                                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one of possible many listining addresses.&quot;</span>
+<span class="w">                                    </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one of possible many listening addresses.&quot;</span>
 <span class="w">                                </span><span class="p">}</span>
 <span class="w">                            </span><span class="p">]</span>
 <span class="w">                        </span><span class="p">}</span>

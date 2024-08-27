@@ -52,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/operation.html">operation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/tutorials/operations/README.html">tutorials</a></li>
 </ul>
 
         </div>
@@ -149,7 +150,7 @@ OPTIONS             c  value     vc  description
 <td><p>integer</p></td>
 <td><p>how long caller had to wait for a non busy server, in <code class="docutils literal notranslate"><span class="pre">us</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>code</p></td>
+<tr class="row-even"><td><p>code.result</p></td>
 <td><p>string</p></td>
 <td><p>outcome of the service call. <code class="docutils literal notranslate"><span class="pre">OK</span></code> if ok, otherwise the reported error from the service</p></td>
 </tr>
@@ -157,11 +158,23 @@ OPTIONS             c  value     vc  description
 <td><p>character</p></td>
 <td><p>“order” of the service - sequential or concurrent, denoted by <code class="docutils literal notranslate"><span class="pre">S</span></code> or <code class="docutils literal notranslate"><span class="pre">C</span></code>. <code class="docutils literal notranslate"><span class="pre">S</span></code> reserves a process, <code class="docutils literal notranslate"><span class="pre">C</span></code> does not.</p></td>
 </tr>
+<tr class="row-even"><td><p>span</p></td>
+<td><p>hex</p></td>
+<td><p>64b OpenTelemetry trace span</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent.span</p></td>
+<td><p>hex</p></td>
+<td><p>64b OpenTelemetry parent trace span</p></td>
+</tr>
+<tr class="row-even"><td><p>code.user</p></td>
+<td><p>integer</p></td>
+<td><p>user return code from tpreturn</p></td>
+</tr>
 </tbody>
 </table>
 <section id="id1">
 <h3>example<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">some</span><span class="o">/</span><span class="n">service</span><span class="o">|</span><span class="n">some</span><span class="o">/</span><span class="n">parent</span><span class="o">/</span><span class="n">service</span><span class="o">|</span><span class="mi">9585</span><span class="o">|</span><span class="n">ff75bcc6ef1b4d1c8ae8d58ee0918f81</span><span class="o">|</span><span class="mi">3</span><span class="n">d7519f801e4f65a127d9ac09fa159d</span><span class="p">:</span><span class="n">b81a4d8715ad44e8afccb796a02fd77f</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">123</span><span class="o">|</span><span class="mi">1670372749162496</span><span class="o">|</span><span class="mi">1670372749162723</span><span class="o">|</span><span class="mi">0</span><span class="o">|</span><span class="n">OK</span><span class="o">|</span><span class="n">S</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">some</span><span class="o">/</span><span class="n">service</span><span class="o">|</span><span class="n">some</span><span class="o">/</span><span class="n">parent</span><span class="o">/</span><span class="n">service</span><span class="o">|</span><span class="mi">90053</span><span class="o">|</span><span class="mi">0</span><span class="n">bd2c4b424e34e2296c25938766eedbf</span><span class="o">|</span><span class="mi">10459</span><span class="n">c8a34e6422a9d5f584856db6701</span><span class="p">:</span><span class="n">a6f10817cdd94f3987985a8195e8f927</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">90053</span><span class="o">|</span><span class="mi">1724141674147439</span><span class="o">|</span><span class="mi">1724141674189439</span><span class="o">|</span><span class="mi">6000</span><span class="o">|</span><span class="n">OK</span><span class="o">|</span><span class="n">S</span><span class="o">|</span><span class="n">cdb2b8d804d6e205</span><span class="o">|</span><span class="mi">9</span><span class="n">bfeec3308a2a9cd</span><span class="o">|</span><span class="mi">42</span>
 </pre></div>
 </div>
 </section>
