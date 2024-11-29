@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>field development &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="octet development" href="octet.development.html" />
+    <link rel="prev" title="development" href="../../documentation/development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation/development.html">development</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">field development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="octet.development.html">octet development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="order.development.html">order development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serialization/field/string.development.html">field string serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string.development.html">string development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/arguments.development.html">arguments development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/log.development.html">log development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/build/executable.development.html">configuration build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/build/server.development.html">configuration build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/documentation/build/executable.development.html">casual-build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/documentation/build/server.development.html">casual-build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../domain/documentation/environment.development.html">environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/api.development.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../documentation/development.html">development</a></li>
+      <li class="breadcrumb-item active">field development</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/buffer/documentation/field.development.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="field-development">
+<h1>field development<a class="headerlink" href="#field-development" title="Permalink to this heading">¶</a></h1>
+<section id="sample">
+<h2>sample<a class="headerlink" href="#sample" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//! 
+//! Copyright (c) 2015, The casual project
+//!
+//! This software is licensed under the MIT license, https://opensource.org/licenses/MIT
+//!
+
+
+/*
+ * Disclaimer: This might not be a valid C-function
+ *
+ * Disclaimer: A lot of error handling is missing
+ */
+
+#include &quot;xatmi.h&quot;
+#include &quot;casual/buffer/field.h&quot;
+
+#include &lt;cstddef&gt;
+#include &lt;cstdio&gt;
+
+
+/*
+ * Just for this sample (see casual_field_make_header)
+ */
+#define FLD_ID       (CASUAL_FIELD_STRING * CASUAL_FIELD_TYPE_BASE + 1)
+#define FLD_COUNT    (CASUAL_FIELD_LONG   * CASUAL_FIELD_TYPE_BASE + 1)
+#define FLD_NAME     (CASUAL_FIELD_STRING * CASUAL_FIELD_TYPE_BASE + 2)
+#define FLD_COST     (CASUAL_FIELD_DOUBLE * CASUAL_FIELD_TYPE_BASE + 1)
+
+
+int call_with_field()
+{
+   char* buffer;
+   long length;
+
+   const char* name;
+   double cost;
+
+   int result;
+
+   /*
+    * The buffer auto-resizes, so we do not need to give it a size
+    */
+
+   length = 0;
+
+   buffer = tpalloc( CASUAL_FIELD, nullptr, length);
+
+   result = CASUAL_FIELD_SUCCESS;
+
+   result |= casual_field_add_string( &amp;buffer, FLD_ID, &quot;123&quot;);
+   result |= casual_field_add_long( &amp;buffer, FLD_COUNT, 2);
+
+
+   tpcall( &quot;some_service&quot;, buffer, length, &amp;buffer, &amp;length, TPSIGRSTRT);
+
+   result |= casual_field_get_string( buffer, FLD_NAME, 0, &amp;name);
+   result |= casual_field_get_double( buffer, FLD_COST, 0, &amp;cost);
+
+   if( result)
+   {
+      /* something went wrong */
+   }
+
+
+   printf( &quot;name %s&quot;, name);
+   printf( &quot;cost %f&quot;, cost);
+
+
+   tpfree( buffer);
+
+   return 0;
+}
+</pre></div>
+</div>
+</section>
+<section id="remarks">
+<h2>remarks<a class="headerlink" href="#remarks" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>No encoding of strings occurs</p></li>
+<li><p>The buffer is automatically resized and therefore might update the buffer-handle</p></li>
+<li><p>Don’t manipulate the buffer in other ways (such as <cite>memcpy()</cite>) than by casual_field-functions, because the internal index will then be out of sync</p></li>
+<li><p>A field-repository might be needed for certain functionality</p></li>
+</ul>
+</section>
+<section id="tools">
+<h2>tools<a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="casual-field-make-header">
+<h2>casual_field_make_header<a class="headerlink" href="#casual-field-make-header" title="Permalink to this heading">¶</a></h2>
+<p>The tool is to provide something like mkfldhdr</p>
+<p>Keys (id:s) to use most of the casual_field-functions can be provided in any way by the application it self, as long as their ranges match their types, and the repository is just needed for certain casual_field-functions where some mapping from the id (long) to some string-name (like <cite>casual_field_name_of_id()</cite> etc) is needed.</p>
+<p>If there is a repository, casual_field_make_header can be used to create a header-file with defines where user-provided id:s are transformed to match it’s type-range.</p>
+<p>usage: casual_field_make_header [repository]</p>
+<p>If the repository-file is not provided, the environment-variable CASUAL_FIELD_TABLE is used</p>
+<p>Layout of the repository should conform to a structure described in this:</p>
+</section>
+<section id="json-schema">
+<h2>json-schema<a class="headerlink" href="#json-schema" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;$schema&quot;</span><span class="p">:</span> <span class="s2">&quot;http://json-schema.org/draft-04/schema#&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;groups&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;optional&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;base&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">},</span>
+          <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">[{</span>
+              <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">],</span>
+              <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">},</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">}</span>
+              <span class="p">}</span>
+            <span class="p">}]</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="json-sample">
+<h2>json-sample<a class="headerlink" href="#json-sample" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+      <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_SHORT1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;short&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_SHORT2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;short&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_SHORT3&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;short&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_LONG1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_LONG2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_LONG3&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;long&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_CHAR1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;char&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_CHAR2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;char&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_CHAR3&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;char&quot;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+      <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_FLOAT1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_FLOAT2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_FLOAT3&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_DOUBLE1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;double&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_DOUBLE2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;double&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_DOUBLE3&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;double&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_STRING1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_STRING2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_STRING3&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_BINARY1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;binary&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_BINARY2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;binary&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FLD_BINARY3&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;binary&quot;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+
+</pre></div>
+</div>
+</section>
+<section id="xml-schema">
+<h2>xml-schema<a class="headerlink" href="#xml-schema" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+
+&lt;xsd:element name=&quot;groups&quot;&gt;
+  &lt;xsd:complexType&gt;
+    &lt;xsd:sequence&gt;
+      &lt;xsd:element name=&quot;element&quot; maxOccurs=&quot;unbounded&quot;&gt;
+        &lt;xsd:complexType&gt;
+          &lt;xsd:sequence&gt;
+            &lt;xsd:element name=&quot;base&quot; type=&quot;xsd:integer&quot; minOccurs=&quot;0&quot;/&gt;
+            &lt;xsd:element name=&quot;fields&quot; maxOccurs=&quot;unbounded&quot;&gt;
+              &lt;xsd:complexType&gt;
+                &lt;xsd:sequence&gt;
+                  &lt;xsd:element name=&quot;element&quot; maxOccurs=&quot;unbounded&quot;&gt;
+                    &lt;xsd:complexType&gt;
+                      &lt;xsd:sequence&gt;
+                        &lt;xsd:element name=&quot;id&quot; type=&quot;xsd:integer&quot;/&gt;
+                        &lt;xsd:element name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;
+                        &lt;xsd:element name=&quot;type&quot; type=&quot;xsd:string&quot;/&gt;
+                      &lt;/xsd:sequence&gt;
+                    &lt;/xsd:complexType&gt;
+                  &lt;/xsd:element&gt;
+                &lt;/xsd:sequence&gt;
+              &lt;/xsd:complexType&gt;
+            &lt;/xsd:element&gt;
+          &lt;/xsd:sequence&gt;
+        &lt;/xsd:complexType&gt;
+      &lt;/xsd:element&gt;
+    &lt;/xsd:sequence&gt;
+  &lt;/xsd:complexType&gt;
+&lt;/xsd:element&gt;
+
+&lt;/xsd:schema&gt;
+</pre></div>
+</div>
+</section>
+<section id="xml-sample">
+<h2>xml-sample<a class="headerlink" href="#xml-sample" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;groups&gt;
+   &lt;element&gt;
+      &lt;base&gt;1000&lt;/base&gt;
+      &lt;fields&gt;
+         &lt;element&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;FLD_SHORT1&lt;/name&gt;
+            &lt;type&gt;short&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;2&lt;/id&gt;
+            &lt;name&gt;FLD_SHORT2&lt;/name&gt;
+            &lt;type&gt;short&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;3&lt;/id&gt;
+            &lt;name&gt;FLD_SHORT3&lt;/name&gt;
+            &lt;type&gt;short&lt;/type&gt;
+         &lt;/element&gt;
+
+         &lt;element&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;FLD_LONG1&lt;/name&gt;
+            &lt;type&gt;long&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;2&lt;/id&gt;
+            &lt;name&gt;FLD_LONG2&lt;/name&gt;
+            &lt;type&gt;long&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;3&lt;/id&gt;
+            &lt;name&gt;FLD_LONG3&lt;/name&gt;
+            &lt;type&gt;long&lt;/type&gt;
+         &lt;/element&gt;
+
+         &lt;element&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;FLD_CHAR1&lt;/name&gt;
+            &lt;type&gt;char&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;2&lt;/id&gt;
+            &lt;name&gt;FLD_CHAR2&lt;/name&gt;
+            &lt;type&gt;char&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;3&lt;/id&gt;
+            &lt;name&gt;FLD_CHAR3&lt;/name&gt;
+            &lt;type&gt;char&lt;/type&gt;
+         &lt;/element&gt;
+      &lt;/fields&gt;
+   &lt;/element&gt;
+   &lt;element&gt;
+      &lt;base&gt;2000&lt;/base&gt;
+      &lt;fields&gt;
+         &lt;element&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;FLD_FLOAT1&lt;/name&gt;
+            &lt;type&gt;float&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;2&lt;/id&gt;
+            &lt;name&gt;FLD_FLOAT2&lt;/name&gt;
+            &lt;type&gt;float&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;3&lt;/id&gt;
+            &lt;name&gt;FLD_FLOAT3&lt;/name&gt;
+            &lt;type&gt;float&lt;/type&gt;
+         &lt;/element&gt;
+
+         &lt;element&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;FLD_DOUBLE1&lt;/name&gt;
+            &lt;type&gt;double&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;2&lt;/id&gt;
+            &lt;name&gt;FLD_DOUBLE2&lt;/name&gt;
+            &lt;type&gt;double&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;3&lt;/id&gt;
+            &lt;name&gt;FLD_DOUBLE3&lt;/name&gt;
+            &lt;type&gt;double&lt;/type&gt;
+         &lt;/element&gt;
+
+         &lt;element&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;FLD_STRING1&lt;/name&gt;
+            &lt;type&gt;string&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;2&lt;/id&gt;
+            &lt;name&gt;FLD_STRING2&lt;/name&gt;
+            &lt;type&gt;string&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;3&lt;/id&gt;
+            &lt;name&gt;FLD_STRING3&lt;/name&gt;
+            &lt;type&gt;string&lt;/type&gt;
+         &lt;/element&gt;
+
+         &lt;element&gt;
+            &lt;id&gt;1&lt;/id&gt;
+            &lt;name&gt;FLD_BINARY1&lt;/name&gt;
+            &lt;type&gt;binary&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;2&lt;/id&gt;
+            &lt;name&gt;FLD_BINARY2&lt;/name&gt;
+            &lt;type&gt;binary&lt;/type&gt;
+         &lt;/element&gt;
+         &lt;element&gt;
+            &lt;id&gt;3&lt;/id&gt;
+            &lt;name&gt;FLD_BINARY3&lt;/name&gt;
+            &lt;type&gt;binary&lt;/type&gt;
+         &lt;/element&gt;
+      &lt;/fields&gt;
+   &lt;/element&gt;
+&lt;/groups&gt;
+</pre></div>
+</div>
+</section>
+<section id="yaml-sample">
+<h2>yaml-sample<a class="headerlink" href="#yaml-sample" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">groups</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">base</span><span class="p">:</span> <span class="mi">1000</span>
+    <span class="n">fields</span><span class="p">:</span>
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_SHORT1</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">short</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_SHORT2</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">short</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_SHORT3</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">short</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_LONG1</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">long</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_LONG2</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">long</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_LONG3</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">long</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_CHAR1</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">char</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_CHAR2</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">char</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_CHAR3</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">char</span>
+
+
+
+  <span class="o">-</span> <span class="n">base</span><span class="p">:</span> <span class="mi">2000</span>
+    <span class="n">fields</span><span class="p">:</span>
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_FLOAT1</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="nb">float</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_FLOAT2</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="nb">float</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_FLOAT3</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="nb">float</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_DOUBLE1</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">double</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_DOUBLE2</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">double</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_DOUBLE3</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">double</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_STRING1</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">string</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_STRING2</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">string</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_STRING3</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">string</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_BINARY1</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">binary</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_BINARY2</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">binary</span>
+
+      <span class="o">-</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">FLD_BINARY3</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">binary</span>
+</pre></div>
+</div>
+</section>
+<section id="ini-sample">
+<h2>ini-sample<a class="headerlink" href="#ini-sample" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">groups</span><span class="p">]</span>
+<span class="n">base</span><span class="o">=</span><span class="mi">1000</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_SHORT1</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">short</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_SHORT2</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">short</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_SHORT3</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">short</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_LONG1</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">long</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_LONG2</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">long</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_LONG3</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">long</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_CHAR1</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">char</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_CHAR2</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">char</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_CHAR3</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">char</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="p">]</span>
+<span class="n">base</span><span class="o">=</span><span class="mi">2000</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_FLOAT1</span>
+<span class="nb">type</span><span class="o">=</span><span class="nb">float</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_FLOAT2</span>
+<span class="nb">type</span><span class="o">=</span><span class="nb">float</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_FLOAT3</span>
+<span class="nb">type</span><span class="o">=</span><span class="nb">float</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_DOUBLE1</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">double</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_DOUBLE2</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">double</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_DOUBLE3</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">double</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_STRING1</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">string</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_STRING2</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">string</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_STRING3</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">string</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_BINARY1</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">binary</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_BINARY2</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">binary</span>
+
+<span class="p">[</span><span class="n">groups</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+<span class="nb">id</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">name</span><span class="o">=</span><span class="n">FLD_BINARY3</span>
+<span class="nb">type</span><span class="o">=</span><span class="n">binary</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../documentation/development.html" class="btn btn-neutral float-left" title="development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="octet.development.html" class="btn btn-neutral float-right" title="octet development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.7
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../1.6/middleware/buffer/documentation/field.development.html">release/1.6</a></dd>
+      <dd><a href="field.development.html">release/1.7</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

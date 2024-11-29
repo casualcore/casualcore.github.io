@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual-build-executable &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="casual-build-server" href="server.development.html" />
+    <link rel="prev" title="configuration build-server" href="../../../configuration/documentation/build/server.development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../documentation/development.html">development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/field.development.html">field development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/octet.development.html">octet development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/order.development.html">order development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/serialization/field/string.development.html">field string serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/string.development.html">string development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../common/documentation/arguments.development.html">arguments development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../common/documentation/log.development.html">log development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/build/executable.development.html">configuration build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/build/server.development.html">configuration build-server</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">casual-build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.development.html">casual-build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../domain/documentation/environment.development.html">environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../administration/documentation/api.development.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../documentation/development.html">development</a></li>
+      <li class="breadcrumb-item active">casual-build-executable</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/middleware/tools/documentation/build/executable.development.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-build-executable">
+<h1>casual-build-executable<a class="headerlink" href="#casual-build-executable" title="Permalink to this heading">¶</a></h1>
+<p>Builds a <code class="docutils literal notranslate"><span class="pre">causal-executable</span></code>. That is, an executable with <code class="docutils literal notranslate"><span class="pre">XA-resources</span></code> linked in that will
+be initialized on boot.</p>
+<p>The provided <code class="docutils literal notranslate"><span class="pre">entrypoint</span></code> will be invoked after <code class="docutils literal notranslate"><span class="pre">casual</span></code> has done some initialization magic
+for the <code class="docutils literal notranslate"><span class="pre">XA-resources</span></code>. Hence, your <code class="docutils literal notranslate"><span class="pre">entrypoint</span></code> is your <em>main</em>, and you can start using your
+`XA-resources’ from there.</p>
+<section id="prerequisite">
+<h2>prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">casual</span></code> is installed and <code class="docutils literal notranslate"><span class="pre">CASUAL_HOME</span></code> is set to the install path.</p>
+</section>
+<section id="example">
+<h2>example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>We have our <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>, which defines the <code class="docutils literal notranslate"><span class="pre">entrypoint</span></code> <em>start</em></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// do stuff with your xa-resources </span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We use a <em>executable-definition-file</em> to define the resources and <code class="docutils literal notranslate"><span class="pre">entrypoint</span></code>. We name this <code class="docutils literal notranslate"><span class="pre">my-executable.yaml</span></code>,
+See <em>missing link?</em> <a class="reference internal" href="#../../../configuration/example/readme.md"><span class="xref myst">casual/middleware/configuration/example</span></a> for more information.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">executable</span><span class="p">:</span>
+
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># key of the resource (defined in resource-properties)</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rm-mockup</span>
+<span class="w">      </span><span class="c1"># a logical name that this server will use to get the proper runtime configuration.</span>
+<span class="w">      </span><span class="c1"># it&#39;s probably a good idea to have names like &lt;resource-type&gt;/&lt;application&gt;, ex: db/my-application</span>
+<span class="w">      </span><span class="c1"># to make it easier to configure correctly. Can be any name though.</span>
+<span class="w">      </span><span class="c1"># If the domain does not have resource-configuration for the defined name, the executable will not boot.</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resource-1</span>
+<span class="w">      </span>
+<span class="w">  </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">start</span>
+</pre></div>
+</div>
+<p><em>see <a class="reference internal" href="#../../../configuration/example/build/executable.yaml"><span class="xref myst">build-executable-example</span></a> for further details.</em></p>
+<ul class="simple">
+<li><p>We want the server to be named <code class="docutils literal notranslate"><span class="pre">my-executable</span></code></p></li>
+<li><p>Use the <em>definition-file</em> to define the executable (which adds a dependency to a resource with the name <code class="docutils literal notranslate"><span class="pre">resource-1</span></code> and the key <code class="docutils literal notranslate"><span class="pre">rm-mockup</span></code> )</p></li>
+<li><p>Pass the source file <em>main.cpp</em> to <code class="docutils literal notranslate"><span class="pre">casual-build-executable</span></code> to be compiled at the same time as <em>building</em> the server.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-build-executable<span class="w"> </span>--output<span class="w"> </span>my-executable<span class="w"> </span>--definition<span class="w"> </span>my-executable.yaml<span class="w"> </span>--build-directives<span class="w"> </span>main.cpp<span class="w"> </span>
+</pre></div>
+</div>
+<section id="custom">
+<h3>custom<a class="headerlink" href="#custom" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">casual-build-executable</span></code> assumes <em>gcc/g++</em> option compatibility for default stuff. If you use another compiler you can
+opt in <strong>not</strong> to use default include/library-paths and so on.</p>
+<p><strong>note:</strong> you need to provide all paths, libraries and such</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-build-executable<span class="w"> </span>--no-defaults<span class="w"> </span>--output<span class="w"> </span>my-executable<span class="w"> </span>--definition<span class="w"> </span>my-executable.yaml<span class="w"> </span>--build-directives<span class="w"> </span>main.cpp<span class="w"> </span>&lt;all<span class="w"> </span>other<span class="w"> </span>stuff<span class="w"> </span>your<span class="w"> </span>compiler<span class="w"> </span>needs&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="options">
+<h2>options<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-build-executable<span class="w"> </span>--help
+NAME
+<span class="w">   </span>casual-build-executable
+
+DESCRIPTION
+<span class="w">  </span>builds<span class="w"> </span>a<span class="w"> </span>casual<span class="w"> </span>executable
+
+OPTIONS<span class="w">                         </span>c<span class="w">  </span>value<span class="w">    </span>vc<span class="w">  </span>description
+------------------------------<span class="w">  </span>-<span class="w">  </span>-------<span class="w">  </span>--<span class="w">  </span>-----------------------------------------------
+-o,<span class="w"> </span>--output<span class="w">                    </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>name<span class="w"> </span>of<span class="w"> </span>executable<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>built
+-d,<span class="w"> </span>--definition<span class="w">                </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>path<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>definition<span class="w"> </span>file
+-c,<span class="w"> </span>--compiler<span class="w">                  </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>compiler<span class="w"> </span>to<span class="w"> </span>use
+-cl,<span class="w"> </span>--compile-link-directives<span class="w">  </span>*<span class="w">  </span>&lt;value&gt;<span class="w">   </span>+<span class="w">  </span>additional<span class="w"> </span>compile<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>link<span class="w"> </span>directives
+-k,<span class="w"> </span>--keep<span class="w">                      </span>?<span class="w">               </span>keep<span class="w"> </span>the<span class="w"> </span>intermediate<span class="w"> </span>file
+--no-defaults<span class="w">                   </span>?<span class="w">               </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>add<span class="w"> </span>any<span class="w"> </span>default<span class="w"> </span>compiler/link<span class="w"> </span>directives
+--source<span class="w">                        </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span><span class="m">1</span><span class="w">  </span>explicit<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>intermediate<span class="w"> </span>file
+-v,<span class="w"> </span>--verbose<span class="w">                   </span>?<span class="w">               </span>verbose<span class="w"> </span>output
+--help<span class="w">                          </span>?<span class="w">  </span>&lt;value&gt;<span class="w">   </span>*<span class="w">  </span>use<span class="w"> </span>--help<span class="w"> </span>&lt;option&gt;<span class="w"> </span>to<span class="w"> </span>see<span class="w"> </span>further<span class="w"> </span>details
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../configuration/documentation/build/server.development.html" class="btn btn-neutral float-left" title="configuration build-server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="server.development.html" class="btn btn-neutral float-right" title="casual-build-server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.7
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../1.6/middleware/tools/documentation/build/executable.development.html">release/1.6</a></dd>
+      <dd><a href="executable.development.html">release/1.7</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

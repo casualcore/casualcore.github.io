@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>multiple domain example &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../middleware/documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">multiple domain example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/documentation/example/domain/multiple/readme.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multiple-domain-example">
+<h1>multiple domain example<a class="headerlink" href="#multiple-domain-example" title="Permalink to this heading">¶</a></h1>
+<section id="objective">
+<h2>objective<a class="headerlink" href="#objective" title="Permalink to this heading">¶</a></h2>
+<p>Explore:</p>
+<ul class="simple">
+<li><p>queue</p>
+<ul>
+<li><p>enqueue</p></li>
+<li><p>dequeue</p></li>
+<li><p>forward-service</p></li>
+<li><p>forward-queue</p></li>
+</ul>
+</li>
+<li><p>The abillity of casual to discover resources in remote domains.</p></li>
+</ul>
+<p>We’ll set up two domains, <strong>A</strong> and <strong>B</strong>.</p>
+<ul class="simple">
+<li><p>From within <strong>A</strong> we’ll enqueue a message to a queue in <strong>B</strong>.</p></li>
+<li><p>In <strong>B</strong>, a queue-service forward will dequeue the message and call a service in <strong>A</strong> and the reply is enqueued in another queue in <strong>B</strong>.</p></li>
+<li><p>in <strong>B</strong>, a queue-queue forward will dequeue the reply and enqueue it at a queue in <strong>A</strong>.
+A queue service forward dequeues the message and calls a service that will abort the transaction, hence the message is moved
+to the corresponding error queue.</p></li>
+</ul>
+<section id="diagram">
+<h3>diagram<a class="headerlink" href="#diagram" title="Permalink to this heading">¶</a></h3>
+<p>A simplified sequence diagram on what’s going on (discovery and transaction related activity is omitted)</p>
+<p><img alt="scenario" src="../../../../_images/scenario.svg" /></p>
+</section>
+</section>
+<section id="prerequisites">
+<h2>prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>See <a class="reference internal" href="#../readme.md"><span class="xref myst">domain example</span></a></p>
+</section>
+<section id="create-domains">
+<h2>create domains<a class="headerlink" href="#create-domains" title="Permalink to this heading">¶</a></h2>
+<p>Create a directory where you want your domains to “live”.</p>
+<p><em>In production you probably want to have a dedicated user for each domain and just use the “domain-user” home directory as the domain root</em></p>
+<p>The following will be used in this example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/casual/example/domain/multiple
+</pre></div>
+</div>
+<p>Copy the domains setup from the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp -r $CASUAL_HOME/documentation/example/domain/multiple/* $HOME/casual/example/domain/multiple/
+</pre></div>
+</div>
+<section id="configuration">
+<h3>configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h3>
+<p>Each domain has it’s configuration in <code class="docutils literal notranslate"><span class="pre">$CASUAL_DOMAIN_HOME/configuration/domain.yaml</span></code>. In our example these will be located at:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$HOME/casual/example/domain/multiple/A/configuration/domain.yaml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$HOME/casual/example/domain/multiple/B/configuration/domain.yaml</span></code></p></li>
+</ul>
+<p><em>The environment variable</em> <code class="docutils literal notranslate"><span class="pre">CASUAL_DOMAIN_HOME</span></code> <em>is the only thing that dictates which domain you’re using and working with</em></p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../../../_downloads/3b5c4c3ab44e6eea857a71fa0d2a2134/domain.yaml"><span class="xref download myst">A/configuration/domain.yaml</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../../_downloads/0cd2090258e05ceabb1f4d99a1b05251/domain.yaml"><span class="xref download myst">B/configuration/domain.yaml</span></a></p></li>
+</ul>
+<p>If you chose another base directore for this example, please update the following files so they corresponds with your choice</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../../../_downloads/fb8485d46d1665580ef1f71327a9ff72/domain.env"><span class="xref download myst">A/domain.env</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../../_downloads/74acd966e0987b9e6e82390dfafd74c1/domain.env"><span class="xref download myst">B/domain.env</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="start-a">
+<h2>start A<a class="headerlink" href="#start-a" title="Permalink to this heading">¶</a></h2>
+<p>In the terminal for A.</p>
+<section id="prepare">
+<h3>prepare<a class="headerlink" href="#prepare" title="Permalink to this heading">¶</a></h3>
+<p>Make sure the required environment settings are sourced.</p>
+<p><em>You only have to do this once.</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A$ cd $HOME/casual/example/domain/multiple/A
+A$ source domain.env
+</pre></div>
+</div>
+</section>
+<section id="boot">
+<h3>boot<a class="headerlink" href="#boot" title="Permalink to this heading">¶</a></h3>
+<p>We provide our configuration for the domain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A$ casual domain --boot configuration/domain.yaml
+</pre></div>
+</div>
+</section>
+</section>
+<section id="start-b">
+<h2>start B<a class="headerlink" href="#start-b" title="Permalink to this heading">¶</a></h2>
+<p>In the terminal for B.</p>
+<section id="id1">
+<h3>prepare<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>B$ cd $HOME/casual/example/domain/multiple/B
+B$ source domain.env
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>boot<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>We provide our configuration for the domain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>B$ casual domain --boot configuration/domain.yaml
+</pre></div>
+</div>
+</section>
+</section>
+<section id="interact-with-the-setup">
+<h2>interact with the setup<a class="headerlink" href="#interact-with-the-setup" title="Permalink to this heading">¶</a></h2>
+<section id="current-state">
+<h3>current state<a class="headerlink" href="#current-state" title="Permalink to this heading">¶</a></h3>
+<p>View current state in the two domains.</p>
+<section id="domain-a">
+<h4>domain A<a class="headerlink" href="#domain-a" title="Permalink to this heading">¶</a></h4>
+<p>List connections:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A$ casual gateway --list-connections 
+name  id                                group     bound  local            peer             created                         
+----  --------------------------------  --------  -----  ---------------  ---------------  --------------------------------
+B     c92c58fbcf7242139446e1618a2eec0f  outbound  out    127.0.0.1:61973  127.0.0.1:7772   2021-10-23T13:16:54.286028+02:00
+B     c92c58fbcf7242139446e1618a2eec0f  inbound   in     127.0.0.1:7771   127.0.0.1:61972  2021-10-23T13:16:52.289561+02:00
+</pre></div>
+</div>
+<p>We have one inbound and one outbound connection to <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<p>List services:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A$ casual service --list-services 
+name                                   category  mode  timeout   contract  I  C  AT        min       max       P  PAT       RI  RC  last
+-------------------------------------  --------  ----  --------  --------  -  -  --------  --------  --------  -  --------  --  --  ----
+casual/example/advertised/echo         example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/conversation            example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/domain/echo/A           example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/domain/name             example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/echo                    example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/error/system            example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/forward                 example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/forward/echo            example   auto  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/forward/join/echo       example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/lowercase               example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/rollback                example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/sink                    example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/sleep                   example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/terminate               example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/uppercase               example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+casual/example/work                    example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -   
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">casual/example/echo</span></code> and <code class="docutils literal notranslate"><span class="pre">casual/example/rollback</span></code> is advertised from one <strong>local</strong> instance, and no one has requested the services yet.</p>
+<p>List queue information:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A$ casual queue --list-queues 
+name      group  rc  rd        count  size  avg  EQ  DQ  UC  last
+--------  -----  --  --------  -----  ----  ---  --  --  --  ----
+a1        A       0  0.000000      0     0    0   0   0   0  -   
+a2        A       0  0.000000      0     0    0   0   0   0  -   
+a1.error  A       0  0.000000      0     0    0   0   0   0  -   
+a2.error  A       0  0.000000      0     0    0   0   0   0  -   
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --list-forward-services 
+alias  group      source  target                   reply  delay  CI  I  commits  rollbacks  last
+-----  ---------  ------  -----------------------  -----  -----  --  -  -------  ---------  ----
+a1     forward-A  a1      casual/example/rollback  -          -  1   1        0          0  -   
+</pre></div>
+</div>
+</section>
+<section id="domain-b">
+<h4>domain B<a class="headerlink" href="#domain-b" title="Permalink to this heading">¶</a></h4>
+<p>List connections:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>B$ casual gateway --list-connections 
+name  id                                group     bound  local            peer             created                         
+----  --------------------------------  --------  -----  ---------------  ---------------  --------------------------------
+A     1beb85a07678410aa39de492db9f292f  outbound  out    127.0.0.1:61972  127.0.0.1:7771   2021-10-23T13:16:52.289521+02:00
+A     1beb85a07678410aa39de492db9f292f  inbound   in     127.0.0.1:7772   127.0.0.1:61973  2021-10-23T13:16:54.285984+02:00
+</pre></div>
+</div>
+<p>We have one inbound and one outbound connection to <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<p>List services:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>B$ casual service --list-services 
+name  category  mode  timeout  contract  I  C  AT  min  max  P  PAT  RI  RC  last
+----  --------  ----  -------  --------  -  -  --  ---  ---  -  ---  --  --  ----
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">casual/example/echo</span></code> is not yet known in this domain.</p>
+<p>List queue information:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>B$ casual queue --list-queues 
+name      group  rc  rd        count  size  avg  EQ  DQ  UC  last
+--------  -----  --  --------  -----  ----  ---  --  --  --  ----
+b1        B       0  0.000000      0     0    0   0   0   0  -   
+b2        B       0  0.000000      0     0    0   0   0   0  -   
+b3        B       0  0.000000      0     0    0   0   0   0  -   
+b1.error  B       0  0.000000      0     0    0   0   0   0  -   
+b2.error  B       0  0.000000      0     0    0   0   0   0  -   
+b3.error  B       0  0.000000      0     0    0   0   0   0  -    
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --list-forward-services 
+alias  group      source  target               reply  delay     CI  I  commits  rollbacks  last
+-----  ---------  ------  -------------------  -----  --------  --  -  -------  ---------  ----
+b1     forward-B  b1      casual/example/echo  b2     0.000000  1   1        0          0  -   
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ casual queue --list-forward-queues   
+alias  group      source  target  delay     CI  I  commits  rollbacks  last
+-----  ---------  ------  ------  --------  --  -  -------  ---------  ----
+b2     forward-B  b2      a1      0.000000  0   0        0          0  -   
+</pre></div>
+</div>
+</section>
+</section>
+<section id="enqueue-a-message">
+<h3>enqueue a message<a class="headerlink" href="#enqueue-a-message" title="Permalink to this heading">¶</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">A</span></code>, enqueue some characters to <code class="docutils literal notranslate"><span class="pre">b1</span></code> that is located in <code class="docutils literal notranslate"><span class="pre">B</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A$ echo &quot;test&quot; | casual buffer --compose | casual queue --enqueue b1
+bec3b4b3cccd4f3b89faee970518ab7d
+</pre></div>
+</div>
+<p>The message should be enqueued to <code class="docutils literal notranslate"><span class="pre">a1</span></code> and then dequeued and rollbacked, hence end up in <code class="docutils literal notranslate"><span class="pre">a1.error</span></code> pretty much directly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A$ casual queue --list-queues 
+name      group  rc  rd        count  size  avg  EQ  DQ  UC  last                            
+--------  -----  --  --------  -----  ----  ---  --  --  --  --------------------------------
+a1        A       0  0.000000      0     0    0   1   1   0  2021-10-24T17:38:48.356025+02:00
+a2        A       0  0.000000      0     0    0   0   0   0  -                               
+a1.error  A       0  0.000000      1     5    5   1   0   0  2021-10-24T17:38:48.356025+02:00
+a2.error  A       0  0.000000      0     0    0   0   0   0  -                      
+
+
+The service `casual/example/echo` should be requested once (the call from remote `B`).
+The service `casual/example/rollback` should be requested once from the forward in this domain.
+
+</pre></div>
+</div>
+<p>A$ casual service –list-services
+name                                 category  mode  timeout   contract  I  C  AT        min       max       P  PAT       RI  RC  last</p>
+<hr class="docutils" />
+<p>casual/example/advertised/echo       example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/conversation          example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/domain/echo/A         example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/domain/name           example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/echo                  example   join  0.000000    linger  1  1  0.000090  0.000090  0.000090  0  0.000000   0   0  2021-10-24T17:38:48.354110+02:00
+casual/example/error/system          example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/forward               example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/forward/echo          example   auto  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/forward/join/echo     example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/lowercase             example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/rollback              example   join  0.000000    linger  1  1  0.000033  0.000033  0.000033  0  0.000000   0   0  2021-10-24T17:38:48.357365+02:00
+casual/example/sink                  example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/sleep                 example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/terminate             example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/uppercase             example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -<br />
+casual/example/work                  example   join  0.000000    linger  1  0  0.000000  0.000000  0.000000  0  0.000000   0   0  -</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+In `B`, `casual/example/echo` should be known with no local instances:
+
+</pre></div>
+</div>
+<p>B$ casual service –list-services
+name                 category  mode  timeout   contract  I  C  AT        min       max       P  PAT       RI  RC  last</p>
+<hr class="docutils" />
+<p>casual/example/echo  example   join  0.000000    linger  0  1  0.000648  0.000648  0.000648  0  0.000000   1   1  2021-10-24T17:38:48.354246+02:00</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.7
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../1.6/documentation/example/domain/multiple/readme.html">release/1.6</a></dd>
+      <dd><a href="readme.html">release/1.7</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual domain protocol &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">casual domain protocol</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/middleware/gateway/documentation/protocol/protocol.maintenance.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-domain-protocol">
+<h1>casual domain protocol<a class="headerlink" href="#casual-domain-protocol" title="Permalink to this heading">¶</a></h1>
+<p>Defines what messages are sent between domains and exactly what they contain.</p>
+<section id="version">
+<h2>version<a class="headerlink" href="#version" title="Permalink to this heading">¶</a></h2>
+<p>Every message protocol definition will have a <em>protocol version range</em> that defines witch versions
+of the protocol the message is part of.</p>
+<p>The protocol version value, that is sent over the wire, is just an integer that starts at <code class="docutils literal notranslate"><span class="pre">1000</span></code> for <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p>
+<p>The full table:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>version</p></th>
+<th class="head"><p>protocol value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.0</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.1</p></td>
+<td><p>1001</p></td>
+</tr>
+<tr class="row-even"><td><p>1.2</p></td>
+<td><p>1002</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.3</p></td>
+<td><p>1003</p></td>
+</tr>
+<tr class="row-even"><td><p>1.4</p></td>
+<td><p>1004</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="definitions">
+<h2>definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fixed</span> <span class="pre">array</span></code>: an array of fixed size where every element is an 8 bit byte.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dynamic</span> <span class="pre">array</span></code>: an array with dynamic size, where every element is an 8 bit byte.</p></li>
+</ul>
+<p>If an attribute name has <code class="docutils literal notranslate"><span class="pre">element</span></code> in it, for example: <code class="docutils literal notranslate"><span class="pre">services.element.timeout</span></code>, the
+data is part of an element in a container. You should read it as <code class="docutils literal notranslate"><span class="pre">container.element.attribute</span></code></p>
+</section>
+<section id="sizes">
+<h2>sizes<a class="headerlink" href="#sizes" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">casual</span></code> it self does not impose any size restriction on anything. Whatever the platform supports,<code class="docutils literal notranslate"><span class="pre">casual</span></code> is fine with.
+There are however restrictions from the <code class="docutils literal notranslate"><span class="pre">xatmi</span></code> specification, regarding service names and such.</p>
+<p><code class="docutils literal notranslate"><span class="pre">casual</span></code> will not apply restriction on sizes unless some specification dictates it, or we got some
+sort of proof that a size limitation is needed.</p>
+<p>Hence, the maximum sizes below are huge, and it is unlikely that maximum sizes will
+actually work on systems known to <code class="docutils literal notranslate"><span class="pre">casual</span></code> today. But it might in the future…</p>
+</section>
+<section id="message-header">
+<h2>message header<a class="headerlink" href="#message-header" title="Permalink to this heading">¶</a></h2>
+<p>This header will be the first part of every message below, hence it’s name, <em>header</em></p>
+<p>message.type is used to dispatch to handler for that particular message, and knows how to (un)marshal and act on the message.</p>
+<p>It’s probably a good idea (probably the only way) to read the header only, to see how much more you have to read to get
+the rest of the message.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>header.type</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>type of the message that the payload contains</p></td>
+</tr>
+<tr class="row-odd"><td><p>header.correlation</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>correlation id of the message</p></td>
+</tr>
+<tr class="row-even"><td><p>header.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>the size of the payload that follows</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="gateway-domain-connect-request-7200-1-0-1-1-1-2-1-3-1-4">
+<h2>gateway_domain_connect_request - <strong>#7200</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#gateway-domain-connect-request-7200-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Connection requests from another domain that wants to connect</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>domain.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the outbound domain</p></td>
+</tr>
+<tr class="row-even"><td><p>domain.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the outbound domain name</p></td>
+</tr>
+<tr class="row-odd"><td><p>domain.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array with the outbound domain name</p></td>
+</tr>
+<tr class="row-even"><td><p>protocol.versions.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>number of protocol versions outbound domain can ‘speak’</p></td>
+</tr>
+<tr class="row-odd"><td><p>protocol.versions.element</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>a protocol version</p></td>
+</tr>
+</tbody>
+</table>
+<section id="example">
+<h3>example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;MV2sxhguTBK/mHfvqSTLhg==&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;domain</span><span class="nv"> </span><span class="s">A&quot;</span>
+<span class="nt">protocol.versions</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1004</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1003</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1002</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1001</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YDFdrMYYLkwSv5h376kky4YAAAAAAAAACGRvbWFpbiBBAAAAAAAAAAUAAAAAAAAD7AAAAAAAAAPrAAAAAAAAA+oAAAAAAAAD6QAAAAAAAAPo</span></code></p>
+</section>
+</section>
+<section id="gateway-domain-connect-reply-7201-1-0-1-1-1-2-1-3-1-4">
+<h2>gateway_domain_connect_reply - <strong>#7201</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#gateway-domain-connect-reply-7201-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Connection reply with the chosen <em>protocol version</em></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>domain.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the inbound domain</p></td>
+</tr>
+<tr class="row-even"><td><p>domain.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the inbound domain name</p></td>
+</tr>
+<tr class="row-odd"><td><p>domain.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array with the inbound domain name</p></td>
+</tr>
+<tr class="row-even"><td><p>protocol.version</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>the chosen protocol version to use, or invalid (0) if incompatible</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id1">
+<h3>example<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;MV2sxhguTBK/mHfvqSTLhg==&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;domain</span><span class="nv"> </span><span class="s">A&quot;</span>
+<span class="nt">protocol.version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YDFdrMYYLkwSv5h376kky4YAAAAAAAAACGRvbWFpbiBBAAAAAAAAA+g=</span></code></p>
+</section>
+</section>
+<section id="gateway-domain-disconnect-request-7202-1-1-1-2-1-3-1-4">
+<h2>gateway_domain_disconnect_request - <strong>#7202</strong> - <em>[1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#gateway-domain-disconnect-request-7202-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent from inbound to connected outbound to notify that the connection is about to close, and outbound
+will stop sending new requests. Hence, the inbound can gracefully disconnect.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id2">
+<h3>example<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YA==</span></code></p>
+</section>
+</section>
+<section id="gateway-domain-disconnect-reply-7203-1-1-1-2-1-3-1-4">
+<h2>gateway_domain_disconnect_reply - <strong>#7203</strong> - <em>[1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#gateway-domain-disconnect-reply-7203-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Confirmation that the outbound has got the disconnect request.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id3">
+<h3>example<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YA==</span></code></p>
+</section>
+</section>
+<section id="domain-discovery-request-7300-1-0-1-1-1-2-1-3-1-4">
+<h2>domain_discovery_request - <strong>#7300</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#domain-discovery-request-7300-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to and received from other domains when one domain wants to discover information abut the other.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>domain.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the caller domain</p></td>
+</tr>
+<tr class="row-even"><td><p>domain.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the caller domain name</p></td>
+</tr>
+<tr class="row-odd"><td><p>domain.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array with the caller domain name</p></td>
+</tr>
+<tr class="row-even"><td><p>content.services.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>number of requested services to follow (an array of services)</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.services.element.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the current service name</p></td>
+</tr>
+<tr class="row-even"><td><p>content.services.element.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array of the current service name</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.queues.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>number of requested queues to follow (an array of queues)</p></td>
+</tr>
+<tr class="row-even"><td><p>content.queues.element.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the current queue name</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.queues.element.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array of the current queue name</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id4">
+<h3>example<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;MV2sxhguTBK/mHfvqSTLhg==&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;domain</span><span class="nv"> </span><span class="s">A&quot;</span>
+<span class="nt">content.services</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;service1&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;service2&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;service3&quot;</span>
+<span class="nt">content.queues</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;queue1&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;queue2&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;queue3&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YDFdrMYYLkwSv5h376kky4YAAAAAAAAACGRvbWFpbiBBAAAAAAAAAAMAAAAAAAAACHNlcnZpY2UxAAAAAAAAAAhzZXJ2aWNlMgAAAAAAAAAIc2VydmljZTMAAAAAAAAAAwAAAAAAAAAGcXVldWUxAAAAAAAAAAZxdWV1ZTIAAAAAAAAABnF1ZXVlMw==</span></code></p>
+</section>
+</section>
+<section id="domain-discovery-reply-7311-1-4">
+<h2>domain_discovery_reply - <strong>#7311</strong> - <em>[1.4]</em><a class="headerlink" href="#domain-discovery-reply-7311-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to and received from other domains when one domain wants to discover information abut the other.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>domain.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the caller domain</p></td>
+</tr>
+<tr class="row-even"><td><p>domain.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the caller domain name</p></td>
+</tr>
+<tr class="row-odd"><td><p>domain.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array with the caller domain name</p></td>
+</tr>
+<tr class="row-even"><td><p>content.services.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>number of services to follow (an array of services)</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.services.element.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the current service name</p></td>
+</tr>
+<tr class="row-even"><td><p>content.services.element.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array of the current service name</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.services.element.category.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the current service category</p></td>
+</tr>
+<tr class="row-even"><td><p>content.services.element.category.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array of the current service category</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.services.element.transaction</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+<td><p>service transaction mode (auto, atomic, join, none)</p></td>
+</tr>
+<tr class="row-even"><td><p>content.services.element.timeout.duration</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>service timeout (ns)</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.services.element.hops</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>number of domain hops to the service (local services has 0 hops)</p></td>
+</tr>
+<tr class="row-even"><td><p>content.queues.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>number of requested queues to follow (an array of queues)</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.queues.element.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the current queue name</p></td>
+</tr>
+<tr class="row-even"><td><p>content.queues.element.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array of the current queue name</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.queues.element.retry.count</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>how many ‘retries’ the queue has</p></td>
+</tr>
+<tr class="row-even"><td><p>content.queues.element.retry.delay</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>when retried, the amount of us until available</p></td>
+</tr>
+<tr class="row-odd"><td><p>content.queues.element.enable.enqueue</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+<td><p>if queue is enabled for enqueue (1/0)(true/false)</p></td>
+</tr>
+<tr class="row-even"><td><p>content.queues.element.enable.dequeue</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+<td><p>if queue is enabled for dequeue (1/0)(true/false)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id5">
+<h3>example<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;4va3w39zSgmCoKsVgbIfpQ==&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;domain</span><span class="nv"> </span><span class="s">B&quot;</span>
+<span class="nt">content.services</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;service1&quot;</span>
+<span class="w">    </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example&quot;</span>
+<span class="w">    </span><span class="nt">transaction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">timeout.duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90000000000</span>
+<span class="w">    </span><span class="nt">hops</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">content.queues</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;queue1&quot;</span>
+<span class="w">    </span><span class="nt">retry</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">      </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4000000</span>
+<span class="w">    </span><span class="nt">enable</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">enqueue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">dequeue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YOL2t8N/c0oJgqCrFYGyH6UAAAAAAAAACGRvbWFpbiBCAAAAAAAAAAEAAAAAAAAACHNlcnZpY2UxAAAAAAAAAAdleGFtcGxlAAEAAAAU9GsEAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAABnF1ZXVlMQAAAAAAAAAKAAAAAAA9CQABAA==</span></code></p>
+</section>
+</section>
+<section id="domain-discovery-topology-implicit-update-7302-1-2-1-3-1-4">
+<h2>domain_discovery_topology_implicit_update - <strong>#7302</strong> - <em>[1.2, 1.3, 1.4]</em><a class="headerlink" href="#domain-discovery-topology-implicit-update-7302-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to all inbound connections from a domain when when it gets a new connection or gets this message from an outbound.
+When the message is passed “upstream” domains will add its id to the domains array, hence it’s possible to mitigate endless
+loops of this message, depending on the topology of the deployment.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>domains.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>number of domains (an array of domains that has seen this message)</p></td>
+</tr>
+<tr class="row-even"><td><p>domains.element.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the domain</p></td>
+</tr>
+<tr class="row-odd"><td><p>domains.element.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the domain name</p></td>
+</tr>
+<tr class="row-even"><td><p>domains.element.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>dynamic byte array with the domain name</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id6">
+<h3>example<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;4fa3w39zSgmCoKsVgbIfog==&quot;</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;B&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAB4fa3w39zSgmCoKsVgbIfogAAAAAAAAABQg==</span></code></p>
+</section>
+</section>
+<section id="service-call-3102-1-3-1-4">
+<h2>service_call - <strong>#3102</strong> - <em>[1.3, 1.4]</em><a class="headerlink" href="#service-call-3102-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to and received from other domains when one domain wants call a service in the other domain</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>service.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>service name size</p></td>
+</tr>
+<tr class="row-even"><td><p>service.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with service name</p></td>
+</tr>
+<tr class="row-odd"><td><p>has_value</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+<td><p>if 1, deadline.remaining is propagated</p></td>
+</tr>
+<tr class="row-even"><td><p>deadline.remaining</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>if has_value, the remaining time before deadline (ns)</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent.span</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>8</p></td>
+<td><p>parent execution span</p></td>
+</tr>
+<tr class="row-even"><td><p>parent.service.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>parent service name size</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent.service.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with parent service name</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-even"><td><p>flags</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>XATMI flags sent to the service</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer type name size</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with buffer type in the form ‘type/subtype’</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer payload size (could be very big)</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>buffer payload data (with the size of buffer.payload.size)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id7">
+<h3>example<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">service.name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;service1&quot;</span>
+<span class="nt">deadline.remaining</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42000000000</span>
+<span class="nt">parent</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">span</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoc=&quot;</span>
+<span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;parent-service&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">flags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="nt">buffer</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.binary/&quot;</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAIc2VydmljZTEBAAAACcdlJACAgYKDhIWGhwAAAAAAAAAOcGFyZW50LXNlcnZpY2UAAAAAAAAAKgAAAAAAAAAQAAAAAAAAABBbbBv28ktIDb283vVMOghRW2wb9vJLSA29vN71TDoIUgAAAAAAAAAEAAAAAAAAAAguYmluYXJ5LwAAAAAAAACAgIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=</span></code></p>
+</section>
+</section>
+<section id="service-call-v2-3100-1-0-1-1-1-2">
+<h2>service_call_v2 - <strong>#3100</strong> - <em>[1.0, 1.1, 1.2]</em><a class="headerlink" href="#service-call-v2-3100-1-0-1-1-1-2" title="Permalink to this heading">¶</a></h2>
+<p>Sent to and received from other domains when one domain wants call a service in the other domain</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>service.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>service name size</p></td>
+</tr>
+<tr class="row-even"><td><p>service.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with service name</p></td>
+</tr>
+<tr class="row-odd"><td><p>service.timeout.duration</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>timeout of the service in use (ns)</p></td>
+</tr>
+<tr class="row-even"><td><p>parent.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>parent service name size</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with parent service name</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-even"><td><p>flags</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>XATMI flags sent to the service</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer type name size</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with buffer type in the form ‘type/subtype’</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer payload size (could be very big)</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>buffer payload data (with the size of buffer.payload.size)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id8">
+<h3>example<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">service.name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;service1&quot;</span>
+<span class="nt">service.timeout.duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42000000000</span>
+<span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;parent-service&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">flags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="nt">buffer</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.binary/&quot;</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAIc2VydmljZTEAAAAJx2UkAAAAAAAAAAAOcGFyZW50LXNlcnZpY2UAAAAAAAAAKgAAAAAAAAAQAAAAAAAAABBbbBv28ktIDb283vVMOghRW2wb9vJLSA29vN71TDoIUgAAAAAAAAAEAAAAAAAAAAguYmluYXJ5LwAAAAAAAACAgIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=</span></code></p>
+</section>
+</section>
+<section id="service-reply-3103-1-3-1-4">
+<h2>service_reply - <strong>#3103</strong> - <em>[1.3, 1.4]</em><a class="headerlink" href="#service-reply-3103-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Reply to call request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>code.result</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>XATMI result/error code, 0 represent OK</p></td>
+</tr>
+<tr class="row-even"><td><p>code.user</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>XATMI user supplied code</p></td>
+</tr>
+<tr class="row-odd"><td><p>transaction_state</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+<td><p>0:ok/absent, 1:rollback, 2:timeout, 3:error</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer type name size</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with buffer type in the form ‘type/subtype’</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer payload size (could be very big)</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>buffer payload data (with the size of buffer.payload.size)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id9">
+<h3>example<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">code.result</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span>
+<span class="nt">code.user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">transaction_state</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;�&#39;</span>
+<span class="nt">buffer</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.binary/&quot;</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAsAAAAAAAAAKgAAAAAAAAAACC5iaW5hcnkvAAAAAAAAAICAgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/w==</span></code></p>
+</section>
+</section>
+<section id="service-reply-v2-3101-1-0-1-1-1-2">
+<h2>service_reply_v2 - <strong>#3101</strong> - <em>[1.0, 1.1, 1.2]</em><a class="headerlink" href="#service-reply-v2-3101-1-0-1-1-1-2" title="Permalink to this heading">¶</a></h2>
+<p>Reply to call request</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>code.result</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>XATMI result/error code, 0 represent OK</p></td>
+</tr>
+<tr class="row-even"><td><p>code.user</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>XATMI user supplied code</p></td>
+</tr>
+<tr class="row-odd"><td><p>transaction.xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>transaction.xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>transaction.xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>transaction.xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>transaction.state</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+<td><p>0:ok, 1:rollback, 2:timeout, 3:error</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer type name size</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with buffer type in the form ‘type/subtype’</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer payload size (could be very big)</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>buffer payload data (with the size of buffer.payload.size)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id10">
+<h3>example<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">code.result</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span>
+<span class="nt">code.user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">transaction.xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">transaction.state</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;�&#39;</span>
+<span class="nt">buffer</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.binary/&quot;</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAsAAAAAAAAAKgAAAAAAAAAqAAAAAAAAABAAAAAAAAAAEFtsG/byS0gNvbze9Uw6CFFbbBv28ktIDb283vVMOghSAAAAAAAAAAAILmJpbmFyeS8AAAAAAAAAgICBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/</span></code></p>
+</section>
+</section>
+<section id="transaction-resource-prepare-request-5201-1-0-1-1-1-2-1-3-1-4">
+<h2>transaction_resource_prepare_request - <strong>#5201</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#transaction-resource-prepare-request-5201-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to and received from other domains when one domain wants to prepare a transaction.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>resource</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>RM id of the resource - has to correlate with the reply</p></td>
+</tr>
+<tr class="row-even"><td><p>flags</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>XA flags to be forward to the resource</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id11">
+<h3>example<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">flags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAqAAAAAAAAABAAAAAAAAAAEFtsG/byS0gNvbze9Uw6CFFbbBv28ktIDb283vVMOghSAAAAKgAAAAAAAAAA</span></code></p>
+</section>
+</section>
+<section id="transaction-resource-prepare-reply-5202-1-0-1-1-1-2-1-3-1-4">
+<h2>transaction_resource_prepare_reply - <strong>#5202</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#transaction-resource-prepare-reply-5202-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to and received from other domains when one domain is done preparing a transaction.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>resource</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>RM id of the resource - has to correlate with the request</p></td>
+</tr>
+<tr class="row-even"><td><p>state</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>The state of the operation - If successful XA_OK ( 0)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id12">
+<h3>example<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAqAAAAAAAAABAAAAAAAAAAEFtsG/byS0gNvbze9Uw6CFFbbBv28ktIDb283vVMOghSAAAAKgAAAAA=</span></code></p>
+</section>
+<section id="resource-commit">
+<h3>Resource commit<a class="headerlink" href="#resource-commit" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+<section id="transaction-resource-commit-request-5203-1-0-1-1-1-2-1-3-1-4">
+<h2>transaction_resource_commit_request - <strong>#5203</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#transaction-resource-commit-request-5203-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to and received from other domains when one domain wants to commit an already prepared transaction.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>resource</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>RM id of the resource - has to correlate with the reply</p></td>
+</tr>
+<tr class="row-even"><td><p>flags</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>XA flags to be forward to the resource</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id13">
+<h3>example<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">flags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAqAAAAAAAAABAAAAAAAAAAEFtsG/byS0gNvbze9Uw6CFFbbBv28ktIDb283vVMOghSAAAAKgAAAAAAAAAA</span></code></p>
+</section>
+</section>
+<section id="transaction-resource-commit-reply-5204-1-0-1-1-1-2-1-3-1-4">
+<h2>transaction_resource_commit_reply - <strong>#5204</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#transaction-resource-commit-reply-5204-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Reply to a commit request.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>resource</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>RM id of the resource - has to correlate with the request</p></td>
+</tr>
+<tr class="row-even"><td><p>state</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>The state of the operation - If successful XA_OK ( 0)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id14">
+<h3>example<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAqAAAAAAAAABAAAAAAAAAAEFtsG/byS0gNvbze9Uw6CFFbbBv28ktIDb283vVMOghSAAAAKgAAAAA=</span></code></p>
+</section>
+</section>
+<section id="transaction-resource-rollback-request-5205-1-0-1-1-1-2-1-3-1-4">
+<h2>transaction_resource_rollback_request - <strong>#5205</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#transaction-resource-rollback-request-5205-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to and received from other domains when one domain wants to rollback an already prepared transaction.
+That is, when one or more resources has failed to prepare.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>resource</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>RM id of the resource - has to correlate with the reply</p></td>
+</tr>
+<tr class="row-even"><td><p>flags</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>XA flags to be forward to the resource</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id15">
+<h3>example<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">flags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAqAAAAAAAAABAAAAAAAAAAEFtsG/byS0gNvbze9Uw6CFFbbBv28ktIDb283vVMOghSAAAAKgAAAAAAAAAA</span></code></p>
+</section>
+</section>
+<section id="transaction-resource-rollback-reply-5206-1-0-1-1-1-2-1-3-1-4">
+<h2>transaction_resource_rollback_reply - <strong>#5206</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#transaction-resource-rollback-reply-5206-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Reply to a rollback request.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>resource</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>RM id of the resource - has to correlate with the request</p></td>
+</tr>
+<tr class="row-even"><td><p>state</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>The state of the operation - If successful XA_OK ( 0)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id16">
+<h3>example<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAqAAAAAAAAABAAAAAAAAAAEFtsG/byS0gNvbze9Uw6CFFbbBv28ktIDb283vVMOghSAAAAKgAAAAA=</span></code></p>
+</section>
+</section>
+<section id="queue-group-enqueue-request-6100-1-0-1-1-1-2-1-3-1-4">
+<h2>queue_group_enqueue_request - <strong>#6100</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#queue-group-enqueue-request-6100-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Represent enqueue request.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of queue name</p></td>
+</tr>
+<tr class="row-even"><td><p>name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of queue name</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>id of the message</p></td>
+</tr>
+<tr class="row-even"><td><p>message.attributes.properties.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of message properties</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.attributes.properties.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of message properties</p></td>
+</tr>
+<tr class="row-even"><td><p>message.attributes.reply.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the reply queue</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.attributes.reply.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of reply queue</p></td>
+</tr>
+<tr class="row-even"><td><p>message.attributes.available</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>when the message is available for dequeue (us since epoch)</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.payload.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the type string</p></td>
+</tr>
+<tr class="row-even"><td><p>message.payload.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the type string</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.payload.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the payload</p></td>
+</tr>
+<tr class="row-even"><td><p>message.payload.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the payload</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id17">
+<h3>example<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;queueA&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">message</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;5v2fz4asR/SlJS9ZfiX8ag==&quot;</span>
+<span class="w">  </span><span class="nt">attributes</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;property</span><span class="nv"> </span><span class="s">1:property</span><span class="nv"> </span><span class="s">2&quot;</span>
+<span class="w">    </span><span class="nt">reply</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;queueB&quot;</span>
+<span class="w">    </span><span class="nt">available</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1559762216552100000</span>
+<span class="w">  </span><span class="nt">payload</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.binary/&quot;</span>
+<span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAGcXVldWVBAAAAAAAAACoAAAAAAAAAEAAAAAAAAAAQW2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFLm/Z/PhqxH9KUlL1l+JfxqAAAAAAAAABVwcm9wZXJ0eSAxOnByb3BlcnR5IDIAAAAAAAAABnF1ZXVlQhWlY3jTqfCgAAAAAAAAAAguYmluYXJ5LwAAAAAAAACAgIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=</span></code></p>
+</section>
+</section>
+<section id="queue-group-enqueue-reply-6102-1-3-1-4">
+<h2>queue_group_enqueue_reply - <strong>#6102</strong> - <em>[1.3, 1.4]</em><a class="headerlink" href="#queue-group-enqueue-reply-6102-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Represent enqueue reply.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>id of the enqueued message</p></td>
+</tr>
+<tr class="row-even"><td><p>code</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>error/result code</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id18">
+<h3>example<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;HJjZS9KaQGGdinMAGdyJHw==&quot;</span>
+<span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YByY2UvSmkBhnYpzABnciR8AAAAe</span></code></p>
+</section>
+</section>
+<section id="queue-group-enqueue-reply-v1-2-6101-1-0-1-1-1-2">
+<h2>queue_group_enqueue_reply_v1_2 - <strong>#6101</strong> - <em>[1.0, 1.1, 1.2]</em><a class="headerlink" href="#queue-group-enqueue-reply-v1-2-6101-1-0-1-1-1-2" title="Permalink to this heading">¶</a></h2>
+<p>Represent enqueue reply.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>id of the enqueued message</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id19">
+<h3>example<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;MV2sxhguTBK/mHfvqSTLhw==&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YDFdrMYYLkwSv5h376kky4c=</span></code></p>
+</section>
+</section>
+<section id="queue-group-dequeue-request-6200-1-0-1-1-1-2-1-3-1-4">
+<h2>queue_group_dequeue_request - <strong>#6200</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#queue-group-dequeue-request-6200-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Represent dequeue request.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the queue name</p></td>
+</tr>
+<tr class="row-even"><td><p>name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the queue name</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-odd"><td><p>selector.properties.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the selector properties (ignored if empty)</p></td>
+</tr>
+<tr class="row-even"><td><p>selector.properties.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the selector properties (ignored if empty)</p></td>
+</tr>
+<tr class="row-odd"><td><p>selector.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>selector uuid (ignored if ‘empty’</p></td>
+</tr>
+<tr class="row-even"><td><p>block</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+<td><p>dictates if this is a blocking call or not</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id20">
+<h3>example<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;queueA&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">selector</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">properties</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;property</span><span class="nv"> </span><span class="s">1:property</span><span class="nv"> </span><span class="s">2&quot;</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;MV2sxhguTBK/mHfvqSTLhw==&quot;</span>
+<span class="nt">block</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAGcXVldWVBAAAAAAAAACoAAAAAAAAAEAAAAAAAAAAQW2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFIAAAAAAAAAFXByb3BlcnR5IDE6cHJvcGVydHkgMjFdrMYYLkwSv5h376kky4cA</span></code></p>
+</section>
+</section>
+<section id="queue-group-dequeue-reply-6202-1-3-1-4">
+<h2>queue_group_dequeue_reply - <strong>#6202</strong> - <em>[1.3, 1.4]</em><a class="headerlink" href="#queue-group-dequeue-reply-6202-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Represent dequeue reply.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>has_value</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+<td><p>if 1 message has content, if 0 no more information of the message is transported</p></td>
+</tr>
+<tr class="row-even"><td><p>message.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>id of the message</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.attributes.properties.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of message properties</p></td>
+</tr>
+<tr class="row-even"><td><p>message.attributes.properties.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of message properties</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.attributes.reply.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the reply queue</p></td>
+</tr>
+<tr class="row-even"><td><p>message.attributes.reply.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of reply queue</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.attributes.available</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>when the message was available for dequeue (us since epoch)</p></td>
+</tr>
+<tr class="row-even"><td><p>message.payload.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the type string</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.payload.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the type string</p></td>
+</tr>
+<tr class="row-even"><td><p>message.payload.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the payload</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.payload.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the payload</p></td>
+</tr>
+<tr class="row-even"><td><p>message.redelivered</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>how many times the message has been redelivered</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.timestamp</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>when the message was enqueued (us since epoch)</p></td>
+</tr>
+<tr class="row-even"><td><p>code</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>result/error code</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id21">
+<h3>example<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">message</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;Uy+LbBV2Tcqf6CowAt5Xng==&quot;</span>
+<span class="w">  </span><span class="nt">attributes</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;property</span><span class="nv"> </span><span class="s">1:property</span><span class="nv"> </span><span class="s">2&quot;</span>
+<span class="w">    </span><span class="nt">reply</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;queueB&quot;</span>
+<span class="w">    </span><span class="nt">available</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1559762216552100000</span>
+<span class="w">  </span><span class="nt">payload</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.json/&quot;</span>
+<span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;e30=&quot;</span>
+<span class="w">  </span><span class="nt">redelivered</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1559762216552100000</span>
+<span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAFTL4tsFXZNyp/oKjAC3leeAAAAAAAAABVwcm9wZXJ0eSAxOnByb3BlcnR5IDIAAAAAAAAABnF1ZXVlQhWlY3jTqfCgAAAAAAAAAAYuanNvbi8AAAAAAAAAAnt9AAAAAAAAAAEVpWN406nwoAAAABQ=</span></code></p>
+</section>
+</section>
+<section id="queue-group-dequeue-reply-v1-2-6201-1-0-1-1-1-2">
+<h2>queue_group_dequeue_reply_v1_2 - <strong>#6201</strong> - <em>[1.0, 1.1, 1.2]</em><a class="headerlink" href="#queue-group-dequeue-reply-v1-2-6201-1-0-1-1-1-2" title="Permalink to this heading">¶</a></h2>
+<p>Represent dequeue reply.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>number of messages dequeued</p></td>
+</tr>
+<tr class="row-even"><td><p>message.element.id</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>id of the message</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.element.attributes.properties.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of message properties</p></td>
+</tr>
+<tr class="row-even"><td><p>message.element.attributes.properties.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of message properties</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.element.attributes.reply.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the reply queue</p></td>
+</tr>
+<tr class="row-even"><td><p>message.element.attributes.reply.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of reply queue</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.element.attributes.available</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>when the message was available for dequeue (us since epoch)</p></td>
+</tr>
+<tr class="row-even"><td><p>message.element.payload.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the type string</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.element.payload.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the type string</p></td>
+</tr>
+<tr class="row-even"><td><p>message.element.payload.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the payload</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.element.payload.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the payload</p></td>
+</tr>
+<tr class="row-even"><td><p>message.element.redelivered</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>how many times the message has been redelivered</p></td>
+</tr>
+<tr class="row-odd"><td><p>message.element.timestamp</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>when the message was enqueued (us since epoch)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id22">
+<h3>example<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">message</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;Uy+LbBV2Tcqf6CowAt5Xng==&quot;</span>
+<span class="w">    </span><span class="nt">attributes</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;property</span><span class="nv"> </span><span class="s">1:property</span><span class="nv"> </span><span class="s">2&quot;</span>
+<span class="w">      </span><span class="nt">reply</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;queueB&quot;</span>
+<span class="w">      </span><span class="nt">available</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1559762216552100000</span>
+<span class="w">    </span><span class="nt">payload</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.json/&quot;</span>
+<span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;e30=&quot;</span>
+<span class="w">    </span><span class="nt">redelivered</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1559762216552100000</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAABUy+LbBV2Tcqf6CowAt5XngAAAAAAAAAVcHJvcGVydHkgMTpwcm9wZXJ0eSAyAAAAAAAAAAZxdWV1ZUIVpWN406nwoAAAAAAAAAAGLmpzb24vAAAAAAAAAAJ7fQAAAAAAAAABFaVjeNOp8KA=</span></code></p>
+</section>
+</section>
+<section id="conversation-connect-request-3220-1-3-1-4">
+<h2>conversation_connect_request - <strong>#3220</strong> - <em>[1.3, 1.4]</em><a class="headerlink" href="#conversation-connect-request-3220-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to establish a conversation</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>service.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the service name</p></td>
+</tr>
+<tr class="row-even"><td><p>service.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the service name</p></td>
+</tr>
+<tr class="row-odd"><td><p>has_value</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+<td><p>if 1, deadline.remaining is propagated</p></td>
+</tr>
+<tr class="row-even"><td><p>deadline.remaining</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>if has_value, the remaining time before deadline (ns)</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent.span</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>8</p></td>
+<td><p>parent execution span</p></td>
+</tr>
+<tr class="row-even"><td><p>parent.service.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>parent service name size</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent.service.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with parent service name</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-even"><td><p>duplex</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+<td><p>in what duplex the callee shall enter (receive:1, send:0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer type name size</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with buffer type in the form ‘type/subtype’</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer payload size (could be very big)</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>buffer payload data (with the size of buffer.payload.size)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id23">
+<h3>example<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">service.name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;service1&quot;</span>
+<span class="nt">deadline.remaining</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42000000000</span>
+<span class="nt">parent</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">span</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoc=&quot;</span>
+<span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;parent-service&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">buffer</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.binary/&quot;</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAIc2VydmljZTEBAAAACcdlJACAgYKDhIWGhwAAAAAAAAAOcGFyZW50LXNlcnZpY2UAAAAAAAAAKgAAAAAAAAAQAAAAAAAAABBbbBv28ktIDb283vVMOghRW2wb9vJLSA29vN71TDoIUgAAAAAAAAAAAAguYmluYXJ5LwAAAAAAAACAgIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=</span></code></p>
+</section>
+</section>
+<section id="conversation-connect-request-v2-3210-1-0-1-1-1-2">
+<h2>conversation_connect_request_v2 - <strong>#3210</strong> - <em>[1.0, 1.1, 1.2]</em><a class="headerlink" href="#conversation-connect-request-v2-3210-1-0-1-1-1-2" title="Permalink to this heading">¶</a></h2>
+<p>Sent to establish a conversation</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>service.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the service name</p></td>
+</tr>
+<tr class="row-even"><td><p>service.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the service name</p></td>
+</tr>
+<tr class="row-odd"><td><p>service.timeout.duration</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>timeout (in ns</p></td>
+</tr>
+<tr class="row-even"><td><p>parent.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>parent service name size</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with parent service name</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-even"><td><p>duplex</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+<td><p>in what duplex the callee shall enter (receive:1, send:0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer type name size</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with buffer type in the form ‘type/subtype’</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer payload size (could be very big)</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>buffer payload data (with the size of buffer.payload.size)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id24">
+<h3>example<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">service.name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;service1&quot;</span>
+<span class="nt">service.timeout.duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42000000000</span>
+<span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;parent-service&quot;</span>
+<span class="nt">xid</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">formatID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="w">  </span><span class="nt">gtrid_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">bqual_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;W2wb9vJLSA29vN71TDoIUVtsG/byS0gNvbze9Uw6CFI=&quot;</span>
+<span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">buffer</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.binary/&quot;</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAIc2VydmljZTEAAAAJx2UkAAAAAAAAAAAOcGFyZW50LXNlcnZpY2UAAAAAAAAAKgAAAAAAAAAQAAAAAAAAABBbbBv28ktIDb283vVMOghRW2wb9vJLSA29vN71TDoIUgAAAAAAAAAAAAguYmluYXJ5LwAAAAAAAACAgIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=</span></code></p>
+</section>
+</section>
+<section id="conversation-connect-reply-3211-1-0-1-1-1-2-1-3-1-4">
+<h2>conversation_connect_reply - <strong>#3211</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#conversation-connect-reply-3211-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Reply for a conversation</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>code.result</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>result code of the connection attempt</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id25">
+<h3>example<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">code.result</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YP////8=</span></code></p>
+</section>
+</section>
+<section id="conversation-send-3212-1-0-1-1-1-2-1-3-1-4">
+<h2>conversation_send - <strong>#3212</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#conversation-send-3212-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Represent a message sent ‘over’ an established connection</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>duplex</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+<td><p>in what duplex the callee shall enter (receive:1, send:0)</p></td>
+</tr>
+<tr class="row-even"><td><p>code.result</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+<td><p>status of the connection</p></td>
+</tr>
+<tr class="row-odd"><td><p>code.user</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>user code, if callee did a tpreturn and supplied user-code</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer type name size</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with buffer type in the form ‘type/subtype’</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer payload size (could be very big)</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>buffer payload data (with the size of buffer.payload.size)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id26">
+<h3>example<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">code.result</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="nt">code.user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42</span>
+<span class="nt">buffer</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.binary/&quot;</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YAAAAAAAAAAAAAAAAAAqAAAAAAAAAAguYmluYXJ5LwAAAAAAAACAgIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8=</span></code></p>
+</section>
+</section>
+<section id="conversation-disconnect-3213-1-0-1-1-1-2-1-3-1-4">
+<h2>conversation_disconnect - <strong>#3213</strong> - <em>[1.0, 1.1, 1.2, 1.3, 1.4]</em><a class="headerlink" href="#conversation-disconnect-3213-1-0-1-1-1-2-1-3-1-4" title="Permalink to this heading">¶</a></h2>
+<p>Sent to abruptly disconnect the conversation</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id27">
+<h3>example<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">execution</span><span class="p">:</span><span class="w"> </span><span class="kt">!!binary</span><span class="w"> </span><span class="s">&quot;cHPL9BRESkGHswCG8UP8YA==&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>Binary representation of the example (network byte ordering in base64):
+<code class="docutils literal notranslate"><span class="pre">cHPL9BRESkGHswCG8UP8YA==</span></code></p>
+</section>
+</section>
+<section id="id28">
+<h2>conversation_connect_request_v2 - <strong>#3210</strong> - <em>[1.0, 1.1, 1.2]</em><a class="headerlink" href="#id28" title="Permalink to this heading">¶</a></h2>
+<p>Sent to establish a conversation</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>role name</p></th>
+<th class="head"><p>network type</p></th>
+<th class="head"><p>network size</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>execution</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>16</p></td>
+<td><p>uuid of the current execution context (breadcrumb)</p></td>
+</tr>
+<tr class="row-odd"><td><p>service.name.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the service name</p></td>
+</tr>
+<tr class="row-even"><td><p>service.name.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the service name</p></td>
+</tr>
+<tr class="row-odd"><td><p>service.timeout.duration</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>timeout (in ns</p></td>
+</tr>
+<tr class="row-even"><td><p>parent.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>size of the parent service name (the caller)</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>data of the parent service name (the caller)</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.formatID</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>xid format type. if 0 no more information of the xid is transported</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.gtrid_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction gtrid part</p></td>
+</tr>
+<tr class="row-even"><td><p>xid.bqual_length</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>length of the transaction branch part</p></td>
+</tr>
+<tr class="row-odd"><td><p>xid.data</p></td>
+<td><p>(fixed) binary</p></td>
+<td><p>32</p></td>
+<td><p>byte array with the size of gtrid_length + bqual_length (max 128)</p></td>
+</tr>
+<tr class="row-even"><td><p>duplex</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+<td><p>in what duplex the callee shall enter (receive:1, send:0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.type.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer type name size</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.type.data</p></td>
+<td><p>dynamic string</p></td>
+<td><p>[0..*]</p></td>
+<td><p>byte array with buffer type in the form ‘type/subtype’</p></td>
+</tr>
+<tr class="row-odd"><td><p>buffer.data.size</p></td>
+<td><p>uint64</p></td>
+<td><p>8</p></td>
+<td><p>buffer payload size (could be very big)</p></td>
+</tr>
+<tr class="row-even"><td><p>buffer.data.data</p></td>
+<td><p>dynamic binary</p></td>
+<td><p>[0..*]</p></td>
+<td><p>buffer payload data (with the size of buffer.payload.size)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.7
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../1.6/middleware/gateway/documentation/protocol/protocol.maintenance.html">release/1.6</a></dd>
+      <dd><a href="protocol.maintenance.html">release/1.7</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

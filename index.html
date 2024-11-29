@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
     <style>
-        p,h1,a {
+        p,h1,ul,img {
         margin-right: 150px;
         margin-left: 80px;
         }       
+        body {
+           font-family: Arial, sans-serif;
+	   background-color:rgb(207, 233, 242);
+        }
     </style>
     <head><title>Casual</title></head>
-    <body style="background-color:rgb(207, 233, 242);"></body>
+    <body>
+	<img src="docs/release/1.7/_images/casual-box-left.png"/>
         <H1>What is casual?</H1>
         <p>
 In general terms casual is a distributed application server. A platform to build applications on top of, that can interact with each other in a distributed manner, with or without transactional context. 
@@ -21,7 +26,7 @@ A service can call other services, and casual will find where these services res
 
 casual provides a queue implementation together with queue-to-service and queue-to-queue forward functionality. 
         </p>
-<h1> Why use casual? </h1>
+<h1>Why use casual? </h1>
 <p>
 casual’s semantics are simple and easy to reason about. 
 
@@ -34,8 +39,10 @@ casual can be managed in a UNIX-friendly way that enables interoperability with 
 </p>
 
     <h1>Documentation</h1>
-    <a href="docs/release/1.6/index.html">User Manual</a>
-
+    <ul>
+    <li><a href="docs/presentation.html">Overview of Casual</a></li>
+    <li><a href="docs/release/1.7/index.html">User Manual</a></li>
+    </ul>
     <h1>MIT-License</h1>
     <p>
         Copyright (c) 2015 The casual team

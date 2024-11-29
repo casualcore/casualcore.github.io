@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>field string serialization &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="string development" href="../../string.development.html" />
+    <link rel="prev" title="order development" href="../../order.development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../documentation/development.html">development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../field.development.html">field development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../octet.development.html">octet development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../order.development.html">order development</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">field string serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../string.development.html">string development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../common/documentation/arguments.development.html">arguments development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../common/documentation/log.development.html">log development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration/documentation/build/executable.development.html">configuration build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration/documentation/build/server.development.html">configuration build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tools/documentation/build/executable.development.html">casual-build-executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tools/documentation/build/server.development.html">casual-build-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../domain/documentation/environment.development.html">environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../administration/documentation/api.development.html">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../documentation/development.html">development</a></li>
+      <li class="breadcrumb-item active">field string serialization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/middleware/buffer/documentation/serialization/field/string.development.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="field-string-serialization">
+<h1>field string serialization<a class="headerlink" href="#field-string-serialization" title="Permalink to this heading">¶</a></h1>
+<p>Functionality to serialize a fielded buffer to and from a string representation</p>
+<section id="semantics">
+<h2>semantics<a class="headerlink" href="#semantics" title="Permalink to this heading">¶</a></h2>
+<p>Developer creates a <em>mapping-file</em> that defines a set of transformations/serializations
+for <code class="docutils literal notranslate"><span class="pre">field</span> <span class="pre">&lt;-&gt;</span> <span class="pre">string</span></code> bound to an arbitrary unique key.</p>
+<p>From this <em>mapping-file</em> the developer generates a <code class="docutils literal notranslate"><span class="pre">cpp</span> <span class="pre">file</span></code>, and then compiles and links
+the implementation to the executable. This can of course be done via a shared object.</p>
+<p>From the code that is going to perform the serialization, the developer uses the <code class="docutils literal notranslate"><span class="pre">C-api</span></code>
+to invoke a specific transformation/serialization by providing the arbitrary key (and the
+input/output - buffer/string)</p>
+</section>
+<section id="mapping-file">
+<h2>mapping file<a class="headerlink" href="#mapping-file" title="Permalink to this heading">¶</a></h2>
+<p>The following format can be used:</p>
+<ul class="simple">
+<li><p>yaml</p></li>
+<li><p>json</p></li>
+<li><p>xml</p></li>
+<li><p>ini</p></li>
+</ul>
+<p>The file-extension has to correlate with the format.</p>
+<p>yaml example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">mapping</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some_key_1</span>
+<span class="w">    </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some documentation</span>
+
+<span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w"> </span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FLD_STRING1</span><span class="w"> </span><span class="c1"># name of the field. </span>
+<span class="w">        </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"> </span><span class="c1"># size of the fixed string representation.</span>
+<span class="w">        </span><span class="c1"># alignment: &quot;left&quot;  &lt;- default value</span>
+<span class="w">        </span><span class="c1"># padding: &quot; &quot; &lt;- default value, if set, at least on char has to be set .</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FLD_STRING2</span>
+<span class="w">        </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">        </span><span class="nt">alignment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;left&quot;</span>
+<span class="w">        </span><span class="nt">padding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="w"> </span><span class="c1"># will be padded _to the right_ with &#39;.&#39;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some_key_2</span>
+<span class="w">    </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some documentation</span>
+
+<span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w"> </span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FLD_LONG1</span>
+<span class="w">        </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">        </span><span class="nt">alignment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;right&quot;</span>
+<span class="w">      </span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FLD_STRING2</span>
+<span class="w">        </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">        </span><span class="nt">alignment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;left&quot;</span>
+
+<span class="w">      </span><span class="c1"># other yaml syntax for the same thing</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> name</span><span class="p">:</span><span class="w"> </span><span class="nv">FLD_SHORT1</span><span class="p p-Indicator">,</span><span class="nt"> size</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</section>
+<section id="generate-the-implementation">
+<h2>generate the implementation<a class="headerlink" href="#generate-the-implementation" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">casual-buffer-field-serialize</span></code> is used to generate the implementation.</p>
+<p><em>as always, use option <code class="docutils literal notranslate"><span class="pre">--help</span></code> to get additional information on what’s possible</em></p>
+<p><strong>Example:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nv">$CASUAL_HOME</span>/bin/casual-buffer-field-serialize<span class="w"> </span>--files<span class="w"> </span>some-mapping-file.yaml<span class="w"> </span>--output<span class="w"> </span>some-implementation.cpp
+</pre></div>
+</div>
+<section id="compile-and-link">
+<h3>compile and link<a class="headerlink" href="#compile-and-link" title="Permalink to this heading">¶</a></h3>
+<p>Compile and link the implementation.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>g++<span class="w"> </span>-o<span class="w"> </span>some-implementation.o<span class="w"> </span>some-implementation.cpp<span class="w"> </span>–I<span class="nv">$CASUAL_HOME</span>/include<span class="w"> </span>-pthread<span class="w"> </span>-c<span class="w"> </span>-O3<span class="w"> </span>-fpic<span class="w"> </span>-std<span class="o">=</span>c++14
+</pre></div>
+</div>
+<p>Link the object file to the lib/executable to the lib/executable that uses the <em>serialization</em>.</p>
+</section>
+<section id="possible-build-scenarios">
+<h3>possible build scenarios<a class="headerlink" href="#possible-build-scenarios" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>One <em>mapping-file</em> for all mappings, that generate one cpp implementation file.</p>
+<ul>
+<li><p>The compiled object file could be linked directly, or via a library.</p></li>
+</ul>
+</li>
+<li><p>Many <em>mapping-files</em> that generate one cpp implementation file.</p>
+<ul>
+<li><p>The compiled object file could be linked directly, or via a library.</p></li>
+</ul>
+</li>
+<li><p>Many <em>mapping-files</em> that generates many implementation files.</p>
+<ul>
+<li><p>These could be linked to one shared object file (lib), that is linked to the executable</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="invoke-the-serialization">
+<h2>invoke the serialization<a class="headerlink" href="#invoke-the-serialization" title="Permalink to this heading">¶</a></h2>
+<p>The developer uses the <code class="docutils literal notranslate"><span class="pre">C-api</span></code> to invoke a specific transformation/serialization
+by providing the arbitrary key (and the input/output - buffer/string)</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="c1">// error handling omitted for clarity</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">some_function</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="kt">char</span><span class="w"> </span><span class="n">memory</span><span class="p">[</span><span class="w"> </span><span class="mi">1024</span><span class="p">];</span><span class="w"> </span><span class="c1">// some large enough memory</span>
+<span class="w">   </span><span class="n">casual_field_to_string</span><span class="p">(</span><span class="w"> </span><span class="n">memory</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="w"> </span><span class="n">memory</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;some-defined-key&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">   </span><span class="c1">// use the _stringified_ representation...</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">some_function</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">memory</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tpalloc</span><span class="p">(</span><span class="w"> </span><span class="n">CASUAL_FIELD</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">128</span><span class="p">);</span><span class="w"> </span><span class="c1">// buffer will be expanded during the transformation</span>
+<span class="w">   </span><span class="n">casual_field_from_string</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;some-defined-key&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">memory</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<span class="w">   </span><span class="c1">// use the buffer...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../order.development.html" class="btn btn-neutral float-left" title="order development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../string.development.html" class="btn btn-neutral float-right" title="string development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.7
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../../1.6/middleware/buffer/documentation/serialization/field/string.development.html">release/1.6</a></dd>
+      <dd><a href="string.development.html">release/1.7</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

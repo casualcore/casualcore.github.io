@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual configuration &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="casual describe" href="describe.operation.html" />
+    <link rel="prev" title="casual call" href="call.operation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/components.html">components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/user-particles.html">user particles</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../documentation/operation.html">operation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="overview.html">command line interface</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.operation.html">overview of <code class="docutils literal notranslate"><span class="pre">casual</span></code> command line interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="casual.operation.html">casual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buffer.operation.html">casual buffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.operation.html">casual call</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">casual configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="describe.operation.html">casual describe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="discovery.operation.html">casual discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="domain.operation.html">casual domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway.operation.html">casual gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="internal.operation.html">casual internal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="queue.operation.html">casual queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="service.operation.html">casual service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transaction.operation.html">casual transaction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../environment.operation.html">environment variables that affect operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/domain.gateway.operation.html">configuration gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/domain.general.operation.html">configuration domain (general)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/domain.queue.operation.html">configuration queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/domain.transaction.operation.html">configuration transaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/system.operation.html">configuration system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/field.operation.html">field operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../common/documentation/log.operation.html">log operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../http/documentation/outbound/configuration.operation.html">http outbound configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../queue/documentation/queue.operation.html">casual-queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../queue/documentation/upgrade.operation.html">queue upgrade</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../documentation/operation.html">operation</a></li>
+          <li class="breadcrumb-item"><a href="overview.html">command line interface</a></li>
+      <li class="breadcrumb-item active">casual configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/middleware/administration/documentation/cli/configuration.operation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-configuration">
+<h1>casual configuration<a class="headerlink" href="#casual-configuration" title="Permalink to this heading">¶</a></h1>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">host# casual --help configuration</span>
+
+<span class="go">configuration [0..1]</span>
+<span class="go">     configuration utility - does NOT actively configure anything</span>
+<span class="go">                    </span>
+<span class="go">     Used to check and normalize configuration</span>
+
+<span class="go">   SUB OPTIONS:</span>
+
+<span class="go">      --get [0..1]  (json, yaml, xml, ini) [0..1]</span>
+<span class="go">           get current configuration</span>
+
+<span class="go">      --post [0..1]  (json, yaml, xml, ini) [1]</span>
+<span class="go">           reads configuration from stdin and replaces the domain configuration</span>
+<span class="go">           </span>
+<span class="go">           casual will try to conform to the new configuration as smooth as possible. Although, there could be some &quot;noise&quot;</span>
+<span class="go">           depending on what parts are updated.</span>
+
+<span class="go">      --put [0..1]  (json, yaml, xml, ini) [1]</span>
+<span class="go">           reads configuration from stdin and adds or updates parts</span>
+<span class="go">           </span>
+<span class="go">           The semantics are similar to http PUT:</span>
+<span class="go">           * every key that is found is treated as an update of that _entity_</span>
+<span class="go">           * every key that is NOT found is treated as a new _entity_ and added to the current state </span>
+
+<span class="go">      --edit [0..1]  (json, yaml, xml, ini) [0..1]</span>
+<span class="go">           get current configuration, starts an editor, on quit the edited configuration is posted.</span>
+<span class="go">           </span>
+<span class="go">           The editor is deduced from the following environment variables, in this order:</span>
+<span class="go">           * CASUAL_TERMINAL_EDITOR</span>
+<span class="go">           * VISUAL</span>
+<span class="go">           * EDITOR</span>
+<span class="go">           </span>
+<span class="go">           If none is set, `vi` is used.</span>
+<span class="go">           </span>
+<span class="go">           If no changes are detected, no update will take place.</span>
+
+<span class="go">      --enable-groups [0..1]  (&lt;name&gt;..) [1..*]</span>
+<span class="go">           INCUBATION enables groups</span>
+<span class="go">           Enables groups that provided group names matches.</span>
+<span class="go">           </span>
+<span class="go">           This effects entities that has memberships to enabled groups</span>
+<span class="go">           (domain:Server, domain:Executable, queue::Forward)</span>
+<span class="go">           </span>
+<span class="go">           @attention INCUBATION - might change during, or in between minor version.</span>
+
+<span class="go">      --disable-groups [0..1]  (&lt;name&gt;..) [1..*]</span>
+<span class="go">           INCUBATION disables groups</span>
+<span class="go">           Disables groups that provided group names matches.</span>
+<span class="go">           </span>
+<span class="go">           This effects entities that has memberships to enabled groups</span>
+<span class="go">           (domain:Server, domain:Executable, queue::Forward)</span>
+<span class="go">           </span>
+<span class="go">           @attention INCUBATION - might change during, or in between minor version.</span>
+
+<span class="go">      --normalize [0..1]  (&lt;value&gt;) [1..*]</span>
+<span class="go">           normalizes the supplied configuration glob pattern to stdout</span>
+<span class="go">           </span>
+<span class="go">           The format is default yaml, but could be supplied via the --format option</span>
+
+<span class="go">      --validate [0..1]  (&lt;value&gt;) [1..*]</span>
+<span class="go">           validates configuration from supplied glob patterns</span>
+<span class="go">           </span>
+<span class="go">           On success exit with 0, on error not 0, and message printed to stderr</span>
+
+<span class="go">      --format [0..1]  (yaml, json, ini, xml) [1]</span>
+<span class="go">           defines what format should be used</span>
+
+<span class="go">      --union [0..1]  (&lt;value&gt;) [0..*]</span>
+<span class="go">           union of configuration from stdin(lhs) and supplied glob pattern(rhs), outputs to stdout</span>
+<span class="go">              rhs has precedence over lhs</span>
+<span class="go">                                   </span>
+<span class="go">              The format is default yaml, but could be supplied via the --format option</span>
+
+<span class="go">      --difference [0..1]  (&lt;value&gt;) [0..*]</span>
+<span class="go">           difference of configuration from stdin(lhs) and supplied glob pattern(rhs), outputs to stdout</span>
+<span class="go">              lhs has precedence over rhs</span>
+<span class="go">                                   </span>
+<span class="go">              The format is default yaml, but could be supplied via the --format option</span>
+
+<span class="go">      --intersection [0..1]  (&lt;value&gt;) [0..*]</span>
+<span class="go">           intersection of configuration from stdin(lhs) and supplied glob pattern(rhs), outputs to stdout</span>
+<span class="go">              lhs has precedence over rhs</span>
+<span class="go">                                   </span>
+<span class="go">              The format is default yaml, but could be supplied via the --format option</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="call.operation.html" class="btn btn-neutral float-left" title="casual call" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="describe.operation.html" class="btn btn-neutral float-right" title="casual describe" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.7
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../1.6/index.html">release/1.6</a></dd>
+      <dd><a href="configuration.operation.html">release/1.7</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
