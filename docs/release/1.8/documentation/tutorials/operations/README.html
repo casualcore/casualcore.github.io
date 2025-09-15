@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual Operations Tutorial &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="casual-example-server" href="../../../middleware/example/server/example.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../middleware/documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../middleware/documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../middleware/documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../middleware/documentation/examples.html">examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">casual Operations Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/tutorials/operations/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-operations-tutorial">
+<h1>casual Operations Tutorial<a class="headerlink" href="#casual-operations-tutorial" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This tutorial will cover the basics of casual from an operations perspective. We will go over how to configure a basic domain, how to add services and queues as well as setting up connections between different domains. More development-oriented topics like writing and building servers are outside the scope of this tutorial.</p>
+<p>It is assumed that you already have a working installation of casual, as well as some basic familiarity with Linux. To help you follow along, every command you will need to execute will be shown along with the expected output.</p>
+</section>
+<section id="setup">
+<h2>2 Setup<a class="headerlink" href="#setup" title="Permalink to this heading">¶</a></h2>
+<section id="prerequisites">
+<h3>2.1 Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h3>
+<p>Before we get started, we need to confirm that everything is installed and that you can access the casual CLI. Try running the command  <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">--version</span></code>. You should see output similar to the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>--version
+key<span class="w">       </span>value
+--------<span class="w">  </span>----------------------------------------
+casual<span class="w">    </span><span class="m">1</span>.8.0
+commit<span class="w">    </span>aaa9becd066149dc7ea6cd93985ecfc4c39f3a51
+compiler<span class="w">  </span>g++:<span class="w"> </span><span class="m">13</span>.3.0
+</pre></div>
+</div>
+<p>If you get an error, ensure that the <code class="docutils literal notranslate"><span class="pre">CASUAL_HOME</span></code> environment variable points to the location of your casual installation, that <code class="docutils literal notranslate"><span class="pre">$CASUAL_HOME/bin</span></code> is in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code> and that <code class="docutils literal notranslate"><span class="pre">$CASUAL_HOME/lib</span></code> is in your <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>, for example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CASUAL_HOME</span><span class="o">=</span>/opt/casual
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$CASUAL_HOME</span>/bin:<span class="nv">$PATH</span>
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$CASUAL_HOME</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+</pre></div>
+</div>
+</section>
+<section id="environment">
+<h3>2.2 Environment<a class="headerlink" href="#environment" title="Permalink to this heading">¶</a></h3>
+<p>casual domains use several different environment variables to define their operation, the most important of which is <code class="docutils literal notranslate"><span class="pre">CASUAL_DOMAIN_HOME</span></code>. This specifies the home directory of the domain and will be the location where any necessary files are stored. Any process that wants to interact with the domain (including the casual CLI) must have this variable set to the same path as the domain itself. For most of this tutorial, we’re going to assume that your domain is located in <code class="docutils literal notranslate"><span class="pre">casual/documentation/tutorials/operations/domain</span></code>. So, if you cloned this tutorials repo to your home directory, the value of your <code class="docutils literal notranslate"><span class="pre">CASUAL_DOMAIN_HOME</span></code> should be <code class="docutils literal notranslate"><span class="pre">$HOME/casual/documentation/tutorials/operations/domain</span></code>.</p>
+<p>Let’s put this into practice and set the <code class="docutils literal notranslate"><span class="pre">CASUAL_DOMAIN_HOME</span></code> variable; for example, if this repo is in your home directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CASUAL_DOMAIN_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/casual/documentation/tutorials/operations/domain
+</pre></div>
+</div>
+<p>Confirm that the variable is correct:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$CASUAL_DOMAIN_HOME</span>
+/users/bob/casual/documentation/tutorials/operations/domain<span class="w"> </span><span class="c1"># or wherever you decided to put it</span>
+</pre></div>
+</div>
+<p>Until further notice, all instructions assume that your working directory is <code class="docutils literal notranslate"><span class="pre">casual/documentation/tutorials/operations/domain</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$CASUAL_DOMAIN_HOME</span>
+</pre></div>
+</div>
+<p>Great! You’re all set to continue to the next step.</p>
+</section>
+<section id="configuration">
+<h3>2.3 Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h3>
+<p>Most of everything you’ll want your domain to do is specified through the configuration. This is where you tell casual which servers you want it to start, if you want queues, whether to connect to other domains, and much more. casual accepts configuration files written in YAML, JSON, XML, or INI, although we’ll stick to YAML for this tutorial. Configuration files are either passed to the domain on startup, or applied afterwards in order to change an already running domain. You can start a domain without any configuration files, but that wouldn’t be very interesting!</p>
+<p>The first thing we’re going to do is give our domain a name. This can be whatever suits you, but for the purposes of this tutorial it might be good to pick something unique, like <code class="docutils literal notranslate"><span class="pre">&lt;your-name&gt;-domain</span></code>. Open up <code class="docutils literal notranslate"><span class="pre">configuration/domain.yaml</span></code> and fill in your desired domain name, for example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bobs-domain</span>
+</pre></div>
+</div>
+<p>We will return to this configuration file throughout this tutorial, but this is will do for starting a very basic domain.</p>
+</section>
+</section>
+<section id="introducing-the-casual-cli">
+<h2>3 Introducing the casual CLI<a class="headerlink" href="#introducing-the-casual-cli" title="Permalink to this heading">¶</a></h2>
+<p>Before we start our first domain we’re going to take a brief detour into the casual CLI. This is your primary tool for interacting with casual and offers a convenient way for controlling pretty much every aspect of your domain.</p>
+<p>The CLI is divided into several different categories that covers the functionality related to that component. For example, <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">queue</span></code> holds all the options related to queues, <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">transaction</span></code> everything related to transactions, and so forth. At every level you can use the <code class="docutils literal notranslate"><span class="pre">--help</span></code> option to see all the options that are available along with a brief explanation. The CLI also offers convenient tab-completion (currently only for bash); try typing <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">s</span></code>and hitting tab for instance! Finally, some commands can be chained together by piping the output of one command into the next, more on that later.</p>
+</section>
+<section id="getting-started-with-servers">
+<h2>4 Getting started with servers<a class="headerlink" href="#getting-started-with-servers" title="Permalink to this heading">¶</a></h2>
+<section id="our-first-domain">
+<h3>4.1 Our first domain<a class="headerlink" href="#our-first-domain" title="Permalink to this heading">¶</a></h3>
+<p>It’s finally time to start our first domain! Simply pass the configuration file to <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span> <span class="pre">--boot</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--boot<span class="w"> </span>configuration/domain.yaml
+information:<span class="w"> </span>configuration<span class="w"> </span>files<span class="w"> </span>used:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;configuration/domain.yaml&quot;</span><span class="o">]</span>
+task:<span class="w"> </span>boot<span class="w"> </span>domain<span class="w">  </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+<p>Congratulations! You are now the proud owner of one, rather empty, casual domain. If you get an error from <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span> <span class="pre">--boot</span></code>, make sure that your domain.yaml is correctly formatted, YAML is very particular about indentation.</p>
+<p>By running the command <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span> <span class="pre">--information</span></code>, you can see that your configuration has been applied:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--information
+key<span class="w">                                             </span>value
+----------------------------------------------<span class="w">  </span>--------------------------------
+version.casual<span class="w">                                  </span><span class="m">1</span>.8.0
+version.compiler<span class="w">                                </span>g++:<span class="w"> </span><span class="m">13</span>.3.0
+domain.identity.name<span class="w">                            </span>bobs-domain
+...
+</pre></div>
+</div>
+<p>Take a moment to look around. You can use <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">service</span> <span class="pre">--list-services</span></code> to list all the services available in the domain and <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">queue</span> <span class="pre">--list-queues</span></code> to list all the queues. As you can see there’s not a lot going on in our domain, let’s change that.</p>
+<p>We start by shutting the domain down:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--shutdown
+task:<span class="w"> </span>shutdown<span class="w"> </span>domain<span class="w"> </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+</section>
+<section id="adding-servers">
+<h3>4.2 Adding servers<a class="headerlink" href="#adding-servers" title="Permalink to this heading">¶</a></h3>
+<p>Typically, a casual domain will have one or more servers, each advertising one or more services that perform some task when called upon. Users can build their own servers for casual to manage, but we will be using the example-server that comes prebuilt with the casual installation.</p>
+<p>When you already have a server, all you have to do is add it to the configuration, along with any additional options such as how many instances you want casual to start. Add the following to your domain.yaml, below <code class="docutils literal notranslate"><span class="pre">name</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">servers</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># this alias can be used when managing the server through the casual CLI</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-example-server</span>
+<span class="w">      </span><span class="c1"># the path to the executable, note the use of environment variables</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CASUAL_HOME}/example/bin/casual-example-server</span>
+<span class="w">      </span><span class="c1"># servers can be scaled horizontally by adding instances</span>
+<span class="w">      </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
+<p>The full domain.yaml should now look something like this (the comments from above omitted for readability):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bobs-domain</span>
+
+<span class="w">  </span><span class="nt">servers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-example-server</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CASUAL_HOME}/example/bin/casual-example-server</span>
+<span class="w">      </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
+<p>Boot up the domain:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--boot<span class="w"> </span>configuration/domain.yaml
+information:<span class="w"> </span>configuration<span class="w"> </span>files<span class="w"> </span>used:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;configuration/domain.yaml&quot;</span><span class="o">]</span>
+task:<span class="w"> </span>boot<span class="w"> </span>domain<span class="w">  </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+<p>casual keeps track of all servers running in the domain, you can list them with <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span> <span class="pre">--list-servers</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--list-servers
+<span class="nb">alias</span><span class="w">                       </span>CI<span class="w">  </span>I<span class="w">  </span>state<span class="w">    </span>restart<span class="w">  </span><span class="c1">#r  path</span>
+--------------------------<span class="w">  </span>--<span class="w">  </span>-<span class="w">  </span>-------<span class="w">  </span>-------<span class="w">  </span>--<span class="w">  </span>---------------------------------------------------------------
+casual-domain-discovery<span class="w">      </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-domain-discovery&quot;</span>
+casual-domain-manager<span class="w">        </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">    </span><span class="nb">false</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;casual-domain-manager&quot;</span>
+casual-gateway-manager<span class="w">       </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-gateway-manager&quot;</span>
+casual-queue-manager<span class="w">         </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-queue-manager&quot;</span>
+casual-service-manager<span class="w">       </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-service-manager&quot;</span>
+casual-transaction-manager<span class="w">   </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-transaction-manager&quot;</span>
+my-example-server<span class="w">            </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">    </span><span class="nb">false</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">CASUAL_HOME</span><span class="si">}</span><span class="s2">/example/bin/casual-example-server&quot;</span>
+</pre></div>
+</div>
+<p>Do not be intimidated by all the abbreviations in the header, you can obtain a legend for this option by calling <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span> <span class="pre">--legend</span> <span class="pre">--list-servers</span></code>. This feature is available for most options that output information.</p>
+<p>As you can see, in addition to the server we told casual to start, there are a number of internal servers that expose various administration services. These are always present. Our server will automatically advertise its services, making them available to the domain. Check them out by calling <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">service</span> <span class="pre">--list-services</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>service<span class="w"> </span>--list-services
+name<span class="w">                                                         </span>category<span class="w">  </span>V<span class="w">  </span>mode<span class="w">    </span>timeout<span class="w">  </span>contract<span class="w">  </span>I<span class="w">  </span>C<span class="w">  </span>AT<span class="w">     </span>min<span class="w">    </span>max<span class="w">    </span>P<span class="w">  </span>PAT<span class="w">    </span>RI<span class="w">  </span>RC<span class="w">  </span>last
+-----------------------------------------------------------<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>------<span class="w">  </span>-------<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>-<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-<span class="w">  </span>-----<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>----
+casual/example/advertised/echo<span class="w">                               </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/atomic/echo<span class="w">                                   </span>example<span class="w">   </span>D<span class="w">  </span>atomic<span class="w">        </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/auto/echo<span class="w">                                     </span>example<span class="w">   </span>D<span class="w">  </span>auto<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/conversation<span class="w">                                  </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/conversation_recv_send<span class="w">                        </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/conversation_recv_send_auto<span class="w">                   </span>example<span class="w">   </span>D<span class="w">  </span>auto<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/domain/echo/453580b7ed4e4e069665e8a4ff7e8197<span class="w">  </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/domain/echo/bobs-domain<span class="w">                       </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/domain/name<span class="w">                                   </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/echo<span class="w">                                          </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/error/system<span class="w">                                  </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/forward<span class="w">                                       </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/forward/echo<span class="w">                                  </span>example<span class="w">   </span>D<span class="w">  </span>auto<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/forward/join/echo<span class="w">                             </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/lowercase<span class="w">                                     </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/rollback<span class="w">                                      </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/sink<span class="w">                                          </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/sleep<span class="w">                                         </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/terminate<span class="w">                                     </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/undiscoverable/echo<span class="w">                           </span>example<span class="w">   </span>U<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/uppercase<span class="w">                                     </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/work<span class="w">                                          </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+</pre></div>
+</div>
+<p>Remember: you can use <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">service</span> <span class="pre">--legend</span> <span class="pre">--list-services</span></code> to explain the columns of the output.</p>
+<section id="calling-services-from-the-cli">
+<h4>4.2.1 Calling services from the CLI<a class="headerlink" href="#calling-services-from-the-cli" title="Permalink to this heading">¶</a></h4>
+<p>In most cases, services are called programmatically by other services or executables, but the casual CLI has the ability to call services from the command line. Try running the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cat<span class="w"> </span>configuration/domain.yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--compose<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>call<span class="w"> </span>--service<span class="w"> </span>casual/example/echo<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--extract
+domain:
+<span class="w">  </span>name:<span class="w"> </span>bobs-domain
+
+<span class="w">  </span>servers:
+...
+</pre></div>
+</div>
+<p>Let’s dissect what we just did: first we piped the contents of our domain.yaml file to <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">buffer</span> <span class="pre">--compose</span></code>. This takes the input and creates a buffer in a casual-compatible format. Note that most services will have a more specific API, but <code class="docutils literal notranslate"><span class="pre">casual/example/echo</span></code> just returns whatever we give it. It is also worth mentioning that the slashes in the service name is just a naming convention, it could just as well have been called <code class="docutils literal notranslate"><span class="pre">casual_example_echo</span></code> or <code class="docutils literal notranslate"><span class="pre">steve</span></code> as far as casual is concerned.</p>
+<p>Next, we pass our buffer to <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">call</span> <span class="pre">--service</span></code> with <code class="docutils literal notranslate"><span class="pre">casual/example/echo</span></code> as the argument specifying which service to call (try changing it to <code class="docutils literal notranslate"><span class="pre">casual/example/uppercase</span></code> for a different result). This performs the actual service call and returns the reply in the form of another buffer. Finally, the reply is passed to <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">buffer</span> <span class="pre">--extract</span></code> which extracts the data from the buffer and passes it to stdout.</p>
+</section>
+<section id="scaling-servers">
+<h4>4.2.2 Scaling servers<a class="headerlink" href="#scaling-servers" title="Permalink to this heading">¶</a></h4>
+<p>casual has the ability to start additional instances of servers when more capacity is needed. This can either be done through the configuration (see above), or through the CLI via the <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span> <span class="pre">--scale-aliases</span></code> option. Servers are referred to through their alias; to start another instance of our server, execute the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--scale-aliases<span class="w"> </span>my-example-server<span class="w"> </span><span class="m">2</span>
+task:<span class="w"> </span>scale<span class="w"> </span>aliases<span class="w"> </span>-<span class="w"> </span>started
+<span class="w">  </span><span class="nb">alias</span><span class="w"> </span>spawn:<span class="w"> </span>my-example-server<span class="w"> </span><span class="o">[</span><span class="m">17294</span><span class="o">]</span>
+<span class="w">  </span>sub<span class="w"> </span>task:<span class="w">  </span>-<span class="w"> </span><span class="k">done</span>
+task:<span class="w"> </span>scale<span class="w"> </span>aliases<span class="w"> </span>-<span class="w"> </span><span class="k">done</span>
+</pre></div>
+</div>
+<p>List the servers again to see the change:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--list-servers
+<span class="nb">alias</span><span class="w">                       </span>CI<span class="w">  </span>I<span class="w">  </span>state<span class="w">    </span>restart<span class="w">  </span><span class="c1">#r  path</span>
+--------------------------<span class="w">  </span>--<span class="w">  </span>-<span class="w">  </span>-------<span class="w">  </span>-------<span class="w">  </span>--<span class="w">  </span>---------------------------------------------------------------
+casual-domain-discovery<span class="w">      </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-domain-discovery&quot;</span>
+casual-domain-manager<span class="w">        </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">    </span><span class="nb">false</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;casual-domain-manager&quot;</span>
+casual-gateway-manager<span class="w">       </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-gateway-manager&quot;</span>
+casual-queue-manager<span class="w">         </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-queue-manager&quot;</span>
+casual-service-manager<span class="w">       </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-service-manager&quot;</span>
+casual-transaction-manager<span class="w">   </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">  </span>enabled<span class="w">     </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;/opt/casual/bin/casual-transaction-manager&quot;</span>
+my-example-server<span class="w">            </span><span class="m">2</span><span class="w">  </span><span class="m">2</span><span class="w">  </span>enabled<span class="w">    </span><span class="nb">false</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">CASUAL_HOME</span><span class="si">}</span><span class="s2">/example/bin/casual-example-server&quot;</span>
+</pre></div>
+</div>
+<p>That concludes our introduction to services, let’s shut down our domain before we move on to queues:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--shutdown
+task:<span class="w"> </span>shutdown<span class="w"> </span>domain<span class="w"> </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="queues-and-forwards">
+<h2>5 Queues and forwards<a class="headerlink" href="#queues-and-forwards" title="Permalink to this heading">¶</a></h2>
+<section id="queues">
+<h3>5.1 Queues<a class="headerlink" href="#queues" title="Permalink to this heading">¶</a></h3>
+<p>casual provides its own queue component where messages can be persistently stored and retrieved with transaction semantics. Servers and executables can interact with queues through a native API, though that is outside the scope of this tutorial.</p>
+<p>Creating queues is as easy as adding a few lines of config. Append the following to your domain.yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">queue</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># each queue group is a single process and may have [0..n] queues</span>
+<span class="w">    </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># like services, aliases are used to refer to queue groups</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-queue-group</span>
+<span class="w">        </span><span class="c1"># these are the individual queues of the group</span>
+<span class="w">        </span><span class="nt">queues</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+</pre></div>
+</div>
+<p>When finished, your domain.yaml may look something like this (mind the indentation!):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bobs-domain</span>
+
+<span class="w">  </span><span class="nt">servers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-example-server</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CASUAL_HOME}/example/bin/casual-example-server</span>
+<span class="w">      </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="w">  </span><span class="nt">queue</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-queue-group</span>
+<span class="w">        </span><span class="nt">queues</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+</pre></div>
+</div>
+<p>Start the domain anew:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--boot<span class="w"> </span>configuration/domain.yaml
+information:<span class="w"> </span>configuration<span class="w"> </span>files<span class="w"> </span>used:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;configuration/domain.yaml&quot;</span><span class="o">]</span>
+task:<span class="w"> </span>boot<span class="w"> </span>domain<span class="w">  </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+<p>Take a look at our brand-new queues by calling <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">queue</span> <span class="pre">--list-queues</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-queues
+name<span class="w">     </span>group<span class="w">           </span>rc<span class="w">  </span>rd<span class="w">     </span>count<span class="w">  </span>size<span class="w">  </span>avg<span class="w">  </span>E<span class="w">   </span>EQ<span class="w">  </span>DQ<span class="w">  </span>UC<span class="w">  </span>last
+-------<span class="w">  </span>--------------<span class="w">  </span>--<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>----<span class="w">  </span>---<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>----
+a<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+b<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+c<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+a.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+b.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+c.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+</pre></div>
+</div>
+<p>As you can see, casual has created corresponding error queues for all the queues we configured. This is where messages end up after a (configurable) number of failed dequeues from the “non-error” ditto.</p>
+<p>Unsurprisingly, all our queues are empty. Let’s work some CLI magic to enqueue a message:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello world&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--compose<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--enqueue<span class="w"> </span>a
+7864a6f4ebf9472ca0992987b143935e
+</pre></div>
+</div>
+<p>The hex-string returned by the command is the id that casual has generated for the message. This id can be used when dequeuing to retrieve this particular message, rather than the oldest one on the queue.</p>
+<p>If we list the queues again we can see that our message has been placed on the queue:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-queues
+name<span class="w">     </span>group<span class="w">           </span>rc<span class="w">  </span>rd<span class="w">     </span>count<span class="w">  </span>size<span class="w">  </span>avg<span class="w">  </span>E<span class="w">   </span>EQ<span class="w">  </span>DQ<span class="w">  </span>UC<span class="w">  </span>last
+-------<span class="w">  </span>--------------<span class="w">  </span>--<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>----<span class="w">  </span>---<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--------------------------------
+a<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">1</span><span class="w">    </span><span class="m">12</span><span class="w">   </span><span class="m">12</span><span class="w">  </span>ED<span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">2025</span>-09-09T20:24:56.291389+01:00
+b<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+c<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+a.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+b.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+c.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+</pre></div>
+</div>
+<p>We can also list all the messages of an individual queue:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-messages<span class="w"> </span>a
+id<span class="w">                                </span>S<span class="w">  </span>size<span class="w">  </span>trid<span class="w">  </span>rd<span class="w">  </span><span class="nb">type</span><span class="w">      </span>reply<span class="w">  </span>available<span class="w">  </span>timestamp
+--------------------------------<span class="w">  </span>-<span class="w">  </span>----<span class="w">  </span>----<span class="w">  </span>--<span class="w">  </span>--------<span class="w">  </span>-----<span class="w">  </span>---------<span class="w">  </span>--------------------------------
+46b2bda5488b4a9cabbf2473c9476c78<span class="w">  </span>C<span class="w">    </span><span class="m">12</span><span class="w">         </span><span class="m">0</span><span class="w">  </span>X_OCTET/<span class="w">                 </span>-<span class="w">  </span><span class="m">2025</span>-09-09T20:24:56.291389+01:00
+</pre></div>
+</div>
+<p>Just as you can use the CLI to put a message on the queue, you can use it to take one off it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--dequeue<span class="w"> </span>a<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--extract
+hello<span class="w"> </span>world
+</pre></div>
+</div>
+<p>Note that if there were multiple messages on the queue, and we wanted to dequeue this specific one, we could have provided the id after the queue name, like this: <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">queue</span> <span class="pre">--dequeue</span> <span class="pre">a</span> <span class="pre">7864a6f4ebf9472ca0992987b143935e</span></code>.</p>
+<p>The composability of the casual CLI means that you can create commands to perform more complex tasks, for example calling a service and putting the reply onto a queue:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;this is me shouting&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--compose<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>call<span class="w"> </span>--service<span class="w"> </span>casual/example/uppercase<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--enqueue<span class="w"> </span>b
+d0a92263c6534c8e8da41339125bc011
+$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--dequeue<span class="w"> </span>b<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--extract
+THIS<span class="w"> </span>IS<span class="w"> </span>ME<span class="w"> </span>SHOUTING
+</pre></div>
+</div>
+<p>There are many more options related to queues available in the casual CLI, feel free to have a look around before shutting the domain down in preparation for the next section:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--shutdown
+task:<span class="w"> </span>shutdown<span class="w"> </span>domain<span class="w"> </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+<section id="forwards">
+<h4>5.2 Forwards<a class="headerlink" href="#forwards" title="Permalink to this heading">¶</a></h4>
+<p>While casual provides an API for executables to programmatically enqueue and dequeue messages, sometimes what is needed is an entity that simply continuously dequeues messages from a queue and either enqueues them onto another queue or uses their contents to call a service. To this end, casual offers two flavours of <em>forward</em>: queues and services, that does just that.</p>
+<p>Let’s return to our domain.yaml once more to add some forwards under queue:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">queue</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># ...</span>
+<span class="w">    </span><span class="nt">forward</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># like queues, a forward group is a single process but may consist of multiple forwards</span>
+<span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-group</span>
+<span class="w">          </span><span class="c1"># a group may have both forward queues and services</span>
+<span class="w">          </span><span class="nt">queues</span><span class="p">:</span>
+<span class="w">            </span><span class="c1"># this forward will dequeue from the queue &#39;a&#39; and enqueue those messages onto &#39;b&#39;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-queue</span>
+<span class="w">              </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">              </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="w">              </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">          </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">            </span><span class="c1"># service forwards are slightly more complex as the reply from the service call may then be put onto another queue</span>
+<span class="w">            </span><span class="c1"># this forward will dequeue from &#39;b&#39;, call casual/example/uppercase, and put the reply onto &#39;c&#39;</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-service</span>
+<span class="w">              </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">              </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">              </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">casual/example/uppercase</span>
+<span class="w">              </span><span class="nt">reply</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+</pre></div>
+</div>
+<p>After these latest additions, your full domain.yaml should be similar to the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bobs-domain</span>
+
+<span class="w">  </span><span class="nt">servers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-example-server</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CASUAL_HOME}/example/bin/casual-example-server</span>
+<span class="w">      </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="w">  </span><span class="nt">queue</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-queue-group</span>
+<span class="w">        </span><span class="nt">queues</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+
+<span class="w">    </span><span class="nt">forward</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-group</span>
+<span class="w">          </span><span class="nt">queues</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-queue</span>
+<span class="w">              </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">              </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="w">              </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">          </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-service</span>
+<span class="w">              </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">              </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">              </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">casual/example/uppercase</span>
+<span class="w">              </span><span class="nt">reply</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+</pre></div>
+</div>
+<p>Pay extra close attention to the indentation here: since <code class="docutils literal notranslate"><span class="pre">forward</span></code> is part of the queue configuration, it needs to be indented to the same level as the above <code class="docutils literal notranslate"><span class="pre">groups</span></code>.</p>
+<p>Well done! Go ahead and boot up the domain:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--boot<span class="w"> </span>configuration/domain.yaml
+information:<span class="w"> </span>configuration<span class="w"> </span>files<span class="w"> </span>used:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;configuration/domain.yaml&quot;</span><span class="o">]</span>
+task:<span class="w"> </span>boot<span class="w"> </span>domain<span class="w">  </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+<p>Our new forward group should be up and running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-forward-groups
+<span class="nb">alias</span><span class="w">             </span>pid<span class="w">    </span>services<span class="w">  </span>queues<span class="w">  </span>commits<span class="w">  </span>rollbacks<span class="w">  </span>last
+----------------<span class="w">  </span>-----<span class="w">  </span>--------<span class="w">  </span>------<span class="w">  </span>-------<span class="w">  </span>---------<span class="w">  </span>--------------------------------
+my-forward-group<span class="w">  </span><span class="m">32864</span><span class="w">         </span><span class="m">1</span><span class="w">       </span><span class="m">1</span><span class="w">        </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w">  </span>-
+</pre></div>
+</div>
+<p>We can also look at the individual forwards:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-forward-queues
+<span class="nb">alias</span><span class="w">             </span>group<span class="w">             </span><span class="nb">source</span><span class="w">  </span>target<span class="w">  </span>delay<span class="w">  </span>S<span class="w">  </span>CI<span class="w">  </span>I<span class="w">  </span>commits<span class="w">  </span>rollbacks<span class="w">  </span>last
+----------------<span class="w">  </span>----------------<span class="w">  </span>------<span class="w">  </span>------<span class="w">  </span>-----<span class="w">  </span>-<span class="w">  </span>--<span class="w">  </span>-<span class="w">  </span>-------<span class="w">  </span>---------<span class="w">  </span>----
+my-forward-queue<span class="w">  </span>my-forward-group<span class="w">  </span>a<span class="w">       </span>b<span class="w">       </span><span class="m">0</span>.000<span class="w">  </span>E<span class="w">   </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">        </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w">  </span>-
+
+$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-forward-services
+<span class="nb">alias</span><span class="w">               </span>group<span class="w">             </span><span class="nb">source</span><span class="w">  </span>target<span class="w">                    </span>reply<span class="w">  </span>delay<span class="w">     </span>S<span class="w">  </span>CI<span class="w">  </span>I<span class="w">  </span>commits<span class="w">  </span>rollbacks<span class="w">  </span>last
+------------------<span class="w">  </span>----------------<span class="w">  </span>------<span class="w">  </span>------------------------<span class="w">  </span>-----<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>--<span class="w">  </span>-<span class="w">  </span>-------<span class="w">  </span>---------<span class="w">  </span>----
+my-forward-service<span class="w">  </span>my-forward-group<span class="w">  </span>b<span class="w">       </span>casual/example/uppercase<span class="w">  </span>c<span class="w">      </span><span class="m">0</span>.000000<span class="w">  </span>E<span class="w">   </span><span class="m">1</span><span class="w">  </span><span class="m">1</span><span class="w">        </span><span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w">  </span>-
+</pre></div>
+</div>
+<p>As you might have already noticed, the setup we have configured means that any message enqueued to the queue <code class="docutils literal notranslate"><span class="pre">a</span></code> will first be forwarded to <code class="docutils literal notranslate"><span class="pre">b</span></code> by the queue forward. From there the service forward will dequeue it, call <code class="docutils literal notranslate"><span class="pre">casual/example/uppercase</span></code> and put the reply on <code class="docutils literal notranslate"><span class="pre">c</span></code>. Let’s try it out:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;some nonsense&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--compose<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--enqueue<span class="w"> </span>a
+bca5b9c290c947ac81f242a9602baf69
+</pre></div>
+</div>
+<p>We can expect to find a message on <code class="docutils literal notranslate"><span class="pre">c</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-queues
+name<span class="w">     </span>group<span class="w">           </span>rc<span class="w">  </span>rd<span class="w">     </span>count<span class="w">  </span>size<span class="w">  </span>avg<span class="w">  </span>E<span class="w">   </span>EQ<span class="w">  </span>DQ<span class="w">  </span>UC<span class="w">  </span>last
+-------<span class="w">  </span>--------------<span class="w">  </span>--<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>----<span class="w">  </span>---<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--------------------------------
+a<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">2025</span>-09-09T20:31:55.306181+01:00
+b<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">2025</span>-09-09T20:31:55.306619+01:00
+c<span class="w">        </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">1</span><span class="w">    </span><span class="m">14</span><span class="w">   </span><span class="m">14</span><span class="w">  </span>ED<span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">2025</span>-09-09T20:31:55.307367+01:00
+a.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+b.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+c.error<span class="w">  </span>my-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+</pre></div>
+</div>
+<p>Let’s have a look at it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--dequeue<span class="w"> </span>c<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--extract
+SOME<span class="w"> </span>NONSENSE
+</pre></div>
+</div>
+<p>Much like servers, forwards have a configurable number of instances running at any one time. They can be scaled up or down by referring to their aliases:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--forward-scale-aliases<span class="w"> </span>my-forward-service<span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>We now have zero running instances of the forward:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-forward-services
+<span class="nb">alias</span><span class="w">               </span>group<span class="w">             </span><span class="nb">source</span><span class="w">  </span>target<span class="w">                    </span>reply<span class="w">  </span>delay<span class="w">     </span>S<span class="w">  </span>CI<span class="w">  </span>I<span class="w">  </span>commits<span class="w">  </span>rollbacks<span class="w">  </span>last
+------------------<span class="w">  </span>----------------<span class="w">  </span>------<span class="w">  </span>------------------------<span class="w">  </span>-----<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>--<span class="w">  </span>-<span class="w">  </span>-------<span class="w">  </span>---------<span class="w">  </span>--------------------------------
+my-forward-service<span class="w">  </span>my-forward-group<span class="w">  </span>b<span class="w">       </span>casual/example/uppercase<span class="w">  </span>c<span class="w">      </span><span class="m">0</span>.000000<span class="w">  </span>E<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span><span class="w">        </span><span class="m">1</span><span class="w">          </span><span class="m">0</span><span class="w">  </span><span class="m">2025</span>-09-09T20:31:55.307684+01:0
+</pre></div>
+</div>
+<p>Note that the forwards will try to complete any ongoing calls before scaling down, so it might take a while before they reach the configured number of instances.</p>
+<p>That’s it for queues and forwards, let’s shut down our domain before we move on:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--shutdown
+task:<span class="w"> </span>shutdown<span class="w"> </span>domain<span class="w"> </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="gateways">
+<h2>6 Gateways<a class="headerlink" href="#gateways" title="Permalink to this heading">¶</a></h2>
+<section id="id1">
+<h3>6.1 Setup<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>For this next exercise we’re going to expand our universe beyond the confines of a single domain. casual has the ability to connect to other domains, allowing you access to resources such as queues and services in the remote domain. This makes it possible to create large distributed systems with components that can be deployed independently of each other.</p>
+<p>For this lab however, we’ll settle for connecting to a single remote domain. We’ve taken the liberty of preparing one for you; it’s hiding under <code class="docutils literal notranslate"><span class="pre">remote</span></code> in the root directory of this tutorial, all that remains for you to do is start a new terminal, make sure the <a class="reference internal" href="#21-prerequisites"><span class="xref myst">prerequisites</span></a> are in place, and do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># From a new terminal session:</span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>&lt;path-to-the-casual-operations-tutorial-directory&gt;/remote
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CASUAL_DOMAIN_HOME</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--boot<span class="w"> </span>configuration/domain.yaml
+</pre></div>
+</div>
+<p>Have a look at the services and queues available in this domain:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>service<span class="w"> </span>--list-services
+name<span class="w">            </span>category<span class="w">  </span>V<span class="w">  </span>mode<span class="w">  </span>timeout<span class="w">  </span>contract<span class="w">  </span>I<span class="w">  </span>C<span class="w">  </span>AT<span class="w">     </span>min<span class="w">    </span>max<span class="w">    </span>P<span class="w">  </span>PAT<span class="w">    </span>RI<span class="w">  </span>RC<span class="w">  </span>last
+--------------<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>----<span class="w">  </span>-------<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>-<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-<span class="w">  </span>-----<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>----
+remote-service<span class="w">  </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">        </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+
+$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-queues
+name<span class="w">                </span>group<span class="w">               </span>rc<span class="w">  </span>rd<span class="w">     </span>count<span class="w">  </span>size<span class="w">  </span>avg<span class="w">  </span>E<span class="w">   </span>EQ<span class="w">  </span>DQ<span class="w">  </span>UC<span class="w">  </span>last
+------------------<span class="w">  </span>------------------<span class="w">  </span>--<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>----<span class="w">  </span>---<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>----
+remote-queue<span class="w">        </span>remote-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+remote-queue.error<span class="w">  </span>remote-queue-group<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">      </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">  </span>ED<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+</pre></div>
+</div>
+<p>As you can see, this domain has its own queues and services that do not exist in our domain. But by establishing a connection to this remote domain, these resources will become available within our domain.</p>
+<p>Switch back to your previous terminal, but leave the terminal with the remote domain running for the remainder of the exercise.</p>
+</section>
+<section id="configuring-gateway-groups">
+<h3>6.2 Configuring gateway groups<a class="headerlink" href="#configuring-gateway-groups" title="Permalink to this heading">¶</a></h3>
+<p>The remote domain has been configured with an <em>inbound group</em>, a component that listens for incoming connections, and when one is established, exposes its local resources to incoming requests.</p>
+<p>The inbound configuration in the remote domain looks like this (we’re using port 7778 for this exercise, if that port is taken, feel free to change it, but remember to edit both the inbound and outbound groups accordingly):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inbound</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># A domain may have multiple inbound (and outbound) groups</span>
+<span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remote-domain-inbound</span>
+<span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">listens for incoming connections</span>
+<span class="w">          </span><span class="c1"># An inbound group may listen on multiple endpoints</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="c1"># The ip and port combination on which to listen. The corresponding outbound group connects to this endpoint.</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;127.0.0.1:7778&quot;</span>
+</pre></div>
+</div>
+<p>The other side of this pair is the <em>outbound group</em>, a component that connects to an inbound group and acts as a client towards the remote domain when a local process wants to access remote resources. Since that is precisely what we want to do, we’re going to start an outbound group in our domain by adding the following config:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outbound</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-outbound</span>
+<span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connects to remote-domain</span>
+<span class="w">          </span><span class="c1"># An outbound group may connect to multiple inbound groups</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="c1"># The ip and port combination to connect to, corresponds to the inbound group in the remote domain.</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;127.0.0.1:7778&quot;</span>
+</pre></div>
+</div>
+<p>Our ever-expanding domain.yaml should now contain the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bobs-domain</span>
+
+<span class="w">  </span><span class="nt">servers</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-example-server</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CASUAL_HOME}/example/bin/casual-example-server</span>
+<span class="w">      </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="w">  </span><span class="nt">queue</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-queue-group</span>
+<span class="w">        </span><span class="nt">queues</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+
+<span class="w">    </span><span class="nt">forward</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-group</span>
+<span class="w">          </span><span class="nt">queues</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-queue</span>
+<span class="w">              </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">              </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="w">              </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">          </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-forward-service</span>
+<span class="w">              </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">              </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">              </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">casual/example/uppercase</span>
+<span class="w">              </span><span class="nt">reply</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+
+<span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outbound</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-outbound</span>
+<span class="w">          </span><span class="nt">note</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">connects to remote-domain</span>
+<span class="w">          </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;127.0.0.1:7778&quot;</span>
+</pre></div>
+</div>
+<p>With no further ado, let’s start the domain back up:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--boot<span class="w"> </span>configuration/domain.yaml
+information:<span class="w"> </span>configuration<span class="w"> </span>files<span class="w"> </span>used:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;configuration/domain.yaml&quot;</span><span class="o">]</span>
+task:<span class="w"> </span>boot<span class="w"> </span>domain<span class="w">  </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+<p>Our new outbound group will establish a connection to the other domain. Use the CLI to take a look:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>gateway<span class="w"> </span>--list-connections
+name<span class="w">           </span>id<span class="w">                                </span>group<span class="w">        </span>bound<span class="w">  </span>runlevel<span class="w">   </span>P<span class="w">    </span><span class="nb">local</span><span class="w">            </span>peer<span class="w">            </span>created
+-------------<span class="w">  </span>--------------------------------<span class="w">  </span>-----------<span class="w">  </span>-----<span class="w">  </span>---------<span class="w">  </span>---<span class="w">  </span>---------------<span class="w">  </span>--------------<span class="w">  </span>--------------------------------
+remote-domain<span class="w">  </span>f0dac037b2ff458985a82d349670cac3<span class="w">  </span>my-outbound<span class="w">  </span>out<span class="w">    </span>connected<span class="w">  </span><span class="m">1</span>.5<span class="w">  </span><span class="m">127</span>.0.0.1:53933<span class="w">  </span><span class="m">127</span>.0.0.1:7778<span class="w">  </span><span class="m">2025</span>-09-09T20:43:41.977759+01:00
+</pre></div>
+</div>
+<p>However, if we look at the available services…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>service<span class="w"> </span>--list-services
+name<span class="w">                                                         </span>category<span class="w">  </span>V<span class="w">  </span>mode<span class="w">    </span>timeout<span class="w">  </span>contract<span class="w">  </span>I<span class="w">  </span>C<span class="w">  </span>AT<span class="w">     </span>min<span class="w">    </span>max<span class="w">    </span>P<span class="w">  </span>PAT<span class="w">    </span>RI<span class="w">  </span>RC<span class="w">  </span>last
+-----------------------------------------------------------<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>------<span class="w">  </span>-------<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>-<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-<span class="w">  </span>-----<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>----
+casual/example/advertised/echo<span class="w">                               </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/atomic/echo<span class="w">                                   </span>example<span class="w">   </span>D<span class="w">  </span>atomic<span class="w">        </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/auto/echo<span class="w">                                     </span>example<span class="w">   </span>D<span class="w">  </span>auto<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/conversation<span class="w">                                  </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/conversation_recv_send<span class="w">                        </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/conversation_recv_send_auto<span class="w">                   </span>example<span class="w">   </span>D<span class="w">  </span>auto<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/domain/echo/bobs-domain<span class="w">                       </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/domain/echo/d709b7faade84587b7e014415482a32c<span class="w">  </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/domain/name<span class="w">                                   </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/echo<span class="w">                                          </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/error/system<span class="w">                                  </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/forward<span class="w">                                       </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/forward/echo<span class="w">                                  </span>example<span class="w">   </span>D<span class="w">  </span>auto<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/forward/join/echo<span class="w">                             </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/lowercase<span class="w">                                     </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/rollback<span class="w">                                      </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/sink<span class="w">                                          </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/sleep<span class="w">                                         </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/terminate<span class="w">                                     </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/undiscoverable/echo<span class="w">                           </span>example<span class="w">   </span>U<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/uppercase<span class="w">                                     </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+casual/example/work<span class="w">                                          </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+</pre></div>
+</div>
+<p>…no new service has appeared, what gives?!</p>
+<p>Don’t panic: casual will only look for resources outside the local domain when they are requested. This <em>discovery</em> happens automatically, but it can also be triggered manually. Let’s see if we can use the CLI to find the service we saw in the remote domain:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>discovery<span class="w"> </span>--services<span class="w"> </span>remote-service
+name<span class="w">            </span>hops
+--------------<span class="w">  </span>----
+remote-service<span class="w">     </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>There it is! The service will now be listed on subsequent uses of <code class="docutils literal notranslate"><span class="pre">--list-services</span></code>, but with 0 in the <code class="docutils literal notranslate"><span class="pre">I</span></code> (for instances) column, indicating that there are no local servers advertising it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>service<span class="w"> </span>--list-services
+name<span class="w">                                                         </span>category<span class="w">  </span>V<span class="w">  </span>mode<span class="w">    </span>timeout<span class="w">  </span>contract<span class="w">  </span>I<span class="w">  </span>C<span class="w">  </span>AT<span class="w">     </span>min<span class="w">    </span>max<span class="w">    </span>P<span class="w">  </span>PAT<span class="w">    </span>RI<span class="w">  </span>RC<span class="w">  </span>last
+-----------------------------------------------------------<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>------<span class="w">  </span>-------<span class="w">  </span>--------<span class="w">  </span>-<span class="w">  </span>-<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-----<span class="w">  </span>-<span class="w">  </span>-----<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>----
+...
+remote-service<span class="w">                                               </span>example<span class="w">   </span>D<span class="w">  </span>join<span class="w">          </span>-<span class="w">         </span>-<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span>.000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.000<span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>-
+...
+</pre></div>
+</div>
+<p>If we want to know where the service is actually “from”, we can list service instances:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>service<span class="w"> </span>--list-instances
+service<span class="w">                                                      </span>state<span class="w">     </span>hops<span class="w">  </span>pid<span class="w">    </span><span class="nb">alias</span><span class="w">                       </span>description
+-----------------------------------------------------------<span class="w">  </span>--------<span class="w">  </span>----<span class="w">  </span>-----<span class="w">  </span>--------------------------<span class="w">  </span>-------------
+...
+remote-service<span class="w">                                               </span>external<span class="w">     </span><span class="m">0</span><span class="w">  </span><span class="m">79887</span><span class="w">  </span>my-outbound<span class="w">                 </span>remote-domain
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">name</span></code> is the alias of the local outbound group that advertises the service, while <code class="docutils literal notranslate"><span class="pre">peer</span></code> is the actual connection (remember: an outbound group may have multiple connections) to the domain with the service.</p>
+<p>Now, having the service show up in lists is all well and good, but can you actually call it? <code class="docutils literal notranslate"><span class="pre">remote-service</span></code> is a simple service that just replies with the name of the domain in which its server is running. Let’s try calling it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello remote domain&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--compose<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>call<span class="w"> </span>--service<span class="w"> </span>remote-service<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--extract
+remote-domain
+</pre></div>
+</div>
+<p>And there you have it! From the caller’s perspective it’s just like calling any local service, no matter if the remote domain is running in different container or on the Moon.</p>
+<p>Similarly, remote queues will be automatically discovered when requested and can be enqueued and dequeued like any other queue:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;an important message&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--compose<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--enqueue<span class="w"> </span>remote-queue
+bd6d30ea41d0481d8c27907b1ba51683
+$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--dequeue<span class="w"> </span>remote-queue<span class="w"> </span><span class="p">|</span><span class="w"> </span>casual<span class="w"> </span>buffer<span class="w"> </span>--extract
+an<span class="w"> </span>important<span class="w"> </span>message
+</pre></div>
+</div>
+<p>However, unlike services, remote queues will not be listed when using <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">queue</span> <span class="pre">--list-queues</span></code>. We can however ask the gateway whether it knows of any remote queues:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>queue<span class="w"> </span>--list-queue-instances
+queue<span class="w">         </span>state<span class="w">     </span>pid<span class="w">    </span><span class="nb">alias</span><span class="w">           </span>description
+------------<span class="w">  </span>--------<span class="w">  </span>-----<span class="w">  </span>--------------<span class="w">  </span>-------------
+...
+remote-queue<span class="w">  </span>external<span class="w">  </span><span class="m">79887</span><span class="w">  </span>my-outbound<span class="w">     </span>remote-domain
+</pre></div>
+</div>
+<p>It is important to note that this outbound-inbound pairing is one way only. Try to call any of the services in our domain from the remote domain and all you’ll get is an error. Of course, this could be remedied by configuring another connection but with the inbound group in this domain and the outbound group in the remote (using a different port).</p>
+<p>Anyway, let’s shut everything down:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--shutdown
+task:<span class="w"> </span>shutdown<span class="w"> </span>domain<span class="w"> </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+<p>And don’t forget the terminal with the remote domain!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the other terminal</span>
+$<span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>--shutdown
+task:<span class="w"> </span>shutdown<span class="w"> </span>domain<span class="w"> </span>-<span class="w"> </span>started
+...
+</pre></div>
+</div>
+</section>
+<section id="reverse-gateway-groups">
+<h3>6.3 Reverse gateway groups<a class="headerlink" href="#reverse-gateway-groups" title="Permalink to this heading">¶</a></h3>
+<p>A factor to consider when working with multiple domains is that the outbound group is responsible for establishing the connection with the inbound group. However, sometimes a situation arises where the address of the inbound is dynamic or otherwise not known ahead of time. For these situations casual offers a reverse pair of inbound and outbound groups where the inbound connects to the outbound (all other functionality remains the same as the regular pairing). To configure a reverse group, simply add <code class="docutils literal notranslate"><span class="pre">reverse</span></code> between <code class="docutils literal notranslate"><span class="pre">gateway</span></code> and the <code class="docutils literal notranslate"><span class="pre">inbound</span></code>/<code class="docutils literal notranslate"><span class="pre">outbound</span></code> objects, for example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domain</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">gateway</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">reverse</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">inbound</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">groups</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my-reverse-inbound&quot;</span>
+<span class="w">            </span><span class="nt">connections</span><span class="p">:</span>
+<span class="w">              </span><span class="c1"># Being a reverse inbound, the group will actively try to connect to this address, rather than passively listening for incoming connections.</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;127.0.0.1:7779&quot;</span>
+</pre></div>
+</div>
+<p>That concludes this tutorial. While we have covered the basics of how to operate a domain, casual has a lot more features to offer. A good way to discover some of them is to use the <code class="docutils literal notranslate"><span class="pre">--help</span></code> flag of the CLI, or reading the documentation at https://casualcore.github.io/.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../middleware/example/server/example.html" class="btn btn-neutral float-left" title="casual-example-server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.8
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../feature/1.8/main/documentation/tutorials/operations/README.html">feature/1.8/main</a></dd>
+      <dd><a href="../../../../1.6/index.html">release/1.6</a></dd>
+      <dd><a href="../../../../1.7/documentation/tutorials/operations/README.html">release/1.7</a></dd>
+      <dd><a href="README.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

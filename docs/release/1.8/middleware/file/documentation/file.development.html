@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual file development &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">casual file development</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/file/documentation/file.development.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual-file-development">
+<h1>casual file development<a class="headerlink" href="#casual-file-development" title="Permalink to this heading">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">casual-file</span></code> is a built in mechanism to manipulate files within (XA) transactions and thus it requires a transaction.</p>
+<p><code class="docutils literal notranslate"><span class="pre">casual-file</span></code> requires no configuration.</p>
+<section id="isolation">
+<h2>isolation<a class="headerlink" href="#isolation" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">casual::file::blocking::reserve()</span></code> is a blocking operation so the caller have to wait for potentiall other transactions using the same path.</p>
+<p><code class="docutils literal notranslate"><span class="pre">casual::file::non::blocking::reserve()</span></code> returns immediately if the resource (path) is used by other transactions.</p>
+<p>Multiple access to the same (original) path within the same transaction if of course possible.</p>
+<p><em><strong>note</strong></em></p>
+<p><code class="docutils literal notranslate"><span class="pre">casual-file</span></code> does not (so far) provide isolation between domains, i.e. the behaviour of using the same (physical) path simultaneously, despite the same global transaction, in different domains is undefined and of course no protection from external manipulating is provided.</p>
+</section>
+<section id="samples">
+<h2>samples<a class="headerlink" href="#samples" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">tx_begin()</span></code>and <code class="docutils literal notranslate"><span class="pre">tx_commit()</span></code> are used in the these examples just to explicitly clarify that the operations must be used with transactions, but of course there could already be an existing transaction and thus no need to start one explicitly.</p>
+<section id="create-a-file">
+<h3>create a file<a class="headerlink" href="#create-a-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;api/file.h&gt;</span>
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_begin</span><span class="p">();</span>
+<span class="p">...</span>
+
+<span class="w">   </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">casual</span><span class="o">::</span><span class="n">file</span><span class="o">::</span><span class="n">reserve</span><span class="p">(</span><span class="w"> </span><span class="n">the_path</span><span class="p">);</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="p">}</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_commit</span><span class="p">();</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+</section>
+<section id="update-a-file">
+<h3>update a file<a class="headerlink" href="#update-a-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;api/file.h&gt;</span>
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_begin</span><span class="p">();</span>
+<span class="p">...</span>
+
+<span class="w">   </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">casual</span><span class="o">::</span><span class="n">file</span><span class="o">::</span><span class="n">reserve</span><span class="p">(</span><span class="w"> </span><span class="n">the_path</span><span class="p">);</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="p">}</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_commit</span><span class="p">();</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+</section>
+<section id="read-a-file">
+<h3>read a file<a class="headerlink" href="#read-a-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;api/file.h&gt;</span>
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_begin</span><span class="p">();</span>
+<span class="p">...</span>
+
+<span class="w">   </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">casual</span><span class="o">::</span><span class="n">file</span><span class="o">::</span><span class="n">reserve</span><span class="p">(</span><span class="w"> </span><span class="n">the_path</span><span class="p">);</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="p">}</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_commit</span><span class="p">();</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+</section>
+<section id="remove-a-file">
+<h3>remove a file<a class="headerlink" href="#remove-a-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;api/file.h&gt;</span>
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_begin</span><span class="p">();</span>
+<span class="p">...</span>
+
+<span class="w">   </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">casual</span><span class="o">::</span><span class="n">file</span><span class="o">::</span><span class="n">reserve</span><span class="p">(</span><span class="w"> </span><span class="n">the_path</span><span class="p">);</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">remove</span><span class="p">(</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_commit</span><span class="p">();</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+</section>
+<section id="rename-a-file">
+<h3>rename a file<a class="headerlink" href="#rename-a-file" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;api/file.h&gt;</span>
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_begin</span><span class="p">();</span>
+<span class="p">...</span>
+
+<span class="w">   </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">casual</span><span class="o">::</span><span class="n">file</span><span class="o">::</span><span class="n">reserve</span><span class="p">(</span><span class="w"> </span><span class="n">the_source_path</span><span class="p">);</span>
+<span class="w">   </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">casual</span><span class="o">::</span><span class="n">file</span><span class="o">::</span><span class="n">reserve</span><span class="p">(</span><span class="w"> </span><span class="n">the_target_path</span><span class="p">);</span>
+<span class="w">   </span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">rename</span><span class="p">(</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">);</span>
+
+<span class="p">...</span>
+<span class="w">   </span><span class="n">tx_commit</span><span class="p">();</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.8
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../../feature/1.8/main/middleware/file/documentation/file.development.html">feature/1.8/main</a></dd>
+      <dd><a href="../../../../1.6/index.html">release/1.6</a></dd>
+      <dd><a href="../../../../1.7/index.html">release/1.7</a></dd>
+      <dd><a href="file.development.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

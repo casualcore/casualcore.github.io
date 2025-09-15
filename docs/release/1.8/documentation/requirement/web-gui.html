@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Requirements for casual middleware UI &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            casual
+              <img src="../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../middleware/documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../middleware/documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../middleware/documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../middleware/documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Requirements for casual middleware UI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/documentation/requirement/web-gui.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="requirements-for-casual-middleware-ui">
+<h1>Requirements for casual middleware UI<a class="headerlink" href="#requirements-for-casual-middleware-ui" title="Permalink to this heading">¶</a></h1>
+<p>This document tries to define the requirements for what is useful and paramount
+for a user of casual middleware</p>
+<section id="what-we-think-users-wants">
+<h2>What we think users wants<a class="headerlink" href="#what-we-think-users-wants" title="Permalink to this heading">¶</a></h2>
+<p>There are several <em>views</em> that the user wants to see. Some of these can maybe
+be combined.</p>
+<section id="groups">
+<h3>groups<a class="headerlink" href="#groups" title="Permalink to this heading">¶</a></h3>
+<p>View and manage group information</p>
+<ul class="simple">
+<li><p>Name</p></li>
+<li><p>Note</p></li>
+<li><p>Resources (read only?)</p>
+<ul>
+<li><p>xa key, openinfo and such</p></li>
+</ul>
+</li>
+</ul>
+<p><em>Expand to see which executables is member of this group?</em></p>
+<p><strong>source: domain-manager</strong></p>
+</section>
+<section id="executables">
+<h3>executables<a class="headerlink" href="#executables" title="Permalink to this heading">¶</a></h3>
+<p>We might want to split <strong>servers</strong> and <strong>executables</strong> into two different views.</p>
+<p>View and manage exacutable information</p>
+<p>List of executables with:</p>
+<ul class="simple">
+<li><p>Alias (this is the external handle of the ‘executable’)</p></li>
+<li><p>Note</p></li>
+<li><p>Path</p></li>
+<li><p>Instances (read only)</p>
+<ul>
+<li><p>Manage number of instances (scale in, scale out)</p></li>
+</ul>
+</li>
+<li><p>Memberships</p>
+<ul>
+<li><p>“expand” to group view?</p></li>
+</ul>
+</li>
+</ul>
+<p><em>Don’t think we’ll expose the internal id of the executable, user should only refer to ‘alias’. The internal id should be used to correlate instanses though</em></p>
+<p><strong>source: domain-manager</strong></p>
+</section>
+<section id="instances">
+<h3>instances<a class="headerlink" href="#instances" title="Permalink to this heading">¶</a></h3>
+<p>List of instances with:</p>
+<ul class="simple">
+<li><p>pid</p></li>
+<li><p>ipc-queue</p></li>
+<li><p>Executable</p>
+<ul>
+<li><p>“expand” to executable view?</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>source: domain-manager</strong></p>
+</section>
+<section id="services">
+<h3>services<a class="headerlink" href="#services" title="Permalink to this heading">¶</a></h3>
+<p>View and manage exacutable information</p>
+<p>List of services with:</p>
+<ul class="simple">
+<li><p>Name</p></li>
+<li><p>Type</p></li>
+<li><p>transaction-semantic</p></li>
+<li><p>Instances</p>
+<ul>
+<li><p>“expand” to instance view?</p></li>
+<li><p>if an instance is a outbound-connection (gateway) show info about this.</p></li>
+</ul>
+</li>
+</ul>
+<p>Should be easy to manage instances from this view, since services should be what’s interesting</p>
+<p><strong>source: broker</strong></p>
+</section>
+<section id="pending-services">
+<h3>pending services<a class="headerlink" href="#pending-services" title="Permalink to this heading">¶</a></h3>
+<p>view information about pending requests</p>
+<p>List of pending services with:</p>
+<ul class="simple">
+<li><p>Name</p></li>
+<li><p>Number of requests that have been pending</p></li>
+<li><p>Total time that others have waited for this server to be callable</p></li>
+<li><p>Calculated average time</p></li>
+<li><p>Number of instanses running for this service at this point.</p></li>
+</ul>
+<p>This is so operations can easily see which executable is a candidate to scale out.</p>
+<p><strong>this is not completed on serverside yet, everything is prepared though</strong></p>
+</section>
+<section id="transactions">
+<h3>transactions<a class="headerlink" href="#transactions" title="Permalink to this heading">¶</a></h3>
+<p>TODO</p>
+</section>
+<section id="casual-queue">
+<h3>casual queue<a class="headerlink" href="#casual-queue" title="Permalink to this heading">¶</a></h3>
+<p>TODO</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.8
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../feature/1.8/main/documentation/requirement/web-gui.html">feature/1.8/main</a></dd>
+      <dd><a href="../../../1.6/documentation/requirement/web-gui.html">release/1.6</a></dd>
+      <dd><a href="../../../1.7/documentation/requirement/web-gui.html">release/1.7</a></dd>
+      <dd><a href="web-gui.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

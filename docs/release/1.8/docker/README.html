@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker Demo &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            casual
+              <img src="../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Docker Demo</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/docker/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="docker-demo">
+<h1>Docker Demo<a class="headerlink" href="#docker-demo" title="Permalink to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>This is an example of how to run casual in two docker containers.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/installation/"><code class="docutils literal notranslate"><span class="pre">docker</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/compose/install/"><code class="docutils literal notranslate"><span class="pre">docker-compose</span></code></a></p></li>
+</ul>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h2>
+<p>The configuration files used for <code class="docutils literal notranslate"><span class="pre">casual-middleware</span></code> are located in <code class="docutils literal notranslate"><span class="pre">${CASUAL_BUILD_HOME}/docker/config/domain{A,B}-config.yaml</span></code>
+and is based on <a class="reference internal" href="#./../middleware/example/domain/multiple/minimal/readme.md"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">${CASUAL_BUILD_HOME}/middleware/example/domain/multiple/minimal/</span></code></span></a>.</p>
+</section>
+<section id="start">
+<h2>Start<a class="headerlink" href="#start" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">CASUAL_BUILD_HOME</span><span class="si">}</span>/docker
+$<span class="w"> </span>docker-compose<span class="w"> </span>up
+</pre></div>
+</div>
+</section>
+<section id="test">
+<h2>Test<a class="headerlink" href="#test" title="Permalink to this heading">¶</a></h2>
+<p>First you need to know the IP addresses for the <code class="docutils literal notranslate"><span class="pre">domainA</span></code> and <code class="docutils literal notranslate"><span class="pre">domainB</span></code> containers, this can be done with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">inspect</span></code>.
+Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">&#39;{{ .NetworkSettings.Networks.docker_isolated_nw.IPAddress }}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/docker_domain[A-B]/ {print $1}&#39;</span><span class="k">)</span>
+<span class="m">172</span>.22.0.3
+<span class="m">172</span>.22.0.2
+</pre></div>
+</div>
+<p>Call <code class="docutils literal notranslate"><span class="pre">casual/example/echo</span></code> on either container (the actual service is running on <code class="docutils literal notranslate"><span class="pre">domainA</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;Hello world&quot;</span><span class="w"> </span>http://172.22.0.2:8080/casual?service<span class="o">=</span>casual/example/echo
+$<span class="w"> </span>curl<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;Hello world&quot;</span><span class="w"> </span>http://172.22.0.3:8080/casual?service<span class="o">=</span>casual/example/echo
+</pre></div>
+</div>
+<p>Attach to one of the domains, and play around with <code class="docutils literal notranslate"><span class="pre">casual</span></code>. Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>docker_domainA_1<span class="w"> </span>bash
+<span class="o">[</span>casual@domainA<span class="w"> </span>casual<span class="o">]</span>$<span class="w"> </span>casual<span class="w"> </span>gateway<span class="w"> </span>--list-connections
+name<span class="w">     </span>id<span class="w">                                </span>bound<span class="w">  </span>pid<span class="w">  </span>queue<span class="w">   </span><span class="nb">type</span><span class="w">  </span>runlevel<span class="w">  </span>address
+-------<span class="w">  </span>--------------------------------<span class="w">  </span>-----<span class="w">  </span>---<span class="w">  </span>------<span class="w">  </span>----<span class="w">  </span>--------<span class="w">  </span>-----------------------------------------
+domainB<span class="w">  </span>9ace02251b6647e4838fcba25b12e47a<span class="w">  </span><span class="k">in</span><span class="w">      </span><span class="m">18</span><span class="w">  </span><span class="m">262151</span><span class="w">  </span>tcp<span class="w">   </span>online<span class="w">    </span>docker_domainB_1.docker_isolated_nw:39094
+<span class="o">[</span>casual@domainA<span class="w"> </span>casual<span class="o">]</span>$<span class="w"> </span>casual<span class="w"> </span>service<span class="w"> </span>--list-services
+name<span class="w">                         </span>category<span class="w">  </span>mode<span class="w">  </span>timeout<span class="w">  </span>LI<span class="w">  </span>LC<span class="w">  </span>LAT<span class="w">     </span>P<span class="w">  </span>PAT<span class="w">     </span>RI<span class="w">  </span>RC<span class="w">  </span>last
+---------------------------<span class="w">  </span>--------<span class="w">  </span>----<span class="w">  </span>-------<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>------<span class="w">  </span>-<span class="w">  </span>------<span class="w">  </span>--<span class="w">  </span>--<span class="w">  </span>-----------------------
+casual/example/conversation<span class="w">  </span>example<span class="w">   </span>join<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0000</span>-00-00T00:00:00.000
+casual/example/echo<span class="w">          </span>example<span class="w">   </span>join<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">2</span><span class="w">  </span><span class="m">0</span>.0009<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">2017</span>-07-20T07:19:36.942
+casual/example/rollback<span class="w">      </span>example<span class="w">   </span>join<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0000</span>-00-00T00:00:00.000
+casual/example/sink<span class="w">          </span>example<span class="w">   </span>join<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0000</span>-00-00T00:00:00.000
+casual/example/uppercase<span class="w">     </span>example<span class="w">   </span>join<span class="w">   </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">  </span><span class="m">0</span><span class="w">  </span><span class="m">0</span>.0000<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="m">0000</span>-00-00T00:00:00.000
+</pre></div>
+</div>
+</section>
+<section id="stop">
+<h2>Stop<a class="headerlink" href="#stop" title="Permalink to this heading">¶</a></h2>
+<p>When done with the demo, clean up afterwards with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker-compose down
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.8
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../feature/1.8/main/docker/README.html">feature/1.8/main</a></dd>
+      <dd><a href="../../1.6/docker/README.html">release/1.6</a></dd>
+      <dd><a href="../../1.7/docker/README.html">release/1.7</a></dd>
+      <dd><a href="README.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

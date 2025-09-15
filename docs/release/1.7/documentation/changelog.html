@@ -83,7 +83,122 @@
 <h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this heading">¶</a></h1>
 <p>This is the changelog for <code class="docutils literal notranslate"><span class="pre">casual</span></code> and all changes are listed in this document.</p>
 <section id="id1">
-<h2>[1.7.0] - 2024-11-26<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>[1.7.9] - 2025-07-13<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<section id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>common: server-service finalize needs to wait for pending calls (<a class="reference external" href="https://github.com/casualcore/casual/issues/575">#575</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>[1.7.8] - 2025-06-18<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3>Fixes<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>tools: build-server does not generate function name via argument (<a class="reference external" href="https://github.com/casualcore/casual/issues/568">#568</a>)</p></li>
+<li><p>common: transaction::global::ID istream asserts on hex &lt;= 64B (<a class="reference external" href="https://github.com/casualcore/casual/issues/570">#570</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>[1.7.7] - 2025-05-27<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<section id="id5">
+<h3>Fixes<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>tools: casual-build-resource-proxy doesn’t respect –keep-source (<a class="reference external" href="https://github.com/casualcore/casual/issues/562">#562</a>)</p></li>
+<li><p>tools: casual-build-resource-proxy fails to compile (<a class="reference external" href="https://github.com/casualcore/casual/issues/561">#561</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2>[1.7.6] - 2025-05-18<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<section id="id7">
+<h3>Fixes<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>common: service::Lookup does not propagate (current) trid (<a class="reference external" href="https://github.com/casualcore/casual/issues/557">#557</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h2>[1.7.5] - 2025-04-24<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<section id="id9">
+<h3>Fixes<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: lookup with no-reply does not reserve instance (<a class="reference external" href="https://github.com/casualcore/casual/issues/534">#534</a>)</p></li>
+<li><p>service: call with NOREPLY should not supply current deadline (<a class="reference external" href="https://github.com/casualcore/casual/issues/534">#534</a>)</p></li>
+<li><p>xatmi: expose c-api to set/get execution (parent) span (<a class="reference external" href="https://github.com/casualcore/casual/issues/550">#550</a>)</p></li>
+<li><p>http: propagate otel span (<a class="reference external" href="https://github.com/casualcore/casual/issues/546">#546</a>)</p></li>
+<li><p>http: outbound generate span and propagate <code class="docutils literal notranslate"><span class="pre">traceparent</span></code> as header (<a class="reference external" href="https://github.com/casualcore/casual/issues/546">#546</a>)</p></li>
+<li><p>gateway: inbound fails to handle trids that is already branched (<a class="reference external" href="https://github.com/casualcore/casual/issues/533">#533</a>)</p></li>
+<li><p>common: execution.context.span should not be default generated (<a class="reference external" href="https://github.com/casualcore/casual/issues/544">#544</a>)</p></li>
+<li><p>common: otel span could be generated as value 0</p></li>
+<li><p>gateway: add missing messages for the binary dump protocol generator</p></li>
+<li><p>documentation: missing documentation for domain_discovery_reply_v3</p></li>
+<li><p>gateway: outbound does not set otel span in metric event (<a class="reference external" href="https://github.com/casualcore/casual/issues/539">#539</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id10">
+<h2>[1.7.4] - 2025-04-07<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<section id="id11">
+<h3>Fixes<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: inbound removed trid branch mapping for transaction messages</p></li>
+<li><p>transaction: used view to removed gtrid</p></li>
+<li><p>gateway: transaction message reply with origin trid</p></li>
+<li><p>gateway: compatibility with 1.6 (protocol 1.2) service call (<a class="reference external" href="https://github.com/casualcore/casual/issues/533">#533</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id12">
+<h2>[1.7.3] - 2025-01-28<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
+<section id="id13">
+<h3>Fixes<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>common: include rapidjson within inline ns for ABI</p></li>
+<li><p>xatmi: build-server uses [0,1] as values for service visibility (<a class="reference external" href="https://github.com/casualcore/casual/issues/506">#506</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id14">
+<h2>[1.7.2] - 2025-01-22<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
+<section id="id15">
+<h3>Fixes<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>domain: check if file (with path) exists before spawn</p></li>
+</ul>
+</section>
+</section>
+<section id="id16">
+<h2>[1.7.1] - 2025-01-16<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h2>
+<section id="id17">
+<h3>Fixes<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: simplify removal of reserved instances</p></li>
+<li><p>queue: better available update during rollback (<a class="reference external" href="https://github.com/casualcore/casual/issues/497">#497</a>)</p></li>
+<li><p>service: send potential::Stale instead of rollback to TM</p></li>
+<li><p>transaction: functionality to handle stale involved resources (<a class="reference external" href="https://github.com/casualcore/casual/issues/440">#440</a>)</p></li>
+<li><p>http: exception wrapper -&gt; return code within C-boundary for xatmi call (<a class="reference external" href="https://github.com/casualcore/casual/issues/487">#487</a>)</p></li>
+<li><p>common: made header::Field case insensitive equal to key (<a class="reference external" href="https://github.com/casualcore/casual/issues/487">#487</a>)</p></li>
+<li><p>queue: use queue error code in api</p></li>
+<li><p>cli: better error if lookup fails on (en|de)queue (<a class="reference external" href="https://github.com/casualcore/casual/issues/463">#463</a>)</p></li>
+<li><p>queue: notify discovery when new queue is created (<a class="reference external" href="https://github.com/casualcore/casual/issues/479">#479</a>)</p></li>
+<li><p>service: notify discovery when new service is advertised (<a class="reference external" href="https://github.com/casualcore/casual/issues/479">#479</a>)</p></li>
+<li><p>discovery: handle discoverable::Advertised message -&gt; topology::Update (<a class="reference external" href="https://github.com/casualcore/casual/issues/479">#479</a>)</p></li>
+<li><p>transaction: reopen resource on resource error (<a class="reference external" href="https://github.com/casualcore/casual/issues/476">#476</a>)</p></li>
+<li><p>queue: remove memberships from forward-group</p></li>
+<li><p>queue: fix forwards ignoring group memberships (<a class="reference external" href="https://github.com/casualcore/casual/issues/465">#465</a>)</p></li>
+<li><p>queue: reset queue group metric on startup (<a class="reference external" href="https://github.com/casualcore/casual/issues/469">#469</a>)</p></li>
+<li><p>queue: default queue-group alias missing (<a class="reference external" href="https://github.com/casualcore/casual/issues/474">#474</a>)</p></li>
+<li><p>queue: manager could have same instance to queue multiple times (<a class="reference external" href="https://github.com/casualcore/casual/issues/466">#466</a>)</p></li>
+<li><p>service: update load balancing for concurrent instances (<a class="reference external" href="https://github.com/casualcore/casual/issues/468">#468</a>)</p></li>
+<li><p>queue: fix runtime configuration for (en|dis)able (en|de)queue (<a class="reference external" href="https://github.com/casualcore/casual/issues/464">#464</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id18">
+<h2>[1.7.0] - 2024-11-26<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h2>
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
@@ -129,8 +244,8 @@
 <li><p>build: use local copy of nginx</p></li>
 </ul>
 </section>
-<section id="fixes">
-<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this heading">¶</a></h3>
+<section id="id19">
+<h3>Fixes<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>buffer: simplify the handling of the special ‘inbound’ buffer (<a class="reference external" href="https://github.com/casualcore/casual/issues/411">#411</a>)</p></li>
 <li><p>buffer: zero sized buffers is not found in lookup table (<a class="reference external" href="https://github.com/casualcore/casual/issues/302">#302</a>)</p></li>
@@ -167,29 +282,38 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </section>
 </section>
 </section>
-<section id="id2">
-<h2>[1.6.22] - 2024-11-05<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
-<section id="id3">
-<h3>Fixes<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<section id="id20">
+<h2>[1.6.23] - 2025-01-08<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h2>
+<section id="id21">
+<h3>Fixes<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: always send metric event on server exit (#486)</p></li>
+</ul>
+</section>
+</section>
+<section id="id22">
+<h2>[1.6.22] - 2024-11-05<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h2>
+<section id="id23">
+<h3>Fixes<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>service: discovery-known-request only reply with known discoverable services (#454)</p></li>
 </ul>
 </section>
 </section>
-<section id="id4">
-<h2>[1.6.21] - 2024-10-09<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
-<section id="id5">
-<h3>Fixes<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<section id="id24">
+<h2>[1.6.21] - 2024-10-09<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h2>
+<section id="id25">
+<h3>Fixes<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>documentation: queue.forward.group.(services|queues).alias</p></li>
 <li><p>transaction: error log when resource fail (#428)</p></li>
 </ul>
 </section>
 </section>
-<section id="id6">
-<h2>[1.6.20] - 2024-09-18<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
-<section id="id7">
-<h3>Fixes<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<section id="id26">
+<h2>[1.6.20] - 2024-09-18<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h2>
+<section id="id27">
+<h3>Fixes<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>build: handle nginx build on rhel (#381)</p></li>
 <li><p>service: fix invisible route being created when updating service config</p></li>
@@ -197,10 +321,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id8">
-<h2>[1.6.19] - 2024-04-25<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
-<section id="id9">
-<h3>Fixes<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<section id="id28">
+<h2>[1.6.19] - 2024-04-25<a class="headerlink" href="#id28" title="Permalink to this heading">¶</a></h2>
+<section id="id29">
+<h3>Fixes<a class="headerlink" href="#id29" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>http: improved error logging in http-outbound (#367)</p></li>
 <li><p>http: use route name in outbound when ack:ing service calls (#364)</p></li>
@@ -211,10 +335,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id10">
-<h2>[1.6.18] - 2024-03-18<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
-<section id="id11">
-<h3>Fixes<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<section id="id30">
+<h2>[1.6.18] - 2024-03-18<a class="headerlink" href="#id30" title="Permalink to this heading">¶</a></h2>
+<section id="id31">
+<h3>Fixes<a class="headerlink" href="#id31" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>domain: print domain name in shutdown task (#336)</p></li>
 <li><p>common: do not set environment when (re)setting execution-id (#333)</p></li>
@@ -231,10 +355,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id12">
-<h2>[1.6.17] - 2023-11-13<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
-<section id="id13">
-<h3>Fixes<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<section id="id32">
+<h2>[1.6.17] - 2023-11-13<a class="headerlink" href="#id32" title="Permalink to this heading">¶</a></h2>
+<section id="id33">
+<h3>Fixes<a class="headerlink" href="#id33" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>transaction: TM asserts when transaction is not found in prepare-handle (#288)</p></li>
 <li><p>cli: header output in porcelain if –header true (#283)</p></li>
@@ -252,10 +376,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id14">
-<h2>[1.6.16] - 2023-10-10<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
-<section id="id15">
-<h3>Fixes<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<section id="id34">
+<h2>[1.6.16] - 2023-10-10<a class="headerlink" href="#id34" title="Permalink to this heading">¶</a></h2>
+<section id="id35">
+<h3>Fixes<a class="headerlink" href="#id35" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>queue: send reply on failed dequeues (#262)</p></li>
 <li><p>gateway: pending ‘calls’ could be sent after a rollback (#261)</p></li>
@@ -263,19 +387,19 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id16">
-<h2>[1.6.15] - 2023-09-14<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h2>
-<section id="id17">
-<h3>Fixes<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
+<section id="id36">
+<h2>[1.6.15] - 2023-09-14<a class="headerlink" href="#id36" title="Permalink to this heading">¶</a></h2>
+<section id="id37">
+<h3>Fixes<a class="headerlink" href="#id37" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>transaction: TM commits when it act as a resource and gets a prepare (#256)</p></li>
 </ul>
 </section>
 </section>
-<section id="id18">
-<h2>[1.6.14] - 2023-09-03<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h2>
-<section id="id19">
-<h3>Fixes<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
+<section id="id38">
+<h2>[1.6.14] - 2023-09-03<a class="headerlink" href="#id38" title="Permalink to this heading">¶</a></h2>
+<section id="id39">
+<h3>Fixes<a class="headerlink" href="#id39" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>event: make sure we try to reopen the event file if it’s “broken” (#250)</p></li>
 <li><p>log: do not throw if we can’t open logfile -&gt; error to stderr (#250)</p></li>
@@ -286,29 +410,29 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id20">
-<h2>[1.6.13] - 2023-08-22<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h2>
-<section id="id21">
-<h3>Fixes<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
+<section id="id40">
+<h2>[1.6.13] - 2023-08-22<a class="headerlink" href="#id40" title="Permalink to this heading">¶</a></h2>
+<section id="id41">
+<h3>Fixes<a class="headerlink" href="#id41" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>http: nginx could block caller for ever with payloads &gt; ~50k (#242, #243)</p></li>
 <li><p>configuration: prevent global contract setting being default overridden (#244)</p></li>
 </ul>
 </section>
 </section>
-<section id="id22">
-<h2>[1.6.12] - 2023-07-18<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h2>
-<section id="id23">
-<h3>Fixes<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
+<section id="id42">
+<h2>[1.6.12] - 2023-07-18<a class="headerlink" href="#id42" title="Permalink to this heading">¶</a></h2>
+<section id="id43">
+<h3>Fixes<a class="headerlink" href="#id43" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>discovery: hops are not correctly propagated if services are known</p></li>
 </ul>
 </section>
 </section>
-<section id="id24">
-<h2>[1.6.11] - 2023-06-22<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h2>
-<section id="id25">
-<h3>Fixes<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h3>
+<section id="id44">
+<h2>[1.6.11] - 2023-06-22<a class="headerlink" href="#id44" title="Permalink to this heading">¶</a></h2>
+<section id="id45">
+<h3>Fixes<a class="headerlink" href="#id45" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>xatmi: error log unexpected error codes (#226)</p></li>
 <li><p>service: handle multiple busy lookups (#217)</p></li>
@@ -318,10 +442,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id26">
-<h2>[1.6.10] - 2023-06-09<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h2>
-<section id="id27">
-<h3>Fixes<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h3>
+<section id="id46">
+<h2>[1.6.10] - 2023-06-09<a class="headerlink" href="#id46" title="Permalink to this heading">¶</a></h2>
+<section id="id47">
+<h3>Fixes<a class="headerlink" href="#id47" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: outbound does not wait for in-flight transactions</p></li>
 <li><p>gateway: error-log if connection is lost unexpectedly (#216)</p></li>
@@ -330,19 +454,19 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id28">
-<h2>[1.6.9] - 2023-06-08<a class="headerlink" href="#id28" title="Permalink to this heading">¶</a></h2>
-<section id="id29">
-<h3>Fixes<a class="headerlink" href="#id29" title="Permalink to this heading">¶</a></h3>
+<section id="id48">
+<h2>[1.6.9] - 2023-06-08<a class="headerlink" href="#id48" title="Permalink to this heading">¶</a></h2>
+<section id="id49">
+<h3>Fixes<a class="headerlink" href="#id49" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: inbound must wait for in-flight transactions during shutdown</p></li>
 </ul>
 </section>
 </section>
-<section id="id30">
-<h2>[1.6.8] - 2023-06-01<a class="headerlink" href="#id30" title="Permalink to this heading">¶</a></h2>
-<section id="id31">
-<h3>Fixes<a class="headerlink" href="#id31" title="Permalink to this heading">¶</a></h3>
+<section id="id50">
+<h2>[1.6.8] - 2023-06-01<a class="headerlink" href="#id50" title="Permalink to this heading">¶</a></h2>
+<section id="id51">
+<h3>Fixes<a class="headerlink" href="#id51" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>discovery: “local” known services/queues are not added to discovery reply</p></li>
 <li><p>discovery: replies should only contain a subset of the requested</p></li>
@@ -350,20 +474,20 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id32">
-<h2>[1.6.7] - 2023-06-01<a class="headerlink" href="#id32" title="Permalink to this heading">¶</a></h2>
-<section id="id33">
-<h3>Fixes<a class="headerlink" href="#id33" title="Permalink to this heading">¶</a></h3>
+<section id="id52">
+<h2>[1.6.7] - 2023-06-01<a class="headerlink" href="#id52" title="Permalink to this heading">¶</a></h2>
+<section id="id53">
+<h3>Fixes<a class="headerlink" href="#id53" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>discovery: aggregate external discovery requests for performance</p></li>
 <li><p>domain: handle shutdown signals (#207)</p></li>
 </ul>
 </section>
 </section>
-<section id="id34">
-<h2>[1.6.6] - 2023-05-29<a class="headerlink" href="#id34" title="Permalink to this heading">¶</a></h2>
-<section id="id35">
-<h3>Fixes<a class="headerlink" href="#id35" title="Permalink to this heading">¶</a></h3>
+<section id="id54">
+<h2>[1.6.6] - 2023-05-29<a class="headerlink" href="#id54" title="Permalink to this heading">¶</a></h2>
+<section id="id55">
+<h3>Fixes<a class="headerlink" href="#id55" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>discovery: handle prospect services (#198)</p></li>
 <li><p>domain: try to remove ipc device from exited ‘singletons’</p></li>
@@ -373,10 +497,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id36">
-<h2>[1.6.5] - 2023-05-19<a class="headerlink" href="#id36" title="Permalink to this heading">¶</a></h2>
-<section id="id37">
-<h3>Fixes<a class="headerlink" href="#id37" title="Permalink to this heading">¶</a></h3>
+<section id="id56">
+<h2>[1.6.5] - 2023-05-19<a class="headerlink" href="#id56" title="Permalink to this heading">¶</a></h2>
+<section id="id57">
+<h3>Fixes<a class="headerlink" href="#id57" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>ipc: improve detection of removed ipc devices (files) (#194)</p></li>
 <li><p>service: always send timeout duration in lookup reply</p></li>
@@ -386,30 +510,30 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id38">
-<h2>[1.6.4] - 2023-04-25<a class="headerlink" href="#id38" title="Permalink to this heading">¶</a></h2>
-<section id="id39">
-<h3>Fixes<a class="headerlink" href="#id39" title="Permalink to this heading">¶</a></h3>
+<section id="id58">
+<h2>[1.6.4] - 2023-04-25<a class="headerlink" href="#id58" title="Permalink to this heading">¶</a></h2>
+<section id="id59">
+<h3>Fixes<a class="headerlink" href="#id59" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>buffer: fix field doesn’t track ‘service buffer’ during auto realloc (#179)</p></li>
 <li><p>queue: prevent forward causing service-manager coredump (#182) (ported from 1.5.15)</p></li>
 </ul>
 </section>
 </section>
-<section id="id40">
-<h2>[1.6.3] - 2023-04-09<a class="headerlink" href="#id40" title="Permalink to this heading">¶</a></h2>
-<section id="id41">
-<h3>Fixes<a class="headerlink" href="#id41" title="Permalink to this heading">¶</a></h3>
+<section id="id60">
+<h2>[1.6.3] - 2023-04-09<a class="headerlink" href="#id60" title="Permalink to this heading">¶</a></h2>
+<section id="id61">
+<h3>Fixes<a class="headerlink" href="#id61" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>sql: make sure sqlite uses synchronous=NORMAL (#177)</p></li>
 <li><p>queue: fix memory leak by not (implicitly) using setenv repeatedly (#175)</p></li>
 </ul>
 </section>
 </section>
-<section id="id42">
-<h2>[1.6.2] - 2023-03-25<a class="headerlink" href="#id42" title="Permalink to this heading">¶</a></h2>
-<section id="id43">
-<h3>Fixes<a class="headerlink" href="#id43" title="Permalink to this heading">¶</a></h3>
+<section id="id62">
+<h2>[1.6.2] - 2023-03-25<a class="headerlink" href="#id62" title="Permalink to this heading">¶</a></h2>
+<section id="id63">
+<h3>Fixes<a class="headerlink" href="#id63" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>queue: extend c-api for get reply and get available</p></li>
 <li><p>configuration: fix queue configuration default directory</p></li>
@@ -417,10 +541,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id44">
-<h2>[1.6.1] - 2023-03-13<a class="headerlink" href="#id44" title="Permalink to this heading">¶</a></h2>
-<section id="id45">
-<h3>Fixes<a class="headerlink" href="#id45" title="Permalink to this heading">¶</a></h3>
+<section id="id64">
+<h2>[1.6.1] - 2023-03-13<a class="headerlink" href="#id64" title="Permalink to this heading">¶</a></h2>
+<section id="id65">
+<h3>Fixes<a class="headerlink" href="#id65" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>queue: fix pending data structure slicing (memory leak)</p></li>
 <li><p>documentation: fix sphinx-config</p></li>
@@ -428,10 +552,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id46">
-<h2>[1.6.0] - 2023-03-06<a class="headerlink" href="#id46" title="Permalink to this heading">¶</a></h2>
-<section id="id47">
-<h3>Added<a class="headerlink" href="#id47" title="Permalink to this heading">¶</a></h3>
+<section id="id66">
+<h2>[1.6.0] - 2023-03-06<a class="headerlink" href="#id66" title="Permalink to this heading">¶</a></h2>
+<section id="id67">
+<h3>Added<a class="headerlink" href="#id67" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>cli: add force service/queue discovery to cli (#110)</p></li>
 <li><p>configuration: add set operations union, intersection, difference</p></li>
@@ -454,8 +578,8 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 <li><p>xatmi: extend c-api with execution service name (#140)</p></li>
 </ul>
 </section>
-<section id="id48">
-<h3>Fixes<a class="headerlink" href="#id48" title="Permalink to this heading">¶</a></h3>
+<section id="id68">
+<h3>Fixes<a class="headerlink" href="#id68" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>build: package resources.yaml in /etc/casual/</p></li>
 <li><p>cli: fix gateway –list-connections to indicate inbound discovery forward</p></li>
@@ -494,10 +618,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id49">
-<h2>[1.5.14] - 2022-09-08<a class="headerlink" href="#id49" title="Permalink to this heading">¶</a></h2>
-<section id="id50">
-<h3>Fixes<a class="headerlink" href="#id50" title="Permalink to this heading">¶</a></h3>
+<section id="id69">
+<h2>[1.5.14] - 2022-09-08<a class="headerlink" href="#id69" title="Permalink to this heading">¶</a></h2>
+<section id="id70">
+<h3>Fixes<a class="headerlink" href="#id70" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>conversation: fix a bug where tprecv and tpsend failed to set the global tpurcode.</p></li>
 <li><p>conversation: generate events in tpsend when partner calls tpreturn or tpdiscon.</p></li>
@@ -505,10 +629,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id51">
-<h2>[1.5.13] - 2022-08-16<a class="headerlink" href="#id51" title="Permalink to this heading">¶</a></h2>
-<section id="id52">
-<h3>Fixes<a class="headerlink" href="#id52" title="Permalink to this heading">¶</a></h3>
+<section id="id71">
+<h2>[1.5.13] - 2022-08-16<a class="headerlink" href="#id71" title="Permalink to this heading">¶</a></h2>
+<section id="id72">
+<h3>Fixes<a class="headerlink" href="#id72" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>queue: add lookup restrictions depending on caller location</p></li>
 <li><p>service: add lookup restrictions depending on caller location</p></li>
@@ -518,10 +642,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id53">
-<h2>[1.5.12] - 2022-05-10<a class="headerlink" href="#id53" title="Permalink to this heading">¶</a></h2>
-<section id="id54">
-<h3>Fixes<a class="headerlink" href="#id54" title="Permalink to this heading">¶</a></h3>
+<section id="id73">
+<h2>[1.5.12] - 2022-05-10<a class="headerlink" href="#id73" title="Permalink to this heading">¶</a></h2>
+<section id="id74">
+<h3>Fixes<a class="headerlink" href="#id74" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>cli: fix configuration –normalize</p></li>
 <li><p>gateway: fix outbound to handle ‘gateway loop’</p></li>
@@ -542,10 +666,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id55">
-<h2>[1.5.11] - 2022-04-19<a class="headerlink" href="#id55" title="Permalink to this heading">¶</a></h2>
-<section id="id56">
-<h3>Fixes<a class="headerlink" href="#id56" title="Permalink to this heading">¶</a></h3>
+<section id="id75">
+<h2>[1.5.11] - 2022-04-19<a class="headerlink" href="#id75" title="Permalink to this heading">¶</a></h2>
+<section id="id76">
+<h3>Fixes<a class="headerlink" href="#id76" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>cli: fix confusing arguments for casual service –legend</p></li>
 <li><p>cli - remove extra root <code class="docutils literal notranslate"><span class="pre">domain</span></code>: casual configuration –normalize</p></li>
@@ -561,10 +685,10 @@ and <em>external</em>. This makes it consistent with <em>service –list-instanc
 </ul>
 </section>
 </section>
-<section id="id57">
-<h2>[1.5.10] - 2022-03-21<a class="headerlink" href="#id57" title="Permalink to this heading">¶</a></h2>
-<section id="id58">
-<h3>Fixes<a class="headerlink" href="#id58" title="Permalink to this heading">¶</a></h3>
+<section id="id77">
+<h2>[1.5.10] - 2022-03-21<a class="headerlink" href="#id77" title="Permalink to this heading">¶</a></h2>
+<section id="id78">
+<h3>Fixes<a class="headerlink" href="#id78" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: use multiplexing on the tcp-connection phase, no blocking if the
 tcp-connect takes a long time.</p></li>
@@ -578,10 +702,10 @@ tcp-connect takes a long time.</p></li>
 </ul>
 </section>
 </section>
-<section id="id59">
-<h2>[1.5.9] - 2022-02-18<a class="headerlink" href="#id59" title="Permalink to this heading">¶</a></h2>
-<section id="id60">
-<h3>Fixes<a class="headerlink" href="#id60" title="Permalink to this heading">¶</a></h3>
+<section id="id79">
+<h2>[1.5.9] - 2022-02-18<a class="headerlink" href="#id79" title="Permalink to this heading">¶</a></h2>
+<section id="id80">
+<h3>Fixes<a class="headerlink" href="#id80" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>discovery: propagate topology updates upstream</p>
 <ul>
@@ -602,10 +726,10 @@ on non fatal we try again after some time (as before).</p></li>
 </ul>
 </section>
 </section>
-<section id="id61">
-<h2>[1.5.8] - 2022-01-08<a class="headerlink" href="#id61" title="Permalink to this heading">¶</a></h2>
-<section id="id62">
-<h3>Fixes<a class="headerlink" href="#id62" title="Permalink to this heading">¶</a></h3>
+<section id="id81">
+<h2>[1.5.8] - 2022-01-08<a class="headerlink" href="#id81" title="Permalink to this heading">¶</a></h2>
+<section id="id82">
+<h3>Fixes<a class="headerlink" href="#id82" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>transaction: fix distributed transaction bug in complex topology</p></li>
 <li><p>queue: forward react if queue group “dies”</p></li>
@@ -622,10 +746,10 @@ on non fatal we try again after some time (as before).</p></li>
 </ul>
 </section>
 </section>
-<section id="id63">
-<h2>[1.5.7] - 2021-11-26<a class="headerlink" href="#id63" title="Permalink to this heading">¶</a></h2>
-<section id="id64">
-<h3>Fixes<a class="headerlink" href="#id64" title="Permalink to this heading">¶</a></h3>
+<section id="id83">
+<h2>[1.5.7] - 2021-11-26<a class="headerlink" href="#id83" title="Permalink to this heading">¶</a></h2>
+<section id="id84">
+<h3>Fixes<a class="headerlink" href="#id84" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>transaction: fix distributed commit when RM fails -&gt; rollback</p></li>
 <li><p>discovery: registration for <em>discoverables</em> more robust with request-&gt;reply</p>
@@ -637,8 +761,8 @@ within a couple of 100ms or so.</p></li>
 </ul>
 </section>
 </section>
-<section id="id65">
-<h2>[1.5.6] - 2021-11-15<a class="headerlink" href="#id65" title="Permalink to this heading">¶</a></h2>
+<section id="id85">
+<h2>[1.5.6] - 2021-11-15<a class="headerlink" href="#id85" title="Permalink to this heading">¶</a></h2>
 <section id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
@@ -661,10 +785,10 @@ replaces the <em>resource.properties file</em> (<code class="docutils literal no
 </ul>
 </section>
 </section>
-<section id="id66">
-<h2>[1.5.5] - 2021-11-09<a class="headerlink" href="#id66" title="Permalink to this heading">¶</a></h2>
-<section id="id67">
-<h3>Fixes<a class="headerlink" href="#id67" title="Permalink to this heading">¶</a></h3>
+<section id="id86">
+<h2>[1.5.5] - 2021-11-09<a class="headerlink" href="#id86" title="Permalink to this heading">¶</a></h2>
+<section id="id87">
+<h3>Fixes<a class="headerlink" href="#id87" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>xatmi - conversation: major refactoring</p></li>
 <li><p>xatmi: fix leak of descriptors for conversational services.</p></li>
@@ -674,10 +798,10 @@ replaces the <em>resource.properties file</em> (<code class="docutils literal no
 </ul>
 </section>
 </section>
-<section id="id68">
-<h2>[1.5.4] - 2021-10-23<a class="headerlink" href="#id68" title="Permalink to this heading">¶</a></h2>
-<section id="id69">
-<h3>Fixes<a class="headerlink" href="#id69" title="Permalink to this heading">¶</a></h3>
+<section id="id88">
+<h2>[1.5.4] - 2021-10-23<a class="headerlink" href="#id88" title="Permalink to this heading">¶</a></h2>
+<section id="id89">
+<h3>Fixes<a class="headerlink" href="#id89" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>transaction - if rm:s report error during xa_start: reply with TPESVCERR</p></li>
 <li><p>configuration|cli - validate: only positive integers for instances</p></li>
@@ -686,10 +810,10 @@ replaces the <em>resource.properties file</em> (<code class="docutils literal no
 </ul>
 </section>
 </section>
-<section id="id70">
-<h2>[1.5.3] - 2021-09-22<a class="headerlink" href="#id70" title="Permalink to this heading">¶</a></h2>
-<section id="id71">
-<h3>Fixes<a class="headerlink" href="#id71" title="Permalink to this heading">¶</a></h3>
+<section id="id90">
+<h2>[1.5.3] - 2021-09-22<a class="headerlink" href="#id90" title="Permalink to this heading">¶</a></h2>
+<section id="id91">
+<h3>Fixes<a class="headerlink" href="#id91" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>http: outbound handle discovery (<em>http-services</em> are treated <em>external</em> as they should)</p></li>
 <li><p>xatmi: support for conversations (primarily targeting COBOL)</p></li>
@@ -704,20 +828,20 @@ found in other domains (not <em>local</em>), the domains inbound connections sho
 </ul>
 </section>
 </section>
-<section id="id72">
-<h2>[1.5.2] - 2021-09-17<a class="headerlink" href="#id72" title="Permalink to this heading">¶</a></h2>
-<section id="id73">
-<h3>Fixes<a class="headerlink" href="#id73" title="Permalink to this heading">¶</a></h3>
+<section id="id92">
+<h2>[1.5.2] - 2021-09-17<a class="headerlink" href="#id92" title="Permalink to this heading">¶</a></h2>
+<section id="id93">
+<h3>Fixes<a class="headerlink" href="#id93" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>domain: fixed so order of groups (configuration) can be arbitrary, regardless of dependencies.</p></li>
 <li><p>discovery: made sure we <em>flush send</em> to mitigate deadlocks when interacting with <code class="docutils literal notranslate"><span class="pre">casual-domain-discovery</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id74">
-<h2>[1.5.1] - 2021-09-11<a class="headerlink" href="#id74" title="Permalink to this heading">¶</a></h2>
-<section id="id75">
-<h3>Fixes<a class="headerlink" href="#id75" title="Permalink to this heading">¶</a></h3>
+<section id="id94">
+<h2>[1.5.1] - 2021-09-11<a class="headerlink" href="#id94" title="Permalink to this heading">¶</a></h2>
+<section id="id95">
+<h3>Fixes<a class="headerlink" href="#id95" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway - respect hops: round-robin on the partition with smallest hops</p></li>
 <li><p>gateway: fix interdomain protocol example tool</p></li>
@@ -728,10 +852,10 @@ found in other domains (not <em>local</em>), the domains inbound connections sho
 </ul>
 </section>
 </section>
-<section id="id76">
-<h2>[1.5.0] - 2021-09-01<a class="headerlink" href="#id76" title="Permalink to this heading">¶</a></h2>
-<section id="id77">
-<h3>Added<a class="headerlink" href="#id77" title="Permalink to this heading">¶</a></h3>
+<section id="id96">
+<h2>[1.5.0] - 2021-09-01<a class="headerlink" href="#id96" title="Permalink to this heading">¶</a></h2>
+<section id="id97">
+<h3>Added<a class="headerlink" href="#id97" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>configuration: runtime configuration <em>stage 1</em></p>
 <ul>
@@ -754,8 +878,8 @@ to <em>automate</em> log-rotation.</p></li>
 <li><p>discovery: central ‘agent’ for handling discoveries</p></li>
 </ul>
 </section>
-<section id="id78">
-<h3>Changed<a class="headerlink" href="#id78" title="Permalink to this heading">¶</a></h3>
+<section id="id98">
+<h3>Changed<a class="headerlink" href="#id98" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>transcoding: platform-independent third-party-header-only-lib for base64-transcoding</p></li>
 <li><p>paths: using std filesystem</p>
@@ -769,8 +893,8 @@ to <em>automate</em> log-rotation.</p></li>
 <li><p>python binding: upgraded to python3</p></li>
 </ul>
 </section>
-<section id="id79">
-<h3>Fixes<a class="headerlink" href="#id79" title="Permalink to this heading">¶</a></h3>
+<section id="id99">
+<h3>Fixes<a class="headerlink" href="#id99" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>serialize - some simplifications: std::filesystem::path logs correctly</p></li>
 <li><p>common: ‘helper’ for <code class="docutils literal notranslate"><span class="pre">directory::create</span></code> to handle corner cases with links</p></li>
@@ -781,8 +905,8 @@ to <em>automate</em> log-rotation.</p></li>
 <li><p>build: calculate version from tags -&gt; more robust version sequences</p></li>
 </ul>
 </section>
-<section id="id80">
-<h3>Internal<a class="headerlink" href="#id80" title="Permalink to this heading">¶</a></h3>
+<section id="id100">
+<h3>Internal<a class="headerlink" href="#id100" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>configuration - better model: all managers supply their configuration</p></li>
 <li><p>unittest: more deterministic unittests</p></li>
@@ -798,19 +922,19 @@ to <em>automate</em> log-rotation.</p></li>
 </ul>
 </section>
 </section>
-<section id="id81">
-<h2>[1.4.20] - 2021-06-15<a class="headerlink" href="#id81" title="Permalink to this heading">¶</a></h2>
-<section id="id82">
-<h3>Fixes<a class="headerlink" href="#id82" title="Permalink to this heading">¶</a></h3>
+<section id="id101">
+<h2>[1.4.20] - 2021-06-15<a class="headerlink" href="#id101" title="Permalink to this heading">¶</a></h2>
+<section id="id102">
+<h3>Fixes<a class="headerlink" href="#id102" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>queue: improved performance while dequeuing messages</p></li>
 </ul>
 </section>
 </section>
-<section id="id83">
-<h2>[1.4.18] - 2021-06-09<a class="headerlink" href="#id83" title="Permalink to this heading">¶</a></h2>
-<section id="id84">
-<h3>Fixes<a class="headerlink" href="#id84" title="Permalink to this heading">¶</a></h3>
+<section id="id103">
+<h2>[1.4.18] - 2021-06-09<a class="headerlink" href="#id103" title="Permalink to this heading">¶</a></h2>
+<section id="id104">
+<h3>Fixes<a class="headerlink" href="#id104" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: tcp connect/accept errors might lead to inbound/outbound exit/restart</p></li>
 <li><p>service: removed false error log when a timeout occur and the callee is killed</p></li>
@@ -818,19 +942,19 @@ to <em>automate</em> log-rotation.</p></li>
 </ul>
 </section>
 </section>
-<section id="id85">
-<h2>[1.4.16] - 2021-05-29<a class="headerlink" href="#id85" title="Permalink to this heading">¶</a></h2>
-<section id="id86">
-<h3>Fixes<a class="headerlink" href="#id86" title="Permalink to this heading">¶</a></h3>
+<section id="id105">
+<h2>[1.4.16] - 2021-05-29<a class="headerlink" href="#id105" title="Permalink to this heading">¶</a></h2>
+<section id="id106">
+<h3>Fixes<a class="headerlink" href="#id106" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: improved tcp connection phase robustness -&gt; spawns a process that take cares of the logical connection phase</p></li>
 </ul>
 </section>
 </section>
-<section id="id87">
-<h2>[1.4.15] - 2021-04-14<a class="headerlink" href="#id87" title="Permalink to this heading">¶</a></h2>
-<section id="id88">
-<h3>Fixes<a class="headerlink" href="#id88" title="Permalink to this heading">¶</a></h3>
+<section id="id107">
+<h2>[1.4.15] - 2021-04-14<a class="headerlink" href="#id107" title="Permalink to this heading">¶</a></h2>
+<section id="id108">
+<h3>Fixes<a class="headerlink" href="#id108" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>service: pending lookups did not work correctly for <em>routes</em></p></li>
 <li><p>gateway: made sure we terminate a detected ‘loop’ for calls</p></li>
@@ -838,10 +962,10 @@ to <em>automate</em> log-rotation.</p></li>
 </ul>
 </section>
 </section>
-<section id="id89">
-<h2>[1.4.14] - 2021-03-28<a class="headerlink" href="#id89" title="Permalink to this heading">¶</a></h2>
-<section id="id90">
-<h3>Fixes<a class="headerlink" href="#id90" title="Permalink to this heading">¶</a></h3>
+<section id="id109">
+<h2>[1.4.14] - 2021-03-28<a class="headerlink" href="#id109" title="Permalink to this heading">¶</a></h2>
+<section id="id110">
+<h3>Fixes<a class="headerlink" href="#id110" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: outbound handle no-entry call reply correctly</p></li>
 <li><p>gateway: outbound correlates multiple branched trids correctly</p></li>
@@ -849,10 +973,10 @@ to <em>automate</em> log-rotation.</p></li>
 </ul>
 </section>
 </section>
-<section id="id91">
-<h2>[1.4.12] - 2021-03-05<a class="headerlink" href="#id91" title="Permalink to this heading">¶</a></h2>
-<section id="id92">
-<h3>Fixes<a class="headerlink" href="#id92" title="Permalink to this heading">¶</a></h3>
+<section id="id111">
+<h2>[1.4.12] - 2021-03-05<a class="headerlink" href="#id111" title="Permalink to this heading">¶</a></h2>
+<section id="id112">
+<h3>Fixes<a class="headerlink" href="#id112" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway - asynchronous writes: mitigate deadlock, performance improvements</p></li>
 <li><p>gateway: handles bad tcp addresses in a more robust way</p></li>
@@ -862,65 +986,65 @@ to <em>automate</em> log-rotation.</p></li>
 </ul>
 </section>
 </section>
-<section id="id93">
-<h2>[1.4.9] - 2021-03-04<a class="headerlink" href="#id93" title="Permalink to this heading">¶</a></h2>
-<section id="id94">
-<h3>Fixes<a class="headerlink" href="#id94" title="Permalink to this heading">¶</a></h3>
+<section id="id113">
+<h2>[1.4.9] - 2021-03-04<a class="headerlink" href="#id113" title="Permalink to this heading">¶</a></h2>
+<section id="id114">
+<h3>Fixes<a class="headerlink" href="#id114" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: outbound should prioritize replies from other domains</p></li>
 <li><p>cli: call not use pending message and use the ‘flush send’ idiom.</p></li>
 </ul>
 </section>
 </section>
-<section id="id95">
-<h2>[1.4.8] - 2021-03-03<a class="headerlink" href="#id95" title="Permalink to this heading">¶</a></h2>
-<section id="id96">
-<h3>Fixes<a class="headerlink" href="#id96" title="Permalink to this heading">¶</a></h3>
+<section id="id115">
+<h2>[1.4.8] - 2021-03-03<a class="headerlink" href="#id115" title="Permalink to this heading">¶</a></h2>
+<section id="id116">
+<h3>Fixes<a class="headerlink" href="#id116" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: outbound/reverse-inbound might try to receive on wrong socket and get ‘stuck’</p></li>
 </ul>
 </section>
 </section>
-<section id="id97">
-<h2>[1.4.7] - 2021-03-03<a class="headerlink" href="#id97" title="Permalink to this heading">¶</a></h2>
-<section id="id98">
-<h3>Fixes<a class="headerlink" href="#id98" title="Permalink to this heading">¶</a></h3>
+<section id="id117">
+<h2>[1.4.7] - 2021-03-03<a class="headerlink" href="#id117" title="Permalink to this heading">¶</a></h2>
+<section id="id118">
+<h3>Fixes<a class="headerlink" href="#id118" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>domain: shutdown/restart makes ‘noise’ when provided services are under load</p></li>
 </ul>
 </section>
 </section>
-<section id="id99">
-<h2>[1.4.6] - 2021-02-25<a class="headerlink" href="#id99" title="Permalink to this heading">¶</a></h2>
-<section id="id100">
-<h3>Fixes<a class="headerlink" href="#id100" title="Permalink to this heading">¶</a></h3>
+<section id="id119">
+<h2>[1.4.6] - 2021-02-25<a class="headerlink" href="#id119" title="Permalink to this heading">¶</a></h2>
+<section id="id120">
+<h3>Fixes<a class="headerlink" href="#id120" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>discovery: did not work correctly on service with multiple routes</p></li>
 </ul>
 </section>
 </section>
-<section id="id101">
-<h2>[1.4.5] - 2021-02-24<a class="headerlink" href="#id101" title="Permalink to this heading">¶</a></h2>
-<section id="id102">
-<h3>Changed<a class="headerlink" href="#id102" title="Permalink to this heading">¶</a></h3>
+<section id="id121">
+<h2>[1.4.5] - 2021-02-24<a class="headerlink" href="#id121" title="Permalink to this heading">¶</a></h2>
+<section id="id122">
+<h3>Changed<a class="headerlink" href="#id122" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>updated this changelog: missed it in 1.4.4</p></li>
 </ul>
 </section>
 </section>
-<section id="id103">
-<h2>[1.4.4] - 2021-02-24<a class="headerlink" href="#id103" title="Permalink to this heading">¶</a></h2>
-<section id="id104">
-<h3>Fixes<a class="headerlink" href="#id104" title="Permalink to this heading">¶</a></h3>
+<section id="id123">
+<h2>[1.4.4] - 2021-02-24<a class="headerlink" href="#id123" title="Permalink to this heading">¶</a></h2>
+<section id="id124">
+<h3>Fixes<a class="headerlink" href="#id124" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>discovery: did not work correctly on service routes</p></li>
 </ul>
 </section>
 </section>
-<section id="id105">
-<h2>[1.4.3] - 2021-02-13<a class="headerlink" href="#id105" title="Permalink to this heading">¶</a></h2>
-<section id="id106">
-<h3>Changed<a class="headerlink" href="#id106" title="Permalink to this heading">¶</a></h3>
+<section id="id125">
+<h2>[1.4.3] - 2021-02-13<a class="headerlink" href="#id125" title="Permalink to this heading">¶</a></h2>
+<section id="id126">
+<h3>Changed<a class="headerlink" href="#id126" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>cli: updated documentation for –color with option auto</p></li>
 </ul>
@@ -932,10 +1056,10 @@ to <em>automate</em> log-rotation.</p></li>
 </ul>
 </section>
 </section>
-<section id="id107">
-<h2>[1.4.2] - 2021-02-13<a class="headerlink" href="#id107" title="Permalink to this heading">¶</a></h2>
-<section id="id108">
-<h3>Fixed<a class="headerlink" href="#id108" title="Permalink to this heading">¶</a></h3>
+<section id="id127">
+<h2>[1.4.2] - 2021-02-13<a class="headerlink" href="#id127" title="Permalink to this heading">¶</a></h2>
+<section id="id128">
+<h3>Fixed<a class="headerlink" href="#id128" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>service: added timeout contract to cli output</p></li>
 <li><p>queue: improved cli</p></li>
@@ -943,10 +1067,10 @@ to <em>automate</em> log-rotation.</p></li>
 </ul>
 </section>
 </section>
-<section id="id109">
-<h2>[1.4.1] - 2021-02-07<a class="headerlink" href="#id109" title="Permalink to this heading">¶</a></h2>
-<section id="id110">
-<h3>Added<a class="headerlink" href="#id110" title="Permalink to this heading">¶</a></h3>
+<section id="id129">
+<h2>[1.4.1] - 2021-02-07<a class="headerlink" href="#id129" title="Permalink to this heading">¶</a></h2>
+<section id="id130">
+<h3>Added<a class="headerlink" href="#id130" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>queue: concurrent queue-forward that is part of casual-queue</p></li>
 <li><p>service: manager replies with requested queue on service discovery</p></li>
@@ -965,8 +1089,8 @@ to <em>automate</em> log-rotation.</p></li>
 <li><p>configuration: validate not empty values</p></li>
 </ul>
 </section>
-<section id="id111">
-<h3>Changed<a class="headerlink" href="#id111" title="Permalink to this heading">¶</a></h3>
+<section id="id131">
+<h3>Changed<a class="headerlink" href="#id131" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>upgrade to c++17</p></li>
 <li><p>queue: reworked group and forward to be more rigid</p></li>
@@ -974,8 +1098,8 @@ to <em>automate</em> log-rotation.</p></li>
 <li><p>remove 600 call trying limit in nginx</p></li>
 </ul>
 </section>
-<section id="id112">
-<h3>Fixed<a class="headerlink" href="#id112" title="Permalink to this heading">¶</a></h3>
+<section id="id132">
+<h3>Fixed<a class="headerlink" href="#id132" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: did not add pending metric to request from service lookup</p></li>
 <li><p>transaction: tx_begin did ‘start’ the transaction even if RM xa_start failed</p></li>
@@ -985,56 +1109,56 @@ to <em>automate</em> log-rotation.</p></li>
 </ul>
 </section>
 </section>
-<section id="id113">
-<h2>[1.3.15] - 2020-12-24<a class="headerlink" href="#id113" title="Permalink to this heading">¶</a></h2>
-<section id="id114">
-<h3>Fixed<a class="headerlink" href="#id114" title="Permalink to this heading">¶</a></h3>
+<section id="id133">
+<h2>[1.3.15] - 2020-12-24<a class="headerlink" href="#id133" title="Permalink to this heading">¶</a></h2>
+<section id="id134">
+<h3>Fixed<a class="headerlink" href="#id134" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>queue: missing error_condition equivalent implementation for queue::code
 all values for queue::code was logged as <code class="docutils literal notranslate"><span class="pre">error</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id115">
-<h2>[1.3.13] - 2020-11-27<a class="headerlink" href="#id115" title="Permalink to this heading">¶</a></h2>
-<section id="id116">
-<h3>Fixed<a class="headerlink" href="#id116" title="Permalink to this heading">¶</a></h3>
+<section id="id135">
+<h2>[1.3.13] - 2020-11-27<a class="headerlink" href="#id135" title="Permalink to this heading">¶</a></h2>
+<section id="id136">
+<h3>Fixed<a class="headerlink" href="#id136" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>queue: enqueue does not handle ‘shutdown’ correctly</p></li>
 </ul>
 </section>
 </section>
-<section id="id117">
-<h2>[1.3.7] - 2020-10-14<a class="headerlink" href="#id117" title="Permalink to this heading">¶</a></h2>
-<section id="id118">
-<h3>Fixed<a class="headerlink" href="#id118" title="Permalink to this heading">¶</a></h3>
+<section id="id137">
+<h2>[1.3.7] - 2020-10-14<a class="headerlink" href="#id137" title="Permalink to this heading">¶</a></h2>
+<section id="id138">
+<h3>Fixed<a class="headerlink" href="#id138" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>service: same instance could be added to a service multiple times</p></li>
 </ul>
 </section>
 </section>
-<section id="id119">
-<h2>[1.3.6] - 2020-10-09<a class="headerlink" href="#id119" title="Permalink to this heading">¶</a></h2>
-<section id="id120">
-<h3>Fixed<a class="headerlink" href="#id120" title="Permalink to this heading">¶</a></h3>
+<section id="id139">
+<h2>[1.3.6] - 2020-10-09<a class="headerlink" href="#id139" title="Permalink to this heading">¶</a></h2>
+<section id="id140">
+<h3>Fixed<a class="headerlink" href="#id140" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway: rediscovery failed when there was unconnected outbounds</p></li>
 </ul>
 </section>
 </section>
-<section id="id121">
-<h2>[1.3.5] - 2020-09-22<a class="headerlink" href="#id121" title="Permalink to this heading">¶</a></h2>
-<section id="id122">
-<h3>Fixed<a class="headerlink" href="#id122" title="Permalink to this heading">¶</a></h3>
+<section id="id141">
+<h2>[1.3.5] - 2020-09-22<a class="headerlink" href="#id141" title="Permalink to this heading">¶</a></h2>
+<section id="id142">
+<h3>Fixed<a class="headerlink" href="#id142" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>transaction: did not remove ‘consumed’ transaction</p></li>
 </ul>
 </section>
 </section>
-<section id="id123">
-<h2>[1.3.4] - 2020-09-17<a class="headerlink" href="#id123" title="Permalink to this heading">¶</a></h2>
-<section id="id124">
-<h3>Added<a class="headerlink" href="#id124" title="Permalink to this heading">¶</a></h3>
+<section id="id143">
+<h2>[1.3.4] - 2020-09-17<a class="headerlink" href="#id143" title="Permalink to this heading">¶</a></h2>
+<section id="id144">
+<h3>Added<a class="headerlink" href="#id144" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>cli transaction support</p></li>
 <li><p>handle glob pattern selecting configuration files</p></li>
@@ -1043,14 +1167,14 @@ all values for queue::code was logged as <code class="docutils literal notransla
 <li><p>queue: improvement in performance</p></li>
 </ul>
 </section>
-<section id="id125">
-<h3>Changed<a class="headerlink" href="#id125" title="Permalink to this heading">¶</a></h3>
+<section id="id145">
+<h3>Changed<a class="headerlink" href="#id145" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>cli help improvements</p></li>
 </ul>
 </section>
-<section id="id126">
-<h3>Fixed<a class="headerlink" href="#id126" title="Permalink to this heading">¶</a></h3>
+<section id="id146">
+<h3>Fixed<a class="headerlink" href="#id146" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>http outbound not marking transaction rollback-only on error reply</p></li>
 <li><p>forward service causing error in metrics</p></li>
@@ -1063,17 +1187,17 @@ all values for queue::code was logged as <code class="docutils literal notransla
 </ul>
 </section>
 </section>
-<section id="id127">
-<h2>[1.2.0] - 2020-04-23<a class="headerlink" href="#id127" title="Permalink to this heading">¶</a></h2>
-<section id="id128">
-<h3>Added<a class="headerlink" href="#id128" title="Permalink to this heading">¶</a></h3>
+<section id="id147">
+<h2>[1.2.0] - 2020-04-23<a class="headerlink" href="#id147" title="Permalink to this heading">¶</a></h2>
+<section id="id148">
+<h3>Added<a class="headerlink" href="#id148" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>gateway rediscover functionality</p></li>
 <li><p>group restart in domain</p></li>
 </ul>
 </section>
-<section id="id129">
-<h3>Changed<a class="headerlink" href="#id129" title="Permalink to this heading">¶</a></h3>
+<section id="id149">
+<h3>Changed<a class="headerlink" href="#id149" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>improved ipc message pump semantics</p></li>
 <li><p>cli improvement in aggregate information from managers</p></li>
@@ -1083,10 +1207,10 @@ all values for queue::code was logged as <code class="docutils literal notransla
 </ul>
 </section>
 </section>
-<section id="id130">
-<h2>[1.1.0] - 2020-03-08<a class="headerlink" href="#id130" title="Permalink to this heading">¶</a></h2>
-<section id="id131">
-<h3>Added<a class="headerlink" href="#id131" title="Permalink to this heading">¶</a></h3>
+<section id="id150">
+<h2>[1.1.0] - 2020-03-08<a class="headerlink" href="#id150" title="Permalink to this heading">¶</a></h2>
+<section id="id151">
+<h3>Added<a class="headerlink" href="#id151" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>http inbound and outbound handles xatmi codes in header</p></li>
 <li><p>support for returning header parameters in http</p></li>
@@ -1096,8 +1220,8 @@ all values for queue::code was logged as <code class="docutils literal notransla
 <li><p>support for queue retry and delay</p></li>
 </ul>
 </section>
-<section id="id132">
-<h3>Changed<a class="headerlink" href="#id132" title="Permalink to this heading">¶</a></h3>
+<section id="id152">
+<h3>Changed<a class="headerlink" href="#id152" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>logging reworked</p></li>
 <li><p>improved metrics semantics</p></li>
@@ -1110,8 +1234,8 @@ all values for queue::code was logged as <code class="docutils literal notransla
 <li><p>administration api</p></li>
 </ul>
 </section>
-<section id="id133">
-<h3>Fixed<a class="headerlink" href="#id133" title="Permalink to this heading">¶</a></h3>
+<section id="id153">
+<h3>Fixed<a class="headerlink" href="#id153" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>signal handling in non-blocking-send</p></li>
 <li><p>multiplexing problem</p></li>
@@ -1125,10 +1249,10 @@ all values for queue::code was logged as <code class="docutils literal notransla
 </ul>
 </section>
 </section>
-<section id="id134">
-<h2>[1.0.0] - 2018-08-13<a class="headerlink" href="#id134" title="Permalink to this heading">¶</a></h2>
-<section id="id135">
-<h3>Added<a class="headerlink" href="#id135" title="Permalink to this heading">¶</a></h3>
+<section id="id154">
+<h2>[1.0.0] - 2018-08-13<a class="headerlink" href="#id154" title="Permalink to this heading">¶</a></h2>
+<section id="id155">
+<h3>Added<a class="headerlink" href="#id155" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>first released version 6,5 years after first commit.</p></li>
 <li><p>all basic functionality supported</p></li>
@@ -1174,8 +1298,10 @@ and this project adheres to <a class="reference external" href="https://semver.o
   <div class="rst-other-versions">
     <dl>
       <dt>Branches</dt>
+      <dd><a href="../../../feature/1.8/main/documentation/changelog.html">feature/1.8/main</a></dd>
       <dd><a href="../../1.6/documentation/changelog.html">release/1.6</a></dd>
       <dd><a href="changelog.html">release/1.7</a></dd>
+      <dd><a href="../../1.8/documentation/changelog.html">release/1.8</a></dd>
     </dl>
   </div>
 </div>

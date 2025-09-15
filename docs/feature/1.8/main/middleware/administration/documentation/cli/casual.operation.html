@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>casual &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="casual buffer" href="buffer.operation.html" />
+    <link rel="prev" title="overview of casual command line interface" href="overview.operation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../documentation/operation.html">operation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="overview.html">command line interface</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.operation.html">overview of <code class="docutils literal notranslate"><span class="pre">casual</span></code> command line interface</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">casual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buffer.operation.html">casual buffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="call.operation.html">casual call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.operation.html">casual configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="describe.operation.html">casual describe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="discovery.operation.html">casual discovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="domain.operation.html">casual domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file.operation.html">casual file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateway.operation.html">casual gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="internal.operation.html">casual internal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="queue.operation.html">casual queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="service.operation.html">casual service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transaction.operation.html">casual transaction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../environment.operation.html">environment variables that affect operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/domain.gateway.operation.html">configuration gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/domain.general.operation.html">configuration domain (general)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/domain.queue.operation.html">configuration queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/domain.transaction.operation.html">configuration transaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration/documentation/system.operation.html">configuration system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../buffer/documentation/field.operation.html">field operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../common/documentation/log.operation.html">log operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../http/documentation/outbound/configuration.operation.html">http outbound configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../queue/documentation/queue.operation.html">casual-queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../queue/documentation/upgrade.operation.html">queue upgrade</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../documentation/operation.html">operation</a></li>
+          <li class="breadcrumb-item"><a href="overview.html">command line interface</a></li>
+      <li class="breadcrumb-item active">casual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/middleware/administration/documentation/cli/casual.operation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="casual">
+<h1>casual<a class="headerlink" href="#casual" title="Permalink to this heading">¶</a></h1>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>host#<span class="w"> </span>casual<span class="w"> </span>--help<span class="w"> </span>
+
+NAME
+<span class="w">   </span>casual-administration-cli-documentation
+
+DESCRIPTION
+
+<span class="w">   </span>
+<span class="w">   </span>casual<span class="w"> </span>administration<span class="w"> </span>CLI
+<span class="w">   </span>
+<span class="w">   </span>To<span class="w"> </span>get<span class="w"> </span>more<span class="w"> </span>detailed<span class="w"> </span>help,<span class="w"> </span>use<span class="w"> </span>any<span class="w"> </span>of:
+<span class="w">   </span>casual<span class="w"> </span>--help<span class="w"> </span>&lt;option&gt;
+<span class="w">   </span>casual<span class="w"> </span>&lt;option&gt;<span class="w"> </span>--help
+<span class="w">   </span>casual<span class="w"> </span>--help<span class="w"> </span>&lt;option&gt;<span class="w"> </span>&lt;option&gt;<span class="w"> </span>
+<span class="w">   </span>
+<span class="w">   </span>Where<span class="w"> </span>&lt;option&gt;<span class="w"> </span>is<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>listed<span class="w"> </span>below
+
+OPTIONS
+
+<span class="w">   </span>domain<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span><span class="nb">local</span><span class="w"> </span>casual<span class="w"> </span>domain<span class="w"> </span>related<span class="w"> </span>administration
+
+<span class="w">   </span>service<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>service<span class="w"> </span>related<span class="w"> </span>administration
+
+<span class="w">   </span>queue<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>queue<span class="w"> </span>related<span class="w"> </span>administration
+
+<span class="w">   </span>file<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>file<span class="w"> </span>related<span class="w"> </span>administration
+
+<span class="w">   </span>transaction<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>transaction<span class="w"> </span>related<span class="w"> </span>administration
+
+<span class="w">   </span>gateway<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>gateway<span class="w"> </span>related<span class="w"> </span>administration
+
+<span class="w">   </span>discovery<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>responsible<span class="w"> </span><span class="k">for</span><span class="w"> </span>discovery<span class="w"> </span>stuff
+
+<span class="w">   </span>configuration<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>configuration<span class="w"> </span>utility
+<span class="w">        </span>
+<span class="w">        </span>This<span class="w"> </span>utility<span class="w"> </span>is<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>get,<span class="w"> </span>post,<span class="w"> </span>put<span class="w"> </span>and<span class="w"> </span>edit<span class="w"> </span>the<span class="w"> </span>configuration<span class="w"> </span>of
+<span class="w">        </span>the<span class="w"> </span>casual<span class="w"> </span>domain.
+<span class="w">                       </span>
+<span class="w">        </span>Also<span class="w"> </span>functionality<span class="w"> </span>to<span class="w"> </span>normalize,<span class="w"> </span>validate<span class="w"> </span>and<span class="w"> </span>format<span class="w"> </span>the<span class="w"> </span>configuration.
+
+<span class="w">   </span>call<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>generic<span class="w"> </span>service<span class="w"> </span>call
+<span class="w">        </span>
+<span class="w">        </span>Reads<span class="w"> </span>buffer<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>from<span class="w"> </span>stdin<span class="w"> </span>and<span class="w"> </span>call<span class="w"> </span>the<span class="w"> </span>provided<span class="w"> </span>service,<span class="w"> </span>prints<span class="w"> </span>the<span class="w"> </span>reply<span class="w"> </span>buffer<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>to<span class="w"> </span>stdout.
+<span class="w">        </span>Assumes<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>input<span class="w"> </span>buffer<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>conformant<span class="w"> </span>format,<span class="w"> </span>ie,<span class="w"> </span>created<span class="w"> </span>by<span class="w"> </span>casual.
+<span class="w">        </span>Errors<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>printed<span class="w"> </span>to<span class="w"> </span>stderr
+<span class="w">        </span>
+<span class="w">        </span>@note:<span class="w"> </span>part<span class="w"> </span>of<span class="w"> </span>casual-pipe
+
+<span class="w">   </span>describe<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>&lt;service&gt;<span class="w"> </span><span class="o">[</span>json,<span class="w"> </span>yaml,<span class="w"> </span>xml,<span class="w"> </span>ini<span class="o">])</span><span class="w"> </span><span class="o">[</span><span class="m">1</span>..2<span class="o">]</span>
+<span class="w">        </span>service<span class="w"> </span>describer
+<span class="w">        </span>
+<span class="w">           </span>*<span class="w"> </span>service<span class="w">   </span>name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>service<span class="w"> </span>to<span class="w"> </span>to<span class="w"> </span>describe
+<span class="w">           </span>*<span class="w"> </span><span class="o">[</span>format<span class="o">]</span><span class="w">  </span>optional<span class="w"> </span>format<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>output,<span class="w"> </span><span class="k">if</span><span class="w"> </span>absent<span class="w"> </span>a<span class="w"> </span>_CLI<span class="w"> </span>format_<span class="w"> </span>is<span class="w"> </span>used.
+<span class="w">        </span>
+<span class="w">           </span>attention:<span class="w"> </span>the<span class="w"> </span>service<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>casual<span class="w"> </span>aware<span class="w"> </span>service
+
+<span class="w">   </span>buffer<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>buffer<span class="w"> </span>related<span class="w"> </span><span class="s1">&#39;tools&#39;</span>
+
+<span class="w">   </span>pipe<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>pipe<span class="w"> </span>related<span class="w"> </span>options
+
+<span class="w">   </span>--information<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>&lt;value&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">0</span>..*<span class="o">]</span>
+<span class="w">        </span>collect<span class="w"> </span>general<span class="w"> </span>aggregated<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>domain
+<span class="w">        </span>If<span class="w"> </span>no<span class="w"> </span>directives<span class="w"> </span>are<span class="w"> </span>provided<span class="w"> </span>all<span class="w"> </span>the<span class="w"> </span>_running_<span class="w"> </span>managers<span class="w"> </span>are<span class="w"> </span>asked<span class="w"> </span>to<span class="w"> </span>provide<span class="w"> </span>information.
+<span class="w">        </span>Otherwise,<span class="w"> </span>only<span class="w"> </span>the<span class="w"> </span>provided<span class="w"> </span>directives<span class="w"> </span>are<span class="w"> </span>used.
+<span class="w">        </span>
+<span class="w">        </span>use<span class="w"> </span>auto-complete<span class="w"> </span>to<span class="w"> </span>aid<span class="w"> </span>valid<span class="w"> </span>directives.
+<span class="w">        </span>
+<span class="w">        </span>valid<span class="w"> </span>directives:
+<span class="w">        </span>*<span class="w"> </span>information-domain
+<span class="w">        </span>*<span class="w"> </span>information-service
+<span class="w">        </span>*<span class="w"> </span>information-queue
+<span class="w">        </span>*<span class="w"> </span>information-transaction
+
+<span class="w">   </span>--color<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>true,<span class="w"> </span>false,<span class="w"> </span>auto<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>
+<span class="w">        </span>set/unset<span class="w"> </span>color<span class="w"> </span>-<span class="w"> </span><span class="k">if</span><span class="w"> </span>auto,<span class="w"> </span>colors<span class="w"> </span>are<span class="w"> </span>used<span class="w"> </span><span class="k">if</span><span class="w"> </span>tty<span class="w"> </span>is<span class="w"> </span>bound<span class="w"> </span>to<span class="w"> </span>stdout<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">false</span><span class="o">)</span>
+
+<span class="w">   </span>--header<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>true,<span class="w"> </span>false,<span class="w"> </span>auto<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>
+<span class="w">        </span>set/unset<span class="w"> </span>header<span class="w"> </span>-<span class="w"> </span><span class="k">if</span><span class="w"> </span>auto,<span class="w"> </span>headers<span class="w"> </span>are<span class="w"> </span>used<span class="w"> </span><span class="k">if</span><span class="w"> </span>tty<span class="w"> </span>is<span class="w"> </span>bound<span class="w"> </span>to<span class="w"> </span>stdout<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">true</span><span class="o">)</span>
+
+<span class="w">   </span>--precision<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>&lt;value&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>
+<span class="w">        </span><span class="nb">set</span><span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>decimal<span class="w"> </span>points<span class="w"> </span>used<span class="w"> </span><span class="k">for</span><span class="w"> </span>output<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="m">3</span><span class="o">)</span>
+
+<span class="w">   </span>--block<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>true,<span class="w"> </span><span class="nb">false</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>
+<span class="w">        </span>set/unset<span class="w"> </span>blocking<span class="w"> </span>-<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="k">return</span><span class="w"> </span>control<span class="w"> </span>to<span class="w"> </span>user<span class="w"> </span>as<span class="w"> </span>soon<span class="w"> </span>as<span class="w"> </span>possible<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">true</span><span class="o">)</span>
+
+<span class="w">   </span>--verbose<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>true,<span class="w"> </span><span class="nb">false</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>
+<span class="w">        </span>verbose<span class="w"> </span>output<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">false</span><span class="o">)</span>
+
+<span class="w">   </span>--porcelain<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>true,<span class="w"> </span><span class="nb">false</span><span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>
+<span class="w">        </span>backward<span class="w"> </span>compatible,<span class="w"> </span>easy<span class="w"> </span>to<span class="w"> </span>parse<span class="w"> </span>output<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>default:<span class="w"> </span><span class="nb">false</span><span class="o">)</span>
+<span class="w">        </span>
+<span class="w">        </span>Format:<span class="w"> </span><span class="sb">`</span>&lt;column1&gt;<span class="p">|</span>&lt;column2&gt;<span class="p">|</span>...<span class="p">|</span>&lt;columnN&gt;<span class="sb">`</span>,<span class="w"> </span>with<span class="w"> </span>no<span class="w"> </span><span class="sb">`</span>ws<span class="sb">`</span>.<span class="w"> </span>
+<span class="w">        </span>casual<span class="w"> </span>guarantees<span class="w"> </span>that<span class="w"> </span>any<span class="w"> </span>new<span class="w"> </span>columns<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>appended<span class="w"> </span>to<span class="w"> </span>existing,<span class="w"> </span>to<span class="w"> </span>preserve<span class="w"> </span>compatibility<span class="w"> </span>within<span class="w"> </span>major<span class="w"> </span>versions.
+<span class="w">        </span>Hence,<span class="w"> </span>column<span class="w"> </span>order<span class="w"> </span>can<span class="w"> </span>differ<span class="w"> </span>between<span class="w"> </span><span class="sb">`</span>porcelain<span class="sb">`</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;regular&quot;</span>.
+<span class="w">        </span>
+<span class="w">        </span>@note<span class="w"> </span>To<span class="w"> </span>view<span class="w"> </span><span class="sb">`</span>header<span class="sb">`</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>porcelain-mode<span class="w"> </span>an<span class="w"> </span>explicit<span class="w"> </span><span class="sb">`</span>--header<span class="w"> </span><span class="nb">true</span><span class="sb">`</span><span class="w"> </span>must<span class="w"> </span>be<span class="w"> </span>used.
+
+<span class="w">   </span>internal<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>internal<span class="w"> </span>casual<span class="w"> </span>stuff<span class="w"> </span><span class="k">for</span><span class="w"> </span>troubleshooting<span class="w"> </span>etc...
+
+<span class="w">   </span>--version<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span>
+<span class="w">        </span>display<span class="w"> </span>version<span class="w"> </span>information
+
+<span class="w">   </span>--help<span class="w"> </span><span class="o">[</span><span class="m">0</span>..1<span class="o">]</span><span class="w">  </span><span class="o">(</span>&lt;value&gt;<span class="o">)</span><span class="w"> </span><span class="o">[</span><span class="m">0</span>..*<span class="o">]</span>
+<span class="w">        </span>shows<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>information
+<span class="w">                       </span>
+<span class="w">        </span>Use<span class="w"> </span>--help<span class="w"> </span>&lt;option&gt;<span class="w"> </span>to<span class="w"> </span>see<span class="w"> </span>selected<span class="w"> </span>details<span class="w"> </span>on<span class="w"> </span>&lt;option&gt;
+<span class="w">        </span>You<span class="w"> </span>can<span class="w"> </span>also<span class="w"> </span>use<span class="w"> </span>more<span class="w"> </span>precise<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>deeply<span class="w"> </span>nested<span class="w"> </span>options
+<span class="w">        </span><span class="sb">`</span>--help<span class="w"> </span>-a<span class="w"> </span>-b<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span>-e<span class="sb">`</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.operation.html" class="btn btn-neutral float-left" title="overview of casual command line interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="buffer.operation.html" class="btn btn-neutral float-right" title="casual buffer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/1.8/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="casual.operation.html">feature/1.8/main</a></dd>
+      <dd><a href="../../../../../../../release/1.6/middleware/administration/documentation/cli/casual.operation.html">release/1.6</a></dd>
+      <dd><a href="../../../../../../../release/1.7/middleware/administration/documentation/cli/casual.operation.html">release/1.7</a></dd>
+      <dd><a href="../../../../../../../release/1.8/middleware/administration/documentation/cli/casual.operation.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

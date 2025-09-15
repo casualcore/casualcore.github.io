@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            casual
+              <img src="../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Changelog</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/documentation/changelog.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this heading">¶</a></h1>
+<p>This is the changelog for <code class="docutils literal notranslate"><span class="pre">casual</span></code> and all changes are listed in this document.</p>
+<section id="id1">
+<h2>[1.8.0] - 2025-08-27<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>common: using epoll on linux for multiplexing (<a class="reference external" href="https://github.com/casualcore/casual/issues/89">#89</a>)</p></li>
+<li><p>common: using kqueue for ‘select’ on BSD plattforms (<a class="reference external" href="https://github.com/casualcore/casual/issues/89">#89</a>)</p></li>
+<li><p>file: introduce file reserve mechanism within xa transactions (<a class="reference external" href="https://github.com/casualcore/casual/issues/13">#13</a>)</p></li>
+<li><p>cli: suboption cardinality</p></li>
+<li><p>domain: <code class="docutils literal notranslate"><span class="pre">domain</span> <span class="pre">--boot-strict</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">domain</span> <span class="pre">--boot</span> <span class="pre">--strict</span></code></p></li>
+<li><p>gateway: normalize cli options (<a class="reference external" href="https://github.com/casualcore/casual/issues/252">#252</a>)</p></li>
+<li><p>transaction: normalize cli options (<a class="reference external" href="https://github.com/casualcore/casual/issues/252">#252</a>)</p></li>
+<li><p>domain: normalize cli options (<a class="reference external" href="https://github.com/casualcore/casual/issues/252">#252</a>)</p></li>
+<li><p>service: normalize cli options (<a class="reference external" href="https://github.com/casualcore/casual/issues/252">#252</a>)</p></li>
+<li><p>queue: normalize cli options (<a class="reference external" href="https://github.com/casualcore/casual/issues/252">#252</a>)</p></li>
+<li><p>service: added <code class="docutils literal notranslate"><span class="pre">--all</span></code> to <code class="docutils literal notranslate"><span class="pre">--list-instances</span></code> to show hidden services</p></li>
+<li><p>argument: improved –help to print only one level</p></li>
+<li><p>tools: normalized options for build-server/executable (<a class="reference external" href="https://github.com/casualcore/casual/issues/567">#567</a>)</p></li>
+<li><p>domain: –restart-aliases also scale-out to configured (<a class="reference external" href="https://github.com/casualcore/casual/issues/215">#215</a>)</p></li>
+<li><p>http: inbound forward service -&gt; send ‘raw’ http data to service (<a class="reference external" href="https://github.com/casualcore/casual/issues/12">#12</a>)</p></li>
+<li><p>xatmi: header functionality for service and tpcall/tpacall (<a class="reference external" href="https://github.com/casualcore/casual/issues/12">#12</a>)</p></li>
+<li><p>common: cleanup transaction::ID, transaction::global::ID (<a class="reference external" href="https://github.com/casualcore/casual/issues/573">#573</a>)</p></li>
+<li><p>gateway: propagate header in service call request/reply</p></li>
+<li><p>unittest: moved service stuff from common-unittest to service-unittest</p></li>
+<li><p>refactoring: move service/server/transaction out of common (<a class="reference external" href="https://github.com/casualcore/casual/issues/556">#556</a>)</p></li>
+<li><p>documentation: enable indexing by EU Open Source Software Catalogue</p></li>
+<li><p>log: simplified logging - removed all verbose</p></li>
+<li><p>log: reduced the number of log-categories</p></li>
+<li><p>build: upgrade nginx to 1.28.0</p></li>
+<li><p>http: removed possibility to force base64 transcoding over the wire</p></li>
+</ul>
+</section>
+<section id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>common: time_point is not logged with iso8601 utc offset in some places (<a class="reference external" href="https://github.com/casualcore/casual/issues/552">#552</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>[1.7.9] - 2025-07-13<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3>Fixes<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>common: server-service finalize needs to wait for pending calls (<a class="reference external" href="https://github.com/casualcore/casual/issues/575">#575</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>[1.7.8] - 2025-06-18<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<section id="id5">
+<h3>Fixes<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>tools: build-server does not generate function name via argument (<a class="reference external" href="https://github.com/casualcore/casual/issues/568">#568</a>)</p></li>
+<li><p>common: transaction::global::ID istream asserts on hex &lt;= 64B (<a class="reference external" href="https://github.com/casualcore/casual/issues/570">#570</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2>[1.7.7] - 2025-05-27<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<section id="id7">
+<h3>Fixes<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>tools: casual-build-resource-proxy doesn’t respect –keep-source (<a class="reference external" href="https://github.com/casualcore/casual/issues/562">#562</a>)</p></li>
+<li><p>tools: casual-build-resource-proxy fails to compile (<a class="reference external" href="https://github.com/casualcore/casual/issues/561">#561</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h2>[1.7.6] - 2025-05-18<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<section id="id9">
+<h3>Fixes<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>common: service::Lookup does not propagate (current) trid (<a class="reference external" href="https://github.com/casualcore/casual/issues/557">#557</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id10">
+<h2>[1.7.5] - 2025-04-24<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<section id="id11">
+<h3>Fixes<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: lookup with no-reply does not reserve instance (<a class="reference external" href="https://github.com/casualcore/casual/issues/534">#534</a>)</p></li>
+<li><p>service: call with NOREPLY should not supply current deadline (<a class="reference external" href="https://github.com/casualcore/casual/issues/534">#534</a>)</p></li>
+<li><p>xatmi: expose c-api to set/get execution (parent) span (<a class="reference external" href="https://github.com/casualcore/casual/issues/550">#550</a>)</p></li>
+<li><p>http: propagate otel span (<a class="reference external" href="https://github.com/casualcore/casual/issues/546">#546</a>)</p></li>
+<li><p>http: outbound generate span and propagate <code class="docutils literal notranslate"><span class="pre">traceparent</span></code> as header (<a class="reference external" href="https://github.com/casualcore/casual/issues/546">#546</a>)</p></li>
+<li><p>gateway: inbound fails to handle trids that is already branched (<a class="reference external" href="https://github.com/casualcore/casual/issues/533">#533</a>)</p></li>
+<li><p>common: execution.context.span should not be default generated (<a class="reference external" href="https://github.com/casualcore/casual/issues/544">#544</a>)</p></li>
+<li><p>common: otel span could be generated as value 0</p></li>
+<li><p>gateway: add missing messages for the binary dump protocol generator</p></li>
+<li><p>documentation: missing documentation for domain_discovery_reply_v3</p></li>
+<li><p>gateway: outbound does not set otel span in metric event (<a class="reference external" href="https://github.com/casualcore/casual/issues/539">#539</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id12">
+<h2>[1.7.4] - 2025-04-07<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
+<section id="id13">
+<h3>Fixes<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: inbound removed trid branch mapping for transaction messages</p></li>
+<li><p>transaction: used view to removed gtrid</p></li>
+<li><p>gateway: transaction message reply with origin trid</p></li>
+<li><p>gateway: compatibility with 1.6 (protocol 1.2) service call (<a class="reference external" href="https://github.com/casualcore/casual/issues/533">#533</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id14">
+<h2>[1.7.3] - 2025-01-28<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
+<section id="id15">
+<h3>Fixes<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>common: include rapidjson within inline ns for ABI</p></li>
+<li><p>xatmi: build-server uses [0,1] as values for service visibility (<a class="reference external" href="https://github.com/casualcore/casual/issues/506">#506</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id16">
+<h2>[1.7.2] - 2025-01-22<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h2>
+<section id="id17">
+<h3>Fixes<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>domain: check if file (with path) exists before spawn</p></li>
+</ul>
+</section>
+</section>
+<section id="id18">
+<h2>[1.7.1] - 2025-01-16<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h2>
+<section id="id19">
+<h3>Fixes<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: simplify removal of reserved instances</p></li>
+<li><p>queue: better available update during rollback (<a class="reference external" href="https://github.com/casualcore/casual/issues/497">#497</a>)</p></li>
+<li><p>service: send potential::Stale instead of rollback to TM</p></li>
+<li><p>transaction: functionality to handle stale involved resources (<a class="reference external" href="https://github.com/casualcore/casual/issues/440">#440</a>)</p></li>
+<li><p>http: exception wrapper -&gt; return code within C-boundary for xatmi call (<a class="reference external" href="https://github.com/casualcore/casual/issues/487">#487</a>)</p></li>
+<li><p>common: made header::Field case insensitive equal to key (<a class="reference external" href="https://github.com/casualcore/casual/issues/487">#487</a>)</p></li>
+<li><p>queue: use queue error code in api</p></li>
+<li><p>cli: better error if lookup fails on (en|de)queue (<a class="reference external" href="https://github.com/casualcore/casual/issues/463">#463</a>)</p></li>
+<li><p>queue: notify discovery when new queue is created (<a class="reference external" href="https://github.com/casualcore/casual/issues/479">#479</a>)</p></li>
+<li><p>service: notify discovery when new service is advertised (<a class="reference external" href="https://github.com/casualcore/casual/issues/479">#479</a>)</p></li>
+<li><p>discovery: handle discoverable::Advertised message -&gt; topology::Update (<a class="reference external" href="https://github.com/casualcore/casual/issues/479">#479</a>)</p></li>
+<li><p>transaction: reopen resource on resource error (<a class="reference external" href="https://github.com/casualcore/casual/issues/476">#476</a>)</p></li>
+<li><p>queue: remove memberships from forward-group</p></li>
+<li><p>queue: fix forwards ignoring group memberships (<a class="reference external" href="https://github.com/casualcore/casual/issues/465">#465</a>)</p></li>
+<li><p>queue: reset queue group metric on startup (<a class="reference external" href="https://github.com/casualcore/casual/issues/469">#469</a>)</p></li>
+<li><p>queue: default queue-group alias missing (<a class="reference external" href="https://github.com/casualcore/casual/issues/474">#474</a>)</p></li>
+<li><p>queue: manager could have same instance to queue multiple times (<a class="reference external" href="https://github.com/casualcore/casual/issues/466">#466</a>)</p></li>
+<li><p>service: update load balancing for concurrent instances (<a class="reference external" href="https://github.com/casualcore/casual/issues/468">#468</a>)</p></li>
+<li><p>queue: fix runtime configuration for (en|dis)able (en|de)queue (<a class="reference external" href="https://github.com/casualcore/casual/issues/464">#464</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id20">
+<h2>[1.7.0] - 2024-11-26<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h2>
+<section id="id21">
+<h3>Added<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>xatmi: add function to reset execution_id from public api (<a class="reference external" href="https://github.com/casualcore/casual/issues/239">#239</a>)</p></li>
+<li><p>queue: add –force flag to –remove-message cli (<a class="reference external" href="https://github.com/casualcore/casual/issues/267">#267</a>)</p></li>
+<li><p>queue: casual queue –dequeue should take 0..* queue-ids</p></li>
+<li><p>queue: introduce configurable ‘capacity’ property to groups (<a class="reference external" href="https://github.com/casualcore/casual/issues/232">#232</a>)</p></li>
+<li><p>queue: runtime configuration</p></li>
+<li><p>queue: local domain enable/disable enqueue/dequeue (<a class="reference external" href="https://github.com/casualcore/casual/issues/253">#253</a>)</p></li>
+<li><p>queue: added –list-queue-instances -&gt; where queues reside (<a class="reference external" href="https://github.com/casualcore/casual/issues/354">#354</a>)</p></li>
+<li><p>queue: expand group concept to include forwards</p></li>
+<li><p>configuration: documentation update for group.enabled</p></li>
+<li><p>configuration: added CLI enable/disable groups</p></li>
+<li><p>configuration: enabled on internal model server and executable</p></li>
+<li><p>configuration: moved conf related cli from <code class="docutils literal notranslate"><span class="pre">domain</span></code> to <code class="docutils literal notranslate"><span class="pre">configuration</span></code> (<a class="reference external" href="https://github.com/casualcore/casual/issues/112">#112</a>)</p></li>
+<li><p>service: replace <code class="docutils literal notranslate"><span class="pre">--list-admin-services</span></code> for <code class="docutils literal notranslate"><span class="pre">--list-services</span> <span class="pre">-all</span></code> (<a class="reference external" href="https://github.com/casualcore/casual/issues/426">#426</a>)</p></li>
+<li><p>service: use random distribution for concurrent reservation (<a class="reference external" href="https://github.com/casualcore/casual/issues/420">#420</a>)</p></li>
+<li><p>service: service timeout includes pending lookup time</p></li>
+<li><p>service: show description for instances (remote domain name) (<a class="reference external" href="https://github.com/casualcore/casual/issues/353">#353</a>)</p></li>
+<li><p>discovery: enable/disable enqueue/dequeue interdomain (<a class="reference external" href="https://github.com/casualcore/casual/issues/253">#253</a>)</p></li>
+<li><p>discovery: prepared new 1.4 protocol version for discovery::Reply</p></li>
+<li><p>transaction: rename cli option for scaling proxies (<a class="reference external" href="https://github.com/casualcore/casual/issues/229">#229</a>)</p></li>
+<li><p>transaction: manager should wait for all spawned RM:s before on-line</p></li>
+<li><p>transaction: runtime configuration (<a class="reference external" href="https://github.com/casualcore/casual/issues/225">#225</a>)</p></li>
+<li><p>transaction: show description for instances (remote domain name) (<a class="reference external" href="https://github.com/casualcore/casual/issues/350">#350</a>)</p></li>
+<li><p>code: conform to c++23</p></li>
+<li><p>domain: cli add enabled to domain –list-servers/executables</p></li>
+<li><p>domain: assassination contract lethal or non-lethal (<a class="reference external" href="https://github.com/casualcore/casual/issues/304">#304</a>)</p></li>
+<li><p>gateway: honor group memberships on connections (<a class="reference external" href="https://github.com/casualcore/casual/issues/323">#323</a>)</p></li>
+<li><p>gateway: runtime configuration</p></li>
+<li><p>gateway: branch transaction in inbound (<a class="reference external" href="https://github.com/casualcore/casual/issues/328">#328</a>)</p></li>
+<li><p>cli: improved <code class="docutils literal notranslate"><span class="pre">--legend</span> <span class="pre">&lt;option&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">--legend</span> <span class="pre">--&lt;option&gt;</span></code></p></li>
+<li><p>cli: add option to abort incomplete domain boot (<a class="reference external" href="https://github.com/casualcore/casual/issues/254">#254</a>)</p></li>
+<li><p>cli: add keys for missing instances to casual domain –information</p></li>
+<li><p>metric: propagate OTel parent span for service-call and conversation (<a class="reference external" href="https://github.com/casualcore/casual/issues/321">#321</a>)</p></li>
+<li><p>event: log user return code in service metric event (<a class="reference external" href="https://github.com/casualcore/casual/issues/399">#399</a>)</p></li>
+<li><p>documentation: added group enabled sample (<a class="reference external" href="https://github.com/casualcore/casual/issues/445">#445</a>)</p></li>
+<li><p>documentation: overhaul README (<a class="reference external" href="https://github.com/casualcore/casual/issues/441">#441</a>)</p></li>
+<li><p>conversation: execution span for conversation::connect::Request message (<a class="reference external" href="https://github.com/casualcore/casual/issues/321">#321</a>)</p></li>
+<li><p>build: simplify install script for http-inbound (<a class="reference external" href="https://github.com/casualcore/casual/issues/22">#22</a>)</p></li>
+<li><p>build: add dsl for documentation (<a class="reference external" href="https://github.com/casualcore/casual/issues/355">#355</a>)</p></li>
+<li><p>build: use ubi8 isof centos</p></li>
+<li><p>build: use local copy of nginx</p></li>
+</ul>
+</section>
+<section id="id22">
+<h3>Fixes<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>buffer: simplify the handling of the special ‘inbound’ buffer (<a class="reference external" href="https://github.com/casualcore/casual/issues/411">#411</a>)</p></li>
+<li><p>buffer: zero sized buffers is not found in lookup table (<a class="reference external" href="https://github.com/casualcore/casual/issues/302">#302</a>)</p></li>
+<li><p>queue: add ‘signaled’ error-code to queue api (<a class="reference external" href="https://github.com/casualcore/casual/issues/291">#291</a>)</p></li>
+<li><p>queue: correct runlevel for queue-forward-group (<a class="reference external" href="https://github.com/casualcore/casual/issues/221">#221</a>)</p></li>
+<li><p>service: fix routes dissapearing on config update (<a class="reference external" href="https://github.com/casualcore/casual/issues/431">#431</a>)</p></li>
+<li><p>service: don’t reserve instance after fatal assassination event (<a class="reference external" href="https://github.com/casualcore/casual/issues/305">#305</a>)</p></li>
+<li><p>service: refactoring service-manager - reference based -&gt; index based (<a class="reference external" href="https://github.com/casualcore/casual/issues/407">#407</a>)</p></li>
+<li><p>discovery: remove invalid sanity check (<a class="reference external" href="https://github.com/casualcore/casual/issues/443">#443</a>)</p></li>
+<li><p>discovery: short-circuit fan-out discoveries -&gt; reply directly on found (<a class="reference external" href="https://github.com/casualcore/casual/issues/372">#372</a>)</p></li>
+<li><p>domain: respect ‘enabled’ in executable and server configuration (<a class="reference external" href="https://github.com/casualcore/casual/issues/324">#324</a>)</p></li>
+<li><p>gateway: correct cli hints (<a class="reference external" href="https://github.com/casualcore/casual/issues/459">#459</a>)</p></li>
+<li><p>event: fix casual-event-service-log segfaulting (<a class="reference external" href="https://github.com/casualcore/casual/issues/359">#359</a>)</p></li>
+<li><p>http: outbound always send metric on service call (<a class="reference external" href="https://github.com/casualcore/casual/issues/397">#397</a>)</p></li>
+<li><p>http: inbound handles lookup timeout</p></li>
+<li><p>documentation: fix tutorial after updated cli (<a class="reference external" href="https://github.com/casualcore/casual/issues/453">#453</a>)</p></li>
+<li><p>documentation: generated cli help for configuration missing</p></li>
+<li><p>common: resetting system environment variables leaks memory on linux</p></li>
+</ul>
+</section>
+<section id="potentially-breaking-changes">
+<h3>Potentially breaking changes<a class="headerlink" href="#potentially-breaking-changes" title="Permalink to this heading">¶</a></h3>
+<section id="cli">
+<h4>CLI<a class="headerlink" href="#cli" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">service</span> <span class="pre">--list-instances</span></code> column <code class="docutils literal notranslate"><span class="pre">state</span></code>, value <code class="docutils literal notranslate"><span class="pre">remote</span></code> has changed to <code class="docutils literal notranslate"><span class="pre">external</span></code>
+to be consistent with other CLI values. We use <em>internal</em> and <em>external</em>, where
+<em>internal</em> is stuff that is known locally to the “manager”, and <em>external</em> is stuff
+that is not known locally (could still be <em>external</em> within a domain).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transaction</span> <span class="pre">--list-instances</span></code> in the <code class="docutils literal notranslate"><span class="pre">1.6</span></code> form has changed name to <code class="docutils literal notranslate"><span class="pre">transaction</span> <span class="pre">--list-internal-instances</span></code>.
+<code class="docutils literal notranslate"><span class="pre">transaction</span> <span class="pre">--list-instances</span></code> now lists all instances of all resources, <em>internal</em>
+and <em>external</em>. This makes it consistent with <em>service –list-instances</em>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id23">
+<h2>[1.6.23] - 2025-01-08<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h2>
+<section id="id24">
+<h3>Fixes<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: always send metric event on server exit (#486)</p></li>
+</ul>
+</section>
+</section>
+<section id="id25">
+<h2>[1.6.22] - 2024-11-05<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h2>
+<section id="id26">
+<h3>Fixes<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: discovery-known-request only reply with known discoverable services (#454)</p></li>
+</ul>
+</section>
+</section>
+<section id="id27">
+<h2>[1.6.21] - 2024-10-09<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h2>
+<section id="id28">
+<h3>Fixes<a class="headerlink" href="#id28" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>documentation: queue.forward.group.(services|queues).alias</p></li>
+<li><p>transaction: error log when resource fail (#428)</p></li>
+</ul>
+</section>
+</section>
+<section id="id29">
+<h2>[1.6.20] - 2024-09-18<a class="headerlink" href="#id29" title="Permalink to this heading">¶</a></h2>
+<section id="id30">
+<h3>Fixes<a class="headerlink" href="#id30" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>build: handle nginx build on rhel (#381)</p></li>
+<li><p>service: fix invisible route being created when updating service config</p></li>
+<li><p>queue: enqueue/dequeue to multiple queues in example server</p></li>
+</ul>
+</section>
+</section>
+<section id="id31">
+<h2>[1.6.19] - 2024-04-25<a class="headerlink" href="#id31" title="Permalink to this heading">¶</a></h2>
+<section id="id32">
+<h3>Fixes<a class="headerlink" href="#id32" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>http: improved error logging in http-outbound (#367)</p></li>
+<li><p>http: use route name in outbound when ack:ing service calls (#364)</p></li>
+<li><p>queue: add example server with enqueue and dequeue services (#348)</p></li>
+<li><p>documentation: improved configuration documentation</p></li>
+<li><p>documentation: updated and removed invalid api-documentation</p></li>
+<li><p>example: fix casual/example/work (#349)</p></li>
+</ul>
+</section>
+</section>
+<section id="id33">
+<h2>[1.6.18] - 2024-03-18<a class="headerlink" href="#id33" title="Permalink to this heading">¶</a></h2>
+<section id="id34">
+<h3>Fixes<a class="headerlink" href="#id34" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>domain: print domain name in shutdown task (#336)</p></li>
+<li><p>common: do not set environment when (re)setting execution-id (#333)</p></li>
+<li><p>http: propagate execution id over http (#326)</p></li>
+<li><p>gateway: fix markdown documentation for interdomain protocol (#319)</p></li>
+<li><p>sf: ‘attribues’ is misspelled in describe model (#264)</p></li>
+<li><p>domain: improve error messages (#315)</p></li>
+<li><p>http: use a single correlation for entire service call (#318)</p></li>
+<li><p>ipc: fix discard while message is only partially received (#311)</p></li>
+<li><p>queue: clear available when moving message to error queue (#312)</p></li>
+<li><p>domain: assassinate needs more precise logging (#309)</p></li>
+<li><p>service: handle assassinate during shutdown (#299)</p></li>
+<li><p>gateway: outbound sent discovery to disconnect-mode connections (#297)</p></li>
+</ul>
+</section>
+</section>
+<section id="id35">
+<h2>[1.6.17] - 2023-11-13<a class="headerlink" href="#id35" title="Permalink to this heading">¶</a></h2>
+<section id="id36">
+<h3>Fixes<a class="headerlink" href="#id36" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>transaction: TM asserts when transaction is not found in prepare-handle (#288)</p></li>
+<li><p>cli: header output in porcelain if –header true (#283)</p></li>
+<li><p>service: perform discovery on external_discovery (#269)</p></li>
+<li><p>xatmi: comply to specification signal handling (#271)</p></li>
+<li><p>service: cli –list-services does not add - when <em>contract</em> is missing (#281)</p></li>
+<li><p>cli: add precondition casual log can’t be tied to stdout (#259)</p></li>
+<li><p>domain: propagate restart to configuration-get (#240)</p></li>
+<li><p>domain: handle restarts attribute correct (#277)</p></li>
+<li><p>transaction: cli - add legend for list-resources</p></li>
+<li><p>transaction: show metric for resource-proxy pending requests in cli (#273)</p></li>
+<li><p>transaction: fix resource-proxy metric (#273)</p></li>
+<li><p>cli: fixed and simplified the transaction cli (#272)</p></li>
+<li><p>queue: dequeue with id as selector should ignore available (#270)</p></li>
+</ul>
+</section>
+</section>
+<section id="id37">
+<h2>[1.6.16] - 2023-10-10<a class="headerlink" href="#id37" title="Permalink to this heading">¶</a></h2>
+<section id="id38">
+<h3>Fixes<a class="headerlink" href="#id38" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>queue: send reply on failed dequeues (#262)</p></li>
+<li><p>gateway: pending ‘calls’ could be sent after a rollback (#261)</p></li>
+<li><p>buffer: buffer-field-serialize should generate with [[maybe_unused]] (#255)</p></li>
+</ul>
+</section>
+</section>
+<section id="id39">
+<h2>[1.6.15] - 2023-09-14<a class="headerlink" href="#id39" title="Permalink to this heading">¶</a></h2>
+<section id="id40">
+<h3>Fixes<a class="headerlink" href="#id40" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>transaction: TM commits when it act as a resource and gets a prepare (#256)</p></li>
+</ul>
+</section>
+</section>
+<section id="id41">
+<h2>[1.6.14] - 2023-09-03<a class="headerlink" href="#id41" title="Permalink to this heading">¶</a></h2>
+<section id="id42">
+<h3>Fixes<a class="headerlink" href="#id42" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>event: make sure we try to reopen the event file if it’s “broken” (#250)</p></li>
+<li><p>log: do not throw if we can’t open logfile -&gt; error to stderr (#250)</p></li>
+<li><p>cli: add <em>internal</em> cli for generic message count metric</p></li>
+<li><p>service: SM sends error-reply to no-reply request on timeout/core (#247)</p></li>
+<li><p>documentation: add topology::Update to protocol documentation</p></li>
+<li><p>service: improve handling of service timeout (config/cli) (#244)</p></li>
+</ul>
+</section>
+</section>
+<section id="id43">
+<h2>[1.6.13] - 2023-08-22<a class="headerlink" href="#id43" title="Permalink to this heading">¶</a></h2>
+<section id="id44">
+<h3>Fixes<a class="headerlink" href="#id44" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>http: nginx could block caller for ever with payloads &gt; ~50k (#242, #243)</p></li>
+<li><p>configuration: prevent global contract setting being default overridden (#244)</p></li>
+</ul>
+</section>
+</section>
+<section id="id45">
+<h2>[1.6.12] - 2023-07-18<a class="headerlink" href="#id45" title="Permalink to this heading">¶</a></h2>
+<section id="id46">
+<h3>Fixes<a class="headerlink" href="#id46" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>discovery: hops are not correctly propagated if services are known</p></li>
+</ul>
+</section>
+</section>
+<section id="id47">
+<h2>[1.6.11] - 2023-06-22<a class="headerlink" href="#id47" title="Permalink to this heading">¶</a></h2>
+<section id="id48">
+<h3>Fixes<a class="headerlink" href="#id48" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>xatmi: error log unexpected error codes (#226)</p></li>
+<li><p>service: handle multiple busy lookups (#217)</p></li>
+<li><p>common: reduce complexity for the fan::Out abstraction</p></li>
+<li><p>queue: forward stability during sqlite error (#222)</p></li>
+<li><p>queue: group to handle &gt; 1 message between persistent writes</p></li>
+</ul>
+</section>
+</section>
+<section id="id49">
+<h2>[1.6.10] - 2023-06-09<a class="headerlink" href="#id49" title="Permalink to this heading">¶</a></h2>
+<section id="id50">
+<h3>Fixes<a class="headerlink" href="#id50" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: outbound does not wait for in-flight transactions</p></li>
+<li><p>gateway: error-log if connection is lost unexpectedly (#216)</p></li>
+<li><p>gateway: inbound does not handle prepare::Reply with read_only correct</p></li>
+<li><p>service: avoid double busy lookup (#217)</p></li>
+</ul>
+</section>
+</section>
+<section id="id51">
+<h2>[1.6.9] - 2023-06-08<a class="headerlink" href="#id51" title="Permalink to this heading">¶</a></h2>
+<section id="id52">
+<h3>Fixes<a class="headerlink" href="#id52" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: inbound must wait for in-flight transactions during shutdown</p></li>
+</ul>
+</section>
+</section>
+<section id="id53">
+<h2>[1.6.8] - 2023-06-01<a class="headerlink" href="#id53" title="Permalink to this heading">¶</a></h2>
+<section id="id54">
+<h3>Fixes<a class="headerlink" href="#id54" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>discovery: “local” known services/queues are not added to discovery reply</p></li>
+<li><p>discovery: replies should only contain a subset of the requested</p></li>
+<li><p>service: include parent in service metrics</p></li>
+</ul>
+</section>
+</section>
+<section id="id55">
+<h2>[1.6.7] - 2023-06-01<a class="headerlink" href="#id55" title="Permalink to this heading">¶</a></h2>
+<section id="id56">
+<h3>Fixes<a class="headerlink" href="#id56" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>discovery: aggregate external discovery requests for performance</p></li>
+<li><p>domain: handle shutdown signals (#207)</p></li>
+</ul>
+</section>
+</section>
+<section id="id57">
+<h2>[1.6.6] - 2023-05-29<a class="headerlink" href="#id57" title="Permalink to this heading">¶</a></h2>
+<section id="id58">
+<h3>Fixes<a class="headerlink" href="#id58" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>discovery: handle prospect services (#198)</p></li>
+<li><p>domain: try to remove ipc device from exited ‘singletons’</p></li>
+<li><p>gateway: handle routing problems (#197)</p></li>
+<li><p>gateway: outbound order of connection for a service gets too “orderly”</p></li>
+<li><p>gateway: outbound might core if connection lost during QM “restart”</p></li>
+</ul>
+</section>
+</section>
+<section id="id59">
+<h2>[1.6.5] - 2023-05-19<a class="headerlink" href="#id59" title="Permalink to this heading">¶</a></h2>
+<section id="id60">
+<h3>Fixes<a class="headerlink" href="#id60" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>ipc: improve detection of removed ipc devices (files) (#194)</p></li>
+<li><p>service: always send timeout duration in lookup reply</p></li>
+<li><p>service: service timeout could render zombie transactions (#191)</p></li>
+<li><p>gateway: always advertise discovered resources (#188) (#190)</p></li>
+<li><p>gateway: shutdown doesn’t wait for inbounds before outbounds (#186)</p></li>
+</ul>
+</section>
+</section>
+<section id="id61">
+<h2>[1.6.4] - 2023-04-25<a class="headerlink" href="#id61" title="Permalink to this heading">¶</a></h2>
+<section id="id62">
+<h3>Fixes<a class="headerlink" href="#id62" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>buffer: fix field doesn’t track ‘service buffer’ during auto realloc (#179)</p></li>
+<li><p>queue: prevent forward causing service-manager coredump (#182) (ported from 1.5.15)</p></li>
+</ul>
+</section>
+</section>
+<section id="id63">
+<h2>[1.6.3] - 2023-04-09<a class="headerlink" href="#id63" title="Permalink to this heading">¶</a></h2>
+<section id="id64">
+<h3>Fixes<a class="headerlink" href="#id64" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>sql: make sure sqlite uses synchronous=NORMAL (#177)</p></li>
+<li><p>queue: fix memory leak by not (implicitly) using setenv repeatedly (#175)</p></li>
+</ul>
+</section>
+</section>
+<section id="id65">
+<h2>[1.6.2] - 2023-03-25<a class="headerlink" href="#id65" title="Permalink to this heading">¶</a></h2>
+<section id="id66">
+<h3>Fixes<a class="headerlink" href="#id66" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>queue: extend c-api for get reply and get available</p></li>
+<li><p>configuration: fix queue configuration default directory</p></li>
+<li><p>queue: send error reply on failed enqueue</p></li>
+</ul>
+</section>
+</section>
+<section id="id67">
+<h2>[1.6.1] - 2023-03-13<a class="headerlink" href="#id67" title="Permalink to this heading">¶</a></h2>
+<section id="id68">
+<h3>Fixes<a class="headerlink" href="#id68" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>queue: fix pending data structure slicing (memory leak)</p></li>
+<li><p>documentation: fix sphinx-config</p></li>
+<li><p>build: fix version.py to handle new minor</p></li>
+</ul>
+</section>
+</section>
+<section id="id69">
+<h2>[1.6.0] - 2023-03-06<a class="headerlink" href="#id69" title="Permalink to this heading">¶</a></h2>
+<section id="id70">
+<h3>Added<a class="headerlink" href="#id70" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>cli: add force service/queue discovery to cli (#110)</p></li>
+<li><p>configuration: add set operations union, intersection, difference</p></li>
+<li><p>discovery: add build configuration option to set a service visibility (#86)</p></li>
+<li><p>discovery: add domain configuration option to set a service visibility (#86)</p></li>
+<li><p>discovery: add state and metric information to discovery (#110)</p></li>
+<li><p>discovery: add directive to limit service discovery from other domains</p></li>
+<li><p>domain: add start time for domain in information (#132)</p></li>
+<li><p>domain: log name of exiting process (#105)</p></li>
+<li><p>event: add event-logging for significant stuff that is done</p></li>
+<li><p>event: add service sequential/concurrent order to event-service-log (#115)</p></li>
+<li><p>general:  all “managers” use multiplex send</p></li>
+<li><p>http: outbound configuration to control caller fresh connect (#65)</p></li>
+<li><p>http: make http payload base64 encoding optional</p></li>
+<li><p>http: call::Context prepare for multiplexing and ‘http-forward’</p></li>
+<li><p>http: use multiplexing in nginx inbound</p></li>
+<li><p>queue: add browse-peek to queue api</p></li>
+<li><p>queue: recover queue message (#74)</p></li>
+<li><p>transaction: list external resources from cli</p></li>
+<li><p>xatmi: extend c-api with execution service name (#140)</p></li>
+</ul>
+</section>
+<section id="id71">
+<h3>Fixes<a class="headerlink" href="#id71" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>build: package resources.yaml in /etc/casual/</p></li>
+<li><p>cli: fix gateway –list-connections to indicate inbound discovery forward</p></li>
+<li><p>cli: fix domain –configuration-get not outputing ‘system’ (#108)</p></li>
+<li><p>cli: generalized –state option and the serialization to stdout</p></li>
+<li><p>cli: fix stderr printout on error from <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">call</span> <span class="pre">...</span></code></p></li>
+<li><p>cli: add legend for gateway –list-connections</p></li>
+<li><p>cli: fix transaction cli output</p></li>
+<li><p>cli: corrected legend for –list-services option to match header</p></li>
+<li><p>common: add error logging on assert (#88)</p></li>
+<li><p>configuration: improve configuration update semantics</p></li>
+<li><p>configuration: default to one instance everywhere</p></li>
+<li><p>discovery: don’t forward discovery if service/queue is known (#141)</p></li>
+<li><p>domain: core servers must restart on unexpected exit</p></li>
+<li><p>domain: keep service and queues sorted in discovery (#77)</p></li>
+<li><p>event: fix event-service-log to also reopen ‘casual.log’ on SIGHUP</p></li>
+<li><p>event: show trid in metric when trid is created by callee (#142)</p></li>
+<li><p>event: make sure service-log listen to events before “connect”</p></li>
+<li><p>environment: don’t create directories when constructing internal environment paths (#19)</p></li>
+<li><p>forward: generate new execution id for each service call</p></li>
+<li><p>forward: fix forwards dying when scaling aliases</p></li>
+<li><p>gateway: reduce batch read/write in tcp handler</p></li>
+<li><p>gateway: don’t let children inherit tcp file descriptors</p></li>
+<li><p>gateway: fix tcp-logical-connect to detect loss of destination ipc</p></li>
+<li><p>http: correct http inbound to handle keepalive</p></li>
+<li><p>http: upgrade nginx to latest stable 1.22.0</p></li>
+<li><p>http: remove debug log level as default (#79)</p></li>
+<li><p>log: add api to configure <em>log</em> during runtime</p></li>
+<li><p>service: fix pending “error” reply when server cores/exit</p></li>
+<li><p>transaction: fix core when resources in distributed prepare (service) fails</p></li>
+<li><p>queue: fix local lookup to also search external known queues</p></li>
+<li><p>queue: log queuename when failing operation on queues (#106)</p></li>
+<li><p>queue: fix cli to handle queue message with message attributes</p></li>
+<li><p>queue: fix –list-remote</p></li>
+<li><p>xatmi: tpsrvdone should never be called if tpsrvinit has not been called</p></li>
+</ul>
+</section>
+</section>
+<section id="id72">
+<h2>[1.5.14] - 2022-09-08<a class="headerlink" href="#id72" title="Permalink to this heading">¶</a></h2>
+<section id="id73">
+<h3>Fixes<a class="headerlink" href="#id73" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>conversation: fix a bug where tprecv and tpsend failed to set the global tpurcode.</p></li>
+<li><p>conversation: generate events in tpsend when partner calls tpreturn or tpdiscon.</p></li>
+<li><p>conversation: fix handling of server process exit/core.</p></li>
+</ul>
+</section>
+</section>
+<section id="id74">
+<h2>[1.5.13] - 2022-08-16<a class="headerlink" href="#id74" title="Permalink to this heading">¶</a></h2>
+<section id="id75">
+<h3>Fixes<a class="headerlink" href="#id75" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>queue: add lookup restrictions depending on caller location</p></li>
+<li><p>service: add lookup restrictions depending on caller location</p></li>
+<li><p>queue: fix pre/post statements for “tuning”</p></li>
+<li><p>http: fix outbound to advertise services with order 0</p></li>
+<li><p>discovery: fix using routes for services correctly</p></li>
+</ul>
+</section>
+</section>
+<section id="id76">
+<h2>[1.5.12] - 2022-05-10<a class="headerlink" href="#id76" title="Permalink to this heading">¶</a></h2>
+<section id="id77">
+<h3>Fixes<a class="headerlink" href="#id77" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>cli: fix configuration –normalize</p></li>
+<li><p>gateway: fix outbound to handle ‘gateway loop’</p></li>
+<li><p>gateway: fix inbound to stop consume from a removed connection</p></li>
+<li><p>service: use multiplex send as much as possible</p></li>
+<li><p>service: fix lookup-forget-reply has <em>replied</em> for remote services</p></li>
+<li><p>gateway: improve multiplex send, and consume ratio between ipc and tcp</p></li>
+<li><p>discovery: reduce amount of topology related discoveries</p></li>
+<li><p>discovery: use batch topology update, semantics for performance</p></li>
+<li><p>tcp: guard errors in socket::address::host/peer</p></li>
+<li><p>gateway: fix outbound to always remove transaction state</p></li>
+<li><p>transaction: fix external resource prepare/commit request</p></li>
+<li><p>gateway: handle lost connection in tcp send correctly</p></li>
+<li><p>transaction: fix notification to TM for services with branch semantics</p></li>
+<li><p>transaction: fix problem when to use TMJOIN in xa_start</p></li>
+<li><p>transaction: be conformant with flags to xa_end</p></li>
+<li><p>discovery: use multiplex send as much as possible</p></li>
+</ul>
+</section>
+</section>
+<section id="id78">
+<h2>[1.5.11] - 2022-04-19<a class="headerlink" href="#id78" title="Permalink to this heading">¶</a></h2>
+<section id="id79">
+<h3>Fixes<a class="headerlink" href="#id79" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>cli: fix confusing arguments for casual service –legend</p></li>
+<li><p>cli - remove extra root <code class="docutils literal notranslate"><span class="pre">domain</span></code>: casual configuration –normalize</p></li>
+<li><p>gateway: make gateway more robust in error situations</p></li>
+<li><p>xatmi: suspend involved resources during tpcall</p></li>
+<li><p>gateway: absorb tcp errors and only effect the relevant tcp-connection</p></li>
+</ul>
+</section>
+<section id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span></code> has moved to GitHub</p></li>
+</ul>
+</section>
+</section>
+<section id="id80">
+<h2>[1.5.10] - 2022-03-21<a class="headerlink" href="#id80" title="Permalink to this heading">¶</a></h2>
+<section id="id81">
+<h3>Fixes<a class="headerlink" href="#id81" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: use multiplexing on the tcp-connection phase, no blocking if the
+tcp-connect takes a long time.</p></li>
+<li><p>cli: fix <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span> <span class="pre">--list-servers</span></code> to show correct number of configured instances</p></li>
+<li><p>transaction: fix local transaction with multiple resources</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">casual</span></code> did not handle this correct (at all)</p></li>
+</ul>
+</li>
+<li><p>domain: fix shutdown if an instance of a server has died</p></li>
+</ul>
+</section>
+</section>
+<section id="id82">
+<h2>[1.5.9] - 2022-02-18<a class="headerlink" href="#id82" title="Permalink to this heading">¶</a></h2>
+<section id="id83">
+<h3>Fixes<a class="headerlink" href="#id83" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>discovery: propagate topology updates upstream</p>
+<ul>
+<li><p>When a domain logically connects (<em>connector</em>) to another domain (<em>connectee</em>), the <em>connector</em>
+propagates <code class="docutils literal notranslate"><span class="pre">topology</span> <span class="pre">update</span></code> to all “it’s inbounds” that has <code class="docutils literal notranslate"><span class="pre">discovery:forward</span> <span class="pre">true</span></code>
+configured. Hence, enable (auto) discovery for stuff arbitrary number of <em>nodes</em> upstream.</p></li>
+</ul>
+</li>
+<li><p>gateway: “move” listeners and connectors to failed on fatal errors.</p>
+<ul>
+<li><p>Listeners: on error we move the listener directly to <em>failed</em></p></li>
+<li><p>Connectors: on fatal errors we move the connection to <em>failed</em>,
+on non fatal we try again after some time (as before).</p></li>
+</ul>
+</li>
+<li><p>cobol: set return status in Cobol api TPRETURN</p></li>
+<li><p>gateway: keep trying to connect if the logical connection fails</p></li>
+</ul>
+</section>
+</section>
+<section id="id84">
+<h2>[1.5.8] - 2022-01-08<a class="headerlink" href="#id84" title="Permalink to this heading">¶</a></h2>
+<section id="id85">
+<h3>Fixes<a class="headerlink" href="#id85" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>transaction: fix distributed transaction bug in complex topology</p></li>
+<li><p>queue: forward react if queue group “dies”</p></li>
+<li><p>xatmi: conversation disconnect not properly handled</p></li>
+<li><p>queue: return <code class="docutils literal notranslate"><span class="pre">no_queue</span></code> iso <code class="docutils literal notranslate"><span class="pre">no_message</span></code> when writing to non existing queue</p></li>
+<li><p>discovery - on discoverable::Available event: we only discover when it makes sense</p></li>
+</ul>
+</section>
+<section id="internal">
+<h3>Internal<a class="headerlink" href="#internal" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>log: made sure we only use our own stream::write and got rid of global ostream stream operator</p></li>
+<li><p>common - flag abstraction degradation: equality operator for underlying enum type messed up semantics</p></li>
+</ul>
+</section>
+</section>
+<section id="id86">
+<h2>[1.5.7] - 2021-11-26<a class="headerlink" href="#id86" title="Permalink to this heading">¶</a></h2>
+<section id="id87">
+<h3>Fixes<a class="headerlink" href="#id87" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>transaction: fix distributed commit when RM fails -&gt; rollback</p></li>
+<li><p>discovery: registration for <em>discoverables</em> more robust with request-&gt;reply</p>
+<ul>
+<li><p>Primarily for unittests when booting, testing and shutdown of multiple domains
+within a couple of 100ms or so.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id88">
+<h2>[1.5.6] - 2021-11-15<a class="headerlink" href="#id88" title="Permalink to this heading">¶</a></h2>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>configuration: added <code class="docutils literal notranslate"><span class="pre">system</span></code> at the same level as <code class="docutils literal notranslate"><span class="pre">domain</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">system</span></code> holds system wide configuration, and for the time being only <code class="docutils literal notranslate"><span class="pre">system.resource</span></code> which
+replaces the <em>resource.properties file</em> (<code class="docutils literal notranslate"><span class="pre">casual</span></code> can still handle the deprecated file though).</p></li>
+</ul>
+</li>
+<li><p>cli: reverted the ‘locale’ awareness for the <code class="docutils literal notranslate"><span class="pre">CLI</span></code></p>
+<ul>
+<li><p>To many subtle and not to subtle problems - not worth it.</p></li>
+</ul>
+</li>
+<li><p>configuration: service restrictions for servers are now treated as regex</p>
+<ul>
+<li><p>If set, only services that matches at least one regex are advertised.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id89">
+<h2>[1.5.5] - 2021-11-09<a class="headerlink" href="#id89" title="Permalink to this heading">¶</a></h2>
+<section id="id90">
+<h3>Fixes<a class="headerlink" href="#id90" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>xatmi - conversation: major refactoring</p></li>
+<li><p>xatmi: fix leak of descriptors for conversational services.</p></li>
+<li><p>cli - configuration edit: made sure we sink the SIGCHILD signal from the spawned editor</p></li>
+<li><p>documentation: fixed the example configuration files</p></li>
+<li><p>queue: forward to remote queues did not work correctly</p></li>
+</ul>
+</section>
+</section>
+<section id="id91">
+<h2>[1.5.4] - 2021-10-23<a class="headerlink" href="#id91" title="Permalink to this heading">¶</a></h2>
+<section id="id92">
+<h3>Fixes<a class="headerlink" href="#id92" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>transaction - if rm:s report error during xa_start: reply with TPESVCERR</p></li>
+<li><p>configuration|cli - validate: only positive integers for instances</p></li>
+<li><p>cli: version information, lowercase key names, compiler version</p></li>
+<li><p>queue: support queue-peek in c-api</p></li>
+</ul>
+</section>
+</section>
+<section id="id93">
+<h2>[1.5.3] - 2021-09-22<a class="headerlink" href="#id93" title="Permalink to this heading">¶</a></h2>
+<section id="id94">
+<h3>Fixes<a class="headerlink" href="#id94" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>http: outbound handle discovery (<em>http-services</em> are treated <em>external</em> as they should)</p></li>
+<li><p>xatmi: support for conversations (primarily targeting COBOL)</p></li>
+<li><p>gateway: fixed so outbound holds unique connections per service</p></li>
+<li><p>discovery: service-manager only replies with <em>local</em> services</p>
+<ul>
+<li><p><strong>attention</strong> if the intention is that a domain should expose services that the domain has
+found in other domains (not <em>local</em>), the domains inbound connections should have the directive
+<code class="docutils literal notranslate"><span class="pre">discovery.forward</span> <span class="pre">=</span> <span class="pre">true</span></code> set. This also applies to <code class="docutils literal notranslate"><span class="pre">http</span></code> exposed services (since they’re not local)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id95">
+<h2>[1.5.2] - 2021-09-17<a class="headerlink" href="#id95" title="Permalink to this heading">¶</a></h2>
+<section id="id96">
+<h3>Fixes<a class="headerlink" href="#id96" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>domain: fixed so order of groups (configuration) can be arbitrary, regardless of dependencies.</p></li>
+<li><p>discovery: made sure we <em>flush send</em> to mitigate deadlocks when interacting with <code class="docutils literal notranslate"><span class="pre">casual-domain-discovery</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="id97">
+<h2>[1.5.1] - 2021-09-11<a class="headerlink" href="#id97" title="Permalink to this heading">¶</a></h2>
+<section id="id98">
+<h3>Fixes<a class="headerlink" href="#id98" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway - respect hops: round-robin on the partition with smallest hops</p></li>
+<li><p>gateway: fix interdomain protocol example tool</p></li>
+<li><p>paths: made sure we do not use std::filesystem::equivalent with non existing file</p></li>
+<li><p>cli: improved (subjectively) event::Notification print out (new for 1.5)</p></li>
+<li><p>configuration: fix bug with empty aliases for gateway</p></li>
+<li><p>configuration: fixed bug when ‘update’ an <em>alias key</em> ‘entity’. We moved from the one we supposed to add to…</p></li>
+</ul>
+</section>
+</section>
+<section id="id99">
+<h2>[1.5.0] - 2021-09-01<a class="headerlink" href="#id99" title="Permalink to this heading">¶</a></h2>
+<section id="id100">
+<h3>Added<a class="headerlink" href="#id100" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>configuration: runtime configuration <em>stage 1</em></p>
+<ul>
+<li><p>cli for <em>get, post, put</em>, and <em>edit</em> which spawns an editor and when the configuration is <em>saved</em>
+<code class="docutils literal notranslate"><span class="pre">casual</span></code> tries to conform to the (possible) new configuration.</p></li>
+<li><p><strong>attention:</strong> under (heavy) load there might be some noise still, we aim to fix this in <em>stage 2</em></p></li>
+</ul>
+</li>
+<li><p>cli: version information without a domain running</p></li>
+<li><p>cli: added option to reopen <em>casual.log</em>.
+Prints information of all processes that <code class="docutils literal notranslate"><span class="pre">casual</span></code> are not sure can handle a <code class="docutils literal notranslate"><span class="pre">SIGHUP</span></code>, hence it easier for users
+to <em>automate</em> log-rotation.</p></li>
+<li><p>cli: make <code class="docutils literal notranslate"><span class="pre">casual</span></code> cli user ‘locale’ aware, to play nicer with <code class="docutils literal notranslate"><span class="pre">unix</span></code> tools, such as <code class="docutils literal notranslate"><span class="pre">sort</span></code></p></li>
+<li><p>cli: added value <code class="docutils literal notranslate"><span class="pre">auto</span></code> to option <code class="docutils literal notranslate"><span class="pre">--header</span></code>. With <code class="docutils literal notranslate"><span class="pre">auto</span></code>, headers are <strong>only</strong> used if tty is bound to stdout</p></li>
+<li><p>gateway: handle queue- and service information in connection state viewable in cli</p></li>
+<li><p>xatmi - extended: function to browse instance services</p></li>
+<li><p>cli: made sure wrong written cli command doesn’t gives error in log</p></li>
+<li><p>queue - handle zombie queues: queues that are not configured anymore, but still exists in the <em>queuebase</em></p></li>
+<li><p>discovery: gateway inbound discovery forward</p></li>
+<li><p>discovery: central ‘agent’ for handling discoveries</p></li>
+</ul>
+</section>
+<section id="id101">
+<h3>Changed<a class="headerlink" href="#id101" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>transcoding: platform-independent third-party-header-only-lib for base64-transcoding</p></li>
+<li><p>paths: using std filesystem</p>
+<ul>
+<li><p><strong>attention:</strong> this might change semantics which <em>temporary path</em> is used.</p></li>
+<li><p>https://en.cppreference.com/w/cpp/filesystem/temp_directory_path</p></li>
+<li><p><em>On POSIX systems, the path may be the one specified in the environment variables</em>
+<em>TMPDIR, TMP, TEMP, TEMPDIR, and, if none of them are specified, the path “/tmp” is returned</em></p></li>
+</ul>
+</li>
+<li><p>python binding: upgraded to python3</p></li>
+</ul>
+</section>
+<section id="id102">
+<h3>Fixes<a class="headerlink" href="#id102" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>serialize - some simplifications: std::filesystem::path logs correctly</p></li>
+<li><p>common: ‘helper’ for <code class="docutils literal notranslate"><span class="pre">directory::create</span></code> to handle corner cases with links</p></li>
+<li><p>log: made the reopen on SIGHUP more robust</p></li>
+<li><p>common: less semi confusing logging</p></li>
+<li><p>xatmi: placed definition of functions where they should be to avoid confusion</p></li>
+<li><p>cygwin compatibility</p></li>
+<li><p>build: calculate version from tags -&gt; more robust version sequences</p></li>
+</ul>
+</section>
+<section id="id103">
+<h3>Internal<a class="headerlink" href="#id103" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>configuration - better model: all managers supply their configuration</p></li>
+<li><p>unittest: more deterministic unittests</p></li>
+<li><p>common - algorithm clean up: moved some stuff to separate headers</p></li>
+<li><p>build - improved and fixed some build related stuff: simplification</p></li>
+<li><p>maintenance - simplify traits: some improvements in algorithm</p></li>
+<li><p>signal: simplified signal to only have one handler for a given signal at a given time</p></li>
+<li><p>build: fixed problem with linking on Ubuntu</p></li>
+<li><p>build: turning archive to a shared library to avoid ODR</p></li>
+<li><p>common - strong::Type: made a strong::Type that replaces “value::id” and “value::optional”</p></li>
+<li><p>common: error handling and log fixes</p></li>
+<li><p>build - casual-make: use new build system</p></li>
+</ul>
+</section>
+</section>
+<section id="id104">
+<h2>[1.4.20] - 2021-06-15<a class="headerlink" href="#id104" title="Permalink to this heading">¶</a></h2>
+<section id="id105">
+<h3>Fixes<a class="headerlink" href="#id105" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>queue: improved performance while dequeuing messages</p></li>
+</ul>
+</section>
+</section>
+<section id="id106">
+<h2>[1.4.18] - 2021-06-09<a class="headerlink" href="#id106" title="Permalink to this heading">¶</a></h2>
+<section id="id107">
+<h3>Fixes<a class="headerlink" href="#id107" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: tcp connect/accept errors might lead to inbound/outbound exit/restart</p></li>
+<li><p>service: removed false error log when a timeout occur and the callee is killed</p></li>
+<li><p>gateway: false error during tcp consume of logical (large) message</p></li>
+</ul>
+</section>
+</section>
+<section id="id108">
+<h2>[1.4.16] - 2021-05-29<a class="headerlink" href="#id108" title="Permalink to this heading">¶</a></h2>
+<section id="id109">
+<h3>Fixes<a class="headerlink" href="#id109" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: improved tcp connection phase robustness -&gt; spawns a process that take cares of the logical connection phase</p></li>
+</ul>
+</section>
+</section>
+<section id="id110">
+<h2>[1.4.15] - 2021-04-14<a class="headerlink" href="#id110" title="Permalink to this heading">¶</a></h2>
+<section id="id111">
+<h3>Fixes<a class="headerlink" href="#id111" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: pending lookups did not work correctly for <em>routes</em></p></li>
+<li><p>gateway: made sure we terminate a detected ‘loop’ for calls</p></li>
+<li><p>gateway: improved connect to be more robust</p></li>
+</ul>
+</section>
+</section>
+<section id="id112">
+<h2>[1.4.14] - 2021-03-28<a class="headerlink" href="#id112" title="Permalink to this heading">¶</a></h2>
+<section id="id113">
+<h3>Fixes<a class="headerlink" href="#id113" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: outbound handle no-entry call reply correctly</p></li>
+<li><p>gateway: outbound correlates multiple branched trids correctly</p></li>
+<li><p>gateway: inbound respect service route name</p></li>
+</ul>
+</section>
+</section>
+<section id="id114">
+<h2>[1.4.12] - 2021-03-05<a class="headerlink" href="#id114" title="Permalink to this heading">¶</a></h2>
+<section id="id115">
+<h3>Fixes<a class="headerlink" href="#id115" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway - asynchronous writes: mitigate deadlock, performance improvements</p></li>
+<li><p>gateway: handles bad tcp addresses in a more robust way</p></li>
+<li><p>gateway: honour outbound group order for priority</p></li>
+<li><p>configuration: gateway.connections -&gt; outbound-group per connection</p></li>
+<li><p>cli: call keep logical message to one correlation id</p></li>
+</ul>
+</section>
+</section>
+<section id="id116">
+<h2>[1.4.9] - 2021-03-04<a class="headerlink" href="#id116" title="Permalink to this heading">¶</a></h2>
+<section id="id117">
+<h3>Fixes<a class="headerlink" href="#id117" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: outbound should prioritize replies from other domains</p></li>
+<li><p>cli: call not use pending message and use the ‘flush send’ idiom.</p></li>
+</ul>
+</section>
+</section>
+<section id="id118">
+<h2>[1.4.8] - 2021-03-03<a class="headerlink" href="#id118" title="Permalink to this heading">¶</a></h2>
+<section id="id119">
+<h3>Fixes<a class="headerlink" href="#id119" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: outbound/reverse-inbound might try to receive on wrong socket and get ‘stuck’</p></li>
+</ul>
+</section>
+</section>
+<section id="id120">
+<h2>[1.4.7] - 2021-03-03<a class="headerlink" href="#id120" title="Permalink to this heading">¶</a></h2>
+<section id="id121">
+<h3>Fixes<a class="headerlink" href="#id121" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>domain: shutdown/restart makes ‘noise’ when provided services are under load</p></li>
+</ul>
+</section>
+</section>
+<section id="id122">
+<h2>[1.4.6] - 2021-02-25<a class="headerlink" href="#id122" title="Permalink to this heading">¶</a></h2>
+<section id="id123">
+<h3>Fixes<a class="headerlink" href="#id123" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>discovery: did not work correctly on service with multiple routes</p></li>
+</ul>
+</section>
+</section>
+<section id="id124">
+<h2>[1.4.5] - 2021-02-24<a class="headerlink" href="#id124" title="Permalink to this heading">¶</a></h2>
+<section id="id125">
+<h3>Changed<a class="headerlink" href="#id125" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>updated this changelog: missed it in 1.4.4</p></li>
+</ul>
+</section>
+</section>
+<section id="id126">
+<h2>[1.4.4] - 2021-02-24<a class="headerlink" href="#id126" title="Permalink to this heading">¶</a></h2>
+<section id="id127">
+<h3>Fixes<a class="headerlink" href="#id127" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>discovery: did not work correctly on service routes</p></li>
+</ul>
+</section>
+</section>
+<section id="id128">
+<h2>[1.4.3] - 2021-02-13<a class="headerlink" href="#id128" title="Permalink to this heading">¶</a></h2>
+<section id="id129">
+<h3>Changed<a class="headerlink" href="#id129" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>cli: updated documentation for –color with option auto</p></li>
+</ul>
+</section>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>cli: fixed so colors is false for Directive::plain()</p></li>
+</ul>
+</section>
+</section>
+<section id="id130">
+<h2>[1.4.2] - 2021-02-13<a class="headerlink" href="#id130" title="Permalink to this heading">¶</a></h2>
+<section id="id131">
+<h3>Fixed<a class="headerlink" href="#id131" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: added timeout contract to cli output</p></li>
+<li><p>queue: improved cli</p></li>
+<li><p>service: assassination target caller instead of callee</p></li>
+</ul>
+</section>
+</section>
+<section id="id132">
+<h2>[1.4.1] - 2021-02-07<a class="headerlink" href="#id132" title="Permalink to this heading">¶</a></h2>
+<section id="id133">
+<h3>Added<a class="headerlink" href="#id133" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>queue: concurrent queue-forward that is part of casual-queue</p></li>
+<li><p>service: manager replies with requested queue on service discovery</p></li>
+<li><p>domain runtime configuration core functionality</p></li>
+<li><p>gateway: reverse connection for inbound/outbound</p></li>
+<li><p>gateway: multiplexing (reverse) inbound/outbound</p></li>
+<li><p>gateway: ‘soft’ disconnect from inbound</p></li>
+<li><p>framework: serialize const lvalues</p></li>
+<li><p>gateway: inbound/outbound groups to group connections</p></li>
+<li><p>event: added event that signals when a discoverable is ‘on-line’</p></li>
+<li><p>enable keepalive for tcp connections</p></li>
+<li><p>added a auto to cli –color</p></li>
+<li><p>making filesystem path serializable</p></li>
+<li><p>transaction: resource-property-files are optional</p></li>
+<li><p>possibility to terminate called servers when service timeout occurs</p></li>
+<li><p>configuration: validate not empty values</p></li>
+</ul>
+</section>
+<section id="id134">
+<h3>Changed<a class="headerlink" href="#id134" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>upgrade to c++17</p></li>
+<li><p>queue: reworked group and forward to be more rigid</p></li>
+<li><p>service: make sure service-manager honour server-alias restrictions</p></li>
+<li><p>remove 600 call trying limit in nginx</p></li>
+</ul>
+</section>
+<section id="id135">
+<h3>Fixed<a class="headerlink" href="#id135" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: did not add pending metric to request from service lookup</p></li>
+<li><p>transaction: tx_begin did ‘start’ the transaction even if RM xa_start failed</p></li>
+<li><p>defect in error logging</p></li>
+<li><p>handle null value of queue message payload</p></li>
+<li><p>queue-forward shall not handle new dequeue ‘flows’ in shutdown mode</p></li>
+</ul>
+</section>
+</section>
+<section id="id136">
+<h2>[1.3.15] - 2020-12-24<a class="headerlink" href="#id136" title="Permalink to this heading">¶</a></h2>
+<section id="id137">
+<h3>Fixed<a class="headerlink" href="#id137" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>queue: missing error_condition equivalent implementation for queue::code
+all values for queue::code was logged as <code class="docutils literal notranslate"><span class="pre">error</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="id138">
+<h2>[1.3.13] - 2020-11-27<a class="headerlink" href="#id138" title="Permalink to this heading">¶</a></h2>
+<section id="id139">
+<h3>Fixed<a class="headerlink" href="#id139" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>queue: enqueue does not handle ‘shutdown’ correctly</p></li>
+</ul>
+</section>
+</section>
+<section id="id140">
+<h2>[1.3.7] - 2020-10-14<a class="headerlink" href="#id140" title="Permalink to this heading">¶</a></h2>
+<section id="id141">
+<h3>Fixed<a class="headerlink" href="#id141" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>service: same instance could be added to a service multiple times</p></li>
+</ul>
+</section>
+</section>
+<section id="id142">
+<h2>[1.3.6] - 2020-10-09<a class="headerlink" href="#id142" title="Permalink to this heading">¶</a></h2>
+<section id="id143">
+<h3>Fixed<a class="headerlink" href="#id143" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway: rediscovery failed when there was unconnected outbounds</p></li>
+</ul>
+</section>
+</section>
+<section id="id144">
+<h2>[1.3.5] - 2020-09-22<a class="headerlink" href="#id144" title="Permalink to this heading">¶</a></h2>
+<section id="id145">
+<h3>Fixed<a class="headerlink" href="#id145" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>transaction: did not remove ‘consumed’ transaction</p></li>
+</ul>
+</section>
+</section>
+<section id="id146">
+<h2>[1.3.4] - 2020-09-17<a class="headerlink" href="#id146" title="Permalink to this heading">¶</a></h2>
+<section id="id147">
+<h3>Added<a class="headerlink" href="#id147" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>cli transaction support</p></li>
+<li><p>handle glob pattern selecting configuration files</p></li>
+<li><p>serialization: enable (de)serializing ‘unnamed’ objects</p></li>
+<li><p>buffer: field-from-string more relaxed when dealing with string values</p></li>
+<li><p>queue: improvement in performance</p></li>
+</ul>
+</section>
+<section id="id148">
+<h3>Changed<a class="headerlink" href="#id148" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>cli help improvements</p></li>
+</ul>
+</section>
+<section id="id149">
+<h3>Fixed<a class="headerlink" href="#id149" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>http outbound not marking transaction rollback-only on error reply</p></li>
+<li><p>forward service causing error in metrics</p></li>
+<li><p>handle null buffer over http</p></li>
+<li><p>queue: dequeue with id</p></li>
+<li><p>gateway: signal handling</p></li>
+<li><p>queue: missing composite index on message.gtrid and message.state</p></li>
+<li><p>queue: fix bad performance with enqueue when forwards are active</p></li>
+<li><p>xatmi: did not call tpsrvdone when shutting down server</p></li>
+</ul>
+</section>
+</section>
+<section id="id150">
+<h2>[1.2.0] - 2020-04-23<a class="headerlink" href="#id150" title="Permalink to this heading">¶</a></h2>
+<section id="id151">
+<h3>Added<a class="headerlink" href="#id151" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>gateway rediscover functionality</p></li>
+<li><p>group restart in domain</p></li>
+</ul>
+</section>
+<section id="id152">
+<h3>Changed<a class="headerlink" href="#id152" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>improved ipc message pump semantics</p></li>
+<li><p>cli improvement in aggregate information from managers</p></li>
+<li><p>logging with iso-8601</p></li>
+<li><p>queue: metrics and cli</p></li>
+<li><p>reopen resource if failing</p></li>
+</ul>
+</section>
+</section>
+<section id="id153">
+<h2>[1.1.0] - 2020-03-08<a class="headerlink" href="#id153" title="Permalink to this heading">¶</a></h2>
+<section id="id154">
+<h3>Added<a class="headerlink" href="#id154" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>http inbound and outbound handles xatmi codes in header</p></li>
+<li><p>support for returning header parameters in http</p></li>
+<li><p>build executables with resources</p></li>
+<li><p>non blocking service lookup</p></li>
+<li><p>casual queue c-api</p></li>
+<li><p>support for queue retry and delay</p></li>
+</ul>
+</section>
+<section id="id155">
+<h3>Changed<a class="headerlink" href="#id155" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>logging reworked</p></li>
+<li><p>improved metrics semantics</p></li>
+<li><p>raw memory abstractions</p></li>
+<li><p>improvement in cli</p></li>
+<li><p>new implementation in http inbound</p></li>
+<li><p>reworked user configuration</p></li>
+<li><p>reworked marshal and serialize</p></li>
+<li><p>better route semantics</p></li>
+<li><p>administration api</p></li>
+</ul>
+</section>
+<section id="id156">
+<h3>Fixed<a class="headerlink" href="#id156" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>signal handling in non-blocking-send</p></li>
+<li><p>multiplexing problem</p></li>
+<li><p>protocol deduction error in http</p></li>
+<li><p>http outbound blocking</p></li>
+<li><p>base64 encoding/decoding in http</p></li>
+<li><p>handling transaction branches</p></li>
+<li><p>handling remote trid correct</p></li>
+<li><p>cobol binding</p></li>
+<li><p>service logging</p></li>
+</ul>
+</section>
+</section>
+<section id="id157">
+<h2>[1.0.0] - 2018-08-13<a class="headerlink" href="#id157" title="Permalink to this heading">¶</a></h2>
+<section id="id158">
+<h3>Added<a class="headerlink" href="#id158" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>first released version 6,5 years after first commit.</p></li>
+<li><p>all basic functionality supported</p></li>
+</ul>
+<hr class="docutils" />
+<section id="footnote">
+<h4>footnote<a class="headerlink" href="#footnote" title="Permalink to this heading">¶</a></h4>
+<p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
+and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: release/1.8
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../feature/1.8/main/documentation/changelog.html">feature/1.8/main</a></dd>
+      <dd><a href="../../1.6/documentation/changelog.html">release/1.6</a></dd>
+      <dd><a href="../../1.7/documentation/changelog.html">release/1.7</a></dd>
+      <dd><a href="changelog.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

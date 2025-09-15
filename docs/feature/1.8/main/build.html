@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>build casual &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            casual
+              <img src="_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="middleware/documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="middleware/documentation/operation.html">operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="middleware/documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="middleware/documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">build casual</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/build.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="build-casual">
+<h1>build casual<a class="headerlink" href="#build-casual" title="Permalink to this heading">¶</a></h1>
+<section id="prerequisites">
+<h2>prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The following packages need to be installed:</p>
+<ul class="simple">
+<li><p>git</p></li>
+<li><p>python</p></li>
+<li><p>gcc (version &gt;= 13.3)</p></li>
+<li><p>g++ (version &gt;= 13.3)</p></li>
+</ul>
+<p><em>Note: casual will not build on a 32-bit system</em></p>
+<p><strong>system environment variables</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>variable</p></th>
+<th class="head"><p>used for</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TMPDIR</span></code></p></td>
+<td><p>well, temporary files…</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="clone">
+<h2>clone<a class="headerlink" href="#clone" title="Permalink to this heading">¶</a></h2>
+<p>if you’re planning on trying some of the examples there might be a good idea to use <code class="docutils literal notranslate"><span class="pre">$HOME/git</span></code> as your repo-root, then
+the examples correspond exactly to your setup.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/casualcore/casual-make.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>casual-make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span><span class="m">1</span>.7<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/casualcore/casual-thirdparty.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>casual-thirdparty<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span><span class="m">1</span>.7<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/casualcore/casual.git
+</pre></div>
+</div>
+</section>
+<section id="set-up-the-environment">
+<h2>set up the environment<a class="headerlink" href="#set-up-the-environment" title="Permalink to this heading">¶</a></h2>
+<p>Enter the casual repo.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/git/casual
+</pre></div>
+</div>
+<p>It should be enough to just source the example environment set up file.
+(if the casual and casual-thirdparty repo’s are next to eachother)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>middleware/example/env/casual.env
+</pre></div>
+</div>
+<section id="custom-setup">
+<h3>custom setup<a class="headerlink" href="#custom-setup" title="Permalink to this heading">¶</a></h3>
+<p>If you got another setup or there are some platform specific problem, you need
+to edit the <em>casual.env</em> file to suit your platform setup.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>middleware/example/env/casual.env<span class="w"> </span>.
+$<span class="w"> </span>vim<span class="w"> </span>casual.env<span class="w"> </span><span class="c1"># edit to suit your needs</span>
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>casual.env
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2>build casual<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-make
+</pre></div>
+</div>
+<p>If you want to compile as much as possible in parallel you can use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-make<span class="w"> </span>compile<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>casual-make<span class="w"> </span>link
+</pre></div>
+</div>
+</section>
+<section id="test-casual">
+<h2>test casual<a class="headerlink" href="#test-casual" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>casual-make<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+</section>
+<section id="feedback">
+<h2>feedback<a class="headerlink" href="#feedback" title="Permalink to this heading">¶</a></h2>
+<p>If this <em>how-to</em> is not to your liking, or does not describe your platform
+please provide a pull-request to fix it.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/1.8/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="build.html">feature/1.8/main</a></dd>
+      <dd><a href="../../../release/1.6/build.html">release/1.6</a></dd>
+      <dd><a href="../../../release/1.7/build.html">release/1.7</a></dd>
+      <dd><a href="../../../release/1.8/build.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

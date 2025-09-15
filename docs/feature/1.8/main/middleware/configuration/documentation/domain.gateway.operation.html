@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>configuration gateway &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="configuration domain (general)" href="domain.general.operation.html" />
+    <link rel="prev" title="environment variables that affect operations" href="../../administration/documentation/environment.operation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation/operation.html">operation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/cli/overview.html">command line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/documentation/environment.operation.html">environment variables that affect operations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">configuration gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.general.operation.html">configuration domain (general)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.queue.operation.html">configuration queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.transaction.operation.html">configuration transaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.operation.html">configuration system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/field.operation.html">field operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/log.operation.html">log operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../http/documentation/outbound/configuration.operation.html">http outbound configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../queue/documentation/queue.operation.html">casual-queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../queue/documentation/upgrade.operation.html">queue upgrade</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../documentation/operation.html">operation</a></li>
+      <li class="breadcrumb-item active">configuration gateway</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/configuration/documentation/domain.gateway.operation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration-gateway">
+<h1>configuration gateway<a class="headerlink" href="#configuration-gateway" title="Permalink to this heading">¶</a></h1>
+<p>This is the runtime configuration for a casual domain.</p>
+<p>The sections can be splitted in arbitrary ways, and aggregated to one configuration model <code class="docutils literal notranslate"><span class="pre">casual</span></code> uses.
+Same sections can be defined in different files, hence, give more or less unlimited configuration setup.</p>
+<p>Most of the <em>sections</em> has a property <code class="docutils literal notranslate"><span class="pre">note</span></code> for the user to provide descriptions of the documentation.
+The examples further down uses this to make it easier to understand the examples by them self. But can of
+course be used as a mean to help document actual production configuration.</p>
+<section id="domain-gateway">
+<h2>domain.gateway<a class="headerlink" href="#domain-gateway" title="Permalink to this heading">¶</a></h2>
+<p>Defines configuration for communication with other <code class="docutils literal notranslate"><span class="pre">casual</span></code> domains.</p>
+<section id="domain-gateway-inbound">
+<h3>domain.gateway.inbound<a class="headerlink" href="#domain-gateway-inbound" title="Permalink to this heading">¶</a></h3>
+<p>Defines all inbound related configuration (from remote domains -&gt; local domain)</p>
+<section id="limit-structure">
+<h4>Limit <em>(structure)</em><a class="headerlink" href="#limit-structure" title="Permalink to this heading">¶</a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[size : <code class="docutils literal notranslate"><span class="pre">integer</span></code>]</p></td>
+<td><p>max size in bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>[messages : <code class="docutils literal notranslate"><span class="pre">integer</span></code>]</p></td>
+<td><p>max number of messages in flight</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="domain-gateway-inbound-default">
+<h4>domain.gateway.inbound.default<a class="headerlink" href="#domain-gateway-inbound-default" title="Permalink to this heading">¶</a></h4>
+<p>Will be used as default values for all groups.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[limit : <code class="docutils literal notranslate"><span class="pre">Limit</span></code>]</p></td>
+<td><p>default value for limit</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>[connection.discovery.forward : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>]</p></td>
+<td><p>if a discovery is allowed to propagate downstream</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<section id="domain-gateway-inbound-groups-connection-structure">
+<h5>domain.gateway.inbound.groups.Connection <em>(structure)</em><a class="headerlink" href="#domain-gateway-inbound-groups-connection-structure" title="Permalink to this heading">¶</a></h5>
+<p>Defines a connection that this <em>inbound group</em> should listen to</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>address : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>the address to listen on, <code class="docutils literal notranslate"><span class="pre">host:port</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>[discovery.forward : <code class="docutils literal notranslate"><span class="pre">boolean</span></code>]</p></td>
+<td><p>if a discovery is allowed to propagate downstream</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.gateway.inbound.default.connection.discovery.forward</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="domain-gateway-inbound-groups-list">
+<h4>domain.gateway.inbound.groups <em>(list)</em><a class="headerlink" href="#domain-gateway-inbound-groups-list" title="Permalink to this heading">¶</a></h4>
+<p>Defines a list of all inbound groups</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[alias : <code class="docutils literal notranslate"><span class="pre">string</span></code>]</p></td>
+<td><p>an <em>identity</em> for this group instance</p></td>
+<td><p><em>generated unique name</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>[limit : <code class="docutils literal notranslate"><span class="pre">Limit</span></code>]</p></td>
+<td><p>upper limits of inflight messages</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">domain.gateway.inbound.default.limit</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>[connections : <code class="docutils literal notranslate"><span class="pre">[Connection]</span></code>]</p></td>
+<td><p>all the connections for this group</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="domain-gateway-outbound">
+<h3>domain.gateway.outbound<a class="headerlink" href="#domain-gateway-outbound" title="Permalink to this heading">¶</a></h3>
+<p>Defines all outbound related configuration (from local domain -&gt; remote domains)</p>
+<section id="domain-gateway-outbound-groups-connection-structure">
+<h4>domain.gateway.outbound.groups.Connection <em>(structure)</em><a class="headerlink" href="#domain-gateway-outbound-groups-connection-structure" title="Permalink to this heading">¶</a></h4>
+<p>Defines a connection that this <em>outbound group</em> should try to connect to.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>address : <code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>the address to connect to, <code class="docutils literal notranslate"><span class="pre">host:port</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>[services : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>services we’re expecting to find on the other side</p></td>
+</tr>
+<tr class="row-even"><td><p>[queues : <code class="docutils literal notranslate"><span class="pre">[string]</span></code>]</p></td>
+<td><p>queues we’re expecting to find on the other side</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">services</span></code> and <code class="docutils literal notranslate"><span class="pre">queues</span></code> is used as an <em>optimization</em> to do a <em>build</em> discovery during startup. <code class="docutils literal notranslate"><span class="pre">casual</span></code>
+will find these services later lazily otherwise. It can also be used to do some rudimentary load balancing
+to make sure lower prioritized connections are used for <code class="docutils literal notranslate"><span class="pre">services</span></code> and <code class="docutils literal notranslate"><span class="pre">queues</span></code> that could be discovered in
+higher prioritized connections.</p>
+</section>
+<section id="domain-gateway-outbound-groups-list">
+<h4>domain.gateway.outbound.groups <em>(list)</em><a class="headerlink" href="#domain-gateway-outbound-groups-list" title="Permalink to this heading">¶</a></h4>
+<p>Each group gets an <em>order</em> in the order they are defined. Groups defined lower down will only be used if the higher
+ups does not provide the wanted <em>service</em> or <em>queue</em>. Hence, the lower downs can be used as <em>fallback</em>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>property</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[alias : <code class="docutils literal notranslate"><span class="pre">string</span></code>]</p></td>
+<td><p>an <em>identity</em> for this group instance</p></td>
+<td><p><em>generated unique name</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>[order : <code class="docutils literal notranslate"><span class="pre">integer</span></code>]</p></td>
+<td><p>a number that is used for load-balancing</p></td>
+<td><p>the implied order in the configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>[connections : <code class="docutils literal notranslate"><span class="pre">[Connection]</span></code>]</p></td>
+<td><p>all the connections for this group</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>All connections within a group, and all groups with the same <code class="docutils literal notranslate"><span class="pre">order</span></code> ar treated equal. Service calls will be
+load balanced with <em>randomization</em>. Although, <code class="docutils literal notranslate"><span class="pre">casual</span></code> will try to <em>route</em> the same transaction to the
+previous <em>associated</em> connection with the specific transaction. This is done to minimize the amount
+of <em>resources</em> involved within the prepare and commit/rollback stage.</p>
+</section>
+</section>
+<section id="domain-gateway-reverse">
+<h3>domain.gateway.reverse<a class="headerlink" href="#domain-gateway-reverse" title="Permalink to this heading">¶</a></h3>
+<p>This section defines <em>reverse</em> <code class="docutils literal notranslate"><span class="pre">inbound</span></code> and <code class="docutils literal notranslate"><span class="pre">outbound</span></code>. The connection phase is reversed.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">outbound</span></code> connection listen to it’s’ configured address.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inbound</span></code> connections tries to connect to it’s configured address.</p></li>
+</ul>
+<p>Otherwise, the semantics and configuration are exactly the same.</p>
+</section>
+<section id="domain-gateway-reverse-inbound">
+<h3>domain.gateway.reverse.inbound<a class="headerlink" href="#domain-gateway-reverse-inbound" title="Permalink to this heading">¶</a></h3>
+<p>Exactly the same as <a class="reference internal" href="#domaingatewayinbound"><span class="xref myst">domain.gateway.inbound</span></a></p>
+</section>
+<section id="domain-gateway-reverse-outbound">
+<h3>domain.gateway.reverse.outbound<a class="headerlink" href="#domain-gateway-reverse-outbound" title="Permalink to this heading">¶</a></h3>
+<p>Exactly the same as <a class="reference internal" href="#domaingatewayoutbound"><span class="xref myst">domain.gateway.outbound</span></a></p>
+</section>
+</section>
+<section id="examples">
+<h2>examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../../_downloads/8ab5847a52d592cfddc0c4e1fa5683d9/gateway.yaml"><span class="xref download myst">domain/gateway.yaml</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/516d600543be49caaf6f1f16b1c8f833/gateway.json"><span class="xref download myst">domain/gateway.json</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/4d69b62712ee8a81f8f0f92a306ed360/gateway.xml"><span class="xref download myst">domain/gateway.xml</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/41fe4b8f1e40c4c6b89ec34a19517735/gateway.ini"><span class="xref download myst">domain/gateway.ini</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../administration/documentation/environment.operation.html" class="btn btn-neutral float-left" title="environment variables that affect operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="domain.general.operation.html" class="btn btn-neutral float-right" title="configuration domain (general)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/1.8/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="domain.gateway.operation.html">feature/1.8/main</a></dd>
+      <dd><a href="../../../../../../release/1.6/middleware/configuration/documentation/domain.gateway.operation.html">release/1.6</a></dd>
+      <dd><a href="../../../../../../release/1.7/middleware/configuration/documentation/domain.gateway.operation.html">release/1.7</a></dd>
+      <dd><a href="../../../../../../release/1.8/middleware/configuration/documentation/domain.gateway.operation.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

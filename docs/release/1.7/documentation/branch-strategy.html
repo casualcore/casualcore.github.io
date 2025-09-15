@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>branch strategy and naming &mdash; casual  documentation</title>
+  <title>Branch strategy and naming &mdash; casual  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/casual-32x32.png"/>
@@ -69,7 +69,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">branch strategy and naming</li>
+      <li class="breadcrumb-item active">Branch strategy and naming</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/documentation/branch-strategy.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -80,27 +80,32 @@
            <div itemprop="articleBody">
              
   <section id="branch-strategy-and-naming">
-<h1>branch strategy and naming<a class="headerlink" href="#branch-strategy-and-naming" title="Permalink to this heading">¶</a></h1>
+<h1>Branch strategy and naming<a class="headerlink" href="#branch-strategy-and-naming" title="Permalink to this heading">¶</a></h1>
 <section id="workflow">
-<h2>workflow<a class="headerlink" href="#workflow" title="Permalink to this heading">¶</a></h2>
-<p>Every major.minor has it’s own main branch named feature/major.minor/main.</p>
-<p>Start by creating a feature branch from that main branch and naming it feature/major.minor/some-descriptive-name.</p>
-<p>When ready for review, do a pull request to the feature/major.minor/main branch.</p>
-<p>When ready for release, merge from feature/major.minor/main to release/major.minor branch.</p>
+<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading">¶</a></h2>
+<p>Every major.minor has it’s own main branch named <em>feature/major.minor/main</em>.
+Start by creating a feature branch from that main branch and naming it <em>feature/major.minor/some-descriptive-name</em>.
+When ready for review, do a pull request to the <em>feature/major.minor/main</em> branch.</p>
 <p><em>Note: Keep in mind when starting to develop that merging may be necessary from previous branches.</em></p>
 </section>
-<section id="examples">
-<h2>examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>feature/1.2/main main-branch for 1.2 produces 1.2.patchnumber-beta.buildnumber i.e. 1.2.4-beta.5</p></li>
-<li><p>feature/1.2/a-task-to-solve for 1.2 produces 1.2.patchnumber-alpha.nomalized_branchname.buildnumber i.e. 1.2.4-alpha.nomalized_branchname.5</p></li>
-<li><p>release/1.2 for 1.2 produces 1.2.patchnumber i.e. 1.2.4</p></li>
-</ul>
+<section id="release">
+<h2>Release<a class="headerlink" href="#release" title="Permalink to this heading">¶</a></h2>
+<p>When ready for release, merge from <em>feature/major.minor/main</em> to <em>release/major.minor</em> branch.</p>
 </section>
-<section id="question">
-<h2>Question<a class="headerlink" href="#question" title="Permalink to this heading">¶</a></h2>
-<p><strong>Q</strong>: why not use patch in alpha and beta too?</p>
-<p><strong>A</strong>: for rpm packages, patch is a part of version and when using buildnumber as patch (may be from different branch builds) there is no way to keep record on which version has higer precedence so we use buildnumber in rpm release tag instead for alpha and beta.</p>
+<section id="patch">
+<h2>Patch<a class="headerlink" href="#patch" title="Permalink to this heading">¶</a></h2>
+<p>When making bug fixes on a release use branch <em>patch/major.minor/main</em> as main-branch in the same manor as feature-workflow.
+On completion of patch merge to <em>release/major.minor</em></p>
+</section>
+<section id="brances-and-version-numbers-examples">
+<h2>Brances and version numbers examples<a class="headerlink" href="#brances-and-version-numbers-examples" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><em>feature/1.2/main</em> main-branch for 1.2 produces 1.2.0-beta.buildnumber i.e. 1.2.0-beta.4</p></li>
+<li><p><em>feature/1.2/a-task-to-solve</em> feature-branch for 1.2 produces 1.2.0-alpha.nomalized_branchname.buildnumber i.e. 1.2.0-alpha.a_task_to_solve.5</p></li>
+<li><p><em>patch/1.2/main</em> main-patch-branch for 1.2 produces 1.2.patchnumber-beta.buildnumber i.e. 1.2.2-beta.3</p></li>
+<li><p><em>patch/1.2/a-task-to-solve</em> patch-branch for 1.2 produces 1.2.patchnumber-alpha.nomalized_branchname.buildnumber i.e. 1.2.3-alpha.a_task_to_solve.7</p></li>
+<li><p><em>release/1.2</em> for 1.2 produces 1.2.patchnumber i.e. 1.2.4</p></li>
+</ul>
 </section>
 </section>
 
@@ -135,8 +140,10 @@
   <div class="rst-other-versions">
     <dl>
       <dt>Branches</dt>
+      <dd><a href="../../../feature/1.8/main/documentation/branch-strategy.html">feature/1.8/main</a></dd>
       <dd><a href="../../1.6/documentation/branch-strategy.html">release/1.6</a></dd>
       <dd><a href="branch-strategy.html">release/1.7</a></dd>
+      <dd><a href="../../1.8/documentation/branch-strategy.html">release/1.8</a></dd>
     </dl>
   </div>
 </div>

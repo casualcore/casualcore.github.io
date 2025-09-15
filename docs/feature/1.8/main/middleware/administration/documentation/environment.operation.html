@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>environment variables that affect operations &mdash; casual  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/casual-32x32.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="configuration gateway" href="../../configuration/documentation/domain.gateway.operation.html" />
+    <link rel="prev" title="casual transaction" href="cli/transaction.operation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            casual
+              <img src="../../../_static/casual.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/components.html">components</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">sections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../documentation/operation.html">operation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cli/overview.html">command line interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">environment variables that affect operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/domain.gateway.operation.html">configuration gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/domain.general.operation.html">configuration domain (general)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/domain.queue.operation.html">configuration queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/domain.transaction.operation.html">configuration transaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration/documentation/system.operation.html">configuration system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../buffer/documentation/field.operation.html">field operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common/documentation/log.operation.html">log operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../http/documentation/outbound/configuration.operation.html">http outbound configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../queue/documentation/queue.operation.html">casual-queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../queue/documentation/upgrade.operation.html">queue upgrade</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/development.html">development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/examples.html">examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/tutorials/operations/README.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">casual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../documentation/operation.html">operation</a></li>
+      <li class="breadcrumb-item active">environment variables that affect operations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/middleware/administration/documentation/environment.operation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="environment-variables-that-affect-operations">
+<h1>environment variables that affect operations<a class="headerlink" href="#environment-variables-that-affect-operations" title="Permalink to this heading">¶</a></h1>
+<p>This document defines all environment variables that in some way affect operations</p>
+<section id="paths">
+<h2>paths<a class="headerlink" href="#paths" title="Permalink to this heading">¶</a></h2>
+<section id="temp-dir">
+<h3><code class="docutils literal notranslate"><span class="pre">&lt;temp-dir&gt;</span></code><a class="headerlink" href="#temp-dir" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">casual</span></code> uses <code class="docutils literal notranslate"><span class="pre">&lt;temp-dir&gt;</span></code> as defined by the C++ standard utility
+<a class="reference external" href="https://en.cppreference.com/w/cpp/filesystem/temp_directory_path"><code class="docutils literal notranslate"><span class="pre">std::filesystem::temp_directory_path</span></code></a>.</p>
+<blockquote>
+<div><p>On POSIX systems, the path may be the one specified in the environment variables TMPDIR, TMP, TEMP, TEMPDIR, and, if none of
+them are specified, the path “/tmp” is returned.</p>
+</div></blockquote>
+</section>
+<section id="uniqueness">
+<h3>uniqueness<a class="headerlink" href="#uniqueness" title="Permalink to this heading">¶</a></h3>
+<p>Some paths/files need to be unique to the domain (and machine). That is, the absolute path.
+This often resolve itself if every domain are actual users, with <code class="docutils literal notranslate"><span class="pre">HOME</span></code> directories. But if other <em>strategies</em> are used,
+care needs to be taken regarding uniqueness of paths.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>unique</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_HOME</span></code></p></td>
+<td><p><strong>has to be set</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>where <code class="docutils literal notranslate"><span class="pre">casual</span></code> is installed</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_DOMAIN_HOME</span></code></p></td>
+<td><p><strong>has to be set</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>points to <em>home</em> of current <code class="docutils literal notranslate"><span class="pre">casual</span> <span class="pre">domain</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_LOG_PATH</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_DOMAIN_HOME}/casual.log</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>where to write logs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TRANSIENT_DIRECTORY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;temp-dir&gt;/.casual</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>where transient files are stored</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_PERSISTENT_DIRECTORY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_DOMAIN_HOME}/.casual</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>where persistent files are stored</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_IPC_DIRECTORY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_TRANSIENT_DIRECTORY}/ipc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>where ipc <em>files</em> are stored</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TRANSACTION_DIRECTORY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_PERSISTENT_DIRECTORY}/transaction</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>where transaction ‘database’ file is stored (if not stated in configuration).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_QUEUE_DIRECTORY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_PERSISTENT_DIRECTORY}/queue</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>where queue ‘database’ files are stored (if not stated in configuration).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_SYSTEM_CONFIGURATION_GLOB</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">${CASUAL_HOME}/configuration/resources.yaml</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>glob pattern for system configuration (including resource)</p></td>
+</tr>
+<tr class="row-odd"><td><p><em><code class="docutils literal notranslate"><span class="pre">CASUAL_RESOURCE_CONFIGURATION_FILE</span></code></em></p></td>
+<td><p><em><code class="docutils literal notranslate"><span class="pre">${CASUAL_HOME}/configuration/resources.yaml</span></code></em></p></td>
+<td><p>-</p></td>
+<td><p><strong>deprecated</strong></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="directives">
+<h2>directives<a class="headerlink" href="#directives" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_LOG</span></code></p></td>
+<td><p></p></td>
+<td><p>only matched log categories are logged. <code class="docutils literal notranslate"><span class="pre">error</span></code> is logged regardless</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="terminal-output">
+<h2>terminal output<a class="headerlink" href="#terminal-output" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TERMINAL_PRECISION</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p>how many decimal points should be used on output to terminal</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TERMINAL_COLOR</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[true,</span> <span class="pre">false,</span> <span class="pre">auto]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>if output should be color enhanced or not. If auto, colors are used if tty is bound to stdout</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TERMINAL_HEADER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[true,</span> <span class="pre">false,</span> <span class="pre">auto]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>if output should print a header or not. If auto, headers are used if tty is bound to stdout</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TERMINAL_BLOCK</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>if <em>invocations</em> should block or not. If false, return control to user as soon as possible</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TERMINAL_VERBOSE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>if verbose mode is on or not. If true, additional information will printed (were possible)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CASUAL_TERMINAL_PORCELAIN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>if output should be in an easy to parse format (overrides <code class="docutils literal notranslate"><span class="pre">CASUAL_TERMINAL_COLOR</span></code> and <code class="docutils literal notranslate"><span class="pre">CASUAL_TERMINAL_HEADER</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>These can be overridden with options when the <code class="docutils literal notranslate"><span class="pre">CLI</span></code> is invoked.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cli/transaction.operation.html" class="btn btn-neutral float-left" title="casual transaction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../configuration/documentation/domain.gateway.operation.html" class="btn btn-neutral float-right" title="configuration gateway" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, casual.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: feature/1.8/main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="environment.operation.html">feature/1.8/main</a></dd>
+      <dd><a href="../../../../../../release/1.6/middleware/administration/documentation/environment.operation.html">release/1.6</a></dd>
+      <dd><a href="../../../../../../release/1.7/middleware/administration/documentation/environment.operation.html">release/1.7</a></dd>
+      <dd><a href="../../../../../../release/1.8/middleware/administration/documentation/environment.operation.html">release/1.8</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
